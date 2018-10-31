@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,10 +43,13 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	private UserLoginTask mAuthTask = null;
 
 	// UI references.
-	private EditText mEmailView;
+	private EditText mUsernameView;
 	private EditText mPasswordView;
+	private EditText mHostnameView;
 	private View mProgressView;
 	private View mLoginFormView;
+
+	private LoginDbHelper loginDbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		setContentView(R.layout.activity_main);
 
 		// Set up the login form.
-		mEmailView = (EditText) findViewById(R.id.username);
-		//populateAutoComplete();
-
+		mUsernameView = (EditText) findViewById(R.id.username);
+		mHostnameView = (EditText) findViewById(R.id.hostname);
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
 				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -72,8 +73,16 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 					}
 				});
 
-		Button mEmailSignInButton = (Button) findViewById(R.id.username_sign_in_button);
-		mEmailSignInButton.setOnClickListener(new OnClickListener() {
+		Button mSignInButton = (Button) findViewById(R.id.username_sign_in_button);
+		mSignInButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				attemptLogin();
+			}
+		});
+
+		Button mBtnActionSave = (Button) findViewById(R.id.btn_action_save);
+		mBtnActionSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				attemptLogin();
@@ -82,10 +91,21 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mProgressView = findViewById(R.id.login_progress);
+		initForm();
 	}
 
-	private void populateAutoComplete() {
-		getLoaderManager().initLoader(0, null, this);
+	private void initForm() {
+		try {
+			loginDbHelper = new LoginDbHelper(getApplicationContext());
+			Login login = loginDbHelper.findOne();
+			if (login != null) {
+				mUsernameView.setText(login.getUsername());
+				mHostnameView.setText(login.getHostname());
+				mPasswordView.setText(login.getPassword());
+			}
+		} catch (Throwable ex) {
+			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage());
+		}
 	}
 
 	/**
@@ -99,11 +119,11 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		}
 
 		// Reset errors.
-		mEmailView.setError(null);
+		mUsernameView.setError(null);
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		String username = mEmailView.getText().toString();
+		String username = mUsernameView.getText().toString();
 		String password = mPasswordView.getText().toString();
 
 		boolean cancel = false;
@@ -118,8 +138,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(username)) {
-			mEmailView.setError(getString(R.string.error_field_required));
-			focusView = mEmailView;
+			mUsernameView.setError(getString(R.string.error_field_required));
+			focusView = mUsernameView;
 			cancel = true;
 		}
 
@@ -228,11 +248,10 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		// Create adapter to tell the AutoCompleteTextView what to show in its
 		// dropdown list.
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-				MainActivity.this,
-				android.R.layout.simple_dropdown_item_1line,
+				MainActivity.this, android.R.layout.simple_dropdown_item_1line,
 				emailAddressCollection);
 
-		//mEmailView.setAdapter(adapter);
+		// mEmailView.setAdapter(adapter);
 	}
 
 	/**
