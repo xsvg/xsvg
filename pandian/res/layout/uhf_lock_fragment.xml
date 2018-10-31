@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/tvTagUii_Write"/>
+
+            <EditText
+                android:id="@+id/EtTagUii_Write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint=""/>
+
+            <Button
+                android:id="@+id/btnReadEpc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btUii"
+                android:textSize="@dimen/text_size_14"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAccessPwd"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/EtAccessPwd_Write"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="@string/rfid_mgs_lockpwdtip"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tvLockCode"/>
+
+            <EditText
+                android:id="@+id/etLockCode"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnLock"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/uhf_msg_tab_lock"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/green"
+            android:text="@string/rfid_mgs_locktip"
+            android:gravity="left"/>
+    </LinearLayout>
+
+</ScrollView>
