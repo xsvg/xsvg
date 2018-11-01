@@ -29,7 +29,7 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 		StringBuffer sb = new StringBuffer();
 		sb.append("CREATE TABLE IF NOT EXISTS ");
 		sb.append(table);
-		sb.append(" (id integer primary key autoincrement, username varchar(50) primary key, ");
+		sb.append(" (id integer primary key autoincrement, username varchar(50), ");
 		sb.append("password varchar(50), hostname varchar(50), reftoken varchar(512), acctoken varchar(512))");
 		db.execSQL(sb.toString());
 		UIHelper.ToastMessage(context, "CREATE TABLE IF NOT EXISTS ");

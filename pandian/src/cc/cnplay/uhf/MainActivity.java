@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	 * TODO: remove after connecting to a real authentication system.
 	 */
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
+			"admin", "123456" };
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
@@ -55,43 +55,39 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		// Set up the login form.
-		mUsernameView = (EditText) findViewById(R.id.username);
-		mHostnameView = (EditText) findViewById(R.id.hostname);
-		mPasswordView = (EditText) findViewById(R.id.password);
-		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.login || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
+		try {
+			// Set up the login form.
+			mUsernameView = (EditText) findViewById(R.id.username);
+			mHostnameView = (EditText) findViewById(R.id.hostname);
+			mPasswordView = (EditText) findViewById(R.id.password);
+			mPasswordView
+					.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+						@Override
+						public boolean onEditorAction(TextView textView,
+								int id, KeyEvent keyEvent) {
+							if (id == R.id.login || id == EditorInfo.IME_NULL) {
+								attemptLogin();
+								return true;
+							}
+							return false;
 						}
-						return false;
-					}
-				});
+					});
 
-		Button mSignInButton = (Button) findViewById(R.id.username_sign_in_button);
-		mSignInButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				attemptLogin();
-			}
-		});
+			Button mSignInButton = (Button) findViewById(R.id.username_sign_in_button);
+			mSignInButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					attemptLogin();
+				}
+			});
 
-		Button mBtnActionSave = (Button) findViewById(R.id.btn_action_save);
-		mBtnActionSave.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				attemptLogin();
-			}
-		});
-
-		mLoginFormView = findViewById(R.id.login_form);
-		mProgressView = findViewById(R.id.login_progress);
-		initForm();
+			mLoginFormView = findViewById(R.id.login_form);
+			mProgressView = findViewById(R.id.login_progress);
+			initForm();
+		} catch (Throwable ex) {
+			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
+					60000);
+		}
 	}
 
 	private void initForm() {
@@ -102,9 +98,12 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 				mUsernameView.setText(login.getUsername());
 				mHostnameView.setText(login.getHostname());
 				mPasswordView.setText(login.getPassword());
+			} else {
+				mHostnameView.setText("192.168.1.107:8080");
 			}
 		} catch (Throwable ex) {
-			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage());
+			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
+					60000);
 		}
 	}
 
@@ -221,14 +220,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-		List<String> emails = new ArrayList<String>();
 		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			emails.add(cursor.getString(ProfileQuery.ADDRESS));
-			cursor.moveToNext();
-		}
-
-		addEmailsToAutoComplete(emails);
 	}
 
 	@Override
@@ -244,51 +236,24 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		int IS_PRIMARY = 1;
 	}
 
-	private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-		// Create adapter to tell the AutoCompleteTextView what to show in its
-		// dropdown list.
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-				MainActivity.this, android.R.layout.simple_dropdown_item_1line,
-				emailAddressCollection);
-
-		// mEmailView.setAdapter(adapter);
-	}
-
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-		private final String mEmail;
+		private final String mUsername;
 		private final String mPassword;
 
-		UserLoginTask(String email, String password) {
-			mEmail = email;
+		UserLoginTask(String username, String password) {
+			mUsername = username;
 			mPassword = password;
 		}
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			// TODO: attempt authentication against a network service.
 
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
-
-			// TODO: register the new account here.
-			return true;
+			return false;
 		}
 
 		@Override

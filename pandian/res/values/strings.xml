@@ -957,8 +957,8 @@
     <string name="desfire_title_card_click_tip">Click to enter</string>
     
     <string name="action_server_set">配置</string>
-    <string name="string_server_ip">域名或IP地址</string>
-    <string name="server_default">192.168.0.103</string>
+    <string name="string_hostname">域名或IP地址</string>
+    <string name="hostname_default">192.168.0.103</string>
     <string name="action_save">保存</string>
     <string name="prompt_username">登录用户</string>
     <string name="prompt_password">用户密码</string>
