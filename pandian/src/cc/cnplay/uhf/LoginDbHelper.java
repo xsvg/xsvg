@@ -41,7 +41,7 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 
 	}
 
-	public void insert(Login login) {
+	private void insert(Login login) {
 		SQLiteDatabase database = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("username", login.getUsername());
@@ -52,7 +52,16 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 		database.insert(table, null, values);
 	}
 
-	public void update(Login login) {
+	public void save(Login login) {
+		Login old = getByUsername(login.getUsername());
+		if (old == null) {
+			this.insert(login);
+		} else {
+			update(login);
+		}
+	}
+
+	private void update(Login login) {
 		SQLiteDatabase database = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("password", login.getPassword());
@@ -81,15 +90,15 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 			if (cursor.getCount() > 0) {
 				login = new Login();
 				while (cursor.moveToNext()) {
-					login.setUsername(cursor.getColumnName(cursor
+					login.setUsername(cursor.getString(cursor
 							.getColumnIndex("username")));
-					login.setPassword(cursor.getColumnName(cursor
+					login.setPassword(cursor.getString(cursor
 							.getColumnIndex("password")));
-					login.setHostname(cursor.getColumnName(cursor
+					login.setHostname(cursor.getString(cursor
 							.getColumnIndex("hostname")));
-					login.setAcctoken(cursor.getColumnName(cursor
+					login.setAcctoken(cursor.getString(cursor
 							.getColumnIndex("acctoken")));
-					login.setReftoken(cursor.getColumnName(cursor
+					login.setReftoken(cursor.getString(cursor
 							.getColumnIndex("reftoken")));
 					return login;
 				}
@@ -115,15 +124,15 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 			if (cursor.getCount() > 0) {
 				login = new Login();
 				while (cursor.moveToNext()) {
-					login.setUsername(cursor.getColumnName(cursor
+					login.setUsername(cursor.getString(cursor
 							.getColumnIndex("username")));
-					login.setPassword(cursor.getColumnName(cursor
+					login.setPassword(cursor.getString(cursor
 							.getColumnIndex("password")));
-					login.setHostname(cursor.getColumnName(cursor
+					login.setHostname(cursor.getString(cursor
 							.getColumnIndex("hostname")));
-					login.setAcctoken(cursor.getColumnName(cursor
+					login.setAcctoken(cursor.getString(cursor
 							.getColumnIndex("acctoken")));
-					login.setReftoken(cursor.getColumnName(cursor
+					login.setReftoken(cursor.getString(cursor
 							.getColumnIndex("reftoken")));
 					return login;
 				}

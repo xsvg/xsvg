@@ -1,5 +1,8 @@
 package cc.cnplay.uhf;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Login {
 	private String id;
 	private String username;
@@ -54,6 +57,17 @@ public class Login {
 
 	public void setAcctoken(String acctoken) {
 		this.acctoken = acctoken;
+	}
+
+	public JSONObject toJson() throws JSONException {
+		JSONObject json = new JSONObject();
+		json.put("id", this.getId());
+		json.put("username", this.getUsername());
+		json.put("password", this.getPassword());
+		json.put("hostname", this.getHostname());
+		json.put("reftoken", this.getReftoken());
+		json.put("acctoken", this.getAcctoken());
+		return json;
 	}
 
 }

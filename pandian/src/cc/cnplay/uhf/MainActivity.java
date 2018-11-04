@@ -3,12 +3,15 @@ package cc.cnplay.uhf;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -35,8 +38,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
 	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"admin", "123456" };
+	private static final String[] DUMMY_CREDENTIALS = new String[] { "admin",
+			"123456" };
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
@@ -50,6 +53,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	private View mLoginFormView;
 
 	private LoginDbHelper loginDbHelper;
+	private Login mLogin;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +97,15 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	private void initForm() {
 		try {
 			loginDbHelper = new LoginDbHelper(getApplicationContext());
-			Login login = loginDbHelper.findOne();
-			if (login != null) {
-				mUsernameView.setText(login.getUsername());
-				mHostnameView.setText(login.getHostname());
-				mPasswordView.setText(login.getPassword());
+			mLogin = loginDbHelper.findOne();
+			if (mLogin != null) {
+				mUsernameView.setText(mLogin.getUsername());
+				mHostnameView.setText(mLogin.getHostname());
+				mPasswordView.setText(mLogin.getPassword());
 			} else {
 				mHostnameView.setText("192.168.1.107:8080");
+				mLogin = new Login();
+				mLogin.setHostname(mHostnameView.getText().toString());
 			}
 		} catch (Throwable ex) {
 			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
@@ -124,7 +130,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		// Store values at the time of the login attempt.
 		String username = mUsernameView.getText().toString();
 		String password = mPasswordView.getText().toString();
-
+		mLogin.setHostname(mHostnameView.getText().toString());
 		boolean cancel = false;
 		View focusView = null;
 
@@ -152,6 +158,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 			showProgress(true);
 			mAuthTask = new UserLoginTask(username, password);
 			mAuthTask.execute((Void) null);
+			Intent intent = new Intent(this, UHFMainActivity.class);
+			this.startActivity(intent);
 		}
 	}
 
@@ -240,7 +248,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
 	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+	public class UserLoginTask extends AsyncTask<Void, Void, Login> {
 
 		private final String mUsername;
 		private final String mPassword;
@@ -251,17 +259,47 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		}
 
 		@Override
-		protected Boolean doInBackground(Void... params) {
-
-			return false;
+		protected Login doInBackground(Void... params) {
+			try {
+				JSONObject json = new JSONObject();
+				json.put("username", mUsername);
+				json.put("password", mPassword);
+				String ret = HttpUtils.postJSON(
+						"http://" + mLogin.getHostname() + "/loginByApp", json,
+						null);
+				if (ret != null) {
+					json = new JSONObject(ret);
+					if (json.getInt("code") == 200) {
+						JSONObject data = json.getJSONObject("rows");
+						Login login = new Login();
+						login.setAcctoken(data.getString("accessToken"));
+						login.setReftoken(data.getString("refreshToken"));
+						login.setUsername(mUsername);
+						login.setPassword(mPassword);
+						login.setHostname(mLogin.getHostname());
+						return login;
+					} else {
+						mPasswordView
+								.setError(getString(R.string.error_incorrect_password));
+						mPasswordView.requestFocus();
+					}
+				} else {
+					mPasswordView
+							.setError(getString(R.string.error_incorrect_password));
+					mPasswordView.requestFocus();
+				}
+			} catch (Throwable ex) {
+				UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
+						60000);
+			}
+			return null;
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean success) {
+		protected void onPostExecute(final Login login) {
 			mAuthTask = null;
 			showProgress(false);
-
-			if (success) {
+			if (login != null) {
 				finish();
 			} else {
 				mPasswordView
