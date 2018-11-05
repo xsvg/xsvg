@@ -3,11 +3,18 @@
 package cc.cnplay.uhf.fragment;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,14 +37,12 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import cc.cnplay.uhf.App;
+import cc.cnplay.uhf.HttpUtils;
 import cc.cnplay.uhf.R;
 import cc.cnplay.uhf.StringUtils;
 import cc.cnplay.uhf.UHFMainActivity;
 import cc.cnplay.uhf.UIHelper;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 
 import com.rscja.deviceapi.RFIDWithUHF;
 
@@ -68,7 +73,7 @@ public class UHFReadTagFragment extends KeyDwonFragment {
 	private UHFMainActivity mContext;
 
 	private HashMap<String, String> map;
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -86,7 +91,7 @@ public class UHFReadTagFragment extends KeyDwonFragment {
 		mContext = (UHFMainActivity) getActivity();
 
 		tagList = new ArrayList<HashMap<String, String>>();
-setFilter=(Button)mContext.findViewById(R.id.btnSetFilter);
+		setFilter=(Button)mContext.findViewById(R.id.btnSetFilter);
 		BtClear = (Button) mContext.findViewById(R.id.BtClear);
 		tv_count = (TextView) mContext.findViewById(R.id.tv_count);
 		RgInventory = (RadioGroup) mContext.findViewById(R.id.RgInventory);
@@ -251,6 +256,29 @@ setFilter=(Button)mContext.findViewById(R.id.btnSetFilter);
 
 		@Override
 		public void onClick(View v) {
+			
+			try {
+				
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							final JSONObject json = new JSONObject();
+							json.put("tagList", tagList);
+							Map<String, String> header = new HashMap<String, String>();
+							header.put("token", App.login.getAcctoken());
+							String url = App.url("/home/store/tag");
+							HttpUtils.postJSON(url, json, header);
+						} catch (Exception ex) {
+							UIHelper.ToastMessage(mContext,
+									"程序异常：" + ex.toString(), 100000);
+						}
+					}
+				}).start();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			if (popFilter == null) {
 				View viewPop = LayoutInflater.from(mContext).inflate(R.layout.popwindow_filter, null);

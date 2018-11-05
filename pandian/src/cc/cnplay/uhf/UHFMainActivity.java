@@ -77,7 +77,7 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 
 	        lstTitles.add(getString(R.string.uhf_msg_tab_scan));
 	        //lstTitles.add(getString(R.string.uhf_msg_tab_read));
-	        lstTitles.add(getString(R.string.uhf_msg_tab_write));
+	        lstTitles.add(getString(R.string.uhf_msg_tab_read));
 	        lstTitles.add(getString(R.string.uhf_msg_tab_set));
 	        //lstTitles.add(getString(R.string.uhf_msg_tab_kill));
 	        //lstTitles.add(getString(R.string.uhf_msg_tab_lock));
