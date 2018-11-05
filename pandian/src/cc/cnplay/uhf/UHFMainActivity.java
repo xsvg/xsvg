@@ -68,19 +68,19 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 	 @Override
 	    protected void initViewPageData() {
 	        lstFrg.add(new UHFReadTagFragment());
-	        lstFrg.add(new UHFReadFragment());
+	        //lstFrg.add(new UHFReadFragment());
 	        lstFrg.add(new UHFWriteFragment());
 	        lstFrg.add(new UHFSetFragment());
-	        lstFrg.add(new UHFKillFragment());
-	        lstFrg.add(new UHFLockFragment());
+	        //lstFrg.add(new UHFKillFragment());
+	        //lstFrg.add(new UHFLockFragment());
 
 
 	        lstTitles.add(getString(R.string.uhf_msg_tab_scan));
-	        lstTitles.add(getString(R.string.uhf_msg_tab_read));
+	        //lstTitles.add(getString(R.string.uhf_msg_tab_read));
 	        lstTitles.add(getString(R.string.uhf_msg_tab_write));
 	        lstTitles.add(getString(R.string.uhf_msg_tab_set));
-	        lstTitles.add(getString(R.string.uhf_msg_tab_kill));
-	        lstTitles.add(getString(R.string.uhf_msg_tab_lock));
+	        //lstTitles.add(getString(R.string.uhf_msg_tab_kill));
+	        //lstTitles.add(getString(R.string.uhf_msg_tab_lock));
 	    }
 
 
