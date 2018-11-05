@@ -115,14 +115,15 @@
     <string name="tvTagLen">Length</string>
     <string name="tvTagCount">Count</string>
     <string name="btClear">Clear</string>
- <string name="btFilter">SetFilter</string>
-  <string name="uhf_msg_r2000_tip">R2000 module only</string>
+    <string name="btFilter">SetFilter</string>
+    <string name="uhf_msg_r2000_tip">R2000 module only</string>
     <string name="button_disable">Disable</string>
     <string name="button_enable">Enable</string>
     <string name="uhf_msg_set_filter_fail">Set the filter failure</string>
     <string name="uhf_msg_set_filter_succ">Set the filter success</string>
     <string name="msg_disable_succ">Disable success</string>
-     <string name="msg_disable_fail">Disable fail</string>
+    <string name="msg_disable_fail">Disable fail</string>
+
     <string-array name="arrayAntiQ">
         <item>0</item>
         <item>1</item>
@@ -170,13 +171,11 @@
     <string name="tvLen2_Read">Len：</string>
     <string name="tvData_Read">Data：</string>
     <string name="btRead">Read</string>
-
     <string name="uhf_title_kill" translatable="false">Kill:</string>
     <string name="uhf_title_access" translatable="false">Access:</string>
     <string name="uhf_title_uii" translatable="false">UII:</string>
     <string name="uhf_title_tid" translatable="false">TID:</string>
     <string name="uhf_title_user" translatable="false">USER:</string>
-
     <string name="uhf_title_read">Read</string>
     <string name="uhf_title_write">Write</string>
     <string name="uhf_title_temp">Temporary mask</string>
@@ -406,13 +405,10 @@
         <item>57600</item>
         <item>115200</item>
     </string-array>
-
     <string-array name="arrayDesFirePwdMode" translatable="false">
         <item>AES</item>
         <item>DES</item>
     </string-array>
-
-
     <string-array name="arrayDesFirePwdNum" translatable="false">
         <item>00</item>
         <item>01</item>
@@ -850,7 +846,6 @@
     <!-- zxing end -->
 
     <string name="title_activity_auto_run_network">Network_Auto</string>
-
     <string name="desfire_title_scan">Scan</string>
     <string name="desfire_title_back">Back</string>
     <string name="desfire_title_pwd">Password</string>
@@ -863,23 +858,18 @@
     <string name="desfire_title_format">Format</string>
     <string name="title_del">Delete</string>
     <string name="desfire_title_add_file">New File</string>
-
     <string name="desfire_title_sel_app_fail">Select application failure</string>
     <string name="desfire_msg_pwd_not_hex">Please enter a hexadecimal number</string>
     <string name="desfire_msg_pwd_vail_fail">Verification failed</string>
     <string name="desfire_msg_get_apps_fail">Failed to get the application</string>
     <string name="desfire_msg_get_files_fail">Failed to get the file</string>
     <string name="desfire_msg_get_info_fail">Failed to get the infomation</string>
-
-
     <string name="desfire_title_pwd_pro_chg">Password attributes can be modified</string>
     <string name="desfire_title_add_del_pwd">Add or delete the application authentication codes</string>
     <string name="desfire_title_oper_pwd">Operation application authentication codes</string>
     <string name="desfire_title_pwd_chg">The password can be modified</string>
-
     <string name="desfire_msg_operator_fail">failed</string>
     <string name="desfire_msg_operator_succ">succeed</string>
-
     <string name="desfire_title_app_id">App ID</string>
     <string name="desfire_title_file_num">File count</string>
     <string name="desfire_title_comm_setting">comm setting</string>
@@ -907,27 +897,24 @@
         <item>0D</item>
         <item>0E</item>
         <item>0F</item>
-
     </string-array>
+
     <string name="desfire_title_file_size">size</string>
     <string name="desfire_title_link_encry">Encryption</string>
+
     <string-array name="desfire_array_encry">
         <item>Transparent</item>
         <item>3DES</item>
     </string-array>
 
-
     <string name="desfire_title_read_permission">Read</string>
     <string name="desfire_title_write_permission">Write</string>
     <string name="desfire_title_readwrite_permission">Read/Write</string>
     <string name="desfire_title_update_permission">Update</string>
-
     <string name="desfire_msg_file_no_less_1">file is full</string>
-
     <string name="desfire_ms_filesize_not_null">File No cannot be empty</string>
     <string name="desfire_title_sta_file">Data File</string>
     <string name="desfire_title_value_file">Value File</string>
-
     <string name="desfire_title_value_min">Min</string>
     <string name="desfire_title_value_max">Max</string>
     <string name="desfire_title_value_curr">Now</string>
@@ -935,27 +922,20 @@
     <string name="desfire_title_value_balance">Balance</string>
     <string name="desfire_title_value_credit">Credit</string>
     <string name="desfire_title_value_debit">Debit</string>
-
     <string name="desfire_title_file">Data</string>
     <string name="desfire_title_card_properties">Card Properties</string>
     <string name="desfire_title_get_card_version">Card Version</string>
-
     <string name="desfire_ms_unknown_file">Unknown file types</string>
-
     <string name="desfire_title_app_change_pwd">Modify App password</string>
     <string name="desfire_title_app_properties">App properties</string>
     <string name="desfire_title_dialog_tips">Tips</string>
     <string name="desfire_title_dialog_tips_msg">If confirm the operation?</string>
-
-
     <string name="desfire_title_appid_input">3 bytes hex number</string>
     <string name="desfire_title_app_add_del_pwd">Add or delete the file authentication codes</string>
     <string name="desfire_title_app_oper_pwd">Operation file authentication codes</string>
-
     <string name="desfire_title_app_change_pwd_permission">Change the app code required permissions</string>
     <string name="desfire_title_app_max_key">The largest number of key</string>
     <string name="desfire_title_card_click_tip">Click to enter</string>
-    
     <string name="action_server_set">配置</string>
     <string name="string_hostname">域名或IP地址</string>
     <string name="hostname_default">192.168.0.103</string>
@@ -968,4 +948,10 @@
     <string name="error_invalid_password">用户密码无效</string>
     <string name="error_incorrect_password">用户密 码不正确</string>
     <string name="error_field_required">不能为空</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="tagread">读标签号</string>
+
 </resources>
