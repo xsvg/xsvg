@@ -43,7 +43,6 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	private View mLoginFormView;
 
 	private LoginDbHelper loginDbHelper;
-	private Login mLogin;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +86,16 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	private void initForm() {
 		try {
 			loginDbHelper = new LoginDbHelper(getApplicationContext());
-			mLogin = loginDbHelper.findOne();
-			if (mLogin == null) {
-				mLogin = new Login();
-				mLogin.setHostname("192.168.43.241:8080");
-				mLogin.setUsername("admin");
-				mLogin.setPassword("ad111111");
+			App.login = loginDbHelper.findOne();
+			if (App.login == null) {
+				App.login = new Login();
+				App.login.setHostname("192.168.43.241:8080");
+				App.login.setUsername("admin");
+				App.login.setPassword("ad111111");
 			}
-			mUsernameView.setText(mLogin.getUsername());
-			mHostnameView.setText(mLogin.getHostname());
-			mPasswordView.setText(mLogin.getPassword());
+			mUsernameView.setText(App.login.getUsername());
+			mHostnameView.setText(App.login.getHostname());
+			mPasswordView.setText(App.login.getPassword());
 		} catch (Throwable ex) {
 			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
 					60000);
@@ -118,21 +117,22 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		String username = mUsernameView.getText().toString();
-		String password = mPasswordView.getText().toString();
-		mLogin.setHostname(mHostnameView.getText().toString());
+		App.login.setUsername(mUsernameView.getText().toString());
+		App.login.setPassword(mPasswordView.getText().toString());
+		App.login.setHostname(mHostnameView.getText().toString());
 		boolean cancel = false;
 		View focusView = null;
 
 		// Check for a valid password, if the user entered one.
-		if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+		if (!TextUtils.isEmpty(App.login.getPassword())
+				&& !isPasswordValid(App.login.getPassword())) {
 			mPasswordView.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView;
 			cancel = true;
 		}
 
 		// Check for a valid email address.
-		if (TextUtils.isEmpty(username)) {
+		if (TextUtils.isEmpty(App.login.getUsername())) {
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
 			cancel = true;
@@ -146,10 +146,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			showProgress(true);
-			mAuthTask = new UserLoginTask(username, password);
+			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
-			Intent intent = new Intent(this, UHFMainActivity.class);
-			this.startActivity(intent);
 		}
 	}
 
@@ -236,36 +234,27 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
 	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Login> {
+	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-		private final String mUsername;
-		private final String mPassword;
-
-		UserLoginTask(String username, String password) {
-			mUsername = username;
-			mPassword = password;
+		UserLoginTask() {
 		}
 
 		@Override
-		protected Login doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			try {
 				JSONObject json = new JSONObject();
-				json.put("username", mUsername);
-				json.put("password", mPassword);
-				String ret = HttpUtils.postJSON(
-						"http://" + mLogin.getHostname() + "/loginByApp", json,
+				json.put("username", App.login.getUsername());
+				json.put("password", App.login.getPassword());
+				String ret = HttpUtils.postJSON(App.url("/loginByApp"), json,
 						null);
 				if (ret != null) {
 					json = new JSONObject(ret);
 					if (json.getInt("code") == 200) {
 						JSONObject data = json.getJSONObject("rows");
-						Login login = new Login();
-						login.setAcctoken(data.getString("accessToken"));
-						login.setReftoken(data.getString("refreshToken"));
-						login.setUsername(mUsername);
-						login.setPassword(mPassword);
-						login.setHostname(mLogin.getHostname());
-						return login;
+						App.login.setAcctoken(data.getString("accessToken"));
+						App.login.setReftoken(data.getString("refreshToken"));
+						loginDbHelper.save(App.login);
+						return true;
 					} else {
 						mPasswordView
 								.setError(getString(R.string.error_incorrect_password));
@@ -280,15 +269,18 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 				UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
 						60000);
 			}
-			return null;
+			return false;
 		}
 
 		@Override
-		protected void onPostExecute(final Login login) {
+		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
 			showProgress(false);
-			if (login != null) {
+			if (success) {
 				finish();
+				loginDbHelper.save(App.login);
+				Intent intent = new Intent(MainActivity.this, UHFMainActivity.class);
+				MainActivity.this.startActivity(intent);
 			} else {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

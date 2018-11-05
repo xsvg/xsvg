@@ -13,14 +13,8 @@ import org.json.JSONObject;
 
 public class HttpUtils {
 
-	private static String domain;
-
-	public static void setDomain(String domain) {
-		HttpUtils.domain = domain;
-	}
-
 	public static String postJSON(final String url, final JSONObject jsonBody,
-			final Map<String, String> header) throws Throwable {
+			final Map<String, String> header) throws Exception {
 		HttpPost httpPost = new HttpPost(url);
 		HttpClient client = new DefaultHttpClient();
 		String respContent = null;

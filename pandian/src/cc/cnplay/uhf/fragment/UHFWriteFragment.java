@@ -1,5 +1,11 @@
 package cc.cnplay.uhf.fragment;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,22 +14,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import cc.cnplay.uhf.App;
+import cc.cnplay.uhf.HttpUtils;
 import cc.cnplay.uhf.R;
-import cc.cnplay.uhf.StringUtils;
 import cc.cnplay.uhf.UHFMainActivity;
 import cc.cnplay.uhf.UIHelper;
 
-import com.rscja.deviceapi.RFIDWithUHF.BankEnum;
-
 public class UHFWriteFragment extends KeyDwonFragment {
-
-	private static final String TAG = "UHFWriteFragment";
 
 	private UHFMainActivity mContext;
 
 	EditText EtTagUii_Write;
-	EditText EtData_Write;
-	Button BtWrite;
 	Button BtErase;
 
 	@Override
@@ -39,14 +39,11 @@ public class UHFWriteFragment extends KeyDwonFragment {
 		mContext = (UHFMainActivity) getActivity();
 
 		EtTagUii_Write = (EditText) mContext.findViewById(R.id.EtTagUii_Write);
-		EtData_Write = (EditText) mContext.findViewById(R.id.EtData_Write);
-		BtWrite = (Button) mContext.findViewById(R.id.BtWrite);
 
 		BtErase = (Button) mContext.findViewById(R.id.BtErase);
 
 		EtTagUii_Write.setKeyListener(null);
 
-		BtWrite.setOnClickListener(new BtWriteOnClickListener());
 		BtErase.setOnClickListener(new BtUii_WriteClickListener());
 
 	}
@@ -55,62 +52,52 @@ public class UHFWriteFragment extends KeyDwonFragment {
 
 		@Override
 		public void onClick(View v) {
-
 			String uiiStr = mContext.mReader.inventorySingleTag();
-
 			if (uiiStr != null) {
 				EtTagUii_Write.setText(uiiStr);
+				UIHelper.ToastMessage(mContext, R.string.rfid_msg_read_succ);
+				TagTask tagTask = new TagTask(uiiStr);
+				tagTask.execute((Void) null);
 			} else {
 				EtTagUii_Write.setText("");
-
 				UIHelper.ToastMessage(mContext, R.string.uhf_msg_read_tag_fail);
 			}
 		}
+
 	}
 
-	public class BtWriteOnClickListener implements OnClickListener {
+	public class TagTask extends AsyncTask<Void, Void, Boolean> {
+
+		private String rfid;
+
+		TagTask(String rfid) {
+			super();
+			this.rfid = rfid;
+		}
 
 		@Override
-		public void onClick(View v) {
-
-			String strData = EtData_Write.getText().toString().trim();// 要写入的内容
-
-			if (StringUtils.isEmpty(strData)) {
-				UIHelper.ToastMessage(mContext,
-						R.string.uhf_msg_write_must_not_null);
-
-				return;
-			} else if (!mContext.vailHexInput(strData)) {
-
-				UIHelper.ToastMessage(mContext, R.string.rfid_mgs_error_nohex);
-				return;
+		protected Boolean doInBackground(Void... params) {
+			try {
+				JSONObject json = new JSONObject();
+				json.put("rfid", rfid);
+				Map<String, String> header = new HashMap<String, String>();
+				header.put("token", App.login.getAcctoken());
+				String url = App.url("/home/store/tag");
+				String ret = HttpUtils.postJSON(url, json, header);
+				UIHelper.ToastMessage(mContext, ret);
+			} catch (Throwable ex) {
+				UIHelper.ToastMessage(mContext, ex.getMessage(), 60000);
 			}
+			return false;
+		}
 
-			if ((strData.length()) % 4 != 0) {
-				UIHelper.ToastMessage(mContext,
-						R.string.uhf_msg_write_must_len4x);
+		@Override
+		protected void onPostExecute(final Boolean success) {
 
-				return;
-			} else if (!mContext.vailHexInput(strData)) {
-				UIHelper.ToastMessage(mContext, R.string.rfid_mgs_error_nohex);
-				return;
-			}
+		}
 
-			String strUII = EtTagUii_Write.getText().toString().trim();
-			if (StringUtils.isEmpty(strUII)) {
-				UIHelper.ToastMessage(mContext,
-						R.string.uhf_msg_tag_must_not_null);
-				return;
-			}
-
-			if (mContext.mReader.writeData(App.PWD, BankEnum.RESERVED,
-					App.PORT, App.CNTLEN, strData, strUII)) {
-				UIHelper.ToastMessage(mContext, R.string.uhf_msg_write_succ);
-			} else {
-				UIHelper.ToastMessage(mContext, R.string.uhf_msg_write_fail);
-
-			}
+		@Override
+		protected void onCancelled() {
 		}
 	}
-
 }
