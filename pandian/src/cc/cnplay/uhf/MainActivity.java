@@ -1,8 +1,5 @@
 package cc.cnplay.uhf;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.JSONObject;
 
 import android.animation.Animator;
@@ -24,7 +21,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,12 +30,6 @@ import android.widget.TextView;
  */
 public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 
-	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] { "admin",
-			"123456" };
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
@@ -98,15 +88,15 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		try {
 			loginDbHelper = new LoginDbHelper(getApplicationContext());
 			mLogin = loginDbHelper.findOne();
-			if (mLogin != null) {
-				mUsernameView.setText(mLogin.getUsername());
-				mHostnameView.setText(mLogin.getHostname());
-				mPasswordView.setText(mLogin.getPassword());
-			} else {
-				mHostnameView.setText("192.168.1.107:8080");
+			if (mLogin == null) {
 				mLogin = new Login();
-				mLogin.setHostname(mHostnameView.getText().toString());
+				mLogin.setHostname("192.168.43.241:8080");
+				mLogin.setUsername("admin");
+				mLogin.setPassword("ad111111");
 			}
+			mUsernameView.setText(mLogin.getUsername());
+			mHostnameView.setText(mLogin.getHostname());
+			mPasswordView.setText(mLogin.getPassword());
 		} catch (Throwable ex) {
 			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
 					60000);
@@ -240,8 +230,6 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 		String[] PROJECTION = { ContactsContract.CommonDataKinds.Email.ADDRESS,
 				ContactsContract.CommonDataKinds.Email.IS_PRIMARY, };
 
-		int ADDRESS = 0;
-		int IS_PRIMARY = 1;
 	}
 
 	/**

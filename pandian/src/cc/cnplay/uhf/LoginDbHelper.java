@@ -10,13 +10,10 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 
 	private Context context;
 
-	// 数据库名称
 	private static final String name = "cnplay.db";
 
-	// 数据库名称
 	private static final String table = "login";
 
-	// 数据库版本
 	private static final int version = 1;
 
 	public LoginDbHelper(Context context) {
