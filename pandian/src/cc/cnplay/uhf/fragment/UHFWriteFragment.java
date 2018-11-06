@@ -73,7 +73,7 @@ public class UHFWriteFragment extends KeyDwonFragment {
 						Map<String, String> header = new HashMap<String, String>();
 						header.put("token", App.login.getAcctoken());
 						String url = App.url("/home/store/tag");
-						HttpUtils.postJSON(url, json, header);
+						HttpUtils.postJSON(url, json.toString(), header);
 					} catch (Exception ex) {
 						UIHelper.ToastMessage(mContext,
 								"程序异常：" + ex.toString(), 100000);

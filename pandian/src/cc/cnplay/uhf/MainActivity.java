@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 			App.login = loginDbHelper.findOne();
 			if (App.login == null) {
 				App.login = new Login();
-				App.login.setHostname("192.168.43.241:8080");
+				App.login.setHostname(App.HOSTNAME);
 				App.login.setUsername("admin");
 				App.login.setPassword("ad111111");
 			}
@@ -245,7 +245,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 				JSONObject json = new JSONObject();
 				json.put("username", App.login.getUsername());
 				json.put("password", App.login.getPassword());
-				String ret = HttpUtils.postJSON(App.url("/loginByApp"), json,
+				String ret = HttpUtils.postJSON(App.url("/loginByApp"), json.toString(),
 						null);
 				if (ret != null) {
 					json = new JSONObject(ret);
