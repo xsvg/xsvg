@@ -57,9 +57,25 @@ Ext.define('platform.system.view.StoreInWindow', {
                             xtype: 'textfield',
                             padding: 5,
                             width: 330,
-                            fieldLabel: '物品编号',
+                            fieldLabel: '标签号',
                             labelAlign: 'right',
                             name: 'rfid',
+                            allowBlank: false,
+                            maxLength: 10,
+                            listeners: {
+                                afterrender: {
+                                    fn: me.onRfidAfterRender,
+                                    scope: me
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'textfield',
+                            padding: 5,
+                            width: 330,
+                            fieldLabel: '物品编号',
+                            labelAlign: 'right',
+                            name: 'sn',
                             invalidText: '机构编码不能为空！',
                             allowBlank: false,
                             maxLength: 10
@@ -278,6 +294,12 @@ Ext.define('platform.system.view.StoreInWindow', {
         me.callParent(arguments);
     },
 
+    onRfidAfterRender: function(component, eOpts) {
+        var me = this;
+        alert('xx');
+        setTimeout(me.readRfid,2000);
+    },
+
     onParentNameTextfieldFocus: function(component, e, eOpts) {
         try{
             var me = this;
@@ -343,6 +365,12 @@ Ext.define('platform.system.view.StoreInWindow', {
         {
             Common.show({title:'操作提示',html:error.toString()});
         }
+    },
+
+    readRfid: function() {
+        var me = this;
+        alert('rfid');
+        setTimeout(me.readRfid,2000);
     }
 
 });
