@@ -521,7 +521,7 @@
     <string name="gps_msg_Locate_stop">定位结束</string>
     <string name="gps_msg_title_satellite_signal">卫星信号</string>
     <string name="uhf_msg_tab_scan">盘点</string>
-    <string name="uhf_msg_tab_read">读数据</string>
+    <string name="uhf_msg_tab_read">读标签</string>
     <string name="uhf_msg_tab_write">写数据</string>
     <string name="uhf_msg_tab_set">设置</string>
     <string name="uhf_msg_tab_kill">销毁</string>
