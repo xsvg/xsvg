@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/data/jpa 
+		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd		
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd  
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc
+		http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/aop   
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/util 
+    	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<jpa:repositories base-package="cc.cnplay" />
+
+	<context:property-placeholder
+		ignore-resource-not-found="true" location="classpath:jdbc.properties" />
+
+	<bean id="entityManagerFactory"
+		class="cc.cnplay.core.spring.LocalJPAEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan">
+            <list>
+              <value>cc.cnplay.*</value>
+            </list>
+        </property>	
+<!--		
+		<property name="packagesToScan" value="cc.cnplay.platform;cc.cnplay.p1506" />
+-->		
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">${hibernate.temp.use_jdbc_metadata_defaults}</prop>				
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform" value="${jpa.dialect}" />
+	</bean>
+
+	<bean id="sharedEntityManager"
+		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!--
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="defaultAutoCommit" value="false" />
+	</bean>
+	
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialPoolSize" value="3" />
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="15" />
+		<property name="maxIdleTime" value="3000" />
+		<property name="maxStatements" value="100" />
+		<property name="idleConnectionTestPeriod" value="1800" />
+		<property name="acquireIncrement" value="3" />
+		<property name="acquireRetryAttempts" value="30" />
+		<property name="acquireRetryDelay" value="100"/>
+		<property name="checkoutTimeout" value="100"/>  
+		<property name="breakAfterAcquireFailure" value="false" />
+		<property name="testConnectionOnCheckout" value="true" />
+	</bean>
+	 -->
+	 
+	<bean id="dataSource" class="cc.cnplay.jdbcconfig.AliPoolDruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="encode" value="${jdbc.encode}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />	
+		<property name="validationQuery" value="${jdbc.validationQuery}" />	
+		<property name="initialSize" value="1" />
+		<property name="maxActive" value="50" />
+		<property name="minIdle" value="1" />	
+		<property name="maxWait" value="60000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="testWhileIdle" value="true " />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />		
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="100" />	
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>	
+    
+	<!-- googlecode-dao  -->
+	<bean id="searchProcessor" class="com.googlecode.genericdao.search.jpa.JPASearchProcessor">
+		<constructor-arg ref="metadataUtil" />
+	</bean>
+
+	<bean id="metadataUtil"
+		class="com.googlecode.genericdao.search.jpa.hibernate.HibernateMetadataUtil"
+		factory-method="getInstanceForEntityManagerFactory">
+		<constructor-arg ref="entityManagerFactory" />
+	</bean>
+
+	<aop:aspectj-autoproxy />
+ 	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<context:component-scan base-package="cc.cnplay" />
+</beans>

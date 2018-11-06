@@ -1,0 +1,270 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "UserImportWin",
+        "height": 400,
+        "layout": "border",
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "未导入数据",
+        "width": 862
+    },
+    "name": "OrgImportWin1",
+    "designerId": "b333d1ca-913c-4c2e-9917-0f191642e505",
+    "cn": [
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "columnLines": true,
+                "forceFit": true,
+                "id": null,
+                "layout|region": "west",
+                "maxHeight": 338,
+                "title": "",
+                "width": 850
+            },
+            "name": "MyGridPanel",
+            "designerId": "5e642a2b-ae1f-4774-a59b-ef04d6f3ee03",
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "username",
+                        "designer|displayName": "用户编号",
+                        "text": "用户编号"
+                    },
+                    "name": "MyColumn12",
+                    "designerId": "4fbb73d0-5e5b-41bf-b3bb-164997ab76ad"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "name",
+                        "designer|displayName": "用户名称",
+                        "text": "用户名称"
+                    },
+                    "name": "MyColumn15",
+                    "designerId": "2eb26ac8-712e-4d0b-9592-6daec8d06dc5"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "orgId",
+                        "designer|displayName": "所属机构",
+                        "text": "所属机构编号"
+                    },
+                    "name": "MyColumn14",
+                    "designerId": "5d70dc0e-70c0-4506-b2dc-3a2d0ae88e5e"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "jobName",
+                        "designer|displayName": "角色名称",
+                        "text": "角色名称"
+                    },
+                    "name": "MyColumn13",
+                    "designerId": "a05fe8dd-ec79-484d-acd8-928ef35aa347"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "mobile",
+                        "designer|displayName": "",
+                        "text": "手机号"
+                    },
+                    "name": "MyColumn11",
+                    "designerId": "cf4b2612-bab3-4f33-9b85-c1118eaa11f3"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "memo",
+                        "designer|displayName": "备注",
+                        "text": "备注"
+                    },
+                    "name": "MyColumn16",
+                    "designerId": "1614078a-1274-488c-bc5c-0e80cda0a84c"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "createUsername",
+                        "designer|displayName": "",
+                        "text": "错误信息",
+                        "weight": 200,
+                        "width": 250
+                    },
+                    "name": "MyColumn18",
+                    "designerId": "096538c6-d932-44a3-a524-35fd92cd1d52"
+                },
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridView",
+                    "designerId": "fd603398-c6ea-466a-8245-8ea0219f26a4"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onUserImportGridPanelAfterRender",
+                        "implHandler": [
+                            "this.userImportGridPanel = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onUserImportGridPanelAfterRender",
+                    "designerId": "da5ce45a-87ca-4255-83f1-28eddf5ff63f"
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar",
+            "designerId": "ae575831-321c-42fd-a048-8e8036758f4f",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "padding": "5 20 5 5",
+                        "text": "确定"
+                    },
+                    "name": "MyButton2",
+                    "designerId": "fe0743b7-bfe9-4f87-9f51-55e6e7f281af",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "e65cf11d-7e01-4569-a6e9-9d6020d15262"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "result"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "",
+                    "var me = this;",
+                    "//me.userImportGridPanel.loadData(result);",
+                    "//Ext.Msg.alert('操作提示', result.msg);",
+                    "var UserStore = Ext.create('Ext.data.Store', {",
+                    "    storeId:'UserStore',",
+                    "    fields: ['username','name','orgId','jobName','mobile','memo','createUsername'],",
+                    "    data : result,",
+                    "    proxy:",
+                    "    {",
+                    "        type: 'memory',",
+                    "        reader:{",
+                    "            type: 'json'",
+                    "        }",
+                    "    }",
+                    "});",
+                    "me.userImportGridPanel.bindStore(UserStore);",
+                    ""
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "d00343d3-53ce-4278-8d93-1f670320e21d"
+        }
+    ]
+}

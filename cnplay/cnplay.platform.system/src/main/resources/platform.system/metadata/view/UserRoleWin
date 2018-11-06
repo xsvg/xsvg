@@ -1,0 +1,345 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "UserRoleWin",
+        "designer|userClassName": "UserRoleWin",
+        "height": 321,
+        "layout": "border",
+        "modal": true,
+        "title": "设置用户角色",
+        "width": 432
+    },
+    "name": "MyWindow",
+    "designerId": "09cd9082-41d3-48f4-aa62-a136bd404d9c",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowAfterRender",
+                "implHandler": [
+                    "//this.gridPanel = component;"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onWindowAfterRender",
+            "designerId": "8800351f-bbdb-4968-84ba-a89a9d10f6a5"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "userid"
+                ],
+                "fn": "loadData",
+                "implHandler": [
+                    "",
+                    "var me = this;",
+                    "me.userid=userid;",
+                    ""
+                ]
+            },
+            "name": "loadData",
+            "designerId": "e317acfd-d5f4-4ef1-bd5f-a96bda2a273e"
+        },
+        {
+            "type": "Ext.tree.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "forceFit": true,
+                "id": null,
+                "layout|region": "center",
+                "layout|split": true,
+                "rootVisible": false,
+                "title": null
+            },
+            "name": "MyTreePanel",
+            "designerId": "d01aefc8-0874-464a-a90a-5026960d2e30",
+            "cn": [
+                {
+                    "type": "Ext.tree.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "autoScroll": true
+                    },
+                    "name": "MyTreeView",
+                    "designerId": "c5bed90e-8db9-47f6-8540-23d6bd1827d9"
+                },
+                {
+                    "type": "Ext.tree.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "name",
+                        "text": "角色名称",
+                        "width": 185
+                    },
+                    "name": "MyTreeColumn2",
+                    "designerId": "634fd44f-ecd8-4feb-974c-02da35f50696"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRoleAfterRender",
+                        "implHandler": [
+                            "this.roleTree = component;",
+                            "this.loadRole();"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onRoleAfterRender",
+                    "designerId": "5f04ac44-eab1-4250-8017-e5703e559135"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTreepanelItemClick",
+                        "implHandler": [
+                            "record.set('checked', !record.data.checked);"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onTreepanelItemClick",
+                    "designerId": "3d455f41-15a1-4fad-8cd0-2457604cba7c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar2",
+            "designerId": "961e13aa-d832-4787-97da-4e1fda524d52",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-save",
+                        "layout|flex": null,
+                        "text": "保存"
+                    },
+                    "name": "MyButton5",
+                    "designerId": "5934a2ae-e1f2-4bc4-90c6-ac983dfc26bf",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSaveClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "//var form = Ext.getCmp('RoleForm');",
+                                    "try{",
+                                    "",
+                                    "    var roles = [];",
+                                    "    var rights = [];",
+                                    "    var items = me.roleTree.getSelectionModel().store.data.items;",
+                                    "    Ext.each(items, function()",
+                                    "             {",
+                                    "                 var nd = this;",
+                                    "                 if(nd.data.checked)",
+                                    "                 {",
+                                    "                     roles.push(nd.data.id);",
+                                    "                 }",
+                                    "             });",
+                                    "",
+                                    "    //if(roles.length<1){",
+                                    "    //   Ext.Msg.alert('信息提示', '角色不能为空！');",
+                                    "    //    return;",
+                                    "    // }",
+                                    "",
+                                    "    //var rightItems = rightTree.getSelectionModel().store.data.items;",
+                                    "    // Ext.each(rightItems, function()",
+                                    "    //   {",
+                                    "    //  var nd = this;",
+                                    "    //  if(nd.data.checked)",
+                                    "    //  {",
+                                    "    //    rights.push(nd.data.id);",
+                                    "    // }",
+                                    "    // });",
+                                    "    Ext.Msg.confirm('确认','确定修改吗?',function(button){",
+                                    "        if (button == 'yes'){",
+                                    "            Common.ajax({",
+                                    "                component:me,",
+                                    "                message:'正在提交...',",
+                                    "                url:ctxp+'/system/user/updateRoleRight',",
+                                    "                params:{userid:me.userid,",
+                                    "                        roleids:roles},//,",
+                                    "                //rightids:rights},",
+                                    "                callback:function(json,options,success,response){",
+                                    "                    try{",
+                                    "                        if(json.success){",
+                                    "                            Ext.Msg.alert('信息提示', '用户角色设置成功！');",
+                                    "                            me.close();",
+                                    "                        }else{",
+                                    "                            Ext.Msg.alert('错误',json.msg);",
+                                    "                        }",
+                                    "                    }catch(e){}",
+                                    "                }",
+                                    "            });",
+                                    "        }",
+                                    "    });",
+                                    "",
+                                    "",
+                                    "}catch(error){",
+                                    "    alert(error);",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSaveClick",
+                            "designerId": "447c3b94-6a22-41c2-b71b-b1011cb2175e"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取消"
+                    },
+                    "name": "MyButton1",
+                    "designerId": "0bd560dc-8d03-4f4e-be1e-2d4a388f91a1",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "f622dcbd-8fa1-46ee-b948-327e29338fbd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadRole",
+                "implHandler": [
+                    "/*",
+                    "var fields = [{name:'name'}];",
+                    "var treeStore = Common.createTreeStore(ctxp + '/system/user/findRoleByUser','',fields);",
+                    "this.roleTree.bindStore(treeStore);",
+                    "this.roleTree.getStore().reload();",
+                    "*/",
+                    "Common.bindTree({",
+                    "               pid:'',",
+                    "               fields:['id','name'],",
+                    "               params:{'userid':this.userid},",
+                    "               url : ctxp+'/system/user/findRoleByUser',",
+                    "               treePanel:this.roleTree",
+                    "});"
+                ]
+            },
+            "name": "loadRole",
+            "designerId": "658fcc08-20c3-4242-a83f-25ee5e22d99a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadRight",
+                "implHandler": [
+                    "/*",
+                    "var fields = [{name:'text'}];",
+                    "var treeStore = Common.createTreeStore(ctxp + '/system/menu/list','',fields);",
+                    "this.rightTree.bindStore(treeStore);",
+                    "this.rightTree.getStore().reload();",
+                    "*/",
+                    "Common.bindTree({",
+                    "       pid:'',",
+                    "       fields:['id','text'],",
+                    "       url : ctxp+'/system/user/findRightByUser?userid='+this.userid,",
+                    "       treePanel:this.rightTree",
+                    "});"
+                ]
+            },
+            "name": "loadRight",
+            "designerId": "2d6a92ad-d119-4854-ad63-66dfe44bc54c"
+        }
+    ]
+}

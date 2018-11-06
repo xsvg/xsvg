@@ -1,0 +1,231 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "designer|userAlias": "DateTegion",
+        "designer|userClassName": "DateTegion",
+        "endDateName": "endDate",
+        "header": false,
+        "label": "时间间隔",
+        "layout": "column",
+        "startDateName": "startDate",
+        "title": "时间段",
+        "width": 320
+    },
+    "name": "MyPanel",
+    "designerId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "label",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "startDateName",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "endDateName",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "Ext.form.field.Date",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "时间间隔",
+                "format": "Y-m-d",
+                "labelAlign": "right",
+                "labelWidth": 80,
+                "name": "startDateStr",
+                "padding": null,
+                "vtype": "startDate",
+                "width": 173
+            },
+            "name": "MyDateField",
+            "designerId": "e9379619-e0b8-4465-97f1-bdc36d90d7ca",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDatefieldBeforeRender",
+                        "implHandler": [
+                            "component.setFieldLabel(this.label);",
+                            "component.name = this.startDateName;",
+                            "this.compStart = component;",
+                            "this.compStart.setValue(Ext.util.Format.date(Ext.Date.add(new Date(),Ext.Date.MONTH,-1),\"Y-m-d\"));"
+                        ],
+                        "name": "beforerender",
+                        "scope": "me",
+                        "single": true
+                    },
+                    "name": "onDatefieldBeforeRender",
+                    "designerId": "74476ba8-c14f-41cc-92ab-68ae2961022a"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStartDatefieldChange",
+                        "implHandler": [
+                            "var me = this;",
+                            "Ext.apply(Ext.form.VTypes, {",
+                            "    startDate : function(val, field) {",
+                            "        try{",
+                            "            if(newValue.getTime() > me.compEnd.getValue().getTime())",
+                            "            {",
+                            "                Common.setLoading({comp:me,msg:'开始时间不能晚于结束时间!'});",
+                            "                return false;",
+                            "            }",
+                            "        }catch(ex){}",
+                            "        try{",
+                            "            var nowDate = new Date();",
+                            "            if(newValue.getTime() > nowDate.getTime())",
+                            "            {",
+                            "                Common.setLoading({comp:me,msg:'开始时间不能晚于当前时间!'});",
+                            "                return false;",
+                            "            }",
+                            "        }catch(ex){}        ",
+                            "        return true;",
+                            "    },",
+                            "    startDateText : '开始时间不能晚于结束时间!'",
+                            "});"
+                        ],
+                        "name": "change",
+                        "scope": "me"
+                    },
+                    "name": "onStartDatefieldChange",
+                    "designerId": "0ff3724c-5eba-4ded-be30-3879cdcc4e3b"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.field.Date",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "-",
+                "format": "Y-m-d",
+                "labelAlign": "right",
+                "labelSeparator": " ",
+                "labelWidth": 10,
+                "name": "endDateStr",
+                "padding": null,
+                "vtype": "endDate",
+                "width": 110
+            },
+            "name": "MyDateField1",
+            "designerId": "5e072aa3-4c02-4b38-be01-5c8d4d9e43ee",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDatefieldBeforeRenderB",
+                        "implHandler": [
+                            "component.name = this.endDateName;",
+                            "this.compEnd = component;",
+                            "this.compEnd.setValue(new Date());"
+                        ],
+                        "name": "beforerender",
+                        "scope": "me",
+                        "single": true
+                    },
+                    "name": "onDatefieldBeforeRenderB",
+                    "designerId": "0346d9f3-7d67-46ee-b274-6b7ebb07268f"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onEndDatefieldChange",
+                        "implHandler": [
+                            "var me = this;",
+                            "Ext.apply(Ext.form.VTypes, {",
+                            "    endDate : function(val, field) {",
+                            "        try{",
+                            "            if(me.compStart.getValue().getTime() > newValue.getTime())",
+                            "            {",
+                            "                Common.setLoading({comp:me,msg:'结束时间不能早于开始时间!'});",
+                            "                return false;",
+                            "            }",
+                            "        }catch(ex){}",
+                            "        try{",
+                            "            var nowDate = new Date();",
+                            "            if(newValue.getTime() > nowDate.getTime())",
+                            "            {",
+                            "                Common.setLoading({comp:me,msg:'结束时间不能晚于当前时间!'});",
+                            "                return false;",
+                            "            }",
+                            "        }catch(ex){}        ",
+                            "        return true;",
+                            "    },",
+                            "    endDateText : '结束时间不能早于开始时间!'",
+                            "});"
+                        ],
+                        "name": "change",
+                        "scope": "me"
+                    },
+                    "name": "onEndDatefieldChange",
+                    "designerId": "cfcc4536-0785-4bf9-99c7-05708fb887ad"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "validate",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    if(me.compStart.getValue().getTime() > me.compEnd.getValue().getTime())",
+                    "    {",
+                    "        Common.setLoading({comp:me,msg:'结束时间不能早于开始时间'});",
+                    "        return false;",
+                    "    }",
+                    "}catch(ex){}",
+                    "return true;"
+                ]
+            },
+            "name": "validate",
+            "designerId": "e1458831-6d55-4f50-bbea-334fdba4b3e8"
+        }
+    ]
+}

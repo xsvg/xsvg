@@ -1,0 +1,543 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "AuthorityMoveWin",
+        "designer|userClassName": "AuthorityMoveWin",
+        "height": 420,
+        "layout": "border",
+        "modal": true,
+        "title": "功能编辑",
+        "width": 544
+    },
+    "name": "RightWindow1",
+    "designerId": "b56999f1-26f3-4564-b017-eff47b889e28",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "designer|displayName": "editForm",
+                "layout": "auto",
+                "layout|region": "center",
+                "title": ""
+            },
+            "name": "MyForm2",
+            "designerId": "3a790eb0-e407-4e4e-a706-9276ec1ea38b",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "",
+                        "fieldLabel": "Label",
+                        "name": "id"
+                    },
+                    "name": "MyHiddenField1",
+                    "designerId": "bf827f02-e0f0-4b4f-9303-3bd5a2172766"
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyBorder": false,
+                        "border": false,
+                        "container|align": "stretch",
+                        "layout": "hbox",
+                        "title": "",
+                        "titleCollapse": false
+                    },
+                    "name": "MyPanel",
+                    "designerId": "ca439be5-3feb-44ef-a3ef-e86f04e3d592",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "emptyText": "请输入被授权人名称",
+                                "fieldLabel": "被授权人名称",
+                                "labelAlign": "right",
+                                "name": "text",
+                                "validateBlank": true,
+                                "value": null,
+                                "width": 290
+                            },
+                            "name": "MyTextField2",
+                            "designerId": "939a9ba2-c6a5-452b-9615-2c65c9e4a367",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onUserNameAfterRender",
+                                        "implHandler": [
+                                            "this.username = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onUserNameAfterRender",
+                                    "designerId": "1976d9e1-6b6b-46af-9c74-93092c541d3e"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "icon-search",
+                                "text": "查询"
+                            },
+                            "name": "MyButton4",
+                            "designerId": "025e2629-39b0-4bc6-a629-4bf4955233c9",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSearchClick",
+                                        "implHandler": [
+                                            "this.loadGrid();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSearchClick",
+                                    "designerId": "2a2e82ed-a058-4fc9-904c-ff050c7e5238"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "margin": "2 0 3 105"
+                    },
+                    "name": "userselect",
+                    "designerId": "191c04c9-d777-4fad-adfe-bc8c59ab689e",
+                    "masterInstanceId": "e1383f68-5fe7-4b0b-a392-17456adb5dae",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onUserGridBeforeRender",
+                                "implHandler": [
+                                    "this.userselect = component;"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onUserGridBeforeRender",
+                            "designerId": "dbde5232-7dba-49b1-a316-ce9a61892041"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "    this.form = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "24b4261b-1930-4478-9e8c-a00abbbeb39d"
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|columns": 2,
+                        "fieldLabel": "",
+                        "height": 53,
+                        "layout": "table"
+                    },
+                    "name": "MyFieldContainer",
+                    "designerId": "a1c782af-209c-493d-ac1d-314bbccf5ec2",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "开始日期",
+                                "format": "Y-m-d",
+                                "labelAlign": "right",
+                                "name": "startDate"
+                            },
+                            "name": "MyDateField1",
+                            "designerId": "e966f4fe-faa1-4377-b5bb-6205f064334f"
+                        },
+                        {
+                            "type": "Ext.form.field.Time",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "editable": false,
+                                "emptyText": "00:00:00",
+                                "fieldLabel": "",
+                                "format": "H:i:s",
+                                "labelAlign": "right",
+                                "name": "startTime"
+                            },
+                            "name": "MyTimeField",
+                            "designerId": "21e57e6a-3d0b-4f92-b12b-9d1bf534ddb1"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "结束日期",
+                                "format": "Y-m-d",
+                                "labelAlign": "right",
+                                "name": "endDate"
+                            },
+                            "name": "MyDateField3",
+                            "designerId": "7c6dfdba-5a97-42a7-a80b-28e7dacfebe0"
+                        },
+                        {
+                            "type": "Ext.form.field.Time",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "editable": false,
+                                "emptyText": "00:00:00",
+                                "fieldLabel": "",
+                                "format": "H:i:s",
+                                "labelAlign": "right",
+                                "labelWidth": 0,
+                                "name": "endTime"
+                            },
+                            "name": "MyTimeField1",
+                            "designerId": "1e168e83-f3b1-4173-9394-0b59c4ba0c8a"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "var me = this;",
+                    "if(id){",
+                    "    this.toUserId = id;",
+                    "    try{",
+                    "        Common.ajax({",
+                    "        component : me.form,",
+                    "        message : '加载信息...',",
+                    "        url : ctxp+'/manage/authority/loadById?id='+id,",
+                    "        callback : function(result)",
+                    "        {",
+                    "            me.form.getForm().reset();",
+                    "            me.form.getForm().setValues(result.rows);",
+                    "            var startTime = result.rows.startTimeStr;",
+                    "            var endTime = result.rows.endTimeStr;",
+                    "            var timeArr1 = startTime.split(\" \");",
+                    "            var timeArr2 = endTime.split(\" \");",
+                    "            me.form.getForm().findField(\"startDate\").setValue(timeArr1[0]);",
+                    "            me.form.getForm().findField(\"startTime\").setValue(timeArr1[1]);",
+                    "            me.form.getForm().findField(\"endDate\").setValue(timeArr2[0]);",
+                    "            me.form.getForm().findField(\"endTime\").setValue(timeArr2[1]);",
+                    "            me.userselect.toUserId = result.rows.toUserId;",
+                    "            me.loadGrid();",
+                    "        }",
+                    "    });",
+                    "    }catch(e){",
+                    "",
+                    "    }",
+                    "}"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "423830a5-0463-45dc-bca6-17bd9727c715"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "defaultAlign": "right",
+                "designer|displayName": "bottomBar",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar1",
+            "designerId": "b4e0025c-9dd2-4116-bb77-466e377394d1",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-ok",
+                        "layout|flex": null,
+                        "text": "确 定"
+                    },
+                    "name": "MyButton3",
+                    "designerId": "e3f80e57-01f5-49bc-a494-e11f1f55a17e",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnOkClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "if(!me.validateForm()){",
+                                    "    return;",
+                                    "}",
+                                    "var selected = me.userselect.getSelectionModel().selected;",
+                                    "var selecteditems = selected.items;",
+                                    "if (selecteditems.length !== 1)",
+                                    "{",
+                                    "    Common.alert(",
+                                    "        {",
+                                    "            msg : \"请选择用户\",",
+                                    "            icon : Ext.Msg.WARNING",
+                                    "        });",
+                                    "    return;",
+                                    "}",
+                                    "var id = this.form.getForm().findField('id').getValue();",
+                                    "var startDate = this.form.getForm().findField('startDate').getValue();",
+                                    "var startTime = this.form.getForm().findField('startTime').getValue();",
+                                    "",
+                                    "var endDate = this.form.getForm().findField('endDate').getValue();",
+                                    "var endTime = this.form.getForm().findField('endTime').getValue();",
+                                    "",
+                                    "var startDateStr = Ext.util.Format.date(startDate,'Y-m-d')+' ' + Ext.util.Format.date(startTime,'H:i:s');",
+                                    "var endDateStr = Ext.util.Format.date(endDate,'Y-m-d')+' ' + Ext.util.Format.date(endTime,'H:i:s');",
+                                    "try{",
+                                    "    Common.ajax({",
+                                    "        component : me,",
+                                    "        message : '加载信息...',",
+                                    "        url : ctxp+'/manage/authority/save',",
+                                    "        params :",
+                                    "        {",
+                                    "            id:id,",
+                                    "            'toUserId' : selecteditems[0].data.id,",
+                                    "            'startTimeStr':startDateStr,",
+                                    "            'endTimeStr':endDateStr",
+                                    "        },",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "            me.close();",
+                                    "            me.loadGrid();",
+                                    "        }",
+                                    "    });",
+                                    "}",
+                                    "catch(error)",
+                                    "{",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnOkClick",
+                            "designerId": "6128480e-dddf-4e34-8ece-b232effa0d85"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取 消"
+                    },
+                    "name": "MyButton20",
+                    "designerId": "d33e08fe-7522-4c69-889d-0533dfaf9d44",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCancelClick",
+                                "implHandler": [
+                                    "        this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCancelClick",
+                            "designerId": "32a8ba2d-c3a8-494a-90e1-6420c2116df4"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadGrid",
+                "implHandler": [
+                    "",
+                    "var me = this;",
+                    "try{",
+                    "  me.userselect.loadData(me.username.getValue());",
+                    "}catch(error){",
+                    "     Common.show({title:'信息提示',html:error.toString()});",
+                    "}",
+                    ""
+                ]
+            },
+            "name": "loadGrid",
+            "designerId": "331e96a4-92fb-4e12-9822-c3bc2623357e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "validateForm",
+                "implHandler": [
+                    "var startDate = this.form.getForm().findField('startDate').getValue();",
+                    "var startTime = this.form.getForm().findField('startTime').getValue();",
+                    "",
+                    "if(!startDate || !startTime){",
+                    "    Common.alert({msg:'请输入开始时间！',icon:Ext.MessageBox.WARNING});",
+                    "    return false;",
+                    "}",
+                    "",
+                    "var endDate = this.form.getForm().findField('endDate').getValue();",
+                    "var endTime = this.form.getForm().findField('endTime').getValue();",
+                    "",
+                    "if(!endDate || !endTime){",
+                    "    Common.alert({msg:'请输入结束时间！',icon:Ext.MessageBox.WARNING});",
+                    "    return false;",
+                    "}",
+                    "var startDateStr = Ext.util.Format.date(startDate,'Y-m-d')+' ' + Ext.util.Format.date(startTime,'H:i:s');",
+                    "var endDateStr = Ext.util.Format.date(endDate,'Y-m-d')+' ' + Ext.util.Format.date(endTime,'H:i:s');",
+                    "",
+                    "",
+                    "var nowTime = new Date();",
+                    "var checkStartTime = new Date(startDateStr.replace(/-/g,\"/\"));",
+                    "var checkEndTime = new Date(endDateStr.replace(/-/g,\"/\"));",
+                    "",
+                    "if (checkStartTime > checkEndTime) {",
+                    "    Common.alert({msg:'开始日期不能晚于结束日期！',icon:Ext.MessageBox.WARNING});",
+                    "    this.form.getForm().findField('startDate').setValue(null);",
+                    "    this.form.getForm().findField('startTime').setValue(null);",
+                    "    return false;",
+                    "}",
+                    "",
+                    "if (checkEndTime < nowTime) {",
+                    "    Common.alert({msg:'结束时间不能是过往时间！',icon:Ext.MessageBox.WARNING});",
+                    "    this.form.getForm().findField('endDate').setValue(null);",
+                    "    return false;",
+                    "}",
+                    "return true;"
+                ]
+            },
+            "name": "validateForm",
+            "designerId": "9e4d727c-8bf7-492d-ae98-1e2a84590bdd"
+        }
+    ]
+}

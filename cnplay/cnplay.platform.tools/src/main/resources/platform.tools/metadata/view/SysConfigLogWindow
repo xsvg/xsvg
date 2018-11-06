@@ -1,0 +1,474 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "SysConfigLogWindow",
+        "designer|userClassName": "SysConfigLogWindow",
+        "height": 406,
+        "layout": "border",
+        "modal": true,
+        "resizable": false,
+        "title": "运行7参设置",
+        "width": 467
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "resizable": "boolean"
+    },
+    "designerId": "7ba971b1-7501-4cc4-ac7e-96d4e3403b9e",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "designer|displayName": "ConfigForm",
+                "header": false,
+                "layout|region": "center",
+                "title": "运行7参"
+            },
+            "name": "MyForm1",
+            "designerId": "5d5a54b2-b00e-459b-ab97-81d0664700d2",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数1",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "pwdParameter",
+                        "padding": 5
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "e383b775-db07-4cc9-a9f2-994594dadc7e"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数2",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "bitConfByPWD",
+                        "padding": 5
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "c08c210f-58e4-459c-984d-271a04cd0583"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数3",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "bitConfByFinger",
+                        "padding": 5
+                    },
+                    "name": "MyTextField4",
+                    "designerId": "2cf4c69d-b45a-4d67-a5a8-28b5dee75b14"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数4",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "lockModel",
+                        "padding": 5
+                    },
+                    "name": "MyTextField5",
+                    "designerId": "ac9f2fd1-fb77-42b6-9070-d2751f0602c9"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数5",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "openLockNum",
+                        "padding": 5
+                    },
+                    "name": "MyTextField6",
+                    "designerId": "10982707-88ce-4e75-ac13-404a9101481d"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数6",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "openLockDate",
+                        "padding": 5
+                    },
+                    "name": "MyTextField7",
+                    "designerId": "e1718aa5-4d8f-458a-b461-3ed1a2217ff4"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数7",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "mutiOpenLock",
+                        "padding": 5
+                    },
+                    "name": "MyTextField8",
+                    "designerId": "a1e0b2bf-5ea1-4ec0-bcc1-99d3ed580d16"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数8",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "lockWaveAlarm",
+                        "padding": 5
+                    },
+                    "name": "MyTextField",
+                    "designerId": "f4f5e337-e1d1-433c-a0a9-573eef902610"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数9",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "lockLockedState",
+                        "padding": 5
+                    },
+                    "name": "MyTextField3",
+                    "designerId": "629818be-c790-440d-bc25-513fe446d990"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "参数10",
+                        "labelWidth": 50,
+                        "layout|anchor": "100%",
+                        "name": "lockHighTempAlarm",
+                        "padding": 5
+                    },
+                    "name": "MyTextField9",
+                    "designerId": "ca25b378-cd23-43ab-b8fd-308ec0405dfc"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form = component;",
+                            "this.loadForm();"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "4f3268d5-c3e9-43cd-9b48-5076cd076fa2"
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar2",
+            "designerId": "246a8067-26a3-4749-9f91-dcb676c5145e",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-ok",
+                        "layout|flex": null,
+                        "text": "确定"
+                    },
+                    "name": "MyButton8",
+                    "designerId": "7121c373-e11c-4423-baa1-a7b5a2404305",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnOkClick",
+                                "implHandler": [
+                                    "var me  =this;",
+                                    "var params = me.form.getForm().getValues();",
+                                    "if(this.validateValues(params)){",
+                                    "    try{",
+                                    "        Ext.Msg.confirm(\"确认提示\", '保存后要进行锁具激活，请确认是否保存？', function(btn)",
+                                    "                        {",
+                                    "                            if (btn == \"yes\")",
+                                    "                            {",
+                                    "                                Common.formSubmit({",
+                                    "                                    url : ctxp+'/system/config/log/save',",
+                                    "                                    form:me.form,",
+                                    "                                    callback : function(result)",
+                                    "                                    {",
+                                    "                                        Ext.Msg.alert('信息提示', '设置保存成功！');",
+                                    "                                        me.close();",
+                                    "                                    }",
+                                    "                                });",
+                                    "                            }",
+                                    "                        });        ",
+                                    "    }catch(error){",
+                                    "        Common.show({title:'信息提示',html:error.toString()});",
+                                    "    }",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnOkClick",
+                            "designerId": "12fc709a-166e-4073-b070-611546f5d9e1"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取消"
+                    },
+                    "name": "MyButton9",
+                    "designerId": "0cb0ea15-a2bb-4deb-b599-42d0e3e8e755",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCloseClick",
+                                "implHandler": [
+                                    "this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCloseClick",
+                            "designerId": "3ca19c6f-93ae-456a-96eb-ab3324000449"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "data"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    me.data = data;",
+                    "    if(Ext.isEmpty(me.data)){",
+                    "        Common.ajax({",
+                    "            message : '加载信息...',",
+                    "            url : ctxp+'/system/config/log/load',",
+                    "            callback : function(result)",
+                    "            {",
+                    "                if(Ext.isEmpty(me.data)){",
+                    "                    me.form.getForm().reset();",
+                    "                    me.form.getForm().setValues(result.rows);",
+                    "                }",
+                    "",
+                    "            }",
+                    "        });",
+                    "    }else{",
+                    "        me.form.getForm().reset();",
+                    "        me.form.getForm().setValues(me.data);",
+                    "    }",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "1229a8e6-5eb3-4f66-93ff-77c3e6f9f9e3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "values"
+                ],
+                "fn": "validateValues",
+                "implHandler": [
+                    "for(var key in values){",
+                    "    var value = values[key];",
+                    "    switch(key){",
+                    "        case 'pwdParameter':",
+                    "            if(!/[1357]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数1的值只能为1、3、5、7\" });",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'bitConfByPWD':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数2的值只能为0或1\" });",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'bitConfByFinger':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数3的值只能为0或1\" });",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'lockModel':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数4的值只能为0或1\" });",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'openLockNum':",
+                    "            if(!/[0-4]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数5的值只能为0-4的数字\" });",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'openLockDate':",
+                    "            if(!/[0-2]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数6的值只能为0-2的数字\" });",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'mutiOpenLock':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数7的值只能为0或1\" });",
+                    "                console.info(key,value);",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'lockWaveAlarm':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数8的值只能为0或1\" });",
+                    "                console.info(key,value);",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'lockLockedState':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数9的值只能为0或1\" });",
+                    "                console.info(key,value);",
+                    "                return false;",
+                    "            }",
+                    "            break;",
+                    "        case 'lockHighTempAlarm':",
+                    "            if(!/[01]$/.test(value) || value.length >1){",
+                    "                Ext.Msg.alert({title : '提示',msg : \"参数10的值只能为0或1\" });",
+                    "                console.info(key,value);",
+                    "                return false;",
+                    "            }",
+                    "            break;            ",
+                    "        default: break;",
+                    "    }",
+                    "}",
+                    "return true;"
+                ]
+            },
+            "name": "validateValues",
+            "designerId": "b937c2cb-d303-4f2a-89b5-de98db5d46d2"
+        }
+    ]
+}

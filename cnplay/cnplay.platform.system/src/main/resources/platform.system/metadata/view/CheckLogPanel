@@ -1,0 +1,515 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "CheckLogPanel",
+        "forceFit": true,
+        "height": null,
+        "title": "复核记录",
+        "width": null
+    },
+    "name": "CheckLogGridPanel1",
+    "designerId": "db88ce45-a8a3-47be-9ece-02644b88dac0",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbar",
+                "dock": "top"
+            },
+            "name": "MyToolbar",
+            "designerId": "787e806b-d836-4fcf-b3e2-e0e6eef70340",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "icon": null,
+                        "iconCls": "icon-search",
+                        "layout|flex": null,
+                        "text": "查询"
+                    },
+                    "name": "MyButton21",
+                    "designerId": "737ff4d0-b8d7-4ec1-a566-542deae45207",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonSoClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.loadGrid();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onButtonSoClick",
+                            "designerId": "88b6e076-5cd6-490e-8a37-19fe06d6544a"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonSoAfterRender",
+                                "implHandler": [
+                                    "Common.hidden({params : {url:'/system/checkLog/list'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onButtonSoAfterRender",
+                            "designerId": "a700e08a-66db-4d68-a2fc-3a5b21362e27"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": null,
+                "border": false,
+                "dock": "top",
+                "header": false,
+                "height": null,
+                "layout": "column",
+                "margin": null,
+                "title": "查询表单",
+                "width": null
+            },
+            "name": "MyForm4",
+            "designerId": "07997226-4ae2-4e3e-b84f-43c7a2e01439",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "a880392d-34bc-49ce-a65a-7ce5ba2fb2b0"
+                },
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "组织机构",
+                        "labelAlign": "right",
+                        "labelWidth": 80,
+                        "name": "orgId"
+                    },
+                    "name": "MyHiddenField",
+                    "designerId": "5be0e915-c583-43b8-8d06-88f78d7c48ce",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onHiddenfieldBeforeRender",
+                                "implHandler": [
+                                    "this.orgId = component;"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onHiddenfieldBeforeRender",
+                            "designerId": "6504bb7f-f403-447f-a010-254dd819e108"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "组织机构",
+                        "labelAlign": "right",
+                        "labelWidth": 60,
+                        "margin": 5,
+                        "name": "orgName",
+                        "readOnly": true,
+                        "width": 270
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "38ba5be7-a3aa-4ec6-9572-2d874a7e72aa",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTextfieldFocus",
+                                "implHandler": [
+                                    "try{",
+                                    "    var me = this;",
+                                    "    var orgId = me.form.getForm().findField('orgId');",
+                                    "    Common.showTreeSelect({",
+                                    "        multiple:false,",
+                                    "        url:ctxp + '/home/loadUserOrgTree',",
+                                    "        params:{orgId: orgId.getValue()},",
+                                    "        callback:function(item)",
+                                    "        {",
+                                    "            orgId.setValue(item.id);",
+                                    "            component.setValue(item.text);",
+                                    "        }",
+                                    "    });",
+                                    "}catch(ex){}"
+                                ],
+                                "name": "focus",
+                                "scope": "me"
+                            },
+                            "name": "onTextfieldFocus",
+                            "designerId": "6f86d62f-c0e2-4df4-a757-2e79242155f4"
+                        }
+                    ]
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "复核时间",
+                        "margin": 5
+                    },
+                    "name": "datetegion3",
+                    "designerId": "340d658f-4adb-4f8f-9046-72ab4c8f859a",
+                    "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "memo",
+                "defaultWidth": 200,
+                "text": "复核内容",
+                "width": null
+            },
+            "name": "MyColumn16",
+            "designerId": "e2d5ed79-21fd-4b5e-8cbb-777b5e5f8a69"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "url",
+                "defaultWidth": 150,
+                "hidden": true,
+                "text": "复核地址",
+                "width": 150
+            },
+            "name": "MyColumn",
+            "designerId": "f21a4437-03dd-4fff-92d1-bbcd7eff680e"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "orgName",
+                "defaultWidth": 120,
+                "text": "所属机构",
+                "width": null
+            },
+            "name": "MyColumn14",
+            "designerId": "1288b794-a693-453d-922b-95a40c82b022"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "createUsername",
+                "text": "申请人",
+                "width": null
+            },
+            "name": "MyColumn21",
+            "designerId": "c6906987-4419-4416-a843-93b9f1df3155"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "createTimeStr",
+                "text": "申请时间",
+                "width": null
+            },
+            "name": "MyColumn1",
+            "designerId": "b4e99b80-969e-455b-a7ea-bd0541f542a6"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "createCheckUsername",
+                "text": "复核人",
+                "width": null
+            },
+            "name": "MyColumn15",
+            "designerId": "6d857e49-62fa-4b70-8f55-eecad4e9001a"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "checkTimeStr",
+                "text": "复核时间",
+                "width": null
+            },
+            "name": "MyColumn3",
+            "designerId": "7f7daa0b-e191-4fa6-831d-d8cfca43dd4e"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "enableTextSelection": true
+            },
+            "name": "MyGridView",
+            "designerId": "b0c92a22-9012-4f4e-a7f5-235e2c719f9a"
+        },
+        {
+            "type": "Ext.selection.CheckboxModel",
+            "reference": {
+                "name": "selModel",
+                "type": "object"
+            },
+            "codeClass": "Ext.selection.CheckboxModel",
+            "name": "MyCheckboxSelectionModel",
+            "designerId": "847ebf50-4476-485c-a2b8-e4977c9d2937"
+        },
+        {
+            "type": "Ext.toolbar.Paging",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "afterPageText": "页，共 {0} 页",
+                "beforePageText": "第",
+                "designer|displayName": "pagingToolbar",
+                "displayInfo": true,
+                "displayMsg": "第 {0} - {1} 行，共 {2} 行",
+                "dock": "bottom",
+                "width": 360
+            },
+            "name": "MyPagingToolbar",
+            "designerId": "cb09ccbb-5f06-47cc-8263-33558d9181f2",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onPagingtoolbarBeforeRender",
+                        "implHandler": [
+                            "this.pagingToolbar = component;"
+                        ],
+                        "name": "beforerender",
+                        "scope": "me",
+                        "single": true
+                    },
+                    "name": "onPagingtoolbarBeforeRender",
+                    "designerId": "59de1ac2-8692-4fbf-9024-58f5cfe289f5"
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "每页行数",
+                        "labelAlign": "right",
+                        "labelWidth": 60,
+                        "layout|flex": null,
+                        "name": "pageSize",
+                        "width": 120
+                    },
+                    "name": "MyComboBox1",
+                    "designerId": "9bf95232-5533-4002-92d9-fe5979b6c847",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onPageSizeAfterRender",
+                                "implHandler": [
+                                    "this.pageSize = component;",
+                                    "Common.bindPageSize(component);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onPageSizeAfterRender",
+                            "designerId": "fa9477dd-35d9-4bc3-84f6-54e85dfa42ad"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onPageSizeChange",
+                                "implHandler": [
+                                    "try{",
+                                    "    if(!Ext.isEmpty(this.pagingToolbar))",
+                                    "    {",
+                                    "        this.loadGrid();",
+                                    "    }",
+                                    "}",
+                                    "catch(error)",
+                                    "{",
+                                    "}"
+                                ],
+                                "name": "change",
+                                "scope": "me",
+                                "single": false
+                            },
+                            "name": "onPageSizeChange",
+                            "designerId": "681d0490-b261-4098-914c-403f3de848f2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadGrid",
+                "implHandler": [
+                    "var me = this;",
+                    "var params = me.form.getForm().getValues();",
+                    "Common.loadStore({",
+                    "    component:this,",
+                    "    url:ctxp + '/system/checkLog/list',",
+                    "    pageSize:this.pageSize.getValue(),",
+                    "    fields: ['id', 'url', 'memo','createUsername', 'createTime','createTimeStr','createCheckUsername', 'checkTime','checkTimeStr','checkJsonByte','orgName'],",
+                    "    params:params",
+                    "});"
+                ]
+            },
+            "name": "loadGrid",
+            "designerId": "b1c6c421-3f41-4177-bde1-e1a36f03b283"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "this.loadGrid();"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "a566bce1-24b2-4def-8d51-b3c4f33fe439"
+        }
+    ]
+}

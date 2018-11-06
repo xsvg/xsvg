@@ -1,0 +1,31 @@
+{
+    "type": "Ext.container.Viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|initialView": true,
+        "designer|userClassName": "MyViewport",
+        "layout": "border"
+    },
+    "name": "MyViewport",
+    "designerId": "0e61eab2-e799-4b36-9c93-ddc02f40c6d4",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "center"
+            },
+            "name": "rolepanel",
+            "designerId": "95e042a6-ff09-4daf-ac7d-356daa605e32",
+            "masterInstanceId": "ea4a2cb1-004b-4a9e-b6af-4c02e028bc7c"
+        }
+    ]
+}

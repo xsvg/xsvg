@@ -1,0 +1,41 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "name": "platform.system",
+        "views": [
+            "SystemLog",
+            "AuthorityMoveList",
+            "AuthorityMoveWin",
+            "UserSelect",
+            "UserRoleWin",
+            "UserDetailWin",
+            "OrgCfgWin",
+            "RightPanel",
+            "OrganizationWindow",
+            "OrganizationPanel",
+            "OrgCfgPanel",
+            "RightWindow",
+            "RoleWindow",
+            "RolePanel",
+            "UserFingerWin",
+            "CheckLogPanel",
+            "AreaPanel",
+            "AreaWindow",
+            "StoreAreaPanel",
+            "StoreAreaWindow",
+            "StoreItemPanel",
+            "StoreInPanel",
+            "StoreOutPanel",
+            "StoreInWindow",
+            "StoreOutWindow",
+            "StoreCheckPanel"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application"
+}

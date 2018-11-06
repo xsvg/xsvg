@@ -1,0 +1,351 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoScroll": true,
+        "designer|userAlias": "SysConfigLogPanel",
+        "designer|userClassName": "SysConfigLogPanel",
+        "forceFit": true,
+        "height": null,
+        "title": "重要参数配置",
+        "width": null
+    },
+    "name": "MyGridPanel",
+    "designerId": "bb0d0d23-7abb-4e85-95dd-431cc5cc24cf",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "top"
+            },
+            "name": "MyToolbar",
+            "designerId": "9b580b03-7025-48f0-9f80-ff7f27ef50ef",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-edit",
+                        "layout|flex": null,
+                        "text": "设置"
+                    },
+                    "name": "MyButton5",
+                    "designerId": "49356c1b-7ab2-4798-afc7-e2c802615447",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnSetClick",
+                                "implHandler": [
+                                    "try",
+                                    "{",
+                                    "    var me = this;",
+                                    "    var formwin = Ext.create('platform.tools.view.SysConfigLogWindow');",
+                                    "    formwin.addListener('close', function(panel,opts)",
+                                    "                        {",
+                                    "                            me.loadGrid();",
+                                    "                        });",
+                                    "    formwin.show();",
+                                    "}",
+                                    "catch(error)",
+                                    "{",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnSetClick",
+                            "designerId": "594e4cd8-58fd-41b6-b79e-3cbccbac9268"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-reset",
+                        "layout|flex": null,
+                        "text": "还原"
+                    },
+                    "name": "MyButton7",
+                    "designerId": "4de6260c-7fb0-4482-8ed4-e6372dd90540",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnRestoreClick",
+                                "implHandler": [
+                                    "var  me =  this.grid;",
+                                    "var selected = me.getSelectionModel().selected;",
+                                    "",
+                                    "if(selected.items.length <1){",
+                                    "    Common.alert({msg:'请选择一条记录!'});",
+                                    "    return;",
+                                    "}",
+                                    "",
+                                    "var data = selected.items[0].data;",
+                                    "Ext.Msg.confirm(\"确认提示\", '确认要恢复到此配置值吗?', function(button)",
+                                    "                {",
+                                    "                    if (button == \"yes\")",
+                                    "                    {",
+                                    "                        var formwin = Ext.create('platform.tools.view.SysConfigLogWindow');",
+                                    "",
+                                    "                        formwin.addListener('close', function(panel,opts)",
+                                    "                                            {",
+                                    "                                                me.loadGrid();",
+                                    "                                            });",
+                                    "                        formwin.show();",
+                                    "                        formwin.loadForm(data);",
+                                    "                    }",
+                                    "                });"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnRestoreClick",
+                            "designerId": "129a0ed4-b1b2-4b2f-a2b4-10bfd1d39856"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView",
+            "designerId": "1d1c9855-1258-4fcb-804e-b8bf4c3a6059"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "createTimeStr",
+                "minWidth": 150,
+                "text": "设置时间",
+                "width": 150
+            },
+            "name": "MyColumn2",
+            "designerId": "37069780-ccdf-47b9-9a43-ffbb054acaa4"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "pwdParameter",
+                "text": "参数1"
+            },
+            "name": "MyColumn3",
+            "designerId": "95cb0b00-fcb1-434e-90c8-8f15b0b7a4f9"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "bitConfByPWD",
+                "text": "参数2"
+            },
+            "name": "MyColumn4",
+            "designerId": "207b71fe-c238-40a9-9572-f763d9cea252"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "bitConfByFinger",
+                "text": "参数3"
+            },
+            "name": "MyColumn7",
+            "designerId": "9c90825c-7509-4a3a-9b3a-ef69866bd724"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "lockModel",
+                "text": "参数4"
+            },
+            "name": "MyColumn8",
+            "designerId": "1d6e8c81-944e-4d77-8638-b3a0ea85a408"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "openLockNum",
+                "text": "参数5"
+            },
+            "name": "MyColumn9",
+            "designerId": "b4c332bb-428d-4271-814f-82d07613c6d7"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "openLockDate",
+                "text": "参数6"
+            },
+            "name": "MyColumn14",
+            "designerId": "31c8cb46-d963-4fb4-86f7-01d0090b3ada"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "mutiOpenLock",
+                "text": "参数7"
+            },
+            "name": "MyColumn15",
+            "designerId": "ca967194-38f9-4dd4-a9f9-9b0c852fd2c7"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "lockWaveAlarm",
+                "text": "参数8"
+            },
+            "name": "MyColumn",
+            "designerId": "d49cc568-bbc2-4f16-aadd-09f7ae0f2052"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "lockLockedState",
+                "text": "参数9"
+            },
+            "name": "MyColumn1",
+            "designerId": "1b108c7a-53e0-49db-b34f-489a8406c36b"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "lockHighTempAlarm",
+                "text": "参数10"
+            },
+            "name": "MyColumn5",
+            "designerId": "744ec76d-4d78-4b63-8f2d-1b927f5869ba"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadGrid",
+                "implHandler": [
+                    "try{",
+                    "    Common.loadStore({",
+                    "        component:this,",
+                    "        url:ctxp + '/system/config/log/list',",
+                    "        fields: ['pwdParameter', 'lockModel', 'bitConfByPWD','bitConfByFinger','mutiOpenLock','openLockNum','openLockDate','createTimeStr','lockWaveAlarm','lockLockedState','lockHighTempAlarm'],",
+                    "        params:''",
+                    "    });",
+                    "}catch(error){",
+                    "    alert(error.toString());",
+                    "}"
+                ]
+            },
+            "name": "loadGrid",
+            "designerId": "724afffa-afa9-433f-9c56-fa68f5d333b2"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "this.grid = component;",
+                    "this.loadGrid();"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "fc018e56-e943-41d9-a960-cf4b5e50df47"
+        }
+    ]
+}

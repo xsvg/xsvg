@@ -1,0 +1,589 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "UserDetailWin",
+        "designer|userClassName": "UserDetailWin",
+        "height": 437,
+        "layout": "border",
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "编辑用户信息",
+        "width": 432
+    },
+    "name": "MyWindow",
+    "designerId": "f8641b4c-9db1-4d6d-98d1-5056d65adbe9",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar5",
+            "designerId": "9422b23c-9ef7-4f7f-ac90-74b90706c182",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-save",
+                        "layout|flex": null,
+                        "text": "保存"
+                    },
+                    "name": "MyButton",
+                    "designerId": "d5bd4d3e-0cf5-4fd5-b78a-8e63c4c0bfc8",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onsaveClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "try{",
+                                    "    Common.formSubmit({",
+                                    "        url : ctxp+'/system/user/saveUser',",
+                                    "        form:me.form,",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "            Ext.Msg.alert('信息提示', '用户保存成功！');",
+                                    "        \tme.close();",
+                                    "    \t}",
+                                    "\t});",
+                                    "}catch(error){",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onsaveClick",
+                            "designerId": "f736f75a-a66d-41ce-8307-36bb2164e87a"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取消"
+                    },
+                    "name": "MyButton3",
+                    "designerId": "0db93fcd-b158-4a0d-acf8-c8571a47a0a8",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "var me=this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "72f2d95f-11e9-4e40-be13-572c53326b81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "bodyPadding": 10,
+                "border": false,
+                "header": false,
+                "layout": "column",
+                "layout|region": "center",
+                "title": "基本信息表单"
+            },
+            "name": "MyForm3",
+            "designerId": "ea5cdc33-9e73-4b01-bc82-6ffb7470b6d2",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "name": "id"
+                    },
+                    "name": "MyHiddenField3",
+                    "designerId": "e6920fb9-e157-4a49-a4c5-b2241a70bfbd"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "enforceMaxLength": true,
+                        "fieldCls": "",
+                        "fieldLabel": "登录帐号",
+                        "labelAlign": "right",
+                        "maxLength": 20,
+                        "name": "username",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField5",
+                    "designerId": "6b95f699-f75d-4a90-beda-1ab2849d6121"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5",
+                        "text": null
+                    },
+                    "name": "MyLabel2",
+                    "designerId": "9586b7b0-39ac-4981-b33f-7a8dcc7d24a1"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "用户姓名",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "name": "name",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField7",
+                    "designerId": "c0202a1a-47c4-455a-ada5-61b3eb74bc90"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5",
+                        "text": null
+                    },
+                    "name": "MyLabel3",
+                    "designerId": "e2d7db8a-a22a-4093-8272-0fd984478924"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "手机号码",
+                        "labelAlign": "right",
+                        "maxLength": 20,
+                        "name": "mobile",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField4",
+                    "designerId": "48ddf29f-3f3a-4e57-b5a8-c308722ee73a"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5",
+                        "text": null
+                    },
+                    "name": "MyLabel",
+                    "designerId": "98497c93-a8be-4839-9616-4518f2422972"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "所属机构",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": null,
+                        "name": "orgName",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField6",
+                    "designerId": "265ae157-9aa8-45e4-a73b-42a9b2774687",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onOrgTextfieldFocus",
+                                "implHandler": [
+                                    "try{",
+                                    "    var me = this;",
+                                    "    var orgId = me.form.getForm().findField('orgId');",
+                                    "    Common.showTreeSelect({",
+                                    "        multiple:false,",
+                                    "        url:ctxp + '/home/loadUserOrgTree?orgId=' + orgId.getValue(),",
+                                    "        callback:function(item)",
+                                    "        {",
+                                    "            orgId.setValue(item.id);",
+                                    "            component.setValue(item.text);",
+                                    "        }",
+                                    "    });",
+                                    "}catch(ex){}"
+                                ],
+                                "name": "focus",
+                                "scope": "me"
+                            },
+                            "name": "onOrgTextfieldFocus",
+                            "designerId": "df2374bd-2b0d-4fed-8e5e-a7905851a31d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5",
+                        "text": null
+                    },
+                    "name": "MyLabel4",
+                    "designerId": "f9891533-fc37-4430-ae0f-1b38bc43e987"
+                },
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "所属机构",
+                        "labelAlign": "right",
+                        "name": "orgId",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyHiddenField4",
+                    "designerId": "95fefb56-06bc-4dbb-99ba-48ae18f2af1d"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "enforceMaxLength": true,
+                        "fieldLabel": "岗位名称",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": null,
+                        "name": "jobName",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "e6c5bb0e-186f-4cf1-9067-0c5e74ddf833"
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "userSex",
+                        "editable": false,
+                        "enforceMaxLength": null,
+                        "fieldLabel": "用户性别",
+                        "labelAlign": "right",
+                        "maxLength": null,
+                        "maxLengthText": null,
+                        "name": "sex",
+                        "padding": 5,
+                        "valueField": "id",
+                        "width": 330
+                    },
+                    "name": "MyComboBox4",
+                    "designerId": "04388932-ddc5-4b40-9020-36e5d8381b38",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSexAfterRender",
+                                "implHandler": [
+                                    "var store = Ext.create('Ext.data.Store', {",
+                                    "    fields:['id','userSex'],",
+                                    "    data : [{id:'',userSex: ''},{id:'0',userSex: '男'}, {id:'1',userSex: '女'}]",
+                                    "});",
+                                    "component.bindStore(store);"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onSexAfterRender",
+                            "designerId": "28979256-0a3a-4357-80fa-585a63a2ae27"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSexBeforeRender",
+                                "implHandler": [
+                                    "this.userSex = component;"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onSexBeforeRender",
+                            "designerId": "5f0b2233-8f16-4eca-a4a6-6f4c4b257936"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "editable": false,
+                        "fieldLabel": "认证方式",
+                        "labelAlign": "right",
+                        "name": "authType",
+                        "padding": 5,
+                        "valueField": "id",
+                        "width": 330
+                    },
+                    "name": "MyComboBox3",
+                    "designerId": "63e35497-a022-4c20-8332-ceff477281ef",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onAuthTypeBeforeRender",
+                                "implHandler": [
+                                    "try{",
+                                    "    var me = this;",
+                                    "    Common.loadStore({",
+                                    "        component:component,",
+                                    "        url:ctxp + '/home/authType',",
+                                    "        fields:['id','text'],",
+                                    "        params:[]",
+                                    "    });",
+                                    "}",
+                                    "catch(e){",
+                                    "    Common.show(e.toString());",
+                                    "}"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onAuthTypeBeforeRender",
+                            "designerId": "c57fb6a7-c4f5-4088-b989-e99a55b66158"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "enforceMaxLength": true,
+                        "fieldLabel": "身份证号码",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "name": "idCard",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField8",
+                    "designerId": "c7b3dcbb-26ea-4202-89e1-062d6e1d2e86"
+                },
+                {
+                    "type": "Ext.form.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "enforceMaxLength": true,
+                        "fieldLabel": "备注",
+                        "labelAlign": "right",
+                        "maxLength": 256,
+                        "maxLengthText": "备注内容最大长度不超过256个字符！",
+                        "name": "memo",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextArea",
+                    "designerId": "0b154a12-ac20-4cd5-af08-fab2690d5dc7"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form = component;",
+                            "",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "9628f66d-829b-4a8f-892d-f207d8b1d51b"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "",
+                    "var me = this;",
+                    "try{",
+                    "    Common.ajax({",
+                    "        params:{'id':id},",
+                    "        component : me.form,",
+                    "        message : '加载信息...',",
+                    "        url : ctxp+'/system/user/loadById',",
+                    "        callback : function(result)",
+                    "        {",
+                    "            me.form.getForm().reset();",
+                    "            me.form.getForm().setValues(result.rows);",
+                    "            if(!Ext.isEmpty(id)){",
+                    "",
+                    "                me.form.getForm().findField('username').setReadOnly(true);",
+                    "",
+                    "            }",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "0e6b8f7b-cbc1-4365-8432-e6db07fbf3db"
+        }
+    ]
+}

@@ -1,0 +1,453 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "RightWindow",
+        "height": 226,
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "功能编辑",
+        "width": 500
+    },
+    "name": "MyWindow",
+    "designerId": "2e5e06b2-ade8-4a17-9353-0db4a4190564",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "designer|displayName": "editForm",
+                "height": 348,
+                "title": ""
+            },
+            "name": "MyForm2",
+            "designerId": "3865c0f9-3f85-4543-9be7-3c5657941792",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "",
+                        "fieldLabel": "Label",
+                        "layout|anchor": "100%",
+                        "name": "id"
+                    },
+                    "name": "MyHiddenField1",
+                    "designerId": "a5287ca6-13f5-4495-bb62-167124e33190"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "emptyText": "请输入菜单名称",
+                        "fieldLabel": "功能名称",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "name": "text",
+                        "validateBlank": true
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "315c598a-5f04-4ef9-a763-4a524ca48dd2"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "访问地址",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "maxLength": 200,
+                        "name": "url",
+                        "readOnly": true
+                    },
+                    "name": "MyTextField3",
+                    "designerId": "8a2067a2-d052-4fda-b9e8-1163560a29f9"
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "是否需复核",
+                        "labelAlign": "right"
+                    },
+                    "name": "MyRadioGroup",
+                    "designerId": "05fb8113-4f9b-485e-894f-15cce3210da2",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "是",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "needCheck",
+                                "value": null
+                            },
+                            "name": "MyRadio",
+                            "designerId": "cf545571-667b-40e3-aa43-490942809ec5"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "否",
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "needCheck",
+                                "value": null
+                            },
+                            "name": "MyRadio1",
+                            "designerId": "9a5e7602-4292-4018-bc83-51a55b4245ee"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onRadiogroupBeforeRender",
+                                "implHandler": [
+                                    "this.needCheckField = component;"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onRadiogroupBeforeRender",
+                            "designerId": "f39abd19-742b-4609-98ba-8e9ef45c472c"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "功能状态",
+                        "hidden": true,
+                        "labelAlign": "right"
+                    },
+                    "name": "MyRadioGroup1",
+                    "designerId": "295f275d-a1e3-4538-a55e-c1054785639b",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "正常",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "Normal",
+                                "name": "status"
+                            },
+                            "name": "MyRadio2",
+                            "designerId": "99d94b7b-4831-4757-9eed-8fae2dd46219"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "停用",
+                                "fieldLabel": null,
+                                "inputValue": "Banned",
+                                "name": "status"
+                            },
+                            "name": "MyRadio3",
+                            "designerId": "9564c13e-1003-415d-bc6c-6dc6c4d29f27"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "    this.form = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "a5f1c96f-8714-4596-9cbe-543f5faede23"
+                },
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "排列顺序",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "maxLength": 5,
+                        "minValue": 0,
+                        "name": "sort",
+                        "value": [
+                            "1",
+                            ""
+                        ]
+                    },
+                    "name": "MyNumberField2",
+                    "designerId": "2cadd90a-b6d5-40f1-8969-1fe8545c74b0"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "菜单图标",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "name": "icon",
+                        "readOnly": true
+                    },
+                    "name": "MyTextField10",
+                    "designerId": "c06918ee-3488-428f-99ec-a5be2cbbf02f",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTextfieldFocus",
+                                "implHandler": [
+                                    "try{",
+                                    "    var me = this;",
+                                    "    Common.upload({suffix:'jpg,png,gif,bmp',callback:function(result){",
+                                    "        var data = result;",
+                                    "        var url = Common.getDownloadURL(data.id);",
+                                    "        component.setValue(url);",
+                                    "        //me.iconImg.getEl().dom.src = url;",
+                                    "    }});",
+                                    "}catch(error){",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "focus",
+                                "scope": "me"
+                            },
+                            "name": "onTextfieldFocus",
+                            "designerId": "bc7ccbbd-9a7d-47ff-a959-3f7d52ed2a68"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadFormData",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    Common.ajax({",
+                    "        component : me.form,",
+                    "        message : '加载信息...',",
+                    "        url : ctxp+'/system/right/load?id='+id,",
+                    "        callback : function(result)",
+                    "        {",
+                    "            try{",
+                    "                me.form.getForm().reset();",
+                    "                var rightType = result.rows.type;",
+                    "                                if(rightType !== 'BUTTON')",
+                    "                {",
+                    "                    me.needCheckField.setDisabled(true);",
+                    "                    result.rows.needCheck = 'false';",
+                    "                }",
+                    "                var needCheck = result.rows.needCheck;",
+                    "                if(needCheck){",
+                    "                    result.rows.needCheck = 'true';",
+                    "                }else{",
+                    "                    result.rows.needCheck = 'false';",
+                    "                }",
+                    "                me.form.getForm().setValues(result.rows);",
+                    "            }catch(err){}",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "loadFormData",
+            "designerId": "25f0751b-5490-42ab-a196-21ca0c8a7484"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "defaultAlign": "right",
+                "designer|displayName": "bottomBar",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar1",
+            "designerId": "b8d7d871-99fe-4105-ba94-e2964fae7d3e",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-ok",
+                        "layout|flex": null,
+                        "text": "确 定"
+                    },
+                    "name": "MyButton3",
+                    "designerId": "7859fa8b-4c42-4ab3-9162-d0e8bc4a4b5c",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnOkClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "try{",
+                                    "    Common.formSubmit({",
+                                    "        url : ctxp+'/system/right/save',",
+                                    "        form:me.form,",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "            Ext.Msg.alert('信息提示', '保存成功！');",
+                                    "        \tme.close();",
+                                    "    \t}",
+                                    "\t});",
+                                    "}catch(error){",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnOkClick",
+                            "designerId": "180507d0-24c0-47c8-ab43-f2b47fdfe2ec"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取 消"
+                    },
+                    "name": "MyButton20",
+                    "designerId": "3d8866f6-8453-4f2b-9245-c6199b3593af",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCancelClick",
+                                "implHandler": [
+                                    "        this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCancelClick",
+                            "designerId": "1dcacb11-02ce-4cf4-85a6-617de7662419"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

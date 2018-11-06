@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	metadata-complete="true">
+
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>authenticationFilter</filter-name>
+		<filter-class>cc.cnplay.platform.web.filter.AuthenticationFilter</filter-class>
+		<init-param>
+			<description>不受控资源</description>
+			<param-name>none</param-name>
+			<param-value>/cxf/**;/static/**;/log*;/**/**.js;/**/**.ico</param-value>
+		</init-param>
+		<init-param>
+			<description>来宾可访问资源</description>
+			<param-name>guest</param-name>
+			<param-value>/*.html;/home/**;/plugins/**</param-value>
+		</init-param>
+		<init-param>
+			<param-name>loginUrl</param-name>
+			<param-value>/WEB-INF/views/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>url403</param-name>
+			<param-value>/WEB-INF/views/403.jsp</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>authenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>checkFilter</filter-name>
+		<filter-class>cc.cnplay.platform.web.filter.CheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>checkFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>cc.cnplay.platform.web.servlet.SpringDispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-mvc-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- 
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/cxf/*</url-pattern>
+	</servlet-mapping>
+	 -->
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/index.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/index.html</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/index.html</location>
+	</error-page>
+</web-app>

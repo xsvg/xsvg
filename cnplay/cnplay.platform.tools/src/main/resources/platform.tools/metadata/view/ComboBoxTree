@@ -1,0 +1,151 @@
+{
+    "type": "Ext.form.field.ComboBox",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "anchor": "100%",
+        "designer|userAlias": "ComboBoxTree",
+        "designer|userClassName": "ComboBoxTree",
+        "editable": false,
+        "fieldLabel": "Label",
+        "fields": [
+            "['id','text','checked']"
+        ],
+        "queryMode": "local",
+        "selected": ""
+    },
+    "name": "ComboBoxTree1",
+    "configAlternates": {
+        "tree": "array",
+        "fields": "array"
+    },
+    "designerId": "1dfe6aec-69d8-433f-a543-f046a6811de0",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "url",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "selected",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "tree",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "fields",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "anchor",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "processcfgfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "config"
+                ],
+                "fn": "processComboBoxTree",
+                "implHandler": [
+                    "var me = this;",
+                    "me.treeid = Ext.String.format('tree-combobox-{0}', Ext.id());",
+                    "me.tpl = Ext.String.format('<div id=\"{0}\"></div>', me.treeid);",
+                    "if (!Ext.isEmpty(me.url)) {",
+                    "    me.tree = Ext.create('Ext.tree.Panel', {",
+                    "        rootVisible : false,",
+                    "        border : false,",
+                    "        autoScroll : true,",
+                    "        height : 200,",
+                    "        anchor: '100%',",
+                    "        displayField:me.displayField",
+                    "    });",
+                    "    Common.bindTree({treePanel:me.tree,url:me.url, pid:'',fields:me.fields,params:me.params});",
+                    "    me.tree.on('itemclick', function(view, record) {",
+                    "        me.selected = record.data;",
+                    "        me.setValue(record.get(me.displayField));",
+                    "        me.collapse();",
+                    "    });",
+                    "    me.on('expand', function() {",
+                    "        me.renderTree();",
+                    "    });",
+                    "    me.tree.on('itemexpand',function(){",
+                    "        var record = me.tree.getStore().getNodeById(me.getValue());",
+                    "        if(record){",
+                    "            me.selected = record.data;",
+                    "            me.setValue(record.get(me.displayField));",
+                    "            me.tree.getSelectionModel().select(record);",
+                    "        }",
+                    "    });",
+                    "    Ext.defer(function(){me.tree.expandAll();}, 300);",
+                    "}"
+                ]
+            },
+            "name": "processComboBoxTree",
+            "designerId": "2391426c-8974-484d-8481-c5b6d374c9a6"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getValue",
+                "implHandler": [
+                    "if(Ext.isEmpty(this.selected)){",
+                    "    return this.value;",
+                    "}",
+                    "return this.selected.id;"
+                ]
+            },
+            "name": "getValue",
+            "designerId": "2bc390c1-7121-4913-9794-1f39eef3cdd0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "renderTree",
+                "implHandler": [
+                    "        try{",
+                    "            var me = this;",
+                    "            if (!me.tree.rendered) {",
+                    "                me.tree.render(me.treeid);",
+                    "                me.tree.expandAll();",
+                    "            }",
+                    "            var record = me.tree.getStore().getNodeById(me.getValue());",
+                    "            if(record){",
+                    "                me.selected = record.data;",
+                    "                me.setValue(record.get(me.displayField));",
+                    "                me.tree.getSelectionModel().select(record);",
+                    "            }            ",
+                    "        }catch(error){}"
+                ]
+            },
+            "name": "renderTree",
+            "designerId": "ef6c9bab-9c55-4500-802b-ac25ec62f900"
+        }
+    ]
+}

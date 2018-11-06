@@ -1,0 +1,582 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "StoreItemPanel",
+        "forceFit": true,
+        "height": null,
+        "title": "抵押物查询",
+        "width": null
+    },
+    "name": "SystemLog1",
+    "designerId": "6bee63fe-f5c5-44a8-869a-06f8990cb932",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyBorder": false,
+                "bodyPadding": null,
+                "border": false,
+                "dock": "top",
+                "header": false,
+                "height": null,
+                "layout": "column",
+                "title": "查询表单",
+                "width": null
+            },
+            "name": "MyForm",
+            "designerId": "a7b88faf-4855-4c1c-a98d-4ea2b27d1349",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "所有人",
+                        "labelAlign": "right",
+                        "labelWidth": 60,
+                        "margin": 5,
+                        "name": "dywOwner",
+                        "width": 270
+                    },
+                    "name": "MyTextField9",
+                    "designerId": "a3b654b3-1628-4f58-98fe-41f064e49b70"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "d5102682-503b-430f-9046-7954a354a747"
+                },
+                {
+                    "type": "Ext.toolbar.Toolbar",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "toolbar",
+                        "dock": "top",
+                        "height": ""
+                    },
+                    "name": "MyToolbar2",
+                    "designerId": "4065b064-fd7c-441a-85e4-1984cafea879",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "icon-search",
+                                "layout|flex": null,
+                                "text": "查询"
+                            },
+                            "name": "MyButton5",
+                            "designerId": "6d2876da-2602-4a1a-8dfb-7dc252664f52",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnSearchAfterRender",
+                                        "implHandler": [
+                                            "Common.hidden({params : {url:'/store/item/list'},component:component});"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnSearchAfterRender",
+                                    "designerId": "c1872485-2e06-434e-8349-19066b275922"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnSearchClick",
+                                        "implHandler": [
+                                            "",
+                                            "this.loadGrid();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnSearchClick",
+                                    "designerId": "7dde17e8-638e-4c22-bad6-bada16f9b810"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "icon-del",
+                                "layout|flex": null,
+                                "text": "出库"
+                            },
+                            "name": "MyButton9",
+                            "designerId": "1c2dcdaf-72f7-459a-8e62-af9886204884",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnOutAfterRender",
+                                        "implHandler": [
+                                            "this.btnDel = component;",
+                                            "Common.hidden({params : {url:'/store/out/save'},component:component});"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnOutAfterRender",
+                                    "designerId": "80ba2b2f-79e8-45d1-beb6-9617ba9eaee2"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnOutClick",
+                                        "implHandler": [
+                                            "",
+                                            "try",
+                                            "{",
+                                            "    var selected  = this.getSelectionModel().selected.items;",
+                                            "    if(selected.length!=1){",
+                                            "        Ext.Msg.alert('提示','请选择一行!');",
+                                            "        return;",
+                                            "    }",
+                                            "    var me = this;",
+                                            "    me.showForm(selected[0].data.id);",
+                                            "}",
+                                            "catch(error)",
+                                            "{",
+                                            "    Common.show({title:'信息提示',html:error.toString()});",
+                                            "}"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnOutClick",
+                                    "designerId": "2defd62a-1ace-4086-ba6d-ee2c8654eed3"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": null,
+                        "margin": 5
+                    },
+                    "name": "datetegion",
+                    "designerId": "9824fd7b-8b10-4dd8-86c7-e89a588a3a04",
+                    "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "areaName",
+                "text": "存放区域",
+                "width": 150
+            },
+            "name": "MyColumn7",
+            "designerId": "57b37949-e074-4c4d-b74f-8373c605de03"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "storeman",
+                "text": "保管员",
+                "width": 150
+            },
+            "name": "MyColumn8",
+            "designerId": "067fa650-ce61-4651-ab96-6baf517a5207"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "dywOwner",
+                "text": "所有人",
+                "width": 150
+            },
+            "name": "MyColumn20",
+            "designerId": "1f252f80-250d-470c-960f-f78762f87932"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "dywOwnerId",
+                "text": "身份证号",
+                "width": 150
+            },
+            "name": "MyColumn13",
+            "designerId": "d9a8e50f-14e7-448b-95b3-f5f949fd4c6b"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "dywId",
+                "text": "抵押物证号码",
+                "width": 150
+            },
+            "name": "MyColumn18",
+            "designerId": "0c984648-ed80-4034-9310-dead638e9654"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "htId",
+                "text": "贷款合同号",
+                "width": 150
+            },
+            "name": "MyColumn9",
+            "designerId": "5ca71e00-c874-40b2-bd39-e783ee4a5d09"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "registerDate",
+                "text": "登记日期",
+                "width": 150
+            },
+            "name": "MyColumn17",
+            "designerId": "5b77664f-c732-48c0-a59b-0fd125b586a3"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "pgje",
+                "text": "评估金额",
+                "width": 300
+            },
+            "name": "MyColumn11",
+            "designerId": "44a62299-c974-41e0-85ed-4aadac4a5ad6"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "memo",
+                "text": "备注",
+                "width": 150
+            },
+            "name": "MyColumn25",
+            "designerId": "c86eaead-8248-456e-8d72-f5ad048d17d0"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView3",
+            "designerId": "ab26020c-2b28-4186-b0a2-a9e1e178b602"
+        },
+        {
+            "type": "Ext.selection.CheckboxModel",
+            "reference": {
+                "name": "selModel",
+                "type": "object"
+            },
+            "codeClass": "Ext.selection.CheckboxModel",
+            "name": "MyCheckboxSelectionModel2",
+            "designerId": "39aa3c51-4d84-41fb-bf02-667cd4bf556f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadGrid",
+                "implHandler": [
+                    "try{",
+                    "    var me=this;",
+                    "    var params = me.form.getForm().getValues();",
+                    "    Common.loadStore({",
+                    "        component:this,",
+                    "        url:ctxp + '/store/item/list',",
+                    "        pageSize:this.pageSize.getValue(),",
+                    "        fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
+                    "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],",
+                    "        params:params",
+                    "    });",
+                    "}catch(ex){}"
+                ]
+            },
+            "name": "loadGrid",
+            "designerId": "c842da8c-28b0-4e45-a398-8c4528e62775"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "showForm",
+                "implHandler": [
+                    "        try",
+                    "        {",
+                    "            var me = this;",
+                    "            var formwin = Ext.create('platform.system.view.StoreOutWindow');",
+                    "            formwin.addListener('close', function(panel,opts)",
+                    "                                {",
+                    "                                    me.loadGrid();",
+                    "                                });",
+                    "            formwin.show();",
+                    "            formwin.loadForm(id);",
+                    "        }",
+                    "        catch(error)",
+                    "        {",
+                    "            Common.show({title:'信息提示',html:error.toString()});",
+                    "        }"
+                ]
+            },
+            "name": "showForm",
+            "designerId": "acddc864-4467-4d95-9023-1c849e638bbc"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "",
+                    "this.loadGrid();"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "51437684-f94b-477e-92c6-17ef427e5ec6"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelSelectionChange",
+                "implHandler": [
+                    "",
+                    "this.btnDel.setDisabled(selected.length === 0);"
+                ],
+                "name": "selectionchange",
+                "scope": "me"
+            },
+            "name": "onGridpanelSelectionChange",
+            "designerId": "0e27dd85-a24f-4a36-b912-185e74cd296f"
+        },
+        {
+            "type": "Ext.toolbar.Paging",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "afterPageText": "页，共 {0} 页",
+                "beforePageText": "第",
+                "displayInfo": true,
+                "displayMsg": "第 {0} - {1} 行，共 {2} 行",
+                "dock": "bottom",
+                "width": 360
+            },
+            "name": "MyPagingToolbar2",
+            "designerId": "8c6e7936-efdc-4efb-bdcf-a0d9109f9f7a",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onPagingtoolbarBeforeRender",
+                        "implHandler": [
+                            "this.pagingToolbar = component;"
+                        ],
+                        "name": "beforerender",
+                        "scope": "me",
+                        "single": true
+                    },
+                    "name": "onPagingtoolbarBeforeRender",
+                    "designerId": "03d2a407-7af4-44ae-844d-7c0a6f96935b"
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "每页行数",
+                        "labelAlign": "right",
+                        "labelWidth": 60,
+                        "layout|flex": null,
+                        "name": "pageSize",
+                        "width": 120
+                    },
+                    "name": "MyComboBox3",
+                    "designerId": "e3a589ab-b688-427e-9814-41887c8f5e3f",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onpageSizeAfterRender",
+                                "implHandler": [
+                                    "this.pageSize = component;",
+                                    "Common.bindPageSize(component);"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onpageSizeAfterRender",
+                            "designerId": "318c5427-8d72-4e0f-a5c0-94be45bf36db"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onComboboxChange",
+                                "implHandler": [
+                                    "this.loadGrid();"
+                                ],
+                                "name": "change",
+                                "scope": "me"
+                            },
+                            "name": "onComboboxChange",
+                            "designerId": "2e706edc-64de-4cf1-bc44-d48f0e5774cb"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

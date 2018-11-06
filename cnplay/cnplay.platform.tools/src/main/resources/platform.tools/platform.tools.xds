@@ -1,0 +1,47 @@
+{
+    "name": "platform.tools",
+    "settings": {
+        "cmd": {
+            "license": "commercial"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "",
+        "exportPath": ""
+    },
+    "xdsVersion": "3.2.0",
+    "xdsBuild": 320,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "ext42",
+    "viewOrderMap": {
+        "view": [
+            "bb0d0d23-7abb-4e85-95dd-431cc5cc24cf",
+            "7ba971b1-7501-4cc4-ac7e-96d4e3403b9e",
+            "24ad72d9-aff0-486d-8f81-cb0b74396dd3",
+            "5a8efcb8-ff0e-4735-be2e-101940822ed5",
+            "50e6e277-edc6-4472-8387-f4a9b8d38e72",
+            "62e973df-8e68-45bd-9902-ef3ef420aaa4",
+            "3019ea5e-1162-4adf-9898-806f73f6f238",
+            "2e5e06b2-ade8-4a17-9353-0db4a4190564",
+            "1dfe6aec-69d8-433f-a543-f046a6811de0",
+            "0e61eab2-e799-4b36-9c93-ddc02f40c6d4"
+        ],
+        "store": [],
+        "controller": [],
+        "model": [],
+        "resource": [
+            "ed1b2218-96e3-4f67-afee-45be463f92e9",
+            "6e8efc64-fe79-4693-8623-a94b2a046651"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

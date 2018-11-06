@@ -1,0 +1,768 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "StoreOutWindow",
+        "height": 606,
+        "layout": "border",
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "出库",
+        "width": 470
+    },
+    "name": "StoreInWindow1",
+    "designerId": "9badc1ea-1ac3-45c8-8d53-529b9de2dc18",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "header": false,
+                "layout": "column",
+                "layout|region": "center",
+                "title": "编辑机构表单"
+            },
+            "name": "MyForm1",
+            "designerId": "aa2896dd-3125-42be-b08a-1ab770fb51d0",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "name": "id"
+                    },
+                    "name": "MyHiddenField1",
+                    "designerId": "a0d9f8ab-7b22-42b9-8b3e-016c9af9fa7e"
+                },
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "name": "itemId"
+                    },
+                    "name": "MyHiddenField",
+                    "designerId": "cc2398b1-73b5-4241-ac43-9e2992c4fb7a"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "fieldLabel": "物品编号",
+                        "invalidText": "机构编码不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 10,
+                        "name": "rfid",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "168cee9a-77e2-4ee6-9127-c8ce07824c8b"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel",
+                    "designerId": "875f8666-6113-4f22-8e96-b8daac9329f9"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "物品名称",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "name",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "2ed69349-6395-4cf7-ba9a-48fb9184963e"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel3",
+                    "designerId": "16802bc1-64f3-4ac4-bf81-3437f278454d"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "抵押物证号码",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "dywId",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField",
+                    "designerId": "c2ace5c1-195a-41a2-b593-a49d9051d5cf"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "担保物品所有人",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "dywOwner",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField12",
+                    "designerId": "a53c38cb-c376-4add-906f-15da1aa99302"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel5",
+                    "designerId": "5c8491b0-702d-40bc-bdfe-c6a987977f1b"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "所有人证件号码",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "dywOwnerId",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField11",
+                    "designerId": "7fbf7c44-944f-4b89-94ff-31d7d4581840"
+                },
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "评估价值",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "pgje",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyNumberField1",
+                    "designerId": "f2d0a625-ee62-4be3-8f7c-27b0e554387c"
+                },
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "抵质押金额",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "jkje",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyNumberField2",
+                    "designerId": "5dfc5b73-4382-482a-9fa1-93b9b7cdedf1"
+                },
+                {
+                    "type": "Ext.form.field.Date",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "editable": false,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "表外登记日期",
+                        "format": "Y年m月d日",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "registerDate",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyDateField2",
+                    "designerId": "ae14e2c6-b216-46d0-8edc-f120d0bc9be6"
+                },
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "上级机构",
+                        "labelAlign": "right",
+                        "name": "areaId",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyHiddenField2",
+                    "designerId": "1f31e9e2-9851-4c8e-a0de-480d01f39ee4"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "保存区域",
+                        "invalidText": "请选择保存区域",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": null,
+                        "name": "areaName",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField10",
+                    "designerId": "736f736e-0eb7-4bcf-a3bc-243009db9cea"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel2",
+                    "designerId": "961d5b6b-79d3-4a80-b93a-f9b078f391da"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "保管人",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "storeman",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField13",
+                    "designerId": "0df0052f-ea6f-4881-a048-2129fecde0d1"
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "身份证原件确认",
+                        "labelAlign": "right",
+                        "padding": 5,
+                        "width": 400
+                    },
+                    "name": "MyRadioGroup3",
+                    "designerId": "6f9ae847-7c04-41a1-a519-9f36a3feb5de",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "已确认",
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "confirmId"
+                            },
+                            "name": "MyRadio4",
+                            "designerId": "0765578d-0147-445e-9a74-cd974939ae23"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "未确认",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "confirmId"
+                            },
+                            "name": "MyRadio5",
+                            "designerId": "91d9db2d-b2a8-4ab5-95ce-7fc4fbbb738a"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "抵押凭证客户联",
+                        "labelAlign": "right",
+                        "padding": 5,
+                        "width": 400
+                    },
+                    "name": "MyRadioGroup",
+                    "designerId": "bb1275f8-b7b5-4fd4-99cb-baefb2b23409",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "已回收",
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "takeBackCertificate"
+                            },
+                            "name": "MyRadio4",
+                            "designerId": "7930345c-2fbd-4822-a958-3539ce9633ed"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "未回收",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "takeBackCertificate"
+                            },
+                            "name": "MyRadio5",
+                            "designerId": "241535db-b5e0-4fc1-9c05-64398c97cdc7"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "贷款是否还清",
+                        "labelAlign": "right",
+                        "padding": 5,
+                        "width": 400
+                    },
+                    "name": "MyRadioGroup1",
+                    "designerId": "cbd644b7-cdc4-489e-921d-b529d19b678a",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "已还清",
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "paidOff"
+                            },
+                            "name": "MyRadio4",
+                            "designerId": "3e856a85-37ee-47c6-b4be-b0dca7783375"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "未还清",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "paidOff"
+                            },
+                            "name": "MyRadio5",
+                            "designerId": "f6b154c1-a99a-4706-a2fd-4bc0d65f7c6c"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "是否本人签名",
+                        "labelAlign": "right",
+                        "padding": 5,
+                        "width": 400
+                    },
+                    "name": "MyRadioGroup4",
+                    "designerId": "363de359-cab4-44ee-ac50-5fa8d7801dbf",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "已还清",
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "selfSign"
+                            },
+                            "name": "MyRadio4",
+                            "designerId": "9389e738-8254-4499-bde6-f3d8399dd105"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "未还清",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "selfSign"
+                            },
+                            "name": "MyRadio5",
+                            "designerId": "ccccddf6-68e4-428b-ab19-17de06a1ef30"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "enforceMaxLength": true,
+                        "fieldLabel": "备注",
+                        "labelAlign": "right",
+                        "maxLength": 100,
+                        "maxLengthText": "备注内容最大长度不超过100个字符！",
+                        "name": "memo",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextArea",
+                    "designerId": "b31305c9-02dc-41d9-a09f-ea9493f3591a"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form=component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "fd97827e-3a81-4fa9-8f46-1d1c335f46cb"
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar",
+            "designerId": "3294d567-6c9a-4fc2-95c6-dc560cd3338e",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-save",
+                        "layout|flex": null,
+                        "text": "保存",
+                        "width": 53
+                    },
+                    "name": "MyButton",
+                    "designerId": "1177f541-54c4-4577-9b27-07bf856cc0d3",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSaveClick",
+                                "implHandler": [
+                                    "",
+                                    "var me = this;",
+                                    "try{",
+                                    "    Common.formSubmit({",
+                                    "        url : ctxp+'/store/out/save',",
+                                    "        form:me.form,",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "            Ext.Msg.alert('操作提示', '保存成功！');",
+                                    "            me.close();",
+                                    "        }",
+                                    "    });",
+                                    "}catch(error){",
+                                    "    Common.show({title:'操作提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSaveClick",
+                            "designerId": "c19bae28-e35a-47c5-a8b7-05d99d18d98d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取消"
+                    },
+                    "name": "MyButton2",
+                    "designerId": "ab1439ca-aa36-4419-90aa-f977321f830f",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "04c2843c-4923-444d-b516-437c6df49e4b"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    Common.ajax({",
+                    "        component : me.form,",
+                    "        message : '加载信息...',",
+                    "        url : ctxp+'/store/out/load?id='+id,",
+                    "        callback : function(result)",
+                    "        {",
+                    "            me.form.getForm().reset();",
+                    "            me.form.getForm().setValues(result.rows);",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'操作提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "0374cd85-8417-461b-ae35-1e6f819d9fd9"
+        }
+    ]
+}

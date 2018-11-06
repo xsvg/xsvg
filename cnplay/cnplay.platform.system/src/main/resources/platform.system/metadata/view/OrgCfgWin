@@ -1,0 +1,358 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "OrgCfgWin",
+        "designer|userClassName": "OrgCfgWin",
+        "height": 245,
+        "modal": true,
+        "title": "系统配置编辑",
+        "width": 500
+    },
+    "name": "RightWindow1",
+    "configAlternates": {
+        "resizable": "boolean"
+    },
+    "designerId": "5a8efcb8-ff0e-4735-be2e-101940822ed5",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "designer|displayName": "editForm",
+                "height": 348,
+                "title": ""
+            },
+            "name": "MyForm2",
+            "designerId": "c44fd040-8895-45b8-8a84-68c02ebc88c8",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "",
+                        "fieldLabel": "Label",
+                        "layout|anchor": "100%",
+                        "name": "id"
+                    },
+                    "name": "MyHiddenField1",
+                    "designerId": "e3d0d8eb-0e3d-4de6-816b-33bbcc31aa16"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "emptyText": "请输入菜单名称",
+                        "fieldLabel": "配置项名称",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "name": "name",
+                        "validateBlank": true
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "985ac8a1-accd-4d23-bb0c-36cabc9016a9"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "配置项值",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "name": "value"
+                    },
+                    "name": "MyTextField3",
+                    "designerId": "0f1031c8-92ae-4e63-b898-8fbada4d042d"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "上级配置项值",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "name": "valueParent",
+                        "readOnly": true
+                    },
+                    "name": "MyTextField8",
+                    "designerId": "3d278e2c-7d27-4537-ba0c-171b9a1306b1"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "备注",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "name": "memo"
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "4f67bdd6-c940-448c-9723-3cc824099740"
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "允许下级组织更改",
+                        "hidden": true,
+                        "labelAlign": "right"
+                    },
+                    "name": "MyRadioGroup",
+                    "designerId": "ac862fcb-2232-455b-ba42-08fb0b419f78",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "是",
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "subOrgUpdate",
+                                "value": null
+                            },
+                            "name": "MyRadio",
+                            "designerId": "a1ac6a15-1593-41fe-8efa-e5f4ec1f6bbc"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "否",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "subOrgUpdate",
+                                "value": null
+                            },
+                            "name": "MyRadio1",
+                            "designerId": "b2f613ea-66b1-4375-b935-28a9ce36d7aa"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "    this.form = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "34da6f9f-0d59-4592-b09d-95382769b374"
+                },
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "排列顺序",
+                        "labelAlign": "right",
+                        "layout|anchor": "100%",
+                        "minValue": 0,
+                        "name": "sort",
+                        "value": [
+                            "1",
+                            ""
+                        ]
+                    },
+                    "name": "MyNumberField2",
+                    "designerId": "a4435506-7f74-4a2d-85d3-c24b65fbe4e1"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "    var me = this;",
+                    "        try{",
+                    "            Common.ajax({",
+                    "                component : me.form,",
+                    "                message : '加载信息...',",
+                    "                url : ctxp+'/system/OrgCfgController/load?id='+id,",
+                    "                callback : function(result)",
+                    "                {",
+                    "                    me.form.getForm().reset();",
+                    "                    var subOrgUpdate = result.rows.subOrgUpdate;",
+                    "\t\t\t\t\t\t\tif(subOrgUpdate){",
+                    "\t\t\t\t\t\t\t\tresult.rows.subOrgUpdate = 'true';",
+                    "\t\t\t\t\t\t\t}else{",
+                    "\t\t\t\t\t\t\t\tresult.rows.subOrgUpdate = 'false';",
+                    "\t\t\t\t\t\t\t}",
+                    "                    me.form.getForm().setValues(result.rows);",
+                    "                }",
+                    "            });",
+                    "        }",
+                    "        catch(error)",
+                    "        {",
+                    "            Common.show({title:'信息提示',html:error.toString()});",
+                    "        }"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "3d60075e-4035-4ae4-962e-f8e729710639"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "defaultAlign": "right",
+                "designer|displayName": "bottomBar",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar1",
+            "designerId": "39c31e76-ae4c-492d-95a2-16c5cbdd6323",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-ok",
+                        "layout|flex": null,
+                        "text": "确 定"
+                    },
+                    "name": "MyButton3",
+                    "designerId": "16271ea6-342a-48b7-a7ff-3284df76fa02",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnOkClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "try{",
+                                    "    Common.formSubmit({",
+                                    "        url : ctxp+'/system/OrgCfgController/save',",
+                                    "        form:me.form,",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "        \tme.close();",
+                                    "    \t}",
+                                    "\t});",
+                                    "}catch(error){",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnOkClick",
+                            "designerId": "237543d4-791a-482a-a8db-6e6376e0c7b9"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取 消"
+                    },
+                    "name": "MyButton20",
+                    "designerId": "1f23a182-c2d8-4f48-bf70-f6d843856bdf",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCancelClick",
+                                "implHandler": [
+                                    "this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCancelClick",
+                            "designerId": "9aa2a6ea-f76d-4667-855b-3138cdf59628"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

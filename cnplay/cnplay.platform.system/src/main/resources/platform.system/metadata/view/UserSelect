@@ -1,0 +1,132 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "UserSelect",
+        "designer|userClassName": "UserSelect",
+        "forceFit": true,
+        "height": 250,
+        "title": "",
+        "width": 400
+    },
+    "name": "MyGridPanel1",
+    "designerId": "e1383f68-5fe7-4b0b-a392-17456adb5dae",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "text": "姓名",
+                "width": 150
+            },
+            "name": "MyColumn13",
+            "designerId": "c16a9f0c-cdfb-4211-bed9-f9274d26f7b5"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "orgName",
+                "text": "组织名称",
+                "width": 200
+            },
+            "name": "MyColumn14",
+            "designerId": "c62d5b71-f43a-4993-91e4-3bc494ece2bf"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView2",
+            "designerId": "a258f5db-588f-45a4-9356-187d63d4deb7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "username"
+                ],
+                "fn": "loadData",
+                "implHandler": [
+                    "",
+                    "var me = this;",
+                    "Common.ajax({",
+                    "    component : me,",
+                    "    params:{'username':username},",
+                    "    message : '正在加载......',",
+                    "    url : ctxp+'/manage/authority/findUserByName',",
+                    "    callback : function(result)",
+                    "    {",
+                    "        var UserStore = Ext.create('Ext.data.Store', {",
+                    "            storeId:'UserStore',",
+                    "            fields: ['id','name','orgName'],",
+                    "            data : result.rows,",
+                    "            proxy:",
+                    "            {",
+                    "                type: 'memory',",
+                    "                reader:{",
+                    "                    type: 'json'",
+                    "                }",
+                    "            },",
+                    "\t\t\t\t\tlisteners:{",
+                    "\t\t\t\t\t\tload:{",
+                    "\t\t\t\t\t\t\tfn:function(gridStore, records, successful, eOpts){",
+                    "\t\t\t\t\t\t\t\t",
+                    "\t\t\t\t\t\t\t\tif(me.toUserId){",
+                    "\t\t\t\t\t\t\t\t\tfor(var i=0;i<gridStore.getCount();i++){",
+                    "\t\t\t\t\t\t\t\t\t\tvar record = gridStore.getAt(i);",
+                    "\t\t\t\t\t\t\t\t\t\tif(record.data.id ===me.toUserId){",
+                    "\t\t\t\t\t\t\t\t\t\t\tme.getSelectionModel().select(record);",
+                    "\t\t\t\t\t\t\t\t\t\t}",
+                    "\t\t\t\t\t\t\t\t\t}",
+                    "\t\t\t\t\t\t\t\t}",
+                    "\t\t\t\t\t\t\t\t",
+                    "\t\t\t\t\t\t\t}",
+                    "\t\t\t\t\t\t}",
+                    "\t\t\t\t\t}",
+                    "        });",
+                    "        me.bindStore(UserStore);",
+                    "    }",
+                    "});",
+                    ""
+                ]
+            },
+            "name": "loadData",
+            "designerId": "7a8e140e-2e3a-4418-8fef-f85669e5eeaf"
+        },
+        {
+            "type": "Ext.selection.CheckboxModel",
+            "reference": {
+                "name": "selModel",
+                "type": "object"
+            },
+            "codeClass": "Ext.selection.CheckboxModel",
+            "userConfig": {
+                "mode": "SINGLE"
+            },
+            "name": "MyCheckboxSelectionModel3",
+            "designerId": "c8f02c3f-147c-48da-9ff6-a9b2a36d29ed"
+        }
+    ]
+}

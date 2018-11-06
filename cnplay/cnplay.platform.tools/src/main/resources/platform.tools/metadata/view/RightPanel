@@ -1,0 +1,543 @@
+{
+    "type": "Ext.tree.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoRender": true,
+        "autoScroll": true,
+        "designer|userAlias": "treegrid",
+        "designer|userClassName": "RightPanel",
+        "forceFit": true,
+        "rootVisible": false,
+        "title": null
+    },
+    "name": "TreeGrid",
+    "designerId": "62e973df-8e68-45bd-9902-ef3ef420aaa4",
+    "isBuiltIn": true,
+    "iconCls": "icon-treegridpanel",
+    "autoName": "TreeGrid",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "top"
+            },
+            "name": "MyToolbar3",
+            "designerId": "49c06633-8e71-4082-a23d-4c2ee18da4cb",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-edit",
+                        "layout|flex": null,
+                        "text": "修改"
+                    },
+                    "name": "MyButton10",
+                    "designerId": "e169b906-74de-4c5b-93a9-919757e8c9ae",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onEditButtonClick",
+                                "implHandler": [
+                                    "var selected  = this.getSelectionModel().selected.items;",
+                                    "if(selected.length!=1){",
+                                    "    Common.alert({title:'提示',msg:'请选择一行!'});",
+                                    "    return;",
+                                    "}",
+                                    "try",
+                                    "{",
+                                    "    var me = this;",
+                                    "    var formwin = Ext.create('platform.tools.view.RightWindow');",
+                                    "    formwin.addListener('close', function(panel,opts)",
+                                    "                        {",
+                                    "                            me.loadGrid();",
+                                    "                        });",
+                                    "    formwin.show();",
+                                    "    formwin.loadFormData(selected[0].data.id);",
+                                    "}",
+                                    "catch(error)",
+                                    "{",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onEditButtonClick",
+                            "designerId": "1d4c2099-4f3b-4069-abb0-f1a69f2b3e54"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonAfterRender",
+                                "implHandler": [
+                                    "Common.hidden({params : {url:'/ptools/right/save'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onButtonAfterRender",
+                            "designerId": "d872637f-b26c-4af4-a708-8bbc452cc975"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-del",
+                        "layout|flex": null,
+                        "text": "删除"
+                    },
+                    "name": "MyButton",
+                    "designerId": "930a6b3a-48b8-481e-8092-bbb52db64e88",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onDelButtonClick",
+                                "implHandler": [
+                                    "Common.deleteSelectionIds(this,ctxp+'/ptools/right/remove');"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onDelButtonClick",
+                            "designerId": "ddca7b8d-99f6-4438-8550-fbac19b69afa"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onDelButtonAfterRender",
+                                "implHandler": [
+                                    "Common.hidden({params : {url:'/ptools/right/remove'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onDelButtonAfterRender",
+                            "designerId": "6ba89d33-938c-46e9-a04d-5ccaccdd62a2"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "disabled": true,
+                        "iconCls": "icon-sys-config",
+                        "layout|flex": null,
+                        "text": "菜单互斥"
+                    },
+                    "name": "MyButton1",
+                    "designerId": "9cd7ed01-c287-4939-bd25-1a3988d054c3",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnRejectAfterRender",
+                                "implHandler": [
+                                    "this.btnReject = component;"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onBtnRejectAfterRender",
+                            "designerId": "c76e9fd2-4191-426d-9433-9733a016046c"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnRejectClick",
+                                "implHandler": [
+                                    "var selected  = this.getSelectionModel().selected.items[0].data;",
+                                    "if(selected.type=='URL'||selected.type=='COMPONENT'||selected.type=='BUTTON'){",
+                                    "  try",
+                                    "    {",
+                                    "",
+                                    "        var formwin = Ext.create('platform.tools.view.RightRejectWindow');",
+                                    "            formwin.show();",
+                                    "        formwin.loadForm(selected.id);",
+                                    "    }",
+                                    "    catch(error)",
+                                    "    {",
+                                    "        Common.show({title:'信息提示',html:error.toString()});",
+                                    "    }",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnRejectClick",
+                            "designerId": "8e883c6c-3969-4490-b97b-9c0a9bdf045d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-reset",
+                        "layout|flex": null,
+                        "text": "重置功能"
+                    },
+                    "name": "MyButton6",
+                    "designerId": "c49747cf-d195-455a-a5d8-6a2ce6e727bb",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onResetButtonClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "Common.ajax({",
+                                    "    component:me,",
+                                    "    message:'正在提交...',",
+                                    "    url:ctxp+'/ptools/right/reload',",
+                                    "    callback:function(json,options,success,response){",
+                                    "        try{",
+                                    "            Common.alert({title : '操作提示',",
+                                    "                          msg : json.rows,",
+                                    "                          icon : Ext.MessageBox.INFO",
+                                    "                         });",
+                                    "            if(json.success){",
+                                    "                me.loadGrid();",
+                                    "            }",
+                                    "        }catch(e){}",
+                                    "    }",
+                                    "});"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onResetButtonClick",
+                            "designerId": "c1f61422-9c79-44a4-84c5-b039810ca64c"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onResetButtonAfterRender",
+                                "implHandler": [
+                                    "Common.hidden({params : {url:'/ptools/right/reload'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onResetButtonAfterRender",
+                            "designerId": "16c8f642-8edc-433a-8135-b92b4fa893a5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.tree.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "text",
+                "defaultWidth": null,
+                "flex": 1,
+                "maxWidth": null,
+                "text": "菜单名称",
+                "width": 150
+            },
+            "name": "MyTreeColumn1",
+            "designerId": "1008fbc9-011e-4a49-994f-c390243a5f73"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "url",
+                "defaultWidth": null,
+                "text": "访问地址",
+                "width": 200
+            },
+            "name": "MyColumn11",
+            "designerId": "ed40f2ac-0a58-4ab5-8e98-fae660017b34"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "component",
+                "defaultWidth": null,
+                "text": "控件名称",
+                "width": null
+            },
+            "name": "MyColumn",
+            "designerId": "ae8bcd8a-6e16-4486-b5b4-6e618c3ab6a2"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "resource",
+                "defaultWidth": null,
+                "text": "权限资源",
+                "width": null
+            },
+            "name": "MyColumn1",
+            "designerId": "4d753ff3-1fa0-4204-aba9-e3daede4490d"
+        },
+        {
+            "type": "Ext.grid.column.Boolean",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "align": "center",
+                "dataIndex": "needCheck",
+                "falseText": "否",
+                "maxWidth": null,
+                "minWidth": null,
+                "renderData": null,
+                "text": "是否需复核",
+                "trueText": "是",
+                "width": null
+            },
+            "name": "MyBooleanColumn",
+            "designerId": "4e4fbe6a-5473-4d05-9982-9318cd04d0e7"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "align": "center",
+                "dataIndex": "statusStr",
+                "maxWidth": null,
+                "text": "功能状态",
+                "width": null
+            },
+            "name": "MyColumn10",
+            "designerId": "445f018c-9ecc-47b0-8a7f-05972dc2fc5b"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "align": "right",
+                "dataIndex": "sort",
+                "text": "排列顺序"
+            },
+            "name": "MyColumn12",
+            "designerId": "6947b990-0fc1-4746-839e-66b664cc6651"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "align": "center",
+                "dataIndex": "createTimeStr",
+                "text": "创建时间",
+                "width": 80
+            },
+            "name": "MyColumn5",
+            "designerId": "50c08a62-8a0d-41dd-b12d-a5c61a6678f2"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "align": "center",
+                "dataIndex": "updateTimeStr",
+                "text": "最后更新",
+                "width": 80
+            },
+            "name": "MyColumn6",
+            "designerId": "45f81388-18a0-4965-87bd-7e59df460426"
+        },
+        {
+            "type": "Ext.tree.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyTreeView1",
+            "designerId": "2d5cd638-4fda-460a-80ff-1b7302b11174",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewItemClick",
+                        "implHandler": [
+                            "if(record.data.type=='URL'||record.data.type=='COMPONENT'||record.data.type=='BUTTON'){",
+                            "    this.btnReject.setDisabled(false);",
+                            "}else{",
+                            "    this.btnReject.setDisabled(true);",
+                            "}"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onViewItemClick",
+                    "designerId": "41e72d94-167b-49b2-96c7-5de4c5619961"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTreepanelAfterRender",
+                "implHandler": [
+                    "this.loadGrid();"
+                ],
+                "name": "afterrender",
+                "scope": "me",
+                "single": true
+            },
+            "name": "onTreepanelAfterRender",
+            "designerId": "f295e9aa-a399-418a-8ac8-de5bedb98720"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadGrid",
+                "implHandler": [
+                    "try{",
+                    "    var fields = [ {",
+                    "        name : 'id'",
+                    "    }, {",
+                    "        name : 'sort',",
+                    "        type : 'int'",
+                    "    }, {",
+                    "        name : 'leaf',",
+                    "        type : 'boolean'",
+                    "    }, 'text','id','parentId','url','needCheck','type','status','statusStr','createTimeStr','updateTimeStr','component','resource','iconCls','icon' ];",
+                    "    var me = this;",
+                    "    Common.bindTree({",
+                    "        pid:'',",
+                    "        fields:fields,",
+                    "        url : ctxp+'/ptools/right/list',",
+                    "        treePanel:me",
+                    "    });",
+                    "}catch(ex){",
+                    "    alert(ex);",
+                    "}",
+                    "this.btnReject.setDisabled(true);"
+                ]
+            },
+            "name": "loadGrid",
+            "designerId": "f02a5a40-9d0a-4b94-85e1-b60e8caa0ba5"
+        }
+    ]
+}

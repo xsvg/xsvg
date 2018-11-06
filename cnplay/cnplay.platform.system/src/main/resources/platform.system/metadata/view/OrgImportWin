@@ -1,0 +1,171 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "OrgImportWin",
+        "height": 400,
+        "layout": "border",
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "未导入数据",
+        "width": 662
+    },
+    "name": "OrganizationWindow1",
+    "designerId": "0fc9f157-1589-475f-a979-54280c7d23de",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "west"
+            },
+            "name": "orgimportgridpanel",
+            "designerId": "1e7d756c-3d77-4967-8270-c85c42b7f94e",
+            "masterInstanceId": "7658b240-7973-49d5-9ed6-0f94d83671ae",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onOrgImportGridPanelAfterRender",
+                        "implHandler": [
+                            "this.orgImportGridPanel=component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onOrgImportGridPanelAfterRender",
+                    "designerId": "95d407dd-1da6-4c3a-9b7b-98f635bebdf9"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "header": false,
+                "layout": "column",
+                "layout|region": "center",
+                "title": "编辑机构表单"
+            },
+            "name": "MyForm1",
+            "designerId": "a59715f5-c0e0-4f1c-b0b2-254d2b53718f",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form=component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "5787ada4-e01c-4a45-8bb5-31c5f7853ed8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar",
+            "designerId": "197ff71f-822d-4e57-9901-001d60653529",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "padding": "5 20 5 5",
+                        "text": "确定"
+                    },
+                    "name": "MyButton2",
+                    "designerId": "ac1a491e-b873-47ca-84cf-01237d2f94c1",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "e2d6d057-c286-4e0a-9116-439e8dd36b09"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "result"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "",
+                    "var me = this;",
+                    "me.orgImportGridPanel.loadData(result);",
+                    ""
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "a71ad7d7-8f7b-416f-bf11-3fc531995066"
+        }
+    ]
+}

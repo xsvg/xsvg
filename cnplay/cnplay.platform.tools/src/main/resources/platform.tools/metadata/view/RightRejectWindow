@@ -1,0 +1,361 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "RightRejectWindow",
+        "height": 500,
+        "modal": true,
+        "title": "菜单互斥",
+        "width": 450
+    },
+    "name": "MyWindow",
+    "designerId": "24ad72d9-aff0-486d-8f81-cb0b74396dd3",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar1",
+            "designerId": "774938ca-b554-4e01-ba14-e6252fedea5f",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-save",
+                        "layout|flex": null,
+                        "text": "保存"
+                    },
+                    "name": "MyButton2",
+                    "designerId": "dd81e529-bbc9-45d1-bfb4-7fbf0b0e6806",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnSaveClick",
+                                "implHandler": [
+                                    " var me  = this;",
+                                    "try{",
+                                    "     var rightIds = [];",
+                                    "    var items = me.treePanel.getSelectionModel().store.data.items;",
+                                    "    Ext.each(items, function()",
+                                    "             {",
+                                    "                 var nd = this;",
+                                    "                 if(nd.data.checked&&",
+                                    "                    (nd.data.type==='URL'||nd.data.type==='COMPONENT'||nd.data.type==='BUTTON'))",
+                                    "                 {",
+                                    "                     rightIds.push(nd.data.id);",
+                                    "                 }",
+                                    "             });",
+                                    "    me.form.getForm().findField('rightIds').setValue(rightIds);",
+                                    "    Common.formSubmit({",
+                                    "        url : ctxp+'/ptools/right/reject/save',",
+                                    "        form:me.form,",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "            Ext.Msg.alert('信息提示', '保存成功！');",
+                                    "        \tme.close();",
+                                    "    \t}",
+                                    "\t});",
+                                    "}catch(error){",
+                                    "    Common.show({title:'信息提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnSaveClick",
+                            "designerId": "2e5c9406-9afe-4bd5-a546-93a36a9a8e37"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取消"
+                    },
+                    "name": "MyButton3",
+                    "designerId": "0eb0f7b2-97b8-43a7-9816-36ac3038be50",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnCancelClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnCancelClick",
+                            "designerId": "2f603e1f-bbd7-4cd7-9fe9-aad10395378c"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "bodyPadding": null,
+                "border": false,
+                "header": false,
+                "height": 442,
+                "title": "互斥菜单"
+            },
+            "name": "MyForm",
+            "designerId": "5ee18338-d64e-4de7-a4f6-b2b26594ed06",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "layout|anchor": "100%",
+                        "name": "refId"
+                    },
+                    "name": "MyHiddenField2",
+                    "designerId": "ce10b6c0-f745-4ac6-9d58-779c55f19ad0"
+                },
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "layout|anchor": "100%",
+                        "name": "rightIds"
+                    },
+                    "name": "MyHiddenField",
+                    "designerId": "918967bb-b35f-49f9-91b2-297ecd6e0d3b"
+                },
+                {
+                    "type": "Ext.tree.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "autoScroll": true,
+                        "border": false,
+                        "header": false,
+                        "rootVisible": false,
+                        "title": "树列表"
+                    },
+                    "name": "MyTreePanel",
+                    "designerId": "3ca53643-9446-4f75-8a49-8d19008814e6",
+                    "cn": [
+                        {
+                            "type": "Ext.tree.View",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTreeView",
+                            "designerId": "20efad58-ab93-4e3f-804d-3dd6956d60b5"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTreepanelAfterRender",
+                                "implHandler": [
+                                    "this.treePanel = component;"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onTreepanelAfterRender",
+                            "designerId": "0d3be801-eb41-4d4b-93fb-59d15f3b82ce"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTreepanelItemClick",
+                                "implHandler": [
+                                    "if(record.data.checked)",
+                                    "{",
+                                    "    record.set('checked', false);",
+                                    "    Common.onTreePanelCheckChange(record,false,eOpts);",
+                                    "}",
+                                    "else",
+                                    "{",
+                                    "    record.set('checked', true);",
+                                    "    Common.onTreePanelCheckChange(record,true,eOpts);",
+                                    "}"
+                                ],
+                                "name": "itemclick",
+                                "scope": "me"
+                            },
+                            "name": "onTreepanelItemClick",
+                            "designerId": "9b79b79f-8395-4a83-b65a-6c00e8fe1e2d"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form = component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "5a46dd28-9aab-4da4-921b-c9f0937d10a8"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "var me = this;",
+                    "me.form.getForm().findField(\"refId\").setValue(id);",
+                    "        Common.ajax({",
+                    "            component : me.treePanel,",
+                    "            message : '正在加载......',",
+                    "            url :ctxp + '/ptools/right/reject/list?id='+id,",
+                    "            callback : function(result){",
+                    "                var myStore = Ext.create(\"Ext.data.TreeStore\",{",
+                    "                        defaultRootId : '',",
+                    "                        clearOnLoad : true,",
+                    "                        nodeParam : 'id',",
+                    "                        fields: [",
+                    "                            {",
+                    "                                name: 'id'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'parentId'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'sort',",
+                    "                                type: 'int'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'iconCls'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'leaf',",
+                    "                                type: 'boolean'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'type'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'resource'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'component'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'text'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'needCheck',",
+                    "                                type: 'boolean'",
+                    "                            },",
+                    "                            {",
+                    "                                name: 'checked',",
+                    "                                type: 'boolean'",
+                    "                            }",
+                    "                        ],",
+                    "                         proxy:",
+                    "                            {",
+                    "                                type: 'memory',",
+                    "                                data: result.rows,",
+                    "                                reader:{",
+                    "                                    type: 'json'",
+                    "                                }",
+                    "                            }",
+                    "                        });",
+                    "",
+                    "            me.treePanel.bindStore(myStore);",
+                    "            myStore.reload();",
+                    "            me.treePanel.expandAll();",
+                    "            Ext.defer(function()",
+                    "                 {",
+                    "                     me.treePanel.expandAll();",
+                    "                  }, 1000);",
+                    "            }",
+                    "        });"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "1dc8da34-92a8-4f3b-8cdb-2f45192cfa01"
+        }
+    ]
+}

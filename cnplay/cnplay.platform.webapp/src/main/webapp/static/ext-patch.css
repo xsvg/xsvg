@@ -1,0 +1,11 @@
+.ext-ie .x-btn-text-icon .x-btn-center .x-btn-text {
+	padding: 3px 0px 0px 0px;
+}
+
+.x-btn-text-icon .x-btn-icon-small-left .x-btn-text {
+	background-position: 0 center; /*默认*/
+	background-repeat: no-repeat; /*默认*/
+	padding-left: 18px; /*默认*/
+	height: 16px; /*默认*/
+	font-size: 15px; /*字体大小设置*/
+}

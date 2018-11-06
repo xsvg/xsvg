@@ -1,0 +1,171 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoScroll": true,
+        "bodyBorder": false,
+        "columnLines": true,
+        "designer|userAlias": "orgimportgridpanel",
+        "designer|userClassName": "OrgImportGridPanel",
+        "forceFit": true,
+        "id": null,
+        "maxHeight": 350,
+        "title": "",
+        "width": 650
+    },
+    "name": "UserGridPanel1",
+    "designerId": "7658b240-7973-49d5-9ed6-0f94d83671ae",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "code",
+                "designer|displayName": "",
+                "sortable": false,
+                "text": "机构编码",
+                "width": null
+            },
+            "name": "MyColumn1",
+            "designerId": "3d8318a8-3f51-40da-934c-b04db90a5398"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "id": null,
+                "sortable": false,
+                "text": "机构名称",
+                "width": null
+            },
+            "name": "MyColumn2",
+            "designerId": "67492f93-00e8-4da8-ae02-ed28cd34b2d8"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "parentName",
+                "text": "上级机构编码"
+            },
+            "name": "MyColumn",
+            "designerId": "3b45002b-059f-4076-9f6e-a137c680d252"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "memo",
+                "defaultWidth": 40,
+                "text": "备注",
+                "width": null
+            },
+            "name": "MyColumn9",
+            "designerId": "dff934f4-a9af-49b0-8c73-513eedfccd90"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "createUsername",
+                "defaultWidth": null,
+                "text": "错误信息",
+                "width": 250
+            },
+            "name": "MyColumn11",
+            "designerId": "1680ce7e-7343-414d-9060-a99b0185365a"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": null
+            },
+            "name": "MyGridView1",
+            "designerId": "525191b6-6f75-4575-83ec-c113ad932ad6",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onOrgImportGridViewAfterRender",
+                        "implHandler": [
+                            "this.orgImportGridView=component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onOrgImportGridViewAfterRender",
+                    "designerId": "29e8e695-7c14-46da-9c3b-d781762dd7a5"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "result"
+                ],
+                "fn": "loadData",
+                "implHandler": [
+                    "var me = this;",
+                    "var OrgStore = Ext.create('Ext.data.Store', {",
+                    "            storeId:'OrgStore',",
+                    "            fields: ['code','name','parentName','memo','createUsername'],",
+                    "            data : result,",
+                    "            proxy:",
+                    "            {",
+                    "                type: 'memory',",
+                    "                reader:{",
+                    "                    type: 'json'",
+                    "                }",
+                    "            }",
+                    "        });",
+                    "  me.bindStore(OrgStore);",
+                    "",
+                    ""
+                ]
+            },
+            "name": "loadData",
+            "designerId": "62e47135-ab84-4150-9dcf-c9058b75f398"
+        }
+    ]
+}

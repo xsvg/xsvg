@@ -1,0 +1,418 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "AreaWindow",
+        "height": 342,
+        "layout": "border",
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "编辑机构",
+        "width": 432
+    },
+    "name": "OrganizationWindow1",
+    "designerId": "2f007168-4c48-4ea2-b931-71b4085aed08",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": false,
+                "header": false,
+                "layout": "column",
+                "layout|region": "center",
+                "title": "编辑机构表单"
+            },
+            "name": "MyForm1",
+            "designerId": "322ddb6e-bcf9-4c59-903d-2edb4587332b",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "name": "id"
+                    },
+                    "name": "MyHiddenField1",
+                    "designerId": "92b9e616-979a-448d-af25-cb72377b893f"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "fieldLabel": "机构编码",
+                        "invalidText": "机构编码不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 10,
+                        "name": "code",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "2e492e22-d849-41a8-83b2-3a17b70f6f10"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel",
+                    "designerId": "d725fc3a-da51-49c0-a769-8be692eef978"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "机构名称",
+                        "invalidText": "机构名称不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": "机构名称最大长度不超过50个字符！",
+                        "name": "name",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "00e0caab-76c0-46aa-8834-c6f4356d9ea7"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel5",
+                    "designerId": "5bf67041-5c57-4131-ad4b-d674954e7d1b"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "blankText": null,
+                        "enforceMaxLength": true,
+                        "fieldLabel": "上级机构",
+                        "invalidText": null,
+                        "labelAlign": "right",
+                        "maxLength": 50,
+                        "maxLengthText": null,
+                        "name": "parentName",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField10",
+                    "designerId": "6f464fbf-b811-4ba2-8e62-8e8e5f04a399",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onParentNameTextfieldFocus",
+                                "implHandler": [
+                                    "try{",
+                                    "    var me = this;",
+                                    "    var parentId = me.form.getForm().findField('parentId');",
+                                    "    Common.showTreeSelect({",
+                                    "        multiple:false,",
+                                    "        url:ctxp + '/home/areaTree',",
+                                    "        params:{areaId: parentId.getValue()},",
+                                    "        callback:function(item)",
+                                    "        {",
+                                    "            parentId.setValue(item.id);",
+                                    "            component.setValue(item.text);",
+                                    "        }",
+                                    "    });",
+                                    "}catch(ex){}"
+                                ],
+                                "name": "focus",
+                                "scope": "me"
+                            },
+                            "name": "onParentNameTextfieldFocus",
+                            "designerId": "01fd50f7-5495-4df9-9364-535711ff4232"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<font color=red>*</font>",
+                        "padding": "10 5 5 5 ",
+                        "text": null
+                    },
+                    "name": "MyLabel1",
+                    "designerId": "791b36bd-bf1d-4207-aeca-67361860ab70"
+                },
+                {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "上级机构",
+                        "labelAlign": "right",
+                        "name": "parentId",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyHiddenField",
+                    "designerId": "dc437d63-1bad-4ac4-a2bd-368ccfe0bd4c"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "enforceMaxLength": true,
+                        "fieldLabel": "负责人",
+                        "labelAlign": "right",
+                        "maxLength": 30,
+                        "maxLengthText": "负责人最大长度不超过30个字符！",
+                        "name": "leader",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextField3",
+                    "designerId": "2587c101-a8f4-4998-9af8-a3d85a40ffed"
+                },
+                {
+                    "type": "Ext.form.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "enforceMaxLength": true,
+                        "fieldLabel": "备注",
+                        "labelAlign": "right",
+                        "maxLength": 100,
+                        "maxLengthText": "备注内容最大长度不超过100个字符！",
+                        "name": "memo",
+                        "padding": 5,
+                        "width": 330
+                    },
+                    "name": "MyTextArea",
+                    "designerId": "d3b02ab0-7e9a-417e-9cef-317a01b9731e"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form=component;"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "086cd4a8-fe56-42d2-84dd-6d89b9c365f6"
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "middle",
+                "container|pack": "end",
+                "dock": "bottom"
+            },
+            "name": "MyToolbar",
+            "designerId": "87cc10da-58cc-4084-a6e6-357ea0b1920f",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-save",
+                        "layout|flex": null,
+                        "text": "保存",
+                        "width": 53
+                    },
+                    "name": "MyButton",
+                    "designerId": "4d1c1cce-fac5-4668-951c-3dbfcf4b4db6",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSaveClick",
+                                "implHandler": [
+                                    "",
+                                    "var me = this;",
+                                    "try{",
+                                    "    Common.formSubmit({",
+                                    "        url : ctxp+'/system/area/save',",
+                                    "        form:me.form,",
+                                    "        callback : function(result)",
+                                    "        {",
+                                    "        \tExt.Msg.alert('操作提示', '机构保存成功！');",
+                                    "            me.close();",
+                                    "    \t}",
+                                    "\t});",
+                                    "}catch(error){",
+                                    "    Common.show({title:'操作提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSaveClick",
+                            "designerId": "8603b8e5-15c2-4fff-b7d5-f92e4a43589b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-cancel",
+                        "layout|flex": null,
+                        "text": "取消"
+                    },
+                    "name": "MyButton2",
+                    "designerId": "eb383e42-fe2f-4102-93ac-d0e8502c1dc4",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "me.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "35ec5243-9fec-468e-b432-f7c1888cbb45"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "loadForm",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    Common.ajax({",
+                    "        component : me.form,",
+                    "        message : '加载信息...',",
+                    "        url : ctxp+'/system/area/loadById?id='+id,",
+                    "        callback : function(result)",
+                    "        {",
+                    "            me.form.getForm().reset();",
+                    "            me.form.getForm().setValues(result.rows);",
+                    "            if(!Ext.isEmpty(id)){",
+                    "                me.form.getForm().findField('code').setReadOnly(true);",
+                    "            }",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'操作提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "loadForm",
+            "designerId": "9a540077-e0db-432d-89aa-a03f8ef680be"
+        }
+    ]
+}

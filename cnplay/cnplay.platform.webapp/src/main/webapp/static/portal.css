@@ -1,0 +1,403 @@
+#app-header {
+    font-size: 22px;
+    font-weight: 200;
+}
+
+.x-theme-neptune #app-header {
+    color: white;
+    text-shadow: none;
+}
+
+#app-msg {
+    background: #D1DDEF;
+    border: 1px solid #ACC3E4;
+    padding: 3px 15px;
+    font-weight: bold;
+    font-size: 13px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.x-panel-ghost {
+    z-index: 1;
+}
+.x-border-layout-ct {
+    background: #DFE8F6;
+}
+.x-portal-body {
+    padding: 0 0 0 8px;
+}
+.x-portal .x-portal-column {
+    /* columns must have vertical padding to avoid losing dimensions when empty */
+    padding: 8px 8px 0 0;
+}
+.x-portal .x-panel-dd-spacer {
+    border: 2px dashed #99bbe8;
+    background: #f6f6f6;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    margin-bottom: 10px;
+}
+.x-portlet {
+    margin-bottom:10px;
+    padding: 1px;
+}
+.x-portlet .x-panel-body {
+    background: #fff;
+}
+.portlet-content {
+    padding: 10px;
+    font-size: 12px;
+}
+
+#app-options .portlet-content {
+    padding: 5px;
+    font-size: 12px;
+}
+.settings {
+    background-image:url(icons/fam/folder_wrench.png);
+}
+.nav {
+    background-image:url(icons/fam/folder_go.png);
+}
+.info {
+    background-image:url(icons/fam/information.png);
+}
+
+.icon-nav {
+	background-image: url(icons/fam/nav.png) !important;
+}
+
+.icon-tree {
+	background-image: url(icons/fam/tree.png) !important;
+}
+
+.icon-activity {
+	background-image: url(icons/fam/activity.png) !important;
+}
+
+.icon-hr {
+	background-image: url(icons/fam/hr.png) !important;
+}
+
+.icon-system {
+	background-image: url(icons/fam/system.png) !important;
+}
+
+.icon-user {
+	background-image: url(icons/fam/man.gif) !important;
+}
+.icon-file {
+	background-image: url(icons/fam/download-file.png) !important;
+}
+
+.icon-add {
+	background-image: url(icons/fam/add.png) !important;
+}
+.icon-del {
+	background-image: url(icons/fam/delete.png) !important;
+}
+
+.icon-add-p {
+	background-image: url(icons/fam/add_p.png) !important;
+}
+.icon-del-p {
+	background-image: url(icons/fam/delete_p.png) !important;
+}
+
+.icon-edit {
+	background-image: url(icons/fam/edit.png) !important;
+}
+
+.icon-refresh {
+	background-image: url(icons/fam/refresh.gif) !important;
+}
+
+.icon-refresh-tb {
+	background-image: url(icons/fam/refresh-tb.png) !important;
+}
+
+.icon-grid-list {
+	background-image:url(icons/fam/grid_list.png) !important;
+}
+
+.icon-search-form{
+	background-image: url(icons/fam/search_form.png) !important;
+}
+.icon-form{
+	background-image: url(icons/fam/form.png) !important;
+}
+.icon-search {
+	background-image: url(icons/fam/search.png) !important;
+}
+.icon-save {
+	background-image: url(icons/fam/save.png) !important;
+}
+.icon-reset{
+	background-image:url(icons/fam/reset.png) !important;
+}
+.icon-chart {
+	background-image: url(icons/fam/chart.gif) !important;
+}
+
+.icon-upload {
+	background-image: url(icons/fam/upload-file.png) !important;
+}
+
+.icon-unupload {
+	background-image: url(icons/fam/del-file.png) !important;
+}
+
+.icon-download {
+	background-image: url(icons/fam/download-file.png) !important;
+}
+
+.icon-word {
+	background-image: url(icons/fam/word.png) !important;
+}
+
+.icon-pdf {
+	background-image: url(icons/fam/pdf.png) !important;
+}
+
+.icon-excel {
+	background-image: url(icons/fam/excel.png) !important;
+}
+.icon-info {
+	background-image: url(icons/fam/info.gif) !important;
+}
+.icon-logout {
+	background-image: url(icons/fam/logout.png) !important;
+}
+.icon-style {
+	background-image: url(icons/fam/style.png) !important;
+}
+.icon-person-info {
+	background-image: url(icons/fam/person_info.png) !important;
+}
+.icon-person-info-edit{
+	background-image: url(icons/fam/person_info_edit.png) !important;
+}
+.icon-key-edit{
+	background-image: url(icons/fam/key_edit.png) !important;
+}
+.icon-version{
+	background-image: url(icons/fam/version.png) !important;
+}
+.icon-docs{
+	background-image: url(icons/fam/docs.gif) !important;
+}
+.icon-help{
+	background-image: url(icons/fam/help.png) !important;
+}
+.icon-layout{
+	background-image: url(icons/fam/layout.png) !important;
+}
+.icon-grant{
+	background-image: url(icons/fam/grant.png) !important;
+}
+
+.icon-collapse-all{
+	background-image: url(icons/fam/collapse-all.gif) !important;
+}
+
+.icon-expand-all{
+	background-image: url(icons/fam/expand-all.gif) !important;
+}
+
+.icon-load{
+	background-image: url(icons/fam/load.png) !important;
+}
+
+.icon-yes{
+	background-image: url(icons/fam/yes.png) !important;
+}
+
+.icon-stop{
+	background-image: url(icons/fam/stop.png) !important;
+}
+
+.icon-no{
+	background-image: url(icons/fam/no.png) !important;
+}
+
+.icon-ok{
+	background-image: url(icons/fam/ok.png) !important;
+}
+
+.icon-cancel{
+	background-image: url(icons/fam/cancel.png) !important;
+}
+
+.icon-close{
+	background-image: url(icons/fam/cancel.gif) !important;
+}
+
+.icon-tip{
+	background-image: url(icons/fam/tip.png) !important;
+}
+
+.icon-logout{
+	background-image: url(icons/fam/logout.png) !important;
+}
+.icon-sys-config{
+	background-image: url(icons/fam/sys_config.png) !important;
+}
+.icon-status-away{
+	background-image: url(icons/fam/status_away.png) !important;
+}
+.icon-status-busy{
+	background-image: url(icons/fam/status_busy.png) !important;
+}
+.icon-status-offline{
+	background-image: url(icons/fam/status_offline.png) !important;
+}
+.icon-status-online{
+	background-image: url(icons/fam/status_online.png) !important;
+}
+.icon-user-info{
+	background-image: url(icons/fam/user_info.png) !important;
+}
+.icon-email{
+	background-image: url(icons/fam/email.png) !important;
+}
+.icon-email-list{
+	background-image: url(icons/fam/email_list.png) !important;
+}
+.icon-im{
+	background-image: url(icons/fam/im.png) !important;
+}
+.icon-note{
+	background-image: url(icons/fam/note.png) !important;
+}
+.icon-link{
+	background-image: url(icons/fam/link.png) !important;
+}
+.icon-notice{
+	background-image: url(icons/fam/notice.png) !important;
+}
+.icon-news{
+	background-image: url(icons/fam/news.png) !important;
+}
+.icon-user-set{
+	background-image: url(icons/fam/user_set.png) !important;
+}
+.icon-accordion{
+	background-image: url(icons/fam/accordion.gif) !important;
+}
+
+.icon-workflow{
+	background-image: url(icons/fam/workflow.png) !important;
+}
+.icon-next{
+	background-image: url(icons/fam/next.png) !important;
+}
+.icon-priv{
+	background-image: url(icons/fam/priv.png) !important;
+}
+
+.x-message-box .icon-saving {
+    background:transparent url(icons/fam/download.gif) no-repeat bottom left;
+    height:46px;
+}
+
+.logoPanel{
+	float:left;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top: 5px;
+}
+.titlePanel{
+	float:left;
+	padding-top:20px;
+	font-size:28px;
+    text-shadow: 0 1px 0 #fff;
+    color: #596F8F;	
+}
+.logoutPanel{
+	float:right;
+	width:135px;	
+	font-size:12px;
+	padding-top:36px;
+	padding-right:20px;
+	text-align: right;
+	color: red;
+}
+
+.logoutPanel a{
+	text-decoration:none;
+}
+
+.logoutPanel a:active{
+	text-decoration:underline;
+}
+
+.logoutPanel a:hover {
+	text-decoration:none;
+}
+
+.userPanel{
+	float:right;
+	width:200px;	
+	font-size:12px;
+	padding-top:36px;
+	padding-right:5px;
+	text-align: right;
+	color: red;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis; 
+}
+
+.userPanel a{
+	text-decoration:none;
+}
+
+.userPanel a:active{
+	text-decoration:underline;
+}
+
+.userPanel a:hover {
+	text-decoration:none;
+}
+.tree-panel{
+	cursor:pointer;
+}
+
+.x-btn{
+	font-color: red;
+	font-size:16px;
+}
+
+body {
+    font-size: 12px;
+    font-family:Verdana,"宋体";
+}
+table.view {
+	width:100%;
+	font-family:Verdana,"宋体";
+    font-size: 12px;
+    border: 0px solid #000000; 
+	border-collapse:collapse; 
+	border-spacing:0,0;
+}
+
+table.view .th{
+    text-align:right;
+    background-color: #FFFFFF;
+    background-color: #e0ecfb;
+    border:  #a9bfd3 1px solid;  
+    padding: 5px;
+}
+
+table.view td{
+    text-align:left;
+    background-color: #FFFFFF;
+    border:  #a9bfd3 1px solid; 
+    padding: 5px;
+}
+.errorTip{
+    text-align:left;
+    font-color: #ff3300;
+    padding: 5px;
+}

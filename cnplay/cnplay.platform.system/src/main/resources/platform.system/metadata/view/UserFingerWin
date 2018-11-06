@@ -1,0 +1,1408 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": null,
+        "designer|userClassName": "UserFingerWin",
+        "height": 523,
+        "layout": "border",
+        "modal": true,
+        "resizable": [
+            "false"
+        ],
+        "title": "指纹管理",
+        "width": 703
+    },
+    "name": "FingerWin1",
+    "designerId": "480f54b5-beff-4f43-b773-f03edc8f6250",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "top"
+            },
+            "name": "MyToolbar6",
+            "designerId": "13c88527-fe27-474d-a3fa-d3289972ec07",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-add",
+                        "layout|flex": null,
+                        "text": "采集"
+                    },
+                    "name": "MyButton",
+                    "designerId": "d1cce964-5c09-4b05-b14d-21a80fefe933",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onRevFingerClick",
+                                "implHandler": [
+                                    "var me= this;",
+                                    "",
+                                    "//debug",
+                                    "//me.setFingerItem('L0','0','123456789','false');",
+                                    "",
+                                    "if(!me.checkForm()){",
+                                    "    return;",
+                                    "}",
+                                    "var streesVal = this.form.getForm().findField(\"strees\").getGroupValue();",
+                                    "var fingerNumVal = this.form.getForm().findField('fingerNum').getValue();",
+                                    "var fingerDev = this.form.getForm().findField('fingerDev').getValue();",
+                                    "var fingerData = finger.getFingerData(fingerDev);",
+                                    "if(fingerData != \"-1\")",
+                                    "{",
+                                    "",
+                                    "    var tmp;",
+                                    "    if(me.tempCache){",
+                                    "        tmp = me.tempCache;",
+                                    "    }else{",
+                                    "        tmp = [];",
+                                    "         me.tempCache = tmp;",
+                                    "    }",
+                                    "    var newRow={};",
+                                    "    newRow.fingerDev = fingerDev;",
+                                    "    newRow.fingerNum = fingerNumVal;",
+                                    "    newRow.stress = streesVal;",
+                                    "    newRow.fingerData = fingerData;",
+                                    "    tmp.push(newRow);",
+                                    "",
+                                    "",
+                                    "    Common.loadLocalStore({",
+                                    "        component:me.fingerWaitSave,",
+                                    "        fields:['fingerNum','fingerDev','stress','fingerData'],",
+                                    "        data:tmp",
+                                    "    });",
+                                    "",
+                                    "}",
+                                    "else",
+                                    "{",
+                                    "    Ext.Msg.alert({",
+                                    "        title : '指纹采集提示',",
+                                    "        msg : \"指纹模板获取失败！\",",
+                                    "        buttons : Ext.Msg.OK,",
+                                    "        icon : Ext.Msg.WARNING",
+                                    "    });",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onRevFingerClick",
+                            "designerId": "644fb0e1-2b70-4739-9a3c-dc8036011dfb"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonFingerAfterRender",
+                                "implHandler": [
+                                    "Common.hidden({params : {url:'/system/user/fingerSave'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onButtonFingerAfterRender",
+                            "designerId": "388b6cfe-7d03-4ef3-8b17-e3eaeeb70d8b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "disabled": true,
+                        "iconCls": "icon-del",
+                        "layout|flex": null,
+                        "text": "删除"
+                    },
+                    "name": "MyButton2",
+                    "designerId": "a2fd1775-7187-49ec-96b9-95b3b6a7fe66",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonDelClick",
+                                "implHandler": [
+                                    "try{",
+                                    "    var me = this;",
+                                    "    var selected = me.fingerListPanel.getSelectionModel().selected;",
+                                    "    var selecteditems = selected.items;",
+                                    "    var selectedTemp = me.fingerWaitSave.getSelectionModel().selected;",
+                                    "    var temp2beDeleteItems =  selectedTemp.items;",
+                                    "    if (selecteditems.length === 0&&temp2beDeleteItems.length===0)",
+                                    "    {",
+                                    "        Ext.Msg.show(",
+                                    "            {",
+                                    "                title : \"操作提示\",",
+                                    "                msg : \"请选择要删除的用户指纹!\",",
+                                    "                buttons : Ext.Msg.OK,",
+                                    "                icon : Ext.Msg.WARNING",
+                                    "            });",
+                                    "        return;",
+                                    "    }",
+                                    "    if(selecteditems.length>0){",
+                                    "        var ids = [];",
+                                    "        Ext.each(selecteditems, function()",
+                                    "             {",
+                                    "                 var nd = this;",
+                                    "                 ids.push(nd.data.id);",
+                                    "             });",
+                                    "            Ext.Msg.confirm(\"确认提示\", \"确定要删除选中的已保存用户指纹吗？\", function(button)",
+                                    "                    {",
+                                    "                        if (button == \"yes\")",
+                                    "                        {",
+                                    "                            try",
+                                    "                            {",
+                                    "                                Common.ajax({",
+                                    "                                    component : me.fingerListPanel,",
+                                    "                                    params : {",
+                                    "                                        'id' : ids.join(\",\")",
+                                    "                                    },",
+                                    "                                    message : '正在删除选中的用户指纹...',",
+                                    "                                    url : ctxp+'/system/user/fingerRemove',",
+                                    "                                    callback : function(result)",
+                                    "                                    {",
+                                    "                                        me.loadGridData(me.userid);",
+                                    "                                        Ext.Msg.alert('操作提示','用户指纹删除成功!');",
+                                    "                                    }",
+                                    "                                });",
+                                    "                            }",
+                                    "                            catch (error)",
+                                    "                            {",
+                                    "                                Common.show({title:'操作提示',html:error.toString()});",
+                                    "                            }",
+                                    "                        }",
+                                    "                    });",
+                                    "    }",
+                                    "    if(temp2beDeleteItems.length>0){",
+                                    "        Ext.Msg.confirm(\"确认提示\", \"确定要删除选中的已采集用户指纹吗？\", function(button){",
+                                    "           if(button=='yes'){",
+                                    "               Ext.each(temp2beDeleteItems,function(){",
+                                    "                   var toBeDelete = this;",
+                                    "                   me.tempCache.splice(toBeDelete.index,1) ;",
+                                    "",
+                                    "                });",
+                                    "                Common.loadLocalStore({",
+                                    "                        component:me.fingerWaitSave,",
+                                    "                        fields:['fingerNum','fingerDev','stress','fingerData'],",
+                                    "                        data:me.tempCache",
+                                    "                    });",
+                                    "           } ",
+                                    "        });",
+                                    "        ",
+                                    "    }",
+                                    "}",
+                                    "catch (error)",
+                                    "{",
+                                    "    Common.show({title:'操作提示',html:error.toString()});",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onButtonDelClick",
+                            "designerId": "24a253bf-d1e1-4c37-b325-b22040af97bd"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonDelAfterRender",
+                                "implHandler": [
+                                    "this.btnDel = component;",
+                                    "Common.hidden({params : {url:'/system/user/fingerRemove'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onButtonDelAfterRender",
+                            "designerId": "bc820aa8-2459-4874-a4b9-a2cccff62697"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "icon-save",
+                        "layout|flex": null,
+                        "text": "保存"
+                    },
+                    "name": "MyButton8",
+                    "designerId": "1952f820-1410-4cd4-936f-fdd02421d368",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBtnSaveClick",
+                                "implHandler": [
+                                    "var me=this;",
+                                    "if(!me.tempCache||me.tempCache.length===0){",
+                                    "    Ext.Msg.alert(\"指纹采集提示\",\"没有指纹数据，不需保存！\");",
+                                    "    return;",
+                                    "}",
+                                    "try{",
+                                    "    Common.ajax({",
+                                    "        message:'正在提交...',",
+                                    "        url:ctxp+'/system/user/fingerSave',",
+                                    "        params:{",
+                                    "            'userId':me.userid,",
+                                    "            'fingerArr':Ext.encode(me.tempCache)",
+                                    "        },",
+                                    "        callback:function(json,options,success,response)",
+                                    "        {",
+                                    "            try{",
+                                    "                if(json.success){",
+                                    "                    Ext.Msg.alert(\"指纹保存提示\",\"指纹保存成功！\");",
+                                    "                    me.tempCache.length=0;",
+                                    "                    Common.loadLocalStore({",
+                                    "                        component:me.fingerWaitSave,",
+                                    "                        fields:['fingerNum','fingerDev','stress','fingerData'],",
+                                    "                        data:me.tempCache",
+                                    "                    });",
+                                    "                    me.loadGridData(me.userid);",
+                                    "                }else{",
+                                    "                    Ext.Msg.alert(\"指纹保存提示\",\"指纹保存失败！\"+json.msg);",
+                                    "                }",
+                                    "            }catch(e){}",
+                                    "",
+                                    "        }",
+                                    "    });",
+                                    "}catch(error){",
+                                    "    Ext.Msg.alert({",
+                                    "        title : '指纹保存提示',",
+                                    "        msg : \"指纹保存失败！\",",
+                                    "        buttons : Ext.Msg.OK,",
+                                    "        icon : Ext.Msg.WARNING",
+                                    "    });",
+                                    "}",
+                                    ""
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onBtnSaveClick",
+                            "designerId": "898b561d-aa43-439b-9065-c1d1a9c4cd67"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSaveAfterRender",
+                                "implHandler": [
+                                    "Common.hidden({params : {url:'/system/user/fingerSave'},component:component});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onSaveAfterRender",
+                            "designerId": "4b8ed55e-3979-47ec-a0e0-9b89be7f7fee"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "border": null,
+                "header": false,
+                "height": null,
+                "layout": "column",
+                "layout|flex": null,
+                "layout|region": "north",
+                "title": "表单"
+            },
+            "name": "MyForm2",
+            "designerId": "bc86a473-917c-4f96-920a-dbe2557f1696",
+            "cn": [
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "designer|displayName": null,
+                        "editable": false,
+                        "fieldLabel": "指纹设备",
+                        "id": null,
+                        "labelAlign": "right",
+                        "name": "fingerDev",
+                        "padding": 5,
+                        "value": null,
+                        "valueField": "id",
+                        "width": 200
+                    },
+                    "name": "MyComboBox2",
+                    "designerId": "cd0ddeb2-6990-444a-a929-5488ad505ec1",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFingerDevAfterRender",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "Common.ajax({",
+                                    "    url:ctxp + '/system/user/fingerItemList',",
+                                    "    callback:function(res){",
+                                    "        try{",
+                                    "            me.form.getForm().findField('fingerDev').setValue(res.rows[0].id);",
+                                    "        }catch(ex){}",
+                                    "    }",
+                                    "}); ",
+                                    "Common.loadStore({",
+                                    "    component:component,",
+                                    "    url:ctxp + '/system/user/fingerItemList',",
+                                    "    fields:['id','text'],",
+                                    "    params:''",
+                                    "});",
+                                    ""
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onFingerDevAfterRender",
+                            "designerId": "f92193f2-b4b9-403a-961c-9b4d92643f86"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFingerDevBeforeRender",
+                                "implHandler": [
+                                    "this.fingerDev = component;"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onFingerDevBeforeRender",
+                            "designerId": "3f2f10e2-f71f-40b9-9263-de7b5f45e042"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "designer|displayName": "",
+                        "displayField": "fingerNumStr",
+                        "editable": false,
+                        "fieldLabel": "指纹编号",
+                        "id": null,
+                        "labelAlign": "right",
+                        "name": "fingerNum",
+                        "padding": 5,
+                        "value": null,
+                        "valueField": "id",
+                        "width": 200
+                    },
+                    "name": "MyComboBox",
+                    "designerId": "0d09581a-1f9b-4501-a290-2c07d55e7fe7",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFingerNumAfterRender",
+                                "implHandler": [
+                                    "var store = Ext.create('Ext.data.Store', {",
+                                    "    fields:['id','fingerNumStr'],",
+                                    "    data : [{id:'',fingerNumStr: ''},",
+                                    "            {id:'L0',fingerNumStr: '左手大拇指'},",
+                                    "            {id:'L1',fingerNumStr: '左手食指'},",
+                                    "            {id:'L2',fingerNumStr: '左手中指'},",
+                                    "            {id:'L3',fingerNumStr: '左手无名指'},",
+                                    "            {id:'L4',fingerNumStr: '左手小指'},",
+                                    "            {id:'R0',fingerNumStr: '右手大拇指'},",
+                                    "            {id:'R1',fingerNumStr: '右手食指'},",
+                                    "            {id:'R2',fingerNumStr: '右手中指'},",
+                                    "            {id:'R3',fingerNumStr: '右手无名指'},",
+                                    "            {id:'R4',fingerNumStr: '右手小指'}]",
+                                    "});",
+                                    "component.bindStore(store);",
+                                    "component.setValue('L0');"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onFingerNumAfterRender",
+                            "designerId": "088371f8-3cb3-4453-b270-6b04ea67dc7d"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFingerNumBeforeRender",
+                                "implHandler": [
+                                    "this.fingerNum = component;"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onFingerNumBeforeRender",
+                            "designerId": "6a7eb78f-ef73-49ed-b1d3-7c48165b413c"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.RadioGroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "胁迫指纹",
+                        "labelAlign": "right",
+                        "padding": 5,
+                        "width": 200
+                    },
+                    "name": "MyRadioGroup1",
+                    "designerId": "bf3cfc81-233f-490a-bd36-5c221ab8bd31",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "否",
+                                "checked": true,
+                                "fieldLabel": null,
+                                "inputValue": "false",
+                                "name": "strees"
+                            },
+                            "name": "MyRadio2",
+                            "designerId": "fb90f754-58ee-4499-b9c1-5e04d3e1615c"
+                        },
+                        {
+                            "type": "Ext.form.field.Radio",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "是",
+                                "fieldLabel": null,
+                                "inputValue": "true",
+                                "name": "strees"
+                            },
+                            "name": "MyRadio3",
+                            "designerId": "ebb68321-0dc7-4771-abac-eb9b72493d5c"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormAfterRender",
+                        "implHandler": [
+                            "this.form = component;",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me",
+                        "single": true
+                    },
+                    "name": "onFormAfterRender",
+                    "designerId": "a5d0547a-1a98-4654-85bf-044d18e15895"
+                }
+            ]
+        },
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0,
+                "layout|region": "center"
+            },
+            "name": "MyTabPanel",
+            "designerId": "fa8ef2b7-2b2a-4838-8483-494930dd5f9a",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "已保存指纹"
+                    },
+                    "name": "MyPanel",
+                    "designerId": "45205643-b508-4fce-ab02-0a3b1ccbffc6",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "border": null,
+                                "forceFit": true,
+                                "header": false,
+                                "height": 150,
+                                "title": "采集指纹"
+                            },
+                            "name": "MyGridPanel",
+                            "designerId": "9e91ee13-1e5c-40ca-aa2f-2cc5f401685d",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "fingerNum",
+                                        "text": "指纹编号"
+                                    },
+                                    "name": "MyColumn11",
+                                    "designerId": "ff73ea0d-6705-463d-badd-d84746641e13",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "value",
+                                                    "metaData",
+                                                    "record",
+                                                    "rowIndex",
+                                                    "colIndex",
+                                                    "store",
+                                                    "view"
+                                                ],
+                                                "fn": "renderer",
+                                                "implHandler": [
+                                                    " if(value==='L0'){",
+                                                    "     return \"左手大拇指\";",
+                                                    " }else if(value==='L1'){",
+                                                    "     return \"左手食指\";",
+                                                    " }else if(value==='L2'){",
+                                                    "     return \"左手中指\";",
+                                                    " }else if(value==='L3'){",
+                                                    "     return \"左手无名指\";",
+                                                    " }else if(value==='L4'){",
+                                                    "     return \"左手小指\";",
+                                                    " }else if(value==='R0'){",
+                                                    "     return \"右手大拇指\";",
+                                                    " }else if(value==='R1'){",
+                                                    "     return \"右手食指\";",
+                                                    " }else if(value==='R2'){",
+                                                    "     return \"右手中指\";",
+                                                    " }else if(value==='R3'){",
+                                                    "     return \"右手无名指\";",
+                                                    " }else if(value==='R4'){",
+                                                    "     return \"右手小指\";",
+                                                    " }else{",
+                                                    "     return value;",
+                                                    " }"
+                                                ]
+                                            },
+                                            "name": "renderer",
+                                            "designerId": "cdcfb9f6-837b-41ae-ad2e-9dfc3b27ecc6"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "fingerDev",
+                                        "text": "指纹设备"
+                                    },
+                                    "name": "MyColumn14",
+                                    "designerId": "10e73faf-4d3a-45b6-b503-986cf31f0ccd",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "value",
+                                                    "metaData",
+                                                    "record",
+                                                    "rowIndex",
+                                                    "colIndex",
+                                                    "store",
+                                                    "view"
+                                                ],
+                                                "fn": "renderer",
+                                                "implHandler": [
+                                                    "return me.devcode2name(value);"
+                                                ]
+                                            },
+                                            "name": "renderer",
+                                            "designerId": "750bcc63-5e36-47fe-af13-ec877c2c9c74"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "stress",
+                                        "hideable": false,
+                                        "text": "是否胁迫"
+                                    },
+                                    "name": "MyColumn15",
+                                    "designerId": "16473cc5-4255-4cd8-95c2-14b32e291cbe",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "value",
+                                                    "metaData",
+                                                    "record",
+                                                    "rowIndex",
+                                                    "colIndex",
+                                                    "store",
+                                                    "view"
+                                                ],
+                                                "fn": "renderer",
+                                                "implHandler": [
+                                                    " if(value===true){",
+                                                    "     return \"是\";",
+                                                    " }else if(value===false){",
+                                                    "     return \"否\";",
+                                                    " }else{",
+                                                    "     return value;",
+                                                    " }"
+                                                ]
+                                            },
+                                            "name": "renderer",
+                                            "designerId": "69c8845a-4ed5-4b2e-939e-b41721142fc9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "createTimeStr",
+                                        "text": "采集时间"
+                                    },
+                                    "name": "MyColumn16",
+                                    "designerId": "10e0b997-24fd-4395-8457-13f206315847"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "updateTimeStr",
+                                        "text": "更新时间"
+                                    },
+                                    "name": "MyColumn17",
+                                    "designerId": "1f28f53b-1d3b-47d0-8f5b-4ce9d6bdd698"
+                                },
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "border": null
+                                    },
+                                    "name": "MyGridView2",
+                                    "designerId": "87abbb39-7a3c-44dd-b5ad-7054b8acfe36"
+                                },
+                                {
+                                    "type": "Ext.selection.CheckboxModel",
+                                    "reference": {
+                                        "name": "selModel",
+                                        "type": "object"
+                                    },
+                                    "codeClass": "Ext.selection.CheckboxModel",
+                                    "name": "MyCheckboxSelectionModel2",
+                                    "designerId": "6167fcdd-4207-4430-a349-38593302c890"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onGridpanelAfterRender",
+                                        "implHandler": [
+                                            "this.fingerListPanel = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onGridpanelAfterRender",
+                                    "designerId": "2ec35ee9-cc90-49d4-b754-8a1cc8356058"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onGridpanelSelectionChange",
+                                        "implHandler": [
+                                            "this.btnDel.setDisabled(selected.length < 1&&",
+                                            "                        this.fingerWaitSave.getSelectionModel().selected.length<1);"
+                                        ],
+                                        "name": "selectionchange",
+                                        "scope": "me"
+                                    },
+                                    "name": "onGridpanelSelectionChange",
+                                    "designerId": "beae4aca-38e8-49e1-af8c-2f4b63958b8f"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "title": "正在采集"
+                            },
+                            "name": "MyGridPanel1",
+                            "designerId": "d20d3a9a-1aef-41c9-83cd-e2108bed3fd4",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "fingerNum",
+                                        "text": "指纹编号"
+                                    },
+                                    "name": "MyColumn3",
+                                    "designerId": "d28e7939-b200-417c-a4bd-3d8b17ddac63",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "value",
+                                                    "metaData",
+                                                    "record",
+                                                    "rowIndex",
+                                                    "colIndex",
+                                                    "store",
+                                                    "view"
+                                                ],
+                                                "fn": "renderer",
+                                                "implHandler": [
+                                                    "return me.fingerCode2Name(value);"
+                                                ]
+                                            },
+                                            "name": "renderer",
+                                            "designerId": "5134410d-7f91-42d5-9a9f-24cc61ac9a00"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "fingerDev",
+                                        "text": "指纹设备"
+                                    },
+                                    "name": "MyColumn4",
+                                    "designerId": "668eb1c4-b2fa-4f93-8f8a-0d465f52fcf6",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "value",
+                                                    "metaData",
+                                                    "record",
+                                                    "rowIndex",
+                                                    "colIndex",
+                                                    "store",
+                                                    "view"
+                                                ],
+                                                "fn": "renderer",
+                                                "implHandler": [
+                                                    "return me.devcode2name(value);"
+                                                ]
+                                            },
+                                            "name": "renderer",
+                                            "designerId": "e509d59a-b975-4b92-90de-582fcdeac102"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "stress",
+                                        "text": "是否胁迫"
+                                    },
+                                    "name": "MyColumn12",
+                                    "designerId": "ac005544-94ed-4380-8fb6-ac815186735f",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "value",
+                                                    "metaData",
+                                                    "record",
+                                                    "rowIndex",
+                                                    "colIndex",
+                                                    "store",
+                                                    "view"
+                                                ],
+                                                "fn": "renderer",
+                                                "implHandler": [
+                                                    "if(value==='true'){",
+                                                    "     return \"是\";",
+                                                    " }else if(value==='false'){",
+                                                    "     return \"否\";",
+                                                    " }else{",
+                                                    "     return value;",
+                                                    " }"
+                                                ]
+                                            },
+                                            "name": "renderer",
+                                            "designerId": "aff78a5c-af8d-453b-b3ca-288cd381e8d0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "name": "MyGridView",
+                                    "designerId": "c522d8e1-dcaa-44cf-8500-117166ec3105"
+                                },
+                                {
+                                    "type": "Ext.selection.CheckboxModel",
+                                    "reference": {
+                                        "name": "selModel",
+                                        "type": "object"
+                                    },
+                                    "codeClass": "Ext.selection.CheckboxModel",
+                                    "name": "MyCheckboxSelectionModel",
+                                    "designerId": "909b0b1d-4ccd-4504-bafd-4f7a87ab075e"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onWaitAfterRender1",
+                                        "implHandler": [
+                                            "this.fingerWaitSave = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me",
+                                        "single": true
+                                    },
+                                    "name": "onWaitAfterRender1",
+                                    "designerId": "df7c559b-5993-4cff-94b9-292fcdc11ba3"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onGridpanelSelectionChange1",
+                                        "implHandler": [
+                                            "this.btnDel.setDisabled(selected.length < 1&&",
+                                            "                        this.fingerListPanel.getSelectionModel().selected.length<1);"
+                                        ],
+                                        "name": "selectionchange",
+                                        "scope": "me"
+                                    },
+                                    "name": "onGridpanelSelectionChange1",
+                                    "designerId": "c1baccf1-fb30-4424-afb6-7eb820c20209"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig",
+                            "designerId": "b6077cc7-1c52-4ee1-bb3b-768584c2c8eb"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTabpanelBeforeRender",
+                        "implHandler": [
+                            "this.mypanel = component;"
+                        ],
+                        "name": "beforerender",
+                        "scope": "me",
+                        "single": true
+                    },
+                    "name": "onTabpanelBeforeRender",
+                    "designerId": "a1d39ca8-4ab8-4647-9b45-9a61ee73d2eb"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "userid"
+                ],
+                "fn": "loadData",
+                "implHandler": [
+                    "var me = this;",
+                    "//me.form.getForm().findField('fingerDev').setValue(1);",
+                    "//me.form.getForm().findField('fingerDev').setReadOnly(true);",
+                    "me.userid=userid;",
+                    "me.loadGridData(userid);"
+                ]
+            },
+            "name": "loadData",
+            "designerId": "a72ca2cb-992d-4e3b-a467-f74ca01914bd"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "checkForm",
+                "implHandler": [
+                    "try{",
+                    "    /*var tmp = this.form.getForm().findField('fingerDev').getValue();",
+                    "    if(Ext.isEmpty(tmp) || Ext.String.trim(tmp)===''){",
+                    "        Ext.Msg.alert('信息提示', '请选择指纹设备！');",
+                    "        return false;",
+                    "    }*/",
+                    "    var tmp = this.form.getForm().findField('fingerNum').getValue();",
+                    "    if(Ext.isEmpty(tmp) ||Ext.String.trim(tmp)===''){",
+                    "        Common.alert(",
+                    "            {",
+                    "                msg : '请选择指纹编号',",
+                    "                icon : Ext.Msg.WARNING",
+                    "            });        ",
+                    "        return false;",
+                    "    }",
+                    "",
+                    "    return true;",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "checkForm",
+            "designerId": "f729b8b5-88ce-4349-8fb9-d8952376035e"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowClose",
+                "implHandler": [
+                    "var me = this;",
+                    "if(!Ext.isEmpty(me.getPdaFinger))",
+                    "{",
+                    "    ocxComm.remove(me.getPdaFinger);",
+                    "}"
+                ],
+                "name": "close",
+                "scope": "me"
+            },
+            "name": "onWindowClose",
+            "designerId": "0c681fce-855c-41d8-9b3c-371612b00bd5"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowAfterRender",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    me.getPdaFinger = {",
+                    "        id:'getPdaFinger',",
+                    "        callback:function(hexString){",
+                    "            if(!me.checkForm()){",
+                    "                return;",
+                    "            }",
+                    "            var streesVal = me.form.getForm().findField(\"strees\").getGroupValue();",
+                    "            var fingerNumVal = me.form.getForm().findField('fingerNum').getValue();",
+                    "            var fingerDev = me.form.getForm().findField('fingerDev').getValue();",
+                    "            var fingerData = finger.getFingerData(fingerDev);",
+                    "            Common.ajax({",
+                    "                url:ctxp+'/home/cash/createOxC9',",
+                    "                params:{'hexString':hexString,",
+                    "                        'strees':streesVal,",
+                    "                        'fingerDev' : fingerDev,",
+                    "                        'fingerNum':fingerNumVal,",
+                    "                        'userid':me.userid",
+                    "                       },",
+                    "                callback:function(res){",
+                    "                    if(!Ext.isEmpty(res.rows))",
+                    "                    {",
+                    "                        ocxComm.send(res.rows.frame.hexString);",
+                    "                        if(res.rows.fingerdata){",
+                    "                            var tmp;",
+                    "                            if(me.tempCache){",
+                    "                                tmp = me.tempCache;",
+                    "                            }else{",
+                    "                                tmp = [];",
+                    "                                me.tempCache = tmp;",
+                    "                            }",
+                    "                            var newRow={};",
+                    "                            newRow.fingerDev = fingerDev;",
+                    "                            newRow.fingerNum = fingerNumVal;",
+                    "                            newRow.stress = streesVal;",
+                    "                            newRow.fingerData = res.rows.fingerdata;",
+                    "                            tmp.push(newRow);",
+                    "                            Common.loadLocalStore({",
+                    "                                component:me.fingerWaitSave,",
+                    "                                fields:['fingerNum','fingerDev','stress','fingerData'],",
+                    "                                data:tmp",
+                    "                            });",
+                    "                        }",
+                    "",
+                    "                    }",
+                    "                    if(!Ext.isEmpty(res.msg))",
+                    "                    {",
+                    "                        //ocxComm.remove(me.getPdaFinger);",
+                    "                        //me.loadGridData(me.userid);",
+                    "                        Common.alert(",
+                    "                            {",
+                    "                                title : \"指纹采集提示\",",
+                    "                                msg : res.msg,",
+                    "                                icon : Ext.Msg.WARNING",
+                    "                            });",
+                    "                    }",
+                    "                }",
+                    "            });",
+                    "            //me.loadGridData(me.userid);",
+                    "        }",
+                    "    };",
+                    "    ocxComm.add(me.getPdaFinger);",
+                    "}catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me",
+                "single": true
+            },
+            "name": "onWindowAfterRender",
+            "designerId": "d3abaf3c-ed37-468d-97e3-abd709622e8a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "userid"
+                ],
+                "fn": "loadGridData",
+                "implHandler": [
+                    "var me = this;",
+                    "var params = {",
+                    "    userid:userid",
+                    "};",
+                    "try{",
+                    "",
+                    "    Common.loadStore({",
+                    "        component:me.fingerListPanel,",
+                    "        url:ctxp + '/system/user/fingerList',",
+                    "        fields: ['id','fingerNum','fingerDev', 'stress', 'createTimeStr','updateTimeStr'],",
+                    "        params:params",
+                    "    });",
+                    "",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "loadGridData",
+            "designerId": "94cf8634-9372-4f20-a198-796519d2b52a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "fingerCode2Name",
+                "implHandler": [
+                    " if(value==='L0'){",
+                    "     return \"左手大拇指\";",
+                    " }else if(value==='L1'){",
+                    "     return \"左手食指\";",
+                    " }else if(value==='L2'){",
+                    "     return \"左手中指\";",
+                    " }else if(value==='L3'){",
+                    "     return \"左手无名指\";",
+                    " }else if(value==='L4'){",
+                    "     return \"左手小指\";",
+                    " }else if(value==='R0'){",
+                    "     return \"右手大拇指\";",
+                    " }else if(value==='R1'){",
+                    "     return \"右手食指\";",
+                    " }else if(value==='R2'){",
+                    "     return \"右手中指\";",
+                    " }else if(value==='R3'){",
+                    "     return \"右手无名指\";",
+                    " }else if(value==='R4'){",
+                    "     return \"右手小指\";",
+                    " }else{",
+                    "     return value;",
+                    " }"
+                ]
+            },
+            "name": "fingerCode2Name",
+            "designerId": "d6348278-97bd-4c26-a89d-afa406041af4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "val"
+                ],
+                "fn": "devcode2name",
+                "implHandler": [
+                    "var value=val+'';",
+                    "if(value==='1'){",
+                    "    return \"天诚\";",
+                    "}else if(value==='2'){",
+                    "    return \"中正\";",
+                    "}else if(value==='3'){",
+                    "    return \"维尔\";",
+                    "}else if(value==='4'){",
+                    "    return \"中正中行\";",
+                    "}else if(value==='5'){",
+                    "    return \"耀阳\";",
+                    "}else{",
+                    "    return val;",
+                    "}"
+                ]
+            },
+            "name": "devcode2name",
+            "designerId": "9a834265-2762-4a8e-9e58-bce09b80d20b"
+        }
+    ]
+}
