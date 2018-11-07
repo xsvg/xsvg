@@ -137,6 +137,19 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                                     xtype: 'gridcolumn',
                                     dataIndex: 'dywOwner',
                                     text: '抵押物所有人姓名'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                        if(value==1){
+                                            return "正常";
+                                        }else {
+                                            return "<span style='color:red'>异常</span>";
+                                        }
+                                    },
+                                    align: 'center',
+                                    dataIndex: 'checkFlag',
+                                    text: '盘点状态'
                                 }
                             ],
                             listeners: {
@@ -240,7 +253,7 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                     me.form.getForm().setValues(result.rows);
                     Common.loadLocalStore({
                         component:me.grid,
-                        fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
+                        fields: ['id', 'sn','rfid','checkFlag','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
                          'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
                         data:result.rows.itemList
                     });

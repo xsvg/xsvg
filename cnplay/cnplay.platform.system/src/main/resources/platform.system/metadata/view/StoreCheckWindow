@@ -272,6 +272,53 @@
                             "designerId": "7dd757c5-1428-4635-86ca-08f83b7a89df"
                         },
                         {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "align": "center",
+                                "dataIndex": "checkFlag",
+                                "renderData": null,
+                                "text": "盘点状态"
+                            },
+                            "name": "MyColumn7",
+                            "designerId": "343db658-61df-4a91-9f9b-706cb599d947",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "value",
+                                            "metaData",
+                                            "record",
+                                            "rowIndex",
+                                            "colIndex",
+                                            "store",
+                                            "view"
+                                        ],
+                                        "fn": "renderer",
+                                        "implHandler": [
+                                            "if(value==1){",
+                                            "    return \"正常\";",
+                                            "}else {",
+                                            "    return \"<span style='color:red'>异常</span>\";",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "renderer",
+                                    "designerId": "ea2da25e-b75f-41d3-8e21-0fb58d0e61ec"
+                                }
+                            ]
+                        },
+                        {
                             "type": "Ext.grid.View",
                             "reference": {
                                 "name": "viewConfig",
@@ -431,7 +478,7 @@
                     "            me.form.getForm().setValues(result.rows);",
                     "            Common.loadLocalStore({",
                     "                component:me.grid,",
-                    "                fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
+                    "                fields: ['id', 'sn','rfid','checkFlag','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
                     "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],",
                     "                data:result.rows.itemList",
                     "            });",
