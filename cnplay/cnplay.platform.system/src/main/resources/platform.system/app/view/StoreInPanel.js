@@ -152,6 +152,12 @@ Ext.define('platform.system.view.StoreInPanel', {
                 {
                     xtype: 'gridcolumn',
                     width: 150,
+                    dataIndex: 'rfid',
+                    text: '标签号'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
                     dataIndex: 'storeman',
                     text: '保管员'
                 },
@@ -299,8 +305,8 @@ Ext.define('platform.system.view.StoreInPanel', {
                 component:this,
                 url:ctxp + '/store/in/list',
                 pageSize:this.pageSize.getValue(),
-                fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
-                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],
+                fields: ['id', 'sn','rfid','status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
+                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
                 params:params
             });
         }catch(ex){}

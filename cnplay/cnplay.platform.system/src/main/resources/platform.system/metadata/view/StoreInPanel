@@ -237,12 +237,27 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "storeman",
-                "text": "保管员",
+                "dataIndex": "rfid",
+                "text": "标签号",
                 "width": 150
             },
             "name": "MyColumn8",
             "designerId": "b509cbe8-f66b-43bc-99a4-5206e91a5d2e"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "storeman",
+                "text": "保管员",
+                "width": 150
+            },
+            "name": "MyColumn2",
+            "designerId": "747e2092-4cd5-4069-b3f1-78b5405c0ee6"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -449,8 +464,8 @@
                     "        component:this,",
                     "        url:ctxp + '/store/in/list',",
                     "        pageSize:this.pageSize.getValue(),",
-                    "        fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
-                    "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],",
+                    "        fields: ['id', 'sn','rfid','status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
+                    "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],",
                     "        params:params",
                     "    });",
                     "}catch(ex){}"

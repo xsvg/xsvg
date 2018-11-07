@@ -75,10 +75,10 @@
                     "userConfig": {
                         "allowBlank": false,
                         "blankText": null,
-                        "fieldLabel": "物品编号",
+                        "fieldLabel": "标签号",
                         "invalidText": "机构编码不能为空！",
                         "labelAlign": "right",
-                        "maxLength": 10,
+                        "maxLength": null,
                         "name": "rfid",
                         "padding": 5,
                         "readOnly": true,
@@ -86,6 +86,28 @@
                     },
                     "name": "MyTextField1",
                     "designerId": "168cee9a-77e2-4ee6-9127-c8ce07824c8b"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "blankText": null,
+                        "fieldLabel": "物品编号",
+                        "invalidText": "机构编码不能为空！",
+                        "labelAlign": "right",
+                        "maxLength": 10,
+                        "name": "sn",
+                        "padding": 5,
+                        "readOnly": true,
+                        "width": 330
+                    },
+                    "name": "MyTextField4",
+                    "designerId": "7fceb102-0c64-4ba8-8a2e-3368608f620a"
                 },
                 {
                     "type": "Ext.form.Label",
