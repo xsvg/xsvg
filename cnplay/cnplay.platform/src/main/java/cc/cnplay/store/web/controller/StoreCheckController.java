@@ -3,13 +3,11 @@ package cc.cnplay.store.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,8 +30,7 @@ public class StoreCheckController extends AbsController {
 
 	@RequestMapping(value = "/list")
 	@RightAnnotation(name = "抵押管理/盘库记录", component = "platform.system.view.StoreCheckPanel", resource = "/storeCheck/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreCheck> list(String operator,
-			String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreCheck> list(String operator, String startDate, String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -56,9 +53,8 @@ public class StoreCheckController extends AbsController {
 		if (StringUtils.isNotEmpty(endDate)) {
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreCheck> dg = storeCheckService.findPage(startDateTime,
-				endDateTime, user.getOrgId(), operator, this.getPage(),
-				this.getPageSize());
+		DataGrid<StoreCheck> dg = storeCheckService.findPage(startDateTime, endDateTime, user.getOrgId(), operator,
+				this.getPage(), this.getPageSize());
 		return dg;
 	}
 
@@ -70,18 +66,19 @@ public class StoreCheckController extends AbsController {
 
 	@RequestMapping(value = "/item")
 	public @ResponseBody DataGrid<StoreCheckItem> itemPage(String id) {
-		DataGrid<StoreCheckItem> dg = storeCheckService.temPagee(id,
-				this.getPage(), this.getPageSize());
+		DataGrid<StoreCheckItem> dg = storeCheckService.temPagee(id, this.getPage(), this.getPageSize());
 		return dg;
 	}
 
 	@RequestMapping(value = "/analyse")
-	public @ResponseBody Json<StoreCheck> analyse(
-			@RequestBody List<String> rfidList) {
+	public @ResponseBody Json<StoreCheck> analyse() {
 		User user = this.getSessionUser();
-		StoreCheck vo = storeCheckService.check(user.getOrgId(),
-				user.getUsername(), rfidList);
-		return new Json<StoreCheck>(vo);
+		StoreCheck vo = storeCheckService.check(user.getOrgId(), user.getUsername());
+		Json<StoreCheck> json = new Json<StoreCheck>(vo);
+		if (vo == null) {
+			json.NG("请扫描标签并上传！");
+		}
+		return json;
 	}
 
 	@RequestMapping(value = "/save")
@@ -92,7 +89,7 @@ public class StoreCheckController extends AbsController {
 		form.setOrgName(user.getOrgName());
 		form.setOperator(user.getUsername());
 		if (form.getItemList() != null && form.getItemList().size() > 0) {
-			StoreCheck vo = storeCheckService.saveCheckItem(form);
+			StoreCheck vo = storeCheckService.saveCheckItem(user.getUsername(), form);
 			return new Json<StoreCheck>(vo);
 		}
 		return new Json<StoreCheck>(form);

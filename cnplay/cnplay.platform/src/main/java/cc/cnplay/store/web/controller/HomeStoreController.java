@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import cc.cnplay.core.annotation.Ignore;
 import cc.cnplay.core.vo.Json;
 import cc.cnplay.platform.web.controller.AbsController;
 import cc.cnplay.store.domain.StoreItem;
+import cc.cnplay.store.service.StoreCheckService;
 import cc.cnplay.store.vo.TagVo;
 
 @Controller
@@ -23,8 +26,10 @@ public class HomeStoreController extends AbsController {
 
 	private final Logger logger = Logger.getLogger(this.getClass());
 
-	private static final Map<String, String> tagMap = new HashMap<String, String>();
-	private static final Map<String, List<TagVo>> tagListMap = new HashMap<String, List<TagVo>>();
+	public static final Map<String, String> tagMap = new HashMap<String, String>();
+
+	@Resource
+	private StoreCheckService storeCheckService;
 
 	@Ignore
 	@RequestMapping(value = "/tag", method = RequestMethod.POST)
@@ -53,6 +58,7 @@ public class HomeStoreController extends AbsController {
 	public @ResponseBody Json<Boolean> tagList(@RequestBody List<TagVo> tagList) {
 		for (TagVo vo : tagList) {
 			String[] uiis = vo.getTagUii().split("EPC:");
+			logger.debug(vo.getTagUii());
 			String tid = uiis[0];
 			tid = tid.replaceAll("\n", "");
 			tid = tid.replaceAll("TID:", "");
@@ -62,16 +68,21 @@ public class HomeStoreController extends AbsController {
 			}
 		}
 		String username = this.getSessionUsername();
-		tagListMap.put(username, tagList);
+		storeCheckService.put(username, tagList);
 		return new Json<Boolean>(true);
 	}
 
 	@Ignore
-	@RequestMapping(value = "/getTagList", method = RequestMethod.POST)
-	public @ResponseBody Json<List<TagVo>> getTagList() {
+	@RequestMapping(value = "/getTagListSize", method = RequestMethod.POST)
+	public @ResponseBody Json<Integer> getTagListSize() {
 		String username = this.getSessionUsername();
-		List<TagVo> tagList = tagListMap.get(username);
-		//tagListMap.remove(username);
-		return new Json<List<TagVo>>(tagList);
+		List<TagVo> tagList = storeCheckService.get(username);
+		Json<Integer> json = new Json<Integer>();
+		if (tagList != null && tagList.size() > 0) {
+			json.OK(tagList.size(), "盘点数据");
+		} else {
+			json.NG("请使用PDA盘点扫描上传标签后再进行盘点！");
+		}
+		return json;
 	}
 }

@@ -7,6 +7,7 @@ import cc.cnplay.core.service.GenericService;
 import cc.cnplay.core.vo.DataGrid;
 import cc.cnplay.store.domain.StoreCheck;
 import cc.cnplay.store.domain.StoreCheckItem;
+import cc.cnplay.store.vo.TagVo;
 
 public interface StoreCheckService extends GenericService<StoreCheck, String> {
 
@@ -15,12 +16,17 @@ public interface StoreCheckService extends GenericService<StoreCheck, String> {
 
 	StoreCheck getCheck(String id);
 
-	StoreCheck check(String orgId, String operator, List<String> rfidList);
+	StoreCheck check(String orgId, String operator);
 
 	void removeCheck(String id);
 
 	DataGrid<StoreCheckItem> temPagee(String id, int page, int pageSize);
 
-	StoreCheck saveCheckItem(StoreCheck form);
+	StoreCheck saveCheckItem(String username, StoreCheck form);
+	
+	void put(String username,List<TagVo> voList);
+
+	List<TagVo> get(String username);
+	
 
 }
