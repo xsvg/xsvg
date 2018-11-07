@@ -222,7 +222,7 @@ Ext.define('platform.system.view.StoreCheckWindow', {
         var me = this;
         try{
             Common.formSubmit({
-                url : ctxp+'/store/in/save',
+                url : ctxp+'/storeCheck/save',
                 form:me.form,
                 callback : function(result)
                 {
@@ -251,6 +251,7 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                 {
                     me.form.getForm().reset();
                     me.form.getForm().setValues(result.rows);
+                    me.vo = result.rows;
                     Common.loadLocalStore({
                         component:me.grid,
                         fields: ['id', 'sn','rfid','checkFlag','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
