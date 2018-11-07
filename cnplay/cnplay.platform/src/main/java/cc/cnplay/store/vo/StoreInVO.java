@@ -36,6 +36,10 @@ public class StoreInVO extends StoreIn {
 	@Column(name = "rfid")
 	private String rfid;
 
+	@Memo("抵押物标签号")
+	@Column(name = "sn")
+	private String sn;
+	
 	@Memo("抵押物名称")
 	@Column(name = "dyw_name")
 	private String name;
@@ -233,6 +237,14 @@ public class StoreInVO extends StoreIn {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSn() {
+		return sn;
+	}
+
+	public void setSn(String sn) {
+		this.sn = sn;
 	}
 
 }

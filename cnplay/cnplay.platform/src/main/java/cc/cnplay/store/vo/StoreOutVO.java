@@ -35,11 +35,15 @@ public class StoreOutVO extends StoreOut {
 	@Memo("抵押物标签号")
 	@Column(name = "rfid")
 	private String rfid;
-
+	
+	@Memo("抵押物标签号")
+	@Column(name = "sn")
+	private String sn;
+	
 	@Memo("抵押物名称")
 	@Column(name = "name")
 	private String name;
-	
+
 	@Memo("保管员")
 	@Column(name = "storeman")
 	private String storeman;
@@ -233,6 +237,14 @@ public class StoreOutVO extends StoreOut {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSn() {
+		return sn;
+	}
+
+	public void setSn(String sn) {
+		this.sn = sn;
 	}
 
 }
