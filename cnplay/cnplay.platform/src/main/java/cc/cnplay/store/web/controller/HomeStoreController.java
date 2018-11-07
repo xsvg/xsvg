@@ -24,6 +24,7 @@ public class HomeStoreController extends AbsController {
 	private final Logger logger = Logger.getLogger(this.getClass());
 
 	private static final Map<String, String> tagMap = new HashMap<String, String>();
+	private static final Map<String, List<TagVo>> tagListMap = new HashMap<String, List<TagVo>>();
 
 	@Ignore
 	@RequestMapping(value = "/tag", method = RequestMethod.POST)
@@ -35,35 +36,42 @@ public class HomeStoreController extends AbsController {
 	}
 
 	@Ignore
-	@RequestMapping(value = "/tag", method = RequestMethod.GET)
-	public @ResponseBody Json<String> tag() {
+	@RequestMapping(value = "/getTag", method = RequestMethod.POST)
+	public @ResponseBody Json<String> getTag() {
 		String username = this.getSessionUsername();
-		logger.info(username + "=" + tagMap.get(username));
-		return new Json<String>(tagMap.get(username));
+		String rfid = tagMap.get(username);
+		if (rfid == null) {
+			rfid = "";
+		}
+		tagMap.remove(username);
+		logger.info(username + "=" + rfid);
+		return new Json<String>(rfid);
 	}
 
 	@Ignore
 	@RequestMapping(value = "/tagList", method = RequestMethod.POST)
-	public @ResponseBody Json<Boolean> tagList(@RequestBody List<TagVo> json) {
-		for (TagVo vo : json) {
+	public @ResponseBody Json<Boolean> tagList(@RequestBody List<TagVo> tagList) {
+		for (TagVo vo : tagList) {
 			String[] uiis = vo.getTagUii().split("EPC:");
 			String tid = uiis[0];
 			tid = tid.replaceAll("\n", "");
 			tid = tid.replaceAll("TID:", "");
 			vo.setTid(tid);
-			if(uiis.length>0) {
+			if (uiis.length > 0) {
 				vo.setEpc(uiis[1]);
 			}
 		}
-		logger.info(json);
+		String username = this.getSessionUsername();
+		tagListMap.put(username, tagList);
 		return new Json<Boolean>(true);
 	}
 
 	@Ignore
-	@RequestMapping(value = "/tagList", method = RequestMethod.GET)
-	public @ResponseBody Json<Boolean> tagList() {
+	@RequestMapping(value = "/getTagList", method = RequestMethod.POST)
+	public @ResponseBody Json<List<TagVo>> getTagList() {
 		String username = this.getSessionUsername();
-
-		return new Json<Boolean>(true);
+		List<TagVo> tagList = tagListMap.get(username);
+		//tagListMap.remove(username);
+		return new Json<List<TagVo>>(tagList);
 	}
 }
