@@ -20,7 +20,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
         'platform.system.view.DateTegion',
         'Ext.form.Panel',
         'Ext.button.Button',
-        'Ext.grid.column.Date',
+        'Ext.grid.column.Column',
         'Ext.grid.View',
         'Ext.selection.CheckboxModel',
         'Ext.toolbar.Paging',
@@ -136,9 +136,9 @@ Ext.define('platform.system.view.StoreCheckPanel', {
             ],
             columns: [
                 {
-                    xtype: 'datecolumn',
+                    xtype: 'gridcolumn',
                     width: 150,
-                    dataIndex: 'checkDate',
+                    dataIndex: 'checkDateStr',
                     text: '盘点时间'
                 },
                 {

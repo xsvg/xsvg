@@ -215,18 +215,18 @@
             ]
         },
         {
-            "type": "Ext.grid.column.Date",
+            "type": "Ext.grid.column.Column",
             "reference": {
                 "name": "columns",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "checkDate",
+                "dataIndex": "checkDateStr",
                 "text": "盘点时间",
                 "width": 150
             },
-            "name": "MyDateColumn",
+            "name": "MyColumn",
             "designerId": "9aa02693-6e9f-4fed-bcd2-6da47f63b90e"
         },
         {
