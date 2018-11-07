@@ -69,6 +69,21 @@ Ext.define('platform.system.view.StoreCheckPanel', {
                                             scope: me
                                         }
                                     }
+                                },
+                                {
+                                    xtype: 'button',
+                                    iconCls: 'icon-add',
+                                    text: '盘库',
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onBtnChkAfterRender,
+                                            scope: me
+                                        },
+                                        click: {
+                                            fn: me.onBtnChkClick,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -180,12 +195,38 @@ Ext.define('platform.system.view.StoreCheckPanel', {
     },
 
     onBtnSearchAfterRender: function(component, eOpts) {
-        Common.hidden({params : {url:'/store/out/list'},component:component});
+        Common.hidden({params : {url:'/storeCheck/list'},component:component});
     },
 
     onBtnSearchClick: function(button, e, eOpts) {
 
         this.loadGrid();
+    },
+
+    onBtnChkAfterRender: function(component, eOpts) {
+        Common.hidden({params : {url:'/storeCheck/save'},component:component});
+    },
+
+    onBtnChkClick: function(button, e, eOpts) {
+        var me = this;
+        try{
+            Common.ajax({
+                lock:false,
+                url : ctxp+'/home/store/getTagListSize',
+                callback : function(result)
+                {
+                    if(result.rows >0){
+                        me.showForm();
+                    }else{
+                        Common.show({title:'操作提示',html:result.msg});
+                    }
+                }
+            });
+        }
+        catch(error)
+        {
+            Common.show({title:'操作提示',html:error.toString()});
+        }
     },
 
     onGridpanelAfterRender: function(component, eOpts) {
@@ -224,6 +265,24 @@ Ext.define('platform.system.view.StoreCheckPanel', {
                 params:params
             });
         }catch(ex){}
+    },
+
+    showForm: function() {
+        try
+        {
+            var me = this;
+            var formwin = Ext.create('platform.system.view.StoreCheckWindow');
+            formwin.addListener('close', function(panel,opts)
+                                {
+                                    me.loadGrid();
+                                });
+            formwin.show();
+            formwin.loadForm();
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
     }
 
 });

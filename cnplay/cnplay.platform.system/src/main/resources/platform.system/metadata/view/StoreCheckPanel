@@ -94,7 +94,7 @@
                                     "userConfig": {
                                         "fn": "onBtnSearchAfterRender",
                                         "implHandler": [
-                                            "Common.hidden({params : {url:'/store/out/list'},component:component});"
+                                            "Common.hidden({params : {url:'/storeCheck/list'},component:component});"
                                         ],
                                         "name": "afterrender",
                                         "scope": "me"
@@ -122,6 +122,77 @@
                                     "designerId": "8de9cdc4-709a-4901-91f2-d74e7c891fa1"
                                 }
                             ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "icon-add",
+                                "layout|flex": null,
+                                "text": "盘库"
+                            },
+                            "name": "MyButton",
+                            "designerId": "16388893-6318-4def-9a86-e1b535f2e86b",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnChkAfterRender",
+                                        "implHandler": [
+                                            "Common.hidden({params : {url:'/storeCheck/save'},component:component});"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnChkAfterRender",
+                                    "designerId": "fcc3c2bd-e805-466c-963b-b8e0d111d3cc"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnChkClick",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "try{",
+                                            "    Common.ajax({",
+                                            "        lock:false,",
+                                            "        url : ctxp+'/home/store/getTagListSize',",
+                                            "        callback : function(result)",
+                                            "        {",
+                                            "            if(result.rows >0){",
+                                            "                me.showForm();",
+                                            "            }else{",
+                                            "                Common.show({title:'操作提示',html:result.msg});",
+                                            "            }",
+                                            "        }",
+                                            "    });",
+                                            "}",
+                                            "catch(error)",
+                                            "{",
+                                            "    Common.show({title:'操作提示',html:error.toString()});",
+                                            "}"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnChkClick",
+                                    "designerId": "576ea3fd-fa23-4faa-a83d-1d57055bc71d"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -137,7 +208,7 @@
                         "label": "盘点时间",
                         "margin": 5
                     },
-                    "name": "datetegion1",
+                    "name": "datetegion3",
                     "designerId": "70552bcf-e9b4-4691-8731-38e1ad4cfe79",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
@@ -279,6 +350,36 @@
             },
             "name": "loadGrid",
             "designerId": "855c9bc1-a4e5-4034-9447-a02a2a469ad0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showForm",
+                "implHandler": [
+                    "try",
+                    "{",
+                    "    var me = this;",
+                    "    var formwin = Ext.create('platform.system.view.StoreCheckWindow');",
+                    "    formwin.addListener('close', function(panel,opts)",
+                    "                        {",
+                    "                            me.loadGrid();",
+                    "                        });",
+                    "    formwin.show();",
+                    "    formwin.loadForm();",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "showForm",
+            "designerId": "e2894ec3-e237-4b45-859a-f35a862e9b73"
         },
         {
             "type": "basiceventbinding",
