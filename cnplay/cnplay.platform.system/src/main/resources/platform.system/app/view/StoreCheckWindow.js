@@ -19,9 +19,10 @@ Ext.define('platform.system.view.StoreCheckWindow', {
     requires: [
         'Ext.form.Panel',
         'Ext.form.field.Hidden',
-        'Ext.form.field.Number',
-        'Ext.form.field.Date',
-        'Ext.form.field.TextArea',
+        'Ext.form.field.Display',
+        'Ext.grid.Panel',
+        'Ext.grid.column.Column',
+        'Ext.grid.View',
         'Ext.toolbar.Toolbar',
         'Ext.button.Button'
     ],
@@ -53,159 +54,97 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                             name: 'id'
                         },
                         {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '物品编号',
-                            labelAlign: 'right',
-                            name: 'sn',
-                            invalidText: '机构编码不能为空！',
-                            allowBlank: false,
-                            maxLength: 10
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '物品名称',
-                            labelAlign: 'right',
-                            name: 'name',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '抵押物证号码',
-                            labelAlign: 'right',
-                            name: 'dywId',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '担保物品所有人',
-                            labelAlign: 'right',
-                            name: 'dywOwner',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '所有人证件号码',
-                            labelAlign: 'right',
-                            name: 'dywOwnerId',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'numberfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '评估价值',
-                            labelAlign: 'right',
-                            name: 'pgje',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'numberfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '抵质押金额',
-                            labelAlign: 'right',
-                            name: 'jkje',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'datefield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '表外登记日期',
-                            labelAlign: 'right',
-                            name: 'registerDate',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！',
-                            editable: false,
-                            format: 'Y年m月d日'
-                        },
-                        {
                             xtype: 'hiddenfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '上级机构',
-                            labelAlign: 'right',
-                            name: 'areaId'
+                            fieldLabel: 'Label',
+                            name: 'orgId'
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'displayfield',
                             padding: 5,
                             width: 330,
-                            fieldLabel: '保存区域',
+                            fieldLabel: '盘点时间',
                             labelAlign: 'right',
-                            name: 'areaName',
-                            invalidText: '请选择保存区域',
-                            readOnly: true,
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
+                            name: 'checkDateStr',
+                            invalidText: '机构编码不能为空！'
+                        },
+                        {
+                            xtype: 'displayfield',
+                            padding: 5,
+                            width: 330,
+                            fieldLabel: '网点名称',
+                            labelAlign: 'right',
+                            name: 'orgName',
+                            invalidText: '机构名称不能为空！'
+                        },
+                        {
+                            xtype: 'displayfield',
+                            padding: 5,
+                            width: 330,
+                            fieldLabel: '库存总数',
+                            labelAlign: 'right',
+                            name: 'countStore',
+                            invalidText: '机构名称不能为空！'
+                        },
+                        {
+                            xtype: 'displayfield',
+                            padding: 5,
+                            width: 330,
+                            fieldLabel: '盘点总数',
+                            labelAlign: 'right',
+                            name: 'countCheck',
+                            invalidText: '机构名称不能为空！'
+                        },
+                        {
+                            xtype: 'displayfield',
+                            padding: 5,
+                            width: 671,
+                            fieldLabel: '报警信息',
+                            labelAlign: 'right',
+                            name: 'warnMessage'
+                        },
+                        {
+                            xtype: 'gridpanel',
+                            height: 324,
+                            width: 736,
+                            title: '盘点明细',
+                            columns: [
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'areaName',
+                                    text: '存放区'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'sn',
+                                    text: '抵押物编号'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'rfid',
+                                    text: '标签号'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'name',
+                                    text: '抵押物名称'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'storeman',
+                                    text: '保管员'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'dywOwner',
+                                    text: '抵押物所有人姓名'
+                                }
+                            ],
                             listeners: {
-                                focus: {
-                                    fn: me.onParentNameTextfieldFocus,
+                                render: {
+                                    fn: me.onGridpanelRender,
                                     scope: me
                                 }
                             }
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '保管人',
-                            labelAlign: 'right',
-                            name: 'storeman',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'textareafield',
-                            padding: 5,
-                            width: 671,
-                            fieldLabel: '备注',
-                            labelAlign: 'right',
-                            name: 'memo',
-                            enforceMaxLength: true,
-                            maxLength: 100,
-                            maxLengthText: '备注内容最大长度不超过100个字符！'
                         }
                     ],
                     listeners: {
@@ -251,37 +190,18 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                         }
                     ]
                 }
-            ],
-            listeners: {
-                destroy: {
-                    fn: me.onWindowDestroy,
-                    scope: me
-                }
-            }
+            ]
         });
 
         me.callParent(arguments);
     },
 
-    onParentNameTextfieldFocus: function(component, e, eOpts) {
-        try{
-            var me = this;
-            var areaId = me.form.getForm().findField('areaId');
-            Common.showTreeSelect({
-                multiple:false,
-                url:ctxp + '/store/area/tree',
-                params:{myId:areaId},
-                callback:function(item)
-                {
-                    areaId.setValue(item.id);
-                    component.setValue(item.text);
-                }
-            });
-        }catch(ex){}
-    },
-
     onFormAfterRender: function(component, eOpts) {
         this.form=component;
+    },
+
+    onGridpanelRender: function(component, eOpts) {
+        this.grid = component;
     },
 
     onSaveClick: function(button, e, eOpts) {
@@ -307,57 +227,28 @@ Ext.define('platform.system.view.StoreCheckWindow', {
         me.close();
     },
 
-    onWindowDestroy: function(component, eOpts) {
-        setTimeout(window.rfidRead,1000);
-        window.rfidRead = null;
-    },
-
     loadForm: function(id) {
         var me = this;
         try{
             Common.ajax({
                 component : me.form,
                 message : '加载信息...',
-                url : ctxp+'/store/area/load?id='+id,
+                url : ctxp+'/storeCheck/analyse?id='+id,
                 callback : function(result)
                 {
                     me.form.getForm().reset();
                     me.form.getForm().setValues(result.rows);
-                    if(!Ext.isEmpty(id)){
-                        me.form.getForm().findField('code').setReadOnly(result.rows.checked);
-                    }
+                    Common.loadLocalStore({
+                        component:me.grid,
+                        fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
+                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
+                        data:result.rows.itemList
+                    });
                 }
             });
         }
         catch(error)
         {
-            Common.show({title:'操作提示',html:error.toString()});
-        }
-    },
-
-    rfidRead: function() {
-        var me = this;
-        try{
-            me.rfidBtn.setDisabled(false);
-            Common.ajax({
-                component : me.form,
-                lock:false,
-                url : ctxp+'/home/store/getTag',
-                callback : function(result)
-                {
-                    me.rfidBtn.setDisabled(true);
-                    if(result.rows === ''){
-                        setTimeout(window.rfidRead,2000);
-                    }else{
-                        me.rfidComp.setValue(result.rows);
-                        me.rfidBtn.setDisabled(false);
-                    }
-                }
-            });
-        }
-        catch(error)
-        {
-            me.rfidBtn.setDisabled(false);
             Common.show({title:'操作提示',html:error.toString()});
         }
     }

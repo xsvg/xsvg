@@ -9,7 +9,7 @@
         "designer|userClassName": "StoreCheckPanel",
         "forceFit": true,
         "height": null,
-        "title": "出库记录",
+        "title": "盘点记录",
         "width": null
     },
     "name": "StoreOutPanel1",
@@ -174,7 +174,7 @@
                                             "        callback : function(result)",
                                             "        {",
                                             "            if(result.rows >0){",
-                                            "                me.showForm();",
+                                            "                me.showForm('');",
                                             "            }else{",
                                             "                Common.show({title:'操作提示',html:result.msg});",
                                             "            }",
@@ -208,7 +208,7 @@
                         "label": "盘点时间",
                         "margin": 5
                     },
-                    "name": "datetegion3",
+                    "name": "datetegion7",
                     "designerId": "70552bcf-e9b4-4691-8731-38e1ad4cfe79",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }

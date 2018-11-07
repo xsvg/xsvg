@@ -305,7 +305,7 @@ Ext.define('platform.system.view.StoreInPanel', {
                 component:this,
                 url:ctxp + '/store/in/list',
                 pageSize:this.pageSize.getValue(),
-                fields: ['id', 'sn','rfid','status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
+                fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
                          'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
                 params:params
             });

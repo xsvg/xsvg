@@ -27,7 +27,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
         'Ext.form.field.ComboBox'
     ],
 
-    title: '出库记录',
+    title: '盘点记录',
     forceFit: true,
 
     initComponent: function() {
@@ -216,7 +216,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
                 callback : function(result)
                 {
                     if(result.rows >0){
-                        me.showForm();
+                        me.showForm('');
                     }else{
                         Common.show({title:'操作提示',html:result.msg});
                     }
