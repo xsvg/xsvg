@@ -71,7 +71,7 @@ public class StoreCheckController extends AbsController {
 	}
 
 	@RequestMapping(value = "/analyse")
-	public @ResponseBody Json<StoreCheck> analyse() {
+	public @ResponseBody Json<StoreCheck> analyse(String id) {
 		User user = this.getSessionUser();
 		StoreCheck vo = storeCheckService.check(user.getOrgId(), user.getUsername());
 		Json<StoreCheck> json = new Json<StoreCheck>(vo);
@@ -85,11 +85,12 @@ public class StoreCheckController extends AbsController {
 	@RightAnnotation(name = "抵押管理/盘库记录/保存", button = true, sort = 80101, needCheck = true, resource = "/storeCheck/*")
 	public @ResponseBody Json<StoreCheck> save(StoreCheck form) {
 		User user = this.getSessionUser();
-		form.setOrgId(user.getOrgId());
-		form.setOrgName(user.getOrgName());
-		form.setOperator(user.getUsername());
-		if (form.getItemList() != null && form.getItemList().size() > 0) {
-			StoreCheck vo = storeCheckService.saveCheckItem(user.getUsername(), form);
+		StoreCheck vo = storeCheckService.check(user.getOrgId(), user.getUsername());
+		if (vo!= null) {
+			vo.setOrgId(user.getOrgId());
+			vo.setOrgName(user.getOrgName());
+			vo.setOperator(user.getUsername());
+			storeCheckService.saveCheckItem(user.getUsername(), vo);
 			return new Json<StoreCheck>(vo);
 		}
 		return new Json<StoreCheck>(form);

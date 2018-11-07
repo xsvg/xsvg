@@ -20,7 +20,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
         'platform.system.view.DateTegion',
         'Ext.form.Panel',
         'Ext.button.Button',
-        'Ext.grid.column.Column',
+        'Ext.grid.column.Date',
         'Ext.grid.View',
         'Ext.selection.CheckboxModel',
         'Ext.toolbar.Paging',
@@ -136,7 +136,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
             ],
             columns: [
                 {
-                    xtype: 'gridcolumn',
+                    xtype: 'datecolumn',
                     width: 150,
                     dataIndex: 'checkDate',
                     text: '盘点时间'
@@ -260,8 +260,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
                 component:this,
                 url:ctxp + '/storeCheck/list',
                 pageSize:this.pageSize.getValue(),
-                fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
-                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],
+                fields: ['id', 'checkDate','checkDateStr','areaName','memo', 'orgId', 'operator','warnMessage','countStore','countCheck'],
                 params:params
             });
         }catch(ex){}

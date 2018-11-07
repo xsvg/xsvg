@@ -35,8 +35,12 @@ public class HomeStoreController extends AbsController {
 	@RequestMapping(value = "/tag", method = RequestMethod.POST)
 	public @ResponseBody Json<Boolean> tag(@RequestBody StoreItem item) {
 		String username = this.getSessionUsername();
-		tagMap.put(username, item.getRfid());
-		logger.info(username + "=" + item.getRfid());
+		String rfid = item.getRfid();
+		if (rfid.length() > 4) {
+			rfid = rfid.substring(4, rfid.length());
+		}
+		tagMap.put(username, rfid);
+		logger.info(username + "=" + rfid);
 		return new Json<Boolean>(true);
 	}
 

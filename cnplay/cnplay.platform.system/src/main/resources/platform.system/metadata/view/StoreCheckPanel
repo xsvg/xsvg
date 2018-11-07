@@ -208,14 +208,14 @@
                         "label": "盘点时间",
                         "margin": 5
                     },
-                    "name": "datetegion7",
+                    "name": "datetegion8",
                     "designerId": "70552bcf-e9b4-4691-8731-38e1ad4cfe79",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
             ]
         },
         {
-            "type": "Ext.grid.column.Column",
+            "type": "Ext.grid.column.Date",
             "reference": {
                 "name": "columns",
                 "type": "array"
@@ -226,7 +226,7 @@
                 "text": "盘点时间",
                 "width": 150
             },
-            "name": "MyColumn7",
+            "name": "MyDateColumn",
             "designerId": "9aa02693-6e9f-4fed-bcd2-6da47f63b90e"
         },
         {
@@ -341,8 +341,7 @@
                     "        component:this,",
                     "        url:ctxp + '/storeCheck/list',",
                     "        pageSize:this.pageSize.getValue(),",
-                    "        fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
-                    "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],",
+                    "        fields: ['id', 'checkDate','checkDateStr','areaName','memo', 'orgId', 'operator','warnMessage','countStore','countCheck'],",
                     "        params:params",
                     "    });",
                     "}catch(ex){}"

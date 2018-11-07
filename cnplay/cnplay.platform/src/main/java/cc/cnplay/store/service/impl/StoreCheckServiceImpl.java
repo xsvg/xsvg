@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +16,7 @@ import org.springframework.stereotype.Service;
 import cc.cnplay.core.spring.service.AbsGenericService;
 import cc.cnplay.core.util.BeanUtils;
 import cc.cnplay.core.vo.DataGrid;
+import cc.cnplay.platform.domain.Organization;
 import cc.cnplay.store.domain.StoreCheck;
 import cc.cnplay.store.domain.StoreCheckItem;
 import cc.cnplay.store.domain.StoreItem;
@@ -33,6 +32,9 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 		check.setOrgId(orgId);
 		check.setOperator(operator);
 		check.setCheckDate(new Date());
+		check.setCheckDateStr(DateFormatUtils.format(check.getCheckDate(), "yyyy-MM-dd"));
+		Organization org = this.getByField(Organization.class, "id", orgId);
+		check.setOrgName(org.getName());
 		List<StoreItem> itemList = this.findByField(StoreItem.class, "orgId", orgId);
 		check.setItemList(new ArrayList<StoreCheckItem>());
 		int checked = 0;
@@ -40,9 +42,9 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 		if (tagList == null || tagList.size() == 0) {
 			return null;
 		}
-		Set<String> rfidSet = new HashSet<String>();
+		Map<String, TagVo> rfidSet = new HashMap<String, TagVo>();
 		for (TagVo vo : tagList) {
-			rfidSet.add(vo.getEpc());
+			rfidSet.put(vo.getEpc().trim().toUpperCase(), vo);
 		}
 		for (StoreItem item : itemList) {
 			StoreCheckItem sci = new StoreCheckItem();
@@ -50,7 +52,7 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 			sci.setId(StoreCheckItem.randomID());
 			sci.setCheckId(check.getId());
 			check.getItemList().add(sci);
-			if (rfidSet.contains(item.getRfid())) {
+			if (rfidSet.containsKey(item.getRfid().toUpperCase())) {
 				sci.setCheckFlag(StoreCheckItem.CHECKFLAG_OK);
 				checked++;
 			} else {

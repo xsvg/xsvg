@@ -1,5 +1,6 @@
 package cc.cnplay.store.domain;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.persistence.Transient;
 
 import cc.cnplay.core.annotation.Memo;
 import cc.cnplay.core.domain.SuperCheckEntity;
+import cc.cnplay.core.util.DateUtil;
 
 /**
  * 盘点记录
@@ -29,6 +31,9 @@ public class StoreCheck extends SuperCheckEntity {
 	@Memo("盘点时间")
 	@Column(name = "check_date")
 	private Date checkDate = new Date();
+
+	@Transient
+	private String checkDateStr;
 
 	@Memo("经办人")
 	@Column(name = "operator")
@@ -122,4 +127,15 @@ public class StoreCheck extends SuperCheckEntity {
 		this.itemList = itemList;
 	}
 
+	public String getCheckDateStr() {
+		return checkDateStr = (checkDate == null ? null : DateUtil.format(checkDate));
+	}
+
+	public void setCheckDateStr(String checkDateStr) {
+		this.checkDateStr = checkDateStr;
+		try {
+			setCheckDate(DateUtil.parsetDate(checkDateStr));
+		} catch (ParseException e) {
+		}
+	}
 }

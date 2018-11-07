@@ -43,7 +43,11 @@ public class StoreCheckItem extends SuperEntity {
 	@Memo("抵押物编号")
 	@Column(name = "rfid")
 	private String rfid;
-
+	
+	@Memo("抵押物编号")
+	@Column(name = "sn")
+	private String sn;
+	
 	@Memo("抵押物名称")
 	@Column(name = "name")
 	private String name;
@@ -253,6 +257,14 @@ public class StoreCheckItem extends SuperEntity {
 
 	public void setCheckFlag(Integer checkFlag) {
 		this.checkFlag = checkFlag;
+	}
+
+	public String getSn() {
+		return sn;
+	}
+
+	public void setSn(String sn) {
+		this.sn = sn;
 	}
 
 }
