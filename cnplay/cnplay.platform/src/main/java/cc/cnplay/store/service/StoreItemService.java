@@ -29,4 +29,6 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 
 	StoreOutVO getOutById(String id);
 
+	StoreItem getInVoByRfid(String rfid);
+
 }

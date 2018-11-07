@@ -85,8 +85,7 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/out/list")
 	@RightAnnotation(name = "抵押管理/出库日志", component = "platform.system.view.StoreOutPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreOutVO> outList(String orgId,
-			String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreOutVO> outList(String orgId, String dywOwner, String startDate, String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -109,9 +108,8 @@ public class StoreItemController extends AbsController {
 		if (StringUtils.isNotEmpty(endDate)) {
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreOutVO> dg = storeItemService.findOutPageLikeName(
-				startDateTime, endDateTime, user.getOrgId(), dywOwner,
-				this.getPage(), this.getPageSize());
+		DataGrid<StoreOutVO> dg = storeItemService.findOutPageLikeName(startDateTime, endDateTime, user.getOrgId(),
+				dywOwner, this.getPage(), this.getPageSize());
 		return dg;
 	}
 
@@ -135,10 +133,14 @@ public class StoreItemController extends AbsController {
 	public @ResponseBody Json<StoreInVO> inSave(StoreInVO form) {
 		Json<StoreInVO> rst = new Json<StoreInVO>();
 		try {
-			form.setOrgId(this.getSessionUser().getOrgId());
-			form.setOperator(this.getSessionUser().getUsername());
-			form = storeItemService.in(form);
-			rst.OK(form, "");
+			if (storeItemService.getInVoByRfid(form.getRfid()) != null) {
+				form.setOrgId(this.getSessionUser().getOrgId());
+				form.setOperator(this.getSessionUser().getUsername());
+				form = storeItemService.in(form);
+				rst.OK(form, "");
+			} else {
+				rst.NG("标签号已入库，请使用其它标签号");
+			}
 		} catch (CnplayRuntimeException e) {
 			logger.error(e);
 			rst.NG(e.getMessage());
@@ -151,8 +153,7 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/in/list")
 	@RightAnnotation(name = "抵押管理/入库管理", component = "platform.system.view.StoreInPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreInVO> inLst(String orgId,
-			String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreInVO> inLst(String orgId, String dywOwner, String startDate, String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -175,16 +176,14 @@ public class StoreItemController extends AbsController {
 		if (StringUtils.isNotEmpty(endDate)) {
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreInVO> dg = storeItemService.findInPageLikeName(
-				startDateTime, endDateTime, user.getOrgId(), dywOwner,
-				this.getPage(), this.getPageSize());
+		DataGrid<StoreInVO> dg = storeItemService.findInPageLikeName(startDateTime, endDateTime, user.getOrgId(),
+				dywOwner, this.getPage(), this.getPageSize());
 		return dg;
 	}
 
 	@RequestMapping(value = "/item/list")
 	@RightAnnotation(name = "抵押管理/抵押物查询", component = "platform.system.view.StoreItemPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreItem> itemList(String orgId,
-			String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreItem> itemList(String orgId, String dywOwner, String startDate, String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -207,9 +206,8 @@ public class StoreItemController extends AbsController {
 		if (StringUtils.isNotEmpty(endDate)) {
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(
-				startDateTime, endDateTime, user.getOrgId(), dywOwner,
-				this.getPage(), this.getPageSize());
+		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
+				dywOwner, this.getPage(), this.getPageSize());
 		return dg;
 	}
 }

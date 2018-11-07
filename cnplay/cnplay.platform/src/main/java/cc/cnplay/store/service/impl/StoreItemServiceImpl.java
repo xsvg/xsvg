@@ -20,12 +20,11 @@ import cc.cnplay.store.vo.StoreInVO;
 import cc.cnplay.store.vo.StoreOutVO;
 
 @Service
-public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
-		implements StoreItemService {
+public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> implements StoreItemService {
 
 	@Override
-	public DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate,
-			String orgId, String dywOwner, int page, int pageSize) {
+	public DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
+			int pageSize) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_item ");
 		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
@@ -35,13 +34,11 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
 		if (startDate != null) {
-			String date = DateFormatUtils.format(startDate,
-					"yyyy-MM-dd 00:00:00");
+			String date = DateFormatUtils.format(startDate, "yyyy-MM-dd 00:00:00");
 			sb.append(" and store_item.create_time >= '" + date + "'");
 		}
 		if (endDate != null) {
-			String date = DateFormatUtils
-					.format(endDate, "yyyy-MM-dd 23:59:59");
+			String date = DateFormatUtils.format(endDate, "yyyy-MM-dd 23:59:59");
 			sb.append(" and store_item.create_time <= '" + date + "'");
 		}
 		StringBuffer sqllist = new StringBuffer();
@@ -56,10 +53,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 		int end = firstResult + pageSize;
 		sqllist.append(" ORDER BY  store_item.create_time DESC");
 		sqllist.append(" LIMIT " + firstResult + "," + end);
-		List<StoreItem> list = dao().findBySQL(StoreItem.class,
-				sqllist.toString());
-		DataGrid<StoreItem> dg = new DataGrid<StoreItem>((int) total, list,
-				pageSize, page);
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
+		DataGrid<StoreItem> dg = new DataGrid<StoreItem>((int) total, list, pageSize, page);
 		return dg;
 
 		// Search search = new Search(StoreItem.class);
@@ -92,8 +87,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 	}
 
 	@Override
-	public DataGrid<StoreInVO> findInPageLikeName(Date startDate, Date endDate,
-			String orgId, String dywOwner, int page, int pageSize) {
+	public DataGrid<StoreInVO> findInPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
+			int pageSize) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_in ");
 		sb.append(" INNER JOIN store_item ON store_item.id = store_in.item_id ");
@@ -104,13 +99,11 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
 		if (startDate != null) {
-			String date = DateFormatUtils.format(startDate,
-					"yyyy-MM-dd 00:00:00");
+			String date = DateFormatUtils.format(startDate, "yyyy-MM-dd 00:00:00");
 			sb.append(" and store_in.create_time >= '" + date + "'");
 		}
 		if (endDate != null) {
-			String date = DateFormatUtils
-					.format(endDate, "yyyy-MM-dd 23:59:59");
+			String date = DateFormatUtils.format(endDate, "yyyy-MM-dd 23:59:59");
 			sb.append(" and store_in.create_time <= '" + date + "'");
 		}
 
@@ -127,16 +120,14 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 		int end = firstResult + pageSize;
 		sqllist.append(" ORDER BY  store_in.create_time DESC");
 		sqllist.append(" LIMIT " + firstResult + "," + end);
-		List<StoreInVO> list = dao().findBySQL(StoreInVO.class,
-				sqllist.toString());
-		DataGrid<StoreInVO> dg = new DataGrid<StoreInVO>((int) total, list,
-				pageSize, page);
+		List<StoreInVO> list = dao().findBySQL(StoreInVO.class, sqllist.toString());
+		DataGrid<StoreInVO> dg = new DataGrid<StoreInVO>((int) total, list, pageSize, page);
 		return dg;
 	}
 
 	@Override
-	public DataGrid<StoreOutVO> findOutPageLikeName(Date startDate,
-			Date endDate, String orgId, String dywOwner, int page, int pageSize) {
+	public DataGrid<StoreOutVO> findOutPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner,
+			int page, int pageSize) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_out ");
 		sb.append(" INNER JOIN store_item ON store_item.id = store_out.item_id ");
@@ -147,13 +138,11 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
 		if (startDate != null) {
-			String date = DateFormatUtils.format(startDate,
-					"yyyy-MM-dd 00:00:00");
+			String date = DateFormatUtils.format(startDate, "yyyy-MM-dd 00:00:00");
 			sb.append(" and store_out.create_time >= '" + date + "'");
 		}
 		if (endDate != null) {
-			String date = DateFormatUtils
-					.format(endDate, "yyyy-MM-dd 23:59:59");
+			String date = DateFormatUtils.format(endDate, "yyyy-MM-dd 23:59:59");
 			sb.append(" and store_out.create_time <= '" + date + "'");
 		}
 
@@ -171,10 +160,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 		int end = firstResult + pageSize;
 		sqllist.append(" ORDER BY  store_out.create_time DESC");
 		sqllist.append(" LIMIT " + firstResult + "," + end);
-		List<StoreOutVO> list = dao().findBySQL(StoreOutVO.class,
-				sqllist.toString());
-		DataGrid<StoreOutVO> dg = new DataGrid<StoreOutVO>((int) total, list,
-				pageSize, page);
+		List<StoreOutVO> list = dao().findBySQL(StoreOutVO.class, sqllist.toString());
+		DataGrid<StoreOutVO> dg = new DataGrid<StoreOutVO>((int) total, list, pageSize, page);
 		return dg;
 
 	}
@@ -203,6 +190,20 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String>
 			BeanUtils.copyProperties(vo, item);
 			BeanUtils.copyProperties(vo, in);
 			return vo;
+		}
+		return null;
+	}
+
+	@Override
+	public StoreItem getInVoByRfid(String rfid) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" SELECT * FROM store_item t");
+		sb.append(" WHERE 1 = 1");
+		sb.append(" and t.rfid = '" + rfid + "'");
+		sb.append(" and t.status = 1 LIMIT 1");
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sb.toString());
+		if (list.size() > 0) {
+			return list.get(0);
 		}
 		return null;
 	}
