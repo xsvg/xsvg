@@ -19,12 +19,12 @@ Ext.define('platform.system.view.StoreInWindow', {
     requires: [
         'Ext.form.Panel',
         'Ext.form.field.Hidden',
+        'Ext.button.Button',
         'Ext.form.Label',
         'Ext.form.field.Number',
         'Ext.form.field.Date',
         'Ext.form.field.TextArea',
-        'Ext.toolbar.Toolbar',
-        'Ext.button.Button'
+        'Ext.toolbar.Toolbar'
     ],
 
     height: 509,
@@ -54,20 +54,50 @@ Ext.define('platform.system.view.StoreInWindow', {
                             name: 'id'
                         },
                         {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '标签号',
-                            labelAlign: 'right',
-                            name: 'rfid',
-                            allowBlank: false,
-                            maxLength: 10,
-                            listeners: {
-                                afterrender: {
-                                    fn: me.onRfidAfterRender,
-                                    scope: me
+                            xtype: 'panel',
+                            border: false,
+                            height: 32,
+                            width: 444,
+                            layout: 'absolute',
+                            header: false,
+                            title: 'rfid',
+                            items: [
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '标签号',
+                                    labelAlign: 'right',
+                                    name: 'rfid',
+                                    invalidText: '机构编码不能为空！',
+                                    readOnly: true,
+                                    allowBlank: false,
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onTextfieldAfterRender,
+                                            single: true,
+                                            scope: me
+                                        }
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    x: 340,
+                                    y: 5,
+                                    width: 80,
+                                    text: '读标签号',
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onButtonAfterRender,
+                                            scope: me
+                                        },
+                                        click: {
+                                            fn: me.onButtonClick,
+                                            scope: me
+                                        }
+                                    }
                                 }
-                            }
+                            ]
                         },
                         {
                             xtype: 'textfield',
@@ -288,16 +318,36 @@ Ext.define('platform.system.view.StoreInWindow', {
                         }
                     ]
                 }
-            ]
+            ],
+            listeners: {
+                destroy: {
+                    fn: me.onWindowDestroy,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
     },
 
-    onRfidAfterRender: function(component, eOpts) {
+    onTextfieldAfterRender: function(component, eOpts) {
         var me = this;
-        alert('xx');
-        setTimeout(me.readRfid,2000);
+        me.rfidComp = component;
+    },
+
+    onButtonAfterRender: function(component, eOpts) {
+        var me = this;
+        me.rfidBtn = component;
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        var me = this;
+        me.rfidBtn = button;
+        me.rfidBtn.setDisabled(false);
+        window.rfidRead = function(){
+            me.rfidRead();
+        };
+        setTimeout(window.rfidRead,1000);
     },
 
     onParentNameTextfieldFocus: function(component, e, eOpts) {
@@ -344,6 +394,11 @@ Ext.define('platform.system.view.StoreInWindow', {
         me.close();
     },
 
+    onWindowDestroy: function(component, eOpts) {
+        setTimeout(window.rfidRead,1000);
+        window.rfidRead = null;
+    },
+
     loadForm: function(id) {
         var me = this;
         try{
@@ -367,10 +422,31 @@ Ext.define('platform.system.view.StoreInWindow', {
         }
     },
 
-    readRfid: function() {
+    rfidRead: function() {
         var me = this;
-        alert('rfid');
-        setTimeout(me.readRfid,2000);
+        try{
+            me.rfidBtn.setDisabled(false);
+            Common.ajax({
+                component : me.form,
+                lock:false,
+                url : ctxp+'/home/store/getTag',
+                callback : function(result)
+                {
+                    me.rfidBtn.setDisabled(true);
+                    if(result.rows === ''){
+                        setTimeout(window.rfidRead,2000);
+                    }else{
+                        me.rfidComp.setValue(result.rows);
+                        me.rfidBtn.setDisabled(false);
+                    }
+                }
+            });
+        }
+        catch(error)
+        {
+            me.rfidBtn.setDisabled(false);
+            Common.show({title:'操作提示',html:error.toString()});
+        }
     }
 
 });

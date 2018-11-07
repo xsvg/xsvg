@@ -52,46 +52,129 @@
                     "designerId": "e8a8c80e-9394-439d-8bdc-c3a6d5cfbbfb"
                 },
                 {
-                    "type": "Ext.form.field.Text",
+                    "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "fieldLabel": "标签号",
-                        "invalidText": null,
-                        "itemId": null,
-                        "labelAlign": "right",
-                        "maxLength": 10,
-                        "name": "rfid",
-                        "padding": 5,
-                        "width": 330
+                        "border": false,
+                        "designer|snapToGrid": 10,
+                        "dock": null,
+                        "header": false,
+                        "height": 32,
+                        "layout": "absolute",
+                        "title": "rfid",
+                        "width": 444
                     },
-                    "name": "MyTextField1",
-                    "designerId": "fc37c9cb-477b-4d97-8915-09e079927e4c",
+                    "name": "MyPanel",
+                    "designerId": "3149c3b0-a160-402b-a516-6fd9a05f68b0",
                     "cn": [
                         {
-                            "type": "basiceventbinding",
+                            "type": "Ext.form.field.Text",
                             "reference": {
-                                "name": "listeners",
+                                "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "fn": "onRfidAfterRender",
-                                "implHandler": [
-                                    "var me = this;",
-                                    "alert('xx');",
-                                    "setTimeout(me.readRfid,2000);"
-                                ],
-                                "name": "afterrender",
-                                "scope": "me"
+                                "allowBlank": false,
+                                "blankText": null,
+                                "fieldLabel": "标签号",
+                                "invalidText": "机构编码不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": null,
+                                "name": "rfid",
+                                "padding": 5,
+                                "readOnly": true,
+                                "width": 330
                             },
-                            "name": "onRfidAfterRender",
-                            "designerId": "22f3d118-9499-4460-80df-38867a334526"
+                            "name": "MyTextField1",
+                            "designerId": "fc37c9cb-477b-4d97-8915-09e079927e4c",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onTextfieldAfterRender",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "me.rfidComp = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me",
+                                        "single": true
+                                    },
+                                    "name": "onTextfieldAfterRender",
+                                    "designerId": "5693e148-ec73-47b2-b431-8ebb7f1e3333"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|x": 340,
+                                "layout|y": 5,
+                                "text": "读标签号",
+                                "width": 80
+                            },
+                            "name": "MyButton3",
+                            "designerId": "1a6f7916-44e0-4720-a07d-9b1c2f85aa14",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonAfterRender",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "me.rfidBtn = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonAfterRender",
+                                    "designerId": "8b595ff9-37d0-4012-892d-3421acd0f068"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonClick",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "me.rfidBtn = button;",
+                                            "me.rfidBtn.setDisabled(false);",
+                                            "window.rfidRead = function(){",
+                                            "    me.rfidRead();",
+                                            "};",
+                                            "setTimeout(window.rfidRead,1000);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonClick",
+                                    "designerId": "75aa1c10-54b3-4d9f-bf6c-fa5ad277a684"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -114,7 +197,7 @@
                         "width": 330
                     },
                     "name": "MyTextField3",
-                    "designerId": "ecc08af6-3002-4713-8862-b20d6497a808"
+                    "designerId": "ba0ded15-2172-4fb4-bd73-235311458111"
                 },
                 {
                     "type": "Ext.form.Label",
@@ -504,8 +587,8 @@
                         "text": "保存",
                         "width": 53
                     },
-                    "name": "MyButton",
-                    "designerId": "5ab8c829-43ec-4f60-b97e-2914e6ad89f6",
+                    "name": "MyButton1",
+                    "designerId": "26233222-f063-41af-b479-6f822a0a02b9",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -537,7 +620,7 @@
                                 "scope": "me"
                             },
                             "name": "onSaveClick",
-                            "designerId": "7334da1e-38e1-4d79-9fa8-e3fa1c138380"
+                            "designerId": "85a39420-3f72-4909-925e-ee0413409661"
                         }
                     ]
                 },
@@ -625,15 +708,55 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "readRfid",
+                "fn": "rfidRead",
                 "implHandler": [
                     "var me = this;",
-                    "alert('rfid');",
-                    "setTimeout(me.readRfid,2000);"
+                    "try{",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "    Common.ajax({",
+                    "        component : me.form,",
+                    "        lock:false,",
+                    "        url : ctxp+'/home/store/getTag',",
+                    "        callback : function(result)",
+                    "        {",
+                    "            me.rfidBtn.setDisabled(true);",
+                    "            if(result.rows === ''){",
+                    "                setTimeout(window.rfidRead,2000);",
+                    "            }else{",
+                    "                me.rfidComp.setValue(result.rows);",
+                    "                me.rfidBtn.setDisabled(false);",
+                    "            }",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "    Common.show({title:'操作提示',html:error.toString()});",
+                    "}"
                 ]
             },
-            "name": "readRfid",
-            "designerId": "53fee865-1ce8-4f93-a173-fa5c2f51b0fc"
+            "name": "rfidRead",
+            "designerId": "8c9ba347-3319-4365-9917-392fbece0e2c"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowDestroy",
+                "implHandler": [
+                    "setTimeout(window.rfidRead,1000);",
+                    "window.rfidRead = null;"
+                ],
+                "name": "destroy",
+                "scope": "me"
+            },
+            "name": "onWindowDestroy",
+            "designerId": "589cbe6d-95cf-4c5b-a9e5-6bbc4566d7a9"
         }
     ]
 }
