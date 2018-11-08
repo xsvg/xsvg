@@ -123,6 +123,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "disabled": true,
                                 "layout|x": 615,
                                 "layout|y": 5,
                                 "text": "读标签号",
@@ -481,93 +482,7 @@
                                         "width": 120
                                     },
                                     "name": "MyDateField1",
-                                    "designerId": "fa07bf32-3398-4bd6-8e18-1ba7923885ae",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onDatefieldBeforeRenderB",
-                                                "implHandler": [
-                                                    "component.name = this.endDateName;",
-                                                    "this.compEnd = component;",
-                                                    "this.compEnd.setValue(new Date());"
-                                                ],
-                                                "name": "beforerender",
-                                                "scope": "me",
-                                                "single": true
-                                            },
-                                            "name": "onDatefieldBeforeRenderB",
-                                            "designerId": "67e49b40-fb25-46e3-bdf5-b39cd76f7221"
-                                        },
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onEndDatefieldChange",
-                                                "implHandler": [
-                                                    "var me = this;",
-                                                    "Ext.apply(Ext.form.VTypes, {",
-                                                    "    endDate : function(val, field) {",
-                                                    "        try{",
-                                                    "            if(me.compStart.getValue().getTime() > newValue.getTime())",
-                                                    "            {",
-                                                    "                Common.setLoading({comp:me,msg:'结束时间不能早于开始时间!'});",
-                                                    "                return false;",
-                                                    "            }",
-                                                    "        }catch(ex){}",
-                                                    "        try{",
-                                                    "            var nowDate = new Date();",
-                                                    "            if(newValue.getTime() > nowDate.getTime())",
-                                                    "            {",
-                                                    "                Common.setLoading({comp:me,msg:'结束时间不能晚于当前时间!'});",
-                                                    "                return false;",
-                                                    "            }",
-                                                    "        }catch(ex){}        ",
-                                                    "        return true;",
-                                                    "    },",
-                                                    "    endDateText : '结束时间不能早于开始时间!'",
-                                                    "});"
-                                                ],
-                                                "name": "change",
-                                                "scope": "me"
-                                            },
-                                            "name": "onEndDatefieldChange",
-                                            "designerId": "197b721d-4e85-4d89-b5bf-b237a8d8a756"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "basicfunction",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fn": "validate",
-                                        "implHandler": [
-                                            "var me = this;",
-                                            "try{",
-                                            "    if(me.compStart.getValue().getTime() > me.compEnd.getValue().getTime())",
-                                            "    {",
-                                            "        Common.setLoading({comp:me,msg:'结束时间不能早于开始时间'});",
-                                            "        return false;",
-                                            "    }",
-                                            "}catch(ex){}",
-                                            "return true;"
-                                        ]
-                                    },
-                                    "name": "validate",
-                                    "designerId": "789cc0e7-82ab-4538-9171-63e2aa7e3578"
+                                    "designerId": "fa07bf32-3398-4bd6-8e18-1ba7923885ae"
                                 }
                             ]
                         },
@@ -764,6 +679,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "hidden": true,
                         "iconCls": "icon-save",
                         "layout|flex": null,
                         "text": "保存",
@@ -803,6 +719,24 @@
                             },
                             "name": "onSaveClick",
                             "designerId": "b5fe4b6c-2a19-4039-84c4-0a7282883c0b"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonRender",
+                                "implHandler": [
+                                    "this.btnSave = component;"
+                                ],
+                                "name": "render",
+                                "scope": "me"
+                            },
+                            "name": "onButtonRender",
+                            "designerId": "4e5d0a9f-9bc0-4b98-a002-c0c6d2038e0b"
                         }
                     ]
                 },
@@ -859,10 +793,13 @@
                 "implHandler": [
                     "var me = this;",
                     "try{",
+                    "    if(id === ''){",
+                    "        me.btnShow();",
+                    "    }    ",
                     "    Common.ajax({",
                     "        component : me.form,",
                     "        message : '加载信息...',",
-                    "        url : ctxp+'/in/load?id='+id,",
+                    "        url : ctxp+'/store/in/load?id='+id,",
                     "        callback : function(result)",
                     "        {",
                     "            me.form.getForm().reset();",
@@ -917,6 +854,30 @@
             },
             "name": "rfidRead",
             "designerId": "4c4cbd75-9a32-4c98-bfd8-ab085609e977"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "btnShow",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    me.btnSave.show();",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'操作提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "btnShow",
+            "designerId": "a2cd8be7-b5d6-40db-8d89-8dbc40c1f0a5"
         },
         {
             "type": "basiceventbinding",

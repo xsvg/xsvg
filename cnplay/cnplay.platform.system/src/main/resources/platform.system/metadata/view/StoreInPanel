@@ -208,7 +208,7 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion7",
+                    "name": "datetegion14",
                     "designerId": "de44e026-2226-45df-b938-4271fa22bb49",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
@@ -417,7 +417,27 @@
             },
             "codeClass": null,
             "name": "MyGridView3",
-            "designerId": "140cb53c-e5e6-48fa-bf03-e6d4b56fd457"
+            "designerId": "140cb53c-e5e6-48fa-bf03-e6d4b56fd457",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewBeforeItemDblClick",
+                        "implHandler": [
+                            "this.showForm(record.data.id);"
+                        ],
+                        "name": "beforeitemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onViewBeforeItemDblClick",
+                    "designerId": "125975d2-9d73-48f1-aa39-60e5c4ab5c3a"
+                }
+            ]
         },
         {
             "type": "Ext.selection.CheckboxModel",

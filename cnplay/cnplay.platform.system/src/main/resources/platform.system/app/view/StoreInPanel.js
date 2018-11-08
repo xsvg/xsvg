@@ -222,6 +222,14 @@ Ext.define('platform.system.view.StoreInPanel', {
                     text: '备注'
                 }
             ],
+            viewConfig: {
+                listeners: {
+                    beforeitemdblclick: {
+                        fn: me.onViewBeforeItemDblClick,
+                        scope: me
+                    }
+                }
+            },
             selModel: Ext.create('Ext.selection.CheckboxModel', {
 
             }),
@@ -260,6 +268,10 @@ Ext.define('platform.system.view.StoreInPanel', {
     onBtnInClick: function(button, e, eOpts) {
 
         this.showForm('');
+    },
+
+    onViewBeforeItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        this.showForm(record.data.id);
     },
 
     onGridpanelAfterRender: function(component, eOpts) {

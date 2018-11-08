@@ -84,6 +84,7 @@ Ext.define('platform.system.view.StoreInWindow', {
                                     xtype: 'button',
                                     x: 615,
                                     y: 5,
+                                    disabled: true,
                                     width: 60,
                                     text: '读标签号',
                                     listeners: {
@@ -212,17 +213,6 @@ Ext.define('platform.system.view.StoreInWindow', {
                                 },
                                 {
                                     xtype: 'panel',
-                                    validate: function() {
-                                        var me = this;
-                                        try{
-                                            if(me.compStart.getValue().getTime() > me.compEnd.getValue().getTime())
-                                            {
-                                                Common.setLoading({comp:me,msg:'结束时间不能早于开始时间'});
-                                                return false;
-                                            }
-                                        }catch(ex){}
-                                            return true;
-                                    },
                                     label: '时间间隔',
                                     startDateName: 'startDate',
                                     endDateName: 'endDate',
@@ -257,18 +247,7 @@ Ext.define('platform.system.view.StoreInWindow', {
                                             name: 'htEndDate',
                                             vtype: 'endDate',
                                             editable: false,
-                                            format: 'Y年m月d日',
-                                            listeners: {
-                                                beforerender: {
-                                                    fn: me.onDatefieldBeforeRenderB,
-                                                    single: true,
-                                                    scope: me
-                                                },
-                                                change: {
-                                                    fn: me.onEndDatefieldChange,
-                                                    scope: me
-                                                }
-                                            }
+                                            format: 'Y年m月d日'
                                         }
                                     ]
                                 },
@@ -365,12 +344,17 @@ Ext.define('platform.system.view.StoreInWindow', {
                     items: [
                         {
                             xtype: 'button',
+                            hidden: true,
                             width: 53,
                             iconCls: 'icon-save',
                             text: '保存',
                             listeners: {
                                 click: {
                                     fn: me.onSaveClick,
+                                    scope: me
+                                },
+                                render: {
+                                    fn: me.onButtonRender,
                                     scope: me
                                 }
                             }
@@ -420,37 +404,6 @@ Ext.define('platform.system.view.StoreInWindow', {
         setTimeout(window.rfidRead,1000);
     },
 
-    onDatefieldBeforeRenderB: function(component, eOpts) {
-        component.name = this.endDateName;
-        this.compEnd = component;
-        this.compEnd.setValue(new Date());
-    },
-
-    onEndDatefieldChange: function(field, newValue, oldValue, eOpts) {
-        var me = this;
-        Ext.apply(Ext.form.VTypes, {
-            endDate : function(val, field) {
-                try{
-                    if(me.compStart.getValue().getTime() > newValue.getTime())
-                    {
-                        Common.setLoading({comp:me,msg:'结束时间不能早于开始时间!'});
-                        return false;
-                    }
-                }catch(ex){}
-                try{
-                    var nowDate = new Date();
-                    if(newValue.getTime() > nowDate.getTime())
-                    {
-                        Common.setLoading({comp:me,msg:'结束时间不能晚于当前时间!'});
-                        return false;
-                    }
-                }catch(ex){}
-                return true;
-            },
-            endDateText : '结束时间不能早于开始时间!'
-        });
-    },
-
     onParentNameTextfieldFocus: function(component, e, eOpts) {
         try{
             var me = this;
@@ -490,6 +443,10 @@ Ext.define('platform.system.view.StoreInWindow', {
         }
     },
 
+    onButtonRender: function(component, eOpts) {
+        this.btnSave = component;
+    },
+
     onCancelClick: function(button, e, eOpts) {
         var me = this;
         me.close();
@@ -503,10 +460,13 @@ Ext.define('platform.system.view.StoreInWindow', {
     loadForm: function(id) {
         var me = this;
         try{
+            if(id === ''){
+                me.btnShow();
+            }
             Common.ajax({
                 component : me.form,
                 message : '加载信息...',
-                url : ctxp+'/in/load?id='+id,
+                url : ctxp+'/store/in/load?id='+id,
                 callback : function(result)
                 {
                     me.form.getForm().reset();
@@ -543,6 +503,18 @@ Ext.define('platform.system.view.StoreInWindow', {
         catch(error)
         {
             me.rfidBtn.setDisabled(false);
+            Common.show({title:'操作提示',html:error.toString()});
+        }
+    },
+
+    btnShow: function() {
+        var me = this;
+        try{
+            me.btnSave.show();
+            me.rfidBtn.setDisabled(false);
+        }
+        catch(error)
+        {
             Common.show({title:'操作提示',html:error.toString()});
         }
     }
