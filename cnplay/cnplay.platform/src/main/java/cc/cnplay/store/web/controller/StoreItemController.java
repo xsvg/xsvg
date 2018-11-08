@@ -133,7 +133,7 @@ public class StoreItemController extends AbsController {
 	public @ResponseBody Json<StoreInVO> inSave(StoreInVO form) {
 		Json<StoreInVO> rst = new Json<StoreInVO>();
 		try {
-			if (storeItemService.getInVoByRfid(form.getRfid()) != null) {
+			if (storeItemService.getInVoByRfid(form.getRfid()) == null) {
 				form.setOrgId(this.getSessionUser().getOrgId());
 				form.setOperator(this.getSessionUser().getUsername());
 				form = storeItemService.in(form);
