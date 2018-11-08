@@ -31,10 +31,10 @@
             "StoreItemPanel",
             "StoreInPanel",
             "StoreOutPanel",
-            "StoreInWindow",
             "StoreOutWindow",
             "StoreCheckPanel",
-            "StoreCheckWindow"
+            "StoreCheckWindow",
+            "StoreInWindow"
         ]
     },
     "name": "Application",

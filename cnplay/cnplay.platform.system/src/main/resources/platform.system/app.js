@@ -44,10 +44,10 @@ Ext.application({
         'StoreItemPanel',
         'StoreInPanel',
         'StoreOutPanel',
-        'StoreInWindow',
         'StoreOutWindow',
         'StoreCheckPanel',
-        'StoreCheckWindow'
+        'StoreCheckWindow',
+        'StoreInWindow'
     ],
     name: 'platform.system',
 

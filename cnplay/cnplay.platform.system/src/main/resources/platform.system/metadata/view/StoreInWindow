@@ -7,17 +7,17 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "StoreInWindow",
-        "height": 509,
+        "height": 390,
         "layout": "border",
         "modal": true,
         "resizable": [
             "false"
         ],
         "title": "入库",
-        "width": 470
+        "width": 768
     },
-    "name": "StoreAreaWindow1",
-    "designerId": "1f2f4fe3-f048-400a-988c-26c2aa6742a7",
+    "name": "StoreInWindow1",
+    "designerId": "6da7154a-f4a5-4856-a3e3-34cb30c45a11",
     "cn": [
         {
             "type": "Ext.form.Panel",
@@ -35,7 +35,7 @@
                 "title": "编辑机构表单"
             },
             "name": "MyForm1",
-            "designerId": "4e8e1911-254f-4b04-abbc-c3cb01aaf570",
+            "designerId": "3fd4cd53-e36a-4cbf-bd0d-c7c98f8344a5",
             "cn": [
                 {
                     "type": "Ext.form.field.Hidden",
@@ -49,7 +49,7 @@
                         "name": "id"
                     },
                     "name": "MyHiddenField1",
-                    "designerId": "e8a8c80e-9394-439d-8bdc-c3a6d5cfbbfb"
+                    "designerId": "c81d7aa8-858c-4395-ba4e-2c2e150bdfef"
                 },
                 {
                     "type": "Ext.panel.Panel",
@@ -66,10 +66,10 @@
                         "height": 32,
                         "layout": "absolute",
                         "title": "rfid",
-                        "width": 444
+                        "width": 677
                     },
                     "name": "MyPanel",
-                    "designerId": "3149c3b0-a160-402b-a516-6fd9a05f68b0",
+                    "designerId": "4425d760-00c1-48cd-ba01-18e056f1d6b8",
                     "cn": [
                         {
                             "type": "Ext.form.field.Text",
@@ -88,10 +88,10 @@
                                 "name": "rfid",
                                 "padding": 5,
                                 "readOnly": true,
-                                "width": 330
+                                "width": 610
                             },
                             "name": "MyTextField1",
-                            "designerId": "fc37c9cb-477b-4d97-8915-09e079927e4c",
+                            "designerId": "a255a2c8-fd1a-49e1-ab1f-56f3f7f626c2",
                             "cn": [
                                 {
                                     "type": "basiceventbinding",
@@ -111,7 +111,7 @@
                                         "single": true
                                     },
                                     "name": "onTextfieldAfterRender",
-                                    "designerId": "5693e148-ec73-47b2-b431-8ebb7f1e3333"
+                                    "designerId": "c46d94e3-c446-4841-ab9b-356c2ef32de6"
                                 }
                             ]
                         },
@@ -123,13 +123,13 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "layout|x": 340,
+                                "layout|x": 615,
                                 "layout|y": 5,
                                 "text": "读标签号",
-                                "width": 80
+                                "width": 60
                             },
                             "name": "MyButton3",
-                            "designerId": "1a6f7916-44e0-4720-a07d-9b1c2f85aa14",
+                            "designerId": "438a4b9c-6765-469c-85e2-5d6d0023eb3f",
                             "cn": [
                                 {
                                     "type": "basiceventbinding",
@@ -148,7 +148,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onButtonAfterRender",
-                                    "designerId": "8b595ff9-37d0-4012-892d-3421acd0f068"
+                                    "designerId": "fadcf1ef-b1f9-4a05-8556-4ef56461047f"
                                 },
                                 {
                                     "type": "basiceventbinding",
@@ -172,352 +172,534 @@
                                         "scope": "me"
                                     },
                                     "name": "onButtonClick",
-                                    "designerId": "75aa1c10-54b3-4d9f-bf6c-fa5ad277a684"
+                                    "designerId": "fe283642-6cd0-4ce3-af39-dc389891c7c8"
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    "type": "Ext.form.field.Text",
+                    "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "fieldLabel": "物品编号",
-                        "invalidText": "机构编码不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 10,
-                        "name": "sn",
-                        "padding": 5,
-                        "width": 330
+                        "border": false,
+                        "height": 196,
+                        "title": null,
+                        "width": 340
                     },
-                    "name": "MyTextField3",
-                    "designerId": "ba0ded15-2172-4fb4-bd73-235311458111"
-                },
-                {
-                    "type": "Ext.form.Label",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "html": "<font color=red>*</font>",
-                        "padding": "10 5 5 5 ",
-                        "text": null
-                    },
-                    "name": "MyLabel",
-                    "designerId": "890102b7-e9d7-4769-8e49-746942c1c2c2"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "物品名称",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "name",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyTextField2",
-                    "designerId": "74e632d0-e258-478e-8bb9-712397a9926f"
-                },
-                {
-                    "type": "Ext.form.Label",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "html": "<font color=red>*</font>",
-                        "padding": "10 5 5 5 ",
-                        "text": null
-                    },
-                    "name": "MyLabel3",
-                    "designerId": "5ae58422-e351-42d3-9793-9de09c1c35b9"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "抵押物证号码",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "dywId",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyTextField",
-                    "designerId": "8638428e-ac2e-40e7-9e5f-be02cfcf6d03"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "担保物品所有人",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "dywOwner",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyTextField12",
-                    "designerId": "aec9b0b0-cbf0-4eb1-ab2a-665cc669a00d"
-                },
-                {
-                    "type": "Ext.form.Label",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "html": "<font color=red>*</font>",
-                        "padding": "10 5 5 5 ",
-                        "text": null
-                    },
-                    "name": "MyLabel5",
-                    "designerId": "a5558a0b-2407-47a1-ae42-e2b318919ffe"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "所有人证件号码",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "dywOwnerId",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyTextField11",
-                    "designerId": "e1ff3df1-1d8e-4738-8f0a-c53823c7c25f"
-                },
-                {
-                    "type": "Ext.form.field.Number",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "评估价值",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "pgje",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyNumberField1",
-                    "designerId": "51581ebf-f412-4b15-ac1a-92259d26ec2f"
-                },
-                {
-                    "type": "Ext.form.field.Number",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "抵质押金额",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "jkje",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyNumberField2",
-                    "designerId": "11945c61-26a8-48f9-baad-3158aa0e32b4"
-                },
-                {
-                    "type": "Ext.form.field.Date",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "editable": false,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "表外登记日期",
-                        "format": "Y年m月d日",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "registerDate",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyDateField2",
-                    "designerId": "2dd18793-3ce4-4ed1-8118-21b8813a6b5c"
-                },
-                {
-                    "type": "Ext.form.field.Hidden",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "上级机构",
-                        "labelAlign": "right",
-                        "name": "areaId",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyHiddenField2",
-                    "designerId": "b4eabfa5-de36-4e68-b09c-3e479dd27bdf"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "保存区域",
-                        "invalidText": "请选择保存区域",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": null,
-                        "name": "areaName",
-                        "padding": 5,
-                        "readOnly": true,
-                        "width": 330
-                    },
-                    "name": "MyTextField10",
-                    "designerId": "5d44f2c1-a6a0-493f-955e-762994e98df5",
+                    "name": "MyPanel1",
+                    "designerId": "43c7f37b-d52c-4350-9457-e501b6c787c0",
                     "cn": [
                         {
-                            "type": "basiceventbinding",
+                            "type": "Ext.form.field.Text",
                             "reference": {
-                                "name": "listeners",
+                                "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "fn": "onParentNameTextfieldFocus",
-                                "implHandler": [
-                                    "try{",
-                                    "    var me = this;",
-                                    "    var areaId = me.form.getForm().findField('areaId');",
-                                    "    Common.showTreeSelect({",
-                                    "        multiple:false,",
-                                    "        url:ctxp + '/store/area/tree',",
-                                    "        params:{myId:areaId},",
-                                    "        callback:function(item)",
-                                    "        {",
-                                    "            areaId.setValue(item.id);",
-                                    "            component.setValue(item.text);",
-                                    "        }",
-                                    "    });",
-                                    "}catch(ex){}"
-                                ],
-                                "name": "focus",
-                                "scope": "me"
+                                "allowBlank": false,
+                                "blankText": null,
+                                "fieldLabel": "物品编号",
+                                "invalidText": "机构编码不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 10,
+                                "name": "sn",
+                                "padding": 5,
+                                "width": 330
                             },
-                            "name": "onParentNameTextfieldFocus",
-                            "designerId": "90242f84-157a-45c0-9424-3c7b4e018724"
+                            "name": "MyTextField3",
+                            "designerId": "6e66cb89-4a6e-4827-a45d-41a27d520dd0"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "物品名称",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "name",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyTextField2",
+                            "designerId": "6e88d5bf-6052-40fa-9a61-871130eb54f3"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "抵质押物证号码",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "dywId",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyTextField",
+                            "designerId": "63673561-fa46-4f07-9750-6eef1c5aa9b2"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "抵质押物所有人",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "dywOwner",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyTextField12",
+                            "designerId": "87d9c897-e704-4beb-9930-7f1982ecdca6"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "所有人证件号码",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "dywOwnerId",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyTextField11",
+                            "designerId": "99f20aca-d4b5-40d4-ad1f-de093b8bc019"
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "抵质押物评估价值",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "pgje",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyNumberField1",
+                            "designerId": "9d71ad89-0552-4add-a1c2-4045efef4054"
                         }
                     ]
                 },
                 {
-                    "type": "Ext.form.Label",
+                    "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "html": "<font color=red>*</font>",
-                        "padding": "10 5 5 5 ",
-                        "text": null
+                        "border": false,
+                        "height": 196,
+                        "title": null,
+                        "width": 340
                     },
-                    "name": "MyLabel2",
-                    "designerId": "c413acb8-5603-4bab-b86f-5d7b78c41c6c"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "blankText": null,
-                        "enforceMaxLength": true,
-                        "fieldLabel": "保管人",
-                        "invalidText": "机构名称不能为空！",
-                        "labelAlign": "right",
-                        "maxLength": 50,
-                        "maxLengthText": "机构名称最大长度不超过50个字符！",
-                        "name": "storeman",
-                        "padding": 5,
-                        "width": 330
-                    },
-                    "name": "MyTextField13",
-                    "designerId": "2f548529-491e-44a8-881b-ab3263a301e9"
+                    "name": "MyPanel2",
+                    "designerId": "ef7d4f4b-0de2-4401-87ce-e824cbdacbf4",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "上级机构",
+                                "labelAlign": "right",
+                                "name": "areaId",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyHiddenField2",
+                            "designerId": "9e4d85ff-3e95-44cf-b0c1-6897d4684a6f"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "贷款合同号",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "htId",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyTextField4",
+                            "designerId": "934c8384-ee5d-4ae4-83b3-aaff210451f1"
+                        },
+                        {
+                            "type": "Ext.panel.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": false,
+                                "endDateName": "endDate",
+                                "header": false,
+                                "label": "时间间隔",
+                                "layout": "column",
+                                "padding": null,
+                                "startDateName": "startDate",
+                                "title": "时间段",
+                                "width": 399
+                            },
+                            "name": "MyPanel",
+                            "designerId": "87d9f983-e605-42fc-88fd-05e76b716617",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "label",
+                                    "type": "string"
+                                },
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "startDateName",
+                                    "type": "string"
+                                },
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "endDateName",
+                                    "type": "string"
+                                }
+                            ],
+                            "cn": [
+                                {
+                                    "type": "Ext.form.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "padding": "3 4 0 30",
+                                        "text": "合同起止日期:"
+                                    },
+                                    "name": "MyLabel1",
+                                    "designerId": "9368f35b-1183-48ce-9f14-3329a23d5176"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "editable": false,
+                                        "fieldLabel": "",
+                                        "format": "Y年m月d日",
+                                        "labelAlign": "right",
+                                        "labelWidth": null,
+                                        "name": "htStartDate",
+                                        "padding": null,
+                                        "vtype": "startDate",
+                                        "width": 105
+                                    },
+                                    "name": "MyDateField",
+                                    "designerId": "8c1f499a-ca84-4915-9252-98c09c7974b8"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "editable": false,
+                                        "fieldLabel": "-",
+                                        "format": "Y年m月d日",
+                                        "labelAlign": "right",
+                                        "labelSeparator": " ",
+                                        "labelWidth": 10,
+                                        "name": "htEndDate",
+                                        "padding": null,
+                                        "vtype": "endDate",
+                                        "width": 120
+                                    },
+                                    "name": "MyDateField1",
+                                    "designerId": "fa07bf32-3398-4bd6-8e18-1ba7923885ae",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onDatefieldBeforeRenderB",
+                                                "implHandler": [
+                                                    "component.name = this.endDateName;",
+                                                    "this.compEnd = component;",
+                                                    "this.compEnd.setValue(new Date());"
+                                                ],
+                                                "name": "beforerender",
+                                                "scope": "me",
+                                                "single": true
+                                            },
+                                            "name": "onDatefieldBeforeRenderB",
+                                            "designerId": "67e49b40-fb25-46e3-bdf5-b39cd76f7221"
+                                        },
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onEndDatefieldChange",
+                                                "implHandler": [
+                                                    "var me = this;",
+                                                    "Ext.apply(Ext.form.VTypes, {",
+                                                    "    endDate : function(val, field) {",
+                                                    "        try{",
+                                                    "            if(me.compStart.getValue().getTime() > newValue.getTime())",
+                                                    "            {",
+                                                    "                Common.setLoading({comp:me,msg:'结束时间不能早于开始时间!'});",
+                                                    "                return false;",
+                                                    "            }",
+                                                    "        }catch(ex){}",
+                                                    "        try{",
+                                                    "            var nowDate = new Date();",
+                                                    "            if(newValue.getTime() > nowDate.getTime())",
+                                                    "            {",
+                                                    "                Common.setLoading({comp:me,msg:'结束时间不能晚于当前时间!'});",
+                                                    "                return false;",
+                                                    "            }",
+                                                    "        }catch(ex){}        ",
+                                                    "        return true;",
+                                                    "    },",
+                                                    "    endDateText : '结束时间不能早于开始时间!'",
+                                                    "});"
+                                                ],
+                                                "name": "change",
+                                                "scope": "me"
+                                            },
+                                            "name": "onEndDatefieldChange",
+                                            "designerId": "197b721d-4e85-4d89-b5bf-b237a8d8a756"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "basicfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "validate",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "try{",
+                                            "    if(me.compStart.getValue().getTime() > me.compEnd.getValue().getTime())",
+                                            "    {",
+                                            "        Common.setLoading({comp:me,msg:'结束时间不能早于开始时间'});",
+                                            "        return false;",
+                                            "    }",
+                                            "}catch(ex){}",
+                                            "return true;"
+                                        ]
+                                    },
+                                    "name": "validate",
+                                    "designerId": "789cc0e7-82ab-4538-9171-63e2aa7e3578"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "editable": false,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "表外登记日期",
+                                "format": "Y年m月d日",
+                                "invalidText": null,
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "registerDate",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyDateField2",
+                            "designerId": "e20bfaf1-6955-48b7-af67-08ffb4c22243"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "保管人",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "storeman",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyTextField5",
+                            "designerId": "860491dc-7e5b-476f-b872-393fd0309028"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "保存区域",
+                                "invalidText": "请选择保存区域",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": null,
+                                "name": "areaName",
+                                "padding": 5,
+                                "readOnly": true,
+                                "width": 329
+                            },
+                            "name": "MyTextField10",
+                            "designerId": "1336489d-c4af-4578-b3a0-77174b7feb1a",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onParentNameTextfieldFocus",
+                                        "implHandler": [
+                                            "try{",
+                                            "    var me = this;",
+                                            "    var areaId = me.form.getForm().findField('areaId');",
+                                            "    Common.showTreeSelect({",
+                                            "        multiple:false,",
+                                            "        url:ctxp + '/store/area/tree',",
+                                            "        params:{myId:areaId},",
+                                            "        callback:function(item)",
+                                            "        {",
+                                            "            areaId.setValue(item.id);",
+                                            "            component.setValue(item.text);",
+                                            "        }",
+                                            "    });",
+                                            "}catch(ex){}"
+                                        ],
+                                        "name": "focus",
+                                        "scope": "me"
+                                    },
+                                    "name": "onParentNameTextfieldFocus",
+                                    "designerId": "96d4091e-1c3d-4167-884d-66679f9918b7"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": null,
+                                "enforceMaxLength": true,
+                                "fieldLabel": "实际借款金额",
+                                "invalidText": "机构名称不能为空！",
+                                "labelAlign": "right",
+                                "maxLength": 50,
+                                "maxLengthText": "机构名称最大长度不超过50个字符！",
+                                "name": "jkje",
+                                "padding": 5,
+                                "width": 330
+                            },
+                            "name": "MyNumberField2",
+                            "designerId": "f8278b34-7ac3-49fa-92cc-43de37d3065e"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.form.field.TextArea",
@@ -534,10 +716,10 @@
                         "maxLengthText": "备注内容最大长度不超过100个字符！",
                         "name": "memo",
                         "padding": 5,
-                        "width": 330
+                        "width": 670
                     },
                     "name": "MyTextArea",
-                    "designerId": "aa7a59c9-e438-4abf-a689-9159bbdcb778"
+                    "designerId": "983c0817-9e00-402e-af36-f91bff355817"
                 },
                 {
                     "type": "basiceventbinding",
@@ -555,7 +737,7 @@
                         "scope": "me"
                     },
                     "name": "onFormAfterRender",
-                    "designerId": "dc52a119-8644-4aef-a7cc-f1418880219d"
+                    "designerId": "99a97f37-f735-4d9b-b22c-fe18ddc96bd6"
                 }
             ]
         },
@@ -572,7 +754,7 @@
                 "dock": "bottom"
             },
             "name": "MyToolbar",
-            "designerId": "b0a7c3d0-c175-4dee-81d5-ba31a8fea466",
+            "designerId": "8b0ea559-a212-43cc-a33a-f460069d7c09",
             "cn": [
                 {
                     "type": "Ext.button.Button",
@@ -588,7 +770,7 @@
                         "width": 53
                     },
                     "name": "MyButton1",
-                    "designerId": "26233222-f063-41af-b479-6f822a0a02b9",
+                    "designerId": "9c452202-e6dc-414d-96d9-aa1593e8185f",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -620,7 +802,7 @@
                                 "scope": "me"
                             },
                             "name": "onSaveClick",
-                            "designerId": "85a39420-3f72-4909-925e-ee0413409661"
+                            "designerId": "b5fe4b6c-2a19-4039-84c4-0a7282883c0b"
                         }
                     ]
                 },
@@ -637,7 +819,7 @@
                         "text": "取消"
                     },
                     "name": "MyButton2",
-                    "designerId": "a47eee80-4e21-40e4-ad8f-ad3d56bda5c3",
+                    "designerId": "d28e21f9-8428-4e6f-b479-bcbaa817f611",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -656,7 +838,7 @@
                                 "scope": "me"
                             },
                             "name": "onCancelClick",
-                            "designerId": "0e1a4ff4-f15d-48e5-8076-8fba0251e5a9"
+                            "designerId": "cdca75d1-1443-480f-85ee-20b4a7dbc53b"
                         }
                     ]
                 }
@@ -680,14 +862,11 @@
                     "    Common.ajax({",
                     "        component : me.form,",
                     "        message : '加载信息...',",
-                    "        url : ctxp+'/store/area/load?id='+id,",
+                    "        url : ctxp+'/in/load?id='+id,",
                     "        callback : function(result)",
                     "        {",
                     "            me.form.getForm().reset();",
                     "            me.form.getForm().setValues(result.rows);",
-                    "            if(!Ext.isEmpty(id)){",
-                    "                me.form.getForm().findField('code').setReadOnly(result.rows.checked);",
-                    "            }",
                     "        }",
                     "    });",
                     "}",
@@ -698,7 +877,7 @@
                 ]
             },
             "name": "loadForm",
-            "designerId": "e04f13b1-efed-419c-a952-28cfce27f5ba"
+            "designerId": "be4457c2-c9f9-4459-866e-4923a8918cd1"
         },
         {
             "type": "basicfunction",
@@ -737,7 +916,7 @@
                 ]
             },
             "name": "rfidRead",
-            "designerId": "8c9ba347-3319-4365-9917-392fbece0e2c"
+            "designerId": "4c4cbd75-9a32-4c98-bfd8-ab085609e977"
         },
         {
             "type": "basiceventbinding",
@@ -756,7 +935,7 @@
                 "scope": "me"
             },
             "name": "onWindowDestroy",
-            "designerId": "589cbe6d-95cf-4c5b-a9e5-6bbc4566d7a9"
+            "designerId": "760cf95e-b6a0-4110-9b8a-c55ce6e747bf"
         }
     ]
 }

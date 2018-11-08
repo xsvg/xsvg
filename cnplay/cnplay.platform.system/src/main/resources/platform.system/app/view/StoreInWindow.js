@@ -20,15 +20,15 @@ Ext.define('platform.system.view.StoreInWindow', {
         'Ext.form.Panel',
         'Ext.form.field.Hidden',
         'Ext.button.Button',
-        'Ext.form.Label',
         'Ext.form.field.Number',
+        'Ext.form.Label',
         'Ext.form.field.Date',
         'Ext.form.field.TextArea',
         'Ext.toolbar.Toolbar'
     ],
 
-    height: 509,
-    width: 470,
+    height: 390,
+    width: 768,
     resizable: false,
     layout: 'border',
     title: '入库',
@@ -57,7 +57,7 @@ Ext.define('platform.system.view.StoreInWindow', {
                             xtype: 'panel',
                             border: false,
                             height: 32,
-                            width: 444,
+                            width: 677,
                             layout: 'absolute',
                             header: false,
                             title: 'rfid',
@@ -65,7 +65,7 @@ Ext.define('platform.system.view.StoreInWindow', {
                                 {
                                     xtype: 'textfield',
                                     padding: 5,
-                                    width: 330,
+                                    width: 610,
                                     fieldLabel: '标签号',
                                     labelAlign: 'right',
                                     name: 'rfid',
@@ -82,9 +82,9 @@ Ext.define('platform.system.view.StoreInWindow', {
                                 },
                                 {
                                     xtype: 'button',
-                                    x: 340,
+                                    x: 615,
                                     y: 5,
-                                    width: 80,
+                                    width: 60,
                                     text: '读标签号',
                                     listeners: {
                                         afterrender: {
@@ -100,173 +100,243 @@ Ext.define('platform.system.view.StoreInWindow', {
                             ]
                         },
                         {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '物品编号',
-                            labelAlign: 'right',
-                            name: 'sn',
-                            invalidText: '机构编码不能为空！',
-                            allowBlank: false,
-                            maxLength: 10
-                        },
-                        {
-                            xtype: 'label',
-                            html: '<font color=red>*</font>',
-                            padding: '10 5 5 5 '
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '物品名称',
-                            labelAlign: 'right',
-                            name: 'name',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'label',
-                            html: '<font color=red>*</font>',
-                            padding: '10 5 5 5 '
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '抵押物证号码',
-                            labelAlign: 'right',
-                            name: 'dywId',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '担保物品所有人',
-                            labelAlign: 'right',
-                            name: 'dywOwner',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'label',
-                            html: '<font color=red>*</font>',
-                            padding: '10 5 5 5 '
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '所有人证件号码',
-                            labelAlign: 'right',
-                            name: 'dywOwnerId',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'numberfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '评估价值',
-                            labelAlign: 'right',
-                            name: 'pgje',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'numberfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '抵质押金额',
-                            labelAlign: 'right',
-                            name: 'jkje',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
-                        },
-                        {
-                            xtype: 'datefield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '表外登记日期',
-                            labelAlign: 'right',
-                            name: 'registerDate',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！',
-                            editable: false,
-                            format: 'Y年m月d日'
-                        },
-                        {
-                            xtype: 'hiddenfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '上级机构',
-                            labelAlign: 'right',
-                            name: 'areaId'
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '保存区域',
-                            labelAlign: 'right',
-                            name: 'areaName',
-                            invalidText: '请选择保存区域',
-                            readOnly: true,
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            listeners: {
-                                focus: {
-                                    fn: me.onParentNameTextfieldFocus,
-                                    scope: me
+                            xtype: 'panel',
+                            border: false,
+                            height: 196,
+                            width: 340,
+                            items: [
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '物品编号',
+                                    labelAlign: 'right',
+                                    name: 'sn',
+                                    invalidText: '机构编码不能为空！',
+                                    allowBlank: false,
+                                    maxLength: 10
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '物品名称',
+                                    labelAlign: 'right',
+                                    name: 'name',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '抵质押物证号码',
+                                    labelAlign: 'right',
+                                    name: 'dywId',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '抵质押物所有人',
+                                    labelAlign: 'right',
+                                    name: 'dywOwner',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '所有人证件号码',
+                                    labelAlign: 'right',
+                                    name: 'dywOwnerId',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '抵质押物评估价值',
+                                    labelAlign: 'right',
+                                    name: 'pgje',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
                                 }
-                            }
+                            ]
                         },
                         {
-                            xtype: 'label',
-                            html: '<font color=red>*</font>',
-                            padding: '10 5 5 5 '
-                        },
-                        {
-                            xtype: 'textfield',
-                            padding: 5,
-                            width: 330,
-                            fieldLabel: '保管人',
-                            labelAlign: 'right',
-                            name: 'storeman',
-                            invalidText: '机构名称不能为空！',
-                            allowBlank: false,
-                            enforceMaxLength: true,
-                            maxLength: 50,
-                            maxLengthText: '机构名称最大长度不超过50个字符！'
+                            xtype: 'panel',
+                            border: false,
+                            height: 196,
+                            width: 340,
+                            items: [
+                                {
+                                    xtype: 'hiddenfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '上级机构',
+                                    labelAlign: 'right',
+                                    name: 'areaId'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '贷款合同号',
+                                    labelAlign: 'right',
+                                    name: 'htId',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                },
+                                {
+                                    xtype: 'panel',
+                                    validate: function() {
+                                        var me = this;
+                                        try{
+                                            if(me.compStart.getValue().getTime() > me.compEnd.getValue().getTime())
+                                            {
+                                                Common.setLoading({comp:me,msg:'结束时间不能早于开始时间'});
+                                                return false;
+                                            }
+                                        }catch(ex){}
+                                            return true;
+                                    },
+                                    label: '时间间隔',
+                                    startDateName: 'startDate',
+                                    endDateName: 'endDate',
+                                    border: false,
+                                    width: 399,
+                                    layout: 'column',
+                                    header: false,
+                                    title: '时间段',
+                                    items: [
+                                        {
+                                            xtype: 'label',
+                                            padding: '3 4 0 30',
+                                            text: '合同起止日期:'
+                                        },
+                                        {
+                                            xtype: 'datefield',
+                                            width: 105,
+                                            fieldLabel: '',
+                                            labelAlign: 'right',
+                                            name: 'htStartDate',
+                                            vtype: 'startDate',
+                                            editable: false,
+                                            format: 'Y年m月d日'
+                                        },
+                                        {
+                                            xtype: 'datefield',
+                                            width: 120,
+                                            fieldLabel: '-',
+                                            labelAlign: 'right',
+                                            labelSeparator: ' ',
+                                            labelWidth: 10,
+                                            name: 'htEndDate',
+                                            vtype: 'endDate',
+                                            editable: false,
+                                            format: 'Y年m月d日',
+                                            listeners: {
+                                                beforerender: {
+                                                    fn: me.onDatefieldBeforeRenderB,
+                                                    single: true,
+                                                    scope: me
+                                                },
+                                                change: {
+                                                    fn: me.onEndDatefieldChange,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'datefield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '表外登记日期',
+                                    labelAlign: 'right',
+                                    name: 'registerDate',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！',
+                                    editable: false,
+                                    format: 'Y年m月d日'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '保管人',
+                                    labelAlign: 'right',
+                                    name: 'storeman',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    padding: 5,
+                                    width: 329,
+                                    fieldLabel: '保存区域',
+                                    labelAlign: 'right',
+                                    name: 'areaName',
+                                    invalidText: '请选择保存区域',
+                                    readOnly: true,
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    listeners: {
+                                        focus: {
+                                            fn: me.onParentNameTextfieldFocus,
+                                            scope: me
+                                        }
+                                    }
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    padding: 5,
+                                    width: 330,
+                                    fieldLabel: '实际借款金额',
+                                    labelAlign: 'right',
+                                    name: 'jkje',
+                                    invalidText: '机构名称不能为空！',
+                                    allowBlank: false,
+                                    enforceMaxLength: true,
+                                    maxLength: 50,
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
+                                }
+                            ]
                         },
                         {
                             xtype: 'textareafield',
                             padding: 5,
-                            width: 330,
+                            width: 670,
                             fieldLabel: '备注',
                             labelAlign: 'right',
                             name: 'memo',
@@ -350,6 +420,37 @@ Ext.define('platform.system.view.StoreInWindow', {
         setTimeout(window.rfidRead,1000);
     },
 
+    onDatefieldBeforeRenderB: function(component, eOpts) {
+        component.name = this.endDateName;
+        this.compEnd = component;
+        this.compEnd.setValue(new Date());
+    },
+
+    onEndDatefieldChange: function(field, newValue, oldValue, eOpts) {
+        var me = this;
+        Ext.apply(Ext.form.VTypes, {
+            endDate : function(val, field) {
+                try{
+                    if(me.compStart.getValue().getTime() > newValue.getTime())
+                    {
+                        Common.setLoading({comp:me,msg:'结束时间不能早于开始时间!'});
+                        return false;
+                    }
+                }catch(ex){}
+                try{
+                    var nowDate = new Date();
+                    if(newValue.getTime() > nowDate.getTime())
+                    {
+                        Common.setLoading({comp:me,msg:'结束时间不能晚于当前时间!'});
+                        return false;
+                    }
+                }catch(ex){}
+                return true;
+            },
+            endDateText : '结束时间不能早于开始时间!'
+        });
+    },
+
     onParentNameTextfieldFocus: function(component, e, eOpts) {
         try{
             var me = this;
@@ -405,14 +506,11 @@ Ext.define('platform.system.view.StoreInWindow', {
             Common.ajax({
                 component : me.form,
                 message : '加载信息...',
-                url : ctxp+'/store/area/load?id='+id,
+                url : ctxp+'/in/load?id='+id,
                 callback : function(result)
                 {
                     me.form.getForm().reset();
                     me.form.getForm().setValues(result.rows);
-                    if(!Ext.isEmpty(id)){
-                        me.form.getForm().findField('code').setReadOnly(result.rows.checked);
-                    }
                 }
             });
         }
