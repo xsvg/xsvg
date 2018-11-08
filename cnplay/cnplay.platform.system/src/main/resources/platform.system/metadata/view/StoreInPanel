@@ -208,7 +208,7 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion5",
+                    "name": "datetegion6",
                     "designerId": "de44e026-2226-45df-b938-4271fa22bb49",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
@@ -252,12 +252,27 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "storeman",
-                "text": "保管员",
+                "dataIndex": "sn",
+                "text": "物品编号",
                 "width": 150
             },
             "name": "MyColumn2",
             "designerId": "747e2092-4cd5-4069-b3f1-78b5405c0ee6"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "storeman",
+                "text": "保管员",
+                "width": 150
+            },
+            "name": "MyColumn3",
+            "designerId": "4c8253b4-8b7e-4622-a7b0-d8e8e61d0aa1"
         },
         {
             "type": "Ext.grid.column.Column",
