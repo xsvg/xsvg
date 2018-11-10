@@ -47,7 +47,7 @@
 		<init-param>
 			<description>不受控资源</description>
 			<param-name>none</param-name>
-			<param-value>/cxf/**;/static/**;/log*;/**/**.js;/**/**.ico</param-value>
+			<param-value>/cxf/**;/static/**;/log*;/**/**.js;/**/**.ico;/**.apk</param-value>
 		</init-param>
 		<init-param>
 			<description>来宾可访问资源</description>
