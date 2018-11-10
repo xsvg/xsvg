@@ -109,8 +109,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 
 		StringBuffer sqllist = new StringBuffer();
 		sqllist.append("SELECT");
-		sqllist.append(" store_in.*,");
 		sqllist.append(" store_item.*,");
+		sqllist.append(" store_in.*,");
 		sqllist.append(" store_area.`name` as areaName");
 		sqllist.append(sb.toString());
 
@@ -187,8 +187,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		if (in != null) {
 			StoreItem item = dao().getById(StoreItem.class, in.getItemId());
 			StoreInVO vo = new StoreInVO();
-			BeanUtils.copyProperties(vo, item);
-			BeanUtils.copyProperties(vo, in);
+			BeanUtils.copyProperties(item, vo);
+			BeanUtils.copyProperties(in, vo);
 			return vo;
 		}
 		return null;
