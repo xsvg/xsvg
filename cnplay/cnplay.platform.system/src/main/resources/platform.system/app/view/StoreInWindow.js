@@ -217,6 +217,7 @@ Ext.define('platform.system.view.StoreInWindow', {
                                     startDateName: 'startDate',
                                     endDateName: 'endDate',
                                     border: false,
+                                    height: 26,
                                     width: 399,
                                     layout: 'column',
                                     header: false,

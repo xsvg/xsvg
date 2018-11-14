@@ -400,6 +400,7 @@
                                 "border": false,
                                 "endDateName": "endDate",
                                 "header": false,
+                                "height": 26,
                                 "label": "时间间隔",
                                 "layout": "column",
                                 "padding": null,

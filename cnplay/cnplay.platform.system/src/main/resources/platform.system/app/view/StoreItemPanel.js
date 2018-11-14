@@ -27,7 +27,7 @@ Ext.define('platform.system.view.StoreItemPanel', {
         'Ext.form.field.ComboBox'
     ],
 
-    title: '抵押物查询',
+    title: '入库管理',
     forceFit: true,
 
     initComponent: function() {
@@ -87,15 +87,16 @@ Ext.define('platform.system.view.StoreItemPanel', {
                                 },
                                 {
                                     xtype: 'button',
+                                    disabled: true,
                                     iconCls: 'icon-del',
                                     text: '出库',
                                     listeners: {
                                         afterrender: {
-                                            fn: me.onBtnOutAfterRender,
+                                            fn: me.onBtnInAfterRender,
                                             scope: me
                                         },
                                         click: {
-                                            fn: me.onBtnOutClick,
+                                            fn: me.onBtnInClick,
                                             scope: me
                                         }
                                     }
@@ -152,6 +153,18 @@ Ext.define('platform.system.view.StoreItemPanel', {
                 {
                     xtype: 'gridcolumn',
                     width: 150,
+                    dataIndex: 'rfid',
+                    text: '标签号'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
+                    dataIndex: 'sn',
+                    text: '物品编号'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
                     dataIndex: 'storeman',
                     text: '保管员'
                 },
@@ -198,6 +211,14 @@ Ext.define('platform.system.view.StoreItemPanel', {
                     text: '备注'
                 }
             ],
+            viewConfig: {
+                listeners: {
+                    beforeitemdblclick: {
+                        fn: me.onViewBeforeItemDblClick,
+                        scope: me
+                    }
+                }
+            },
             selModel: Ext.create('Ext.selection.CheckboxModel', {
 
             }),
@@ -229,12 +250,12 @@ Ext.define('platform.system.view.StoreItemPanel', {
         this.loadGrid();
     },
 
-    onBtnOutAfterRender: function(component, eOpts) {
-        this.btnDel = component;
+    onBtnInAfterRender: function(component, eOpts) {
         Common.hidden({params : {url:'/store/out/save'},component:component});
+        this.btnDel = component;
     },
 
-    onBtnOutClick: function(button, e, eOpts) {
+    onBtnInClick: function(button, e, eOpts) {
 
         try
         {
@@ -252,14 +273,21 @@ Ext.define('platform.system.view.StoreItemPanel', {
         }
     },
 
+    onViewBeforeItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        this.showForm(record.data.id);
+    },
+
     onGridpanelAfterRender: function(component, eOpts) {
 
         this.loadGrid();
     },
 
     onGridpanelSelectionChange: function(model, selected, eOpts) {
-
-        this.btnDel.setDisabled(selected.length === 0);
+        if(selected.length === 1){
+            this.btnDel.setDisabled(false);
+        }else{
+            this.btnDel.setDisabled(true);
+        }
     },
 
     onPagingtoolbarBeforeRender: function(component, eOpts) {
@@ -275,37 +303,37 @@ Ext.define('platform.system.view.StoreItemPanel', {
         this.loadGrid();
     },
 
+    showForm: function(id) {
+        try
+        {
+            var me = this;
+            var formwin = Ext.create('platform.system.view.StoreOutWindow');
+            formwin.addListener('close', function(panel,opts)
+                                {
+                                    me.loadGrid();
+                                });
+            formwin.show();
+            formwin.loadForm(id);
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
+    },
+
     loadGrid: function() {
         try{
-            var me=this;
+            var me = this;
             var params = me.form.getForm().getValues();
             Common.loadStore({
                 component:this,
                 url:ctxp + '/store/item/list',
                 pageSize:this.pageSize.getValue(),
-                fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
-                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],
+                fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
+                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
                 params:params
             });
         }catch(ex){}
-    },
-
-    showForm: function(id) {
-                try
-                {
-                    var me = this;
-                    var formwin = Ext.create('platform.system.view.StoreOutWindow');
-                    formwin.addListener('close', function(panel,opts)
-                                        {
-                                            me.loadGrid();
-                                        });
-                    formwin.show();
-                    formwin.loadForm(id);
-                }
-                catch(error)
-                {
-                    Common.show({title:'信息提示',html:error.toString()});
-                }
     }
 
 });

@@ -41,13 +41,13 @@ Ext.application({
         'AreaWindow',
         'StoreAreaPanel',
         'StoreAreaWindow',
-        'StoreItemPanel',
         'StoreInPanel',
-        'StoreOutPanel',
-        'StoreOutWindow',
         'StoreCheckPanel',
         'StoreCheckWindow',
-        'StoreInWindow'
+        'StoreInWindow',
+        'StoreOutPanel',
+        'StoreItemPanel',
+        'StoreOutWindow'
     ],
     name: 'platform.system',
 
