@@ -148,8 +148,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 
 		StringBuffer sqllist = new StringBuffer();
 		sqllist.append("SELECT");
-		sqllist.append(" store_out.*,");
 		sqllist.append(" store_item.*,");
+		sqllist.append(" store_out.*,");
 		sqllist.append(" store_area.`name` as areaName");
 		sqllist.append(sb.toString());
 
