@@ -45,9 +45,10 @@ Ext.application({
         'StoreCheckPanel',
         'StoreCheckWindow',
         'StoreInWindow',
-        'StoreOutPanel',
         'StoreItemPanel',
-        'StoreOutWindow'
+        'StoreOutWindow',
+        'StoreOutPanel',
+        'StoreOutView'
     ],
     name: 'platform.system',
 

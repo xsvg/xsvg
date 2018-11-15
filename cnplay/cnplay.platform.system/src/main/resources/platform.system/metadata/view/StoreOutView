@@ -6,7 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "StoreOutWindow",
+        "designer|userClassName": "StoreOutView",
         "height": 459,
         "layout": "border",
         "modal": true,
@@ -16,8 +16,8 @@
         "title": "抵押物明细",
         "width": 768
     },
-    "name": "StoreInWindow1",
-    "designerId": "ea440c5e-ea58-47d5-9151-91d29bc4549b",
+    "name": "StoreOutWindow1",
+    "designerId": "50059f78-a27c-43e3-aac6-953dd0db00c8",
     "cn": [
         {
             "type": "Ext.form.Panel",
@@ -35,7 +35,7 @@
                 "title": "编辑机构表单"
             },
             "name": "MyForm1",
-            "designerId": "1fdd1bbb-78e8-4637-be7d-ff6fd956150b",
+            "designerId": "8de81cfb-34c6-4912-818d-e1f6856cc8ec",
             "cn": [
                 {
                     "type": "Ext.form.field.Hidden",
@@ -49,7 +49,7 @@
                         "name": "id"
                     },
                     "name": "MyHiddenField1",
-                    "designerId": "caadfbb7-ece6-48ad-bccd-81d032ca06be"
+                    "designerId": "c04c5e45-71cd-44f1-997b-303fa5e19248"
                 },
                 {
                     "type": "Ext.form.field.Hidden",
@@ -63,7 +63,7 @@
                         "name": "itemId"
                     },
                     "name": "MyHiddenField",
-                    "designerId": "65da70c7-615f-4962-b037-c9ab95e75652"
+                    "designerId": "62734cab-61f1-43c1-85db-7e81adbda9af"
                 },
                 {
                     "type": "Ext.panel.Panel",
@@ -83,7 +83,7 @@
                         "width": 677
                     },
                     "name": "MyPanel",
-                    "designerId": "064d4744-711a-4ab6-a28e-0570f516fbff",
+                    "designerId": "eeae4d55-a021-43c8-8b56-8192732fafed",
                     "cn": [
                         {
                             "type": "Ext.form.field.Text",
@@ -105,7 +105,7 @@
                                 "width": 670
                             },
                             "name": "MyTextField1",
-                            "designerId": "dc963588-a7db-4fde-bd71-15047e1f7d29"
+                            "designerId": "281de7ed-b505-4a06-a6c9-f15ded300936"
                         }
                     ]
                 },
@@ -123,7 +123,7 @@
                         "width": 340
                     },
                     "name": "MyPanel1",
-                    "designerId": "bbd5c861-ac51-4c27-b86f-811e395c9e98",
+                    "designerId": "46629e84-76fc-4346-991b-2a316f9c49c4",
                     "cn": [
                         {
                             "type": "Ext.form.field.Text",
@@ -145,7 +145,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField3",
-                            "designerId": "04c97bef-f2b1-4d6e-b40a-1c1aec50e006"
+                            "designerId": "bf0858cf-56a4-45f6-a269-30c5bd614f3d"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -169,7 +169,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField2",
-                            "designerId": "4055533c-e689-471f-94bf-9576f9107d8e"
+                            "designerId": "48007e06-b45d-489c-b0ee-c2547646ce97"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -193,7 +193,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField",
-                            "designerId": "5361ca47-40cc-456d-9baf-a47ce1ca5d8c"
+                            "designerId": "b04de479-304b-4c73-8990-f69cf8d3e9fe"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -217,7 +217,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField12",
-                            "designerId": "c60f2615-385f-4c7a-8276-38d52e74b091"
+                            "designerId": "55cd9b67-b943-49dd-91ee-7c31932a1a24"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -241,7 +241,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField11",
-                            "designerId": "85a82f95-3e18-475f-8bf8-73c66d2ecc6e"
+                            "designerId": "19621cf7-924b-46ed-9097-ac0e4451d775"
                         },
                         {
                             "type": "Ext.form.field.Number",
@@ -265,7 +265,7 @@
                                 "width": 330
                             },
                             "name": "MyNumberField1",
-                            "designerId": "42bcf5df-1795-4b6e-bd4a-ccde80995a25"
+                            "designerId": "b6c5e657-b4df-4c69-8536-4f2493fbd2c8"
                         },
                         {
                             "type": "Ext.form.RadioGroup",
@@ -281,7 +281,7 @@
                                 "width": 330
                             },
                             "name": "MyRadioGroup3",
-                            "designerId": "c54fe202-8d55-406d-ae95-b3b83f877cd2",
+                            "designerId": "57b93af9-cbdd-4033-8651-455493ffa3c0",
                             "cn": [
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -297,7 +297,7 @@
                                         "name": "confirmId"
                                     },
                                     "name": "MyRadio4",
-                                    "designerId": "62017713-6ec6-4c1c-89c2-5d56b7514041"
+                                    "designerId": "ac4dc376-4944-4e13-bdd7-90d2f25c7f9f"
                                 },
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -314,7 +314,7 @@
                                         "name": "confirmId"
                                     },
                                     "name": "MyRadio5",
-                                    "designerId": "393fcfae-4556-483a-abd6-aea7ce69d847"
+                                    "designerId": "02b0da34-0856-45b9-8814-19f1ccb4c83e"
                                 }
                             ]
                         },
@@ -332,7 +332,7 @@
                                 "width": 330
                             },
                             "name": "MyRadioGroup1",
-                            "designerId": "22086b6a-41c4-4e28-b104-888cd46644e5",
+                            "designerId": "dd2f36c7-8051-47bc-93e2-a2a76ef6955b",
                             "cn": [
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -348,7 +348,7 @@
                                         "name": "paidOff"
                                     },
                                     "name": "MyRadio4",
-                                    "designerId": "a34ca2b1-bee6-4e50-ada2-c9a539b47bd5"
+                                    "designerId": "b41df6ae-6d68-4d21-8e4d-d9be68ecedd0"
                                 },
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -365,7 +365,7 @@
                                         "name": "paidOff"
                                     },
                                     "name": "MyRadio5",
-                                    "designerId": "69743585-1eda-4cf4-926e-e5759c6781ca"
+                                    "designerId": "455b3c1e-0bf3-43ee-a115-db280e84cc68"
                                 }
                             ]
                         }
@@ -385,7 +385,7 @@
                         "width": 340
                     },
                     "name": "MyPanel2",
-                    "designerId": "d012a21b-9dac-4f5b-9657-71f1fd080464",
+                    "designerId": "ffc5cc23-3bc8-4cae-ae6c-106f45523eb9",
                     "cn": [
                         {
                             "type": "Ext.form.field.Hidden",
@@ -402,7 +402,7 @@
                                 "width": 330
                             },
                             "name": "MyHiddenField2",
-                            "designerId": "a2082872-a284-4b42-9559-fafc3b7a4778"
+                            "designerId": "cd3f1e61-7291-4ea0-8a9d-081dd2e0113d"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -426,7 +426,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField4",
-                            "designerId": "5e3e4db3-c8e4-4da3-91a6-e78fe7bfad40"
+                            "designerId": "e3b866e7-c7b4-4664-a7cb-ef052ab61f75"
                         },
                         {
                             "type": "Ext.panel.Panel",
@@ -448,7 +448,7 @@
                                 "width": 399
                             },
                             "name": "MyPanel",
-                            "designerId": "d56d114d-a6e3-4781-b872-194b3fb6f24c",
+                            "designerId": "734ba194-9f34-4f01-933d-a5b8bc7ee751",
                             "customConfigs": [
                                 {
                                     "group": "(Custom Properties)",
@@ -479,7 +479,7 @@
                                         "text": "合同起止日期:"
                                     },
                                     "name": "MyLabel1",
-                                    "designerId": "589e4594-d50d-40a6-8374-c7e0eb59bea4"
+                                    "designerId": "563ff84b-733d-4a1a-b7ba-4d38d3fb42d3"
                                 },
                                 {
                                     "type": "Ext.form.field.Date",
@@ -501,7 +501,7 @@
                                         "width": 105
                                     },
                                     "name": "MyDateField",
-                                    "designerId": "f661e7b2-cb4d-4de9-95e5-970775afa452"
+                                    "designerId": "1faad8e5-222c-4a10-9006-624cdcb316d9"
                                 },
                                 {
                                     "type": "Ext.form.field.Date",
@@ -524,7 +524,7 @@
                                         "width": 120
                                     },
                                     "name": "MyDateField1",
-                                    "designerId": "69085035-4cfb-48fd-8b1c-1d20c1aac5e3"
+                                    "designerId": "57febb9d-8cd3-42a0-b32b-001042098837"
                                 }
                             ]
                         },
@@ -552,7 +552,7 @@
                                 "width": 330
                             },
                             "name": "MyDateField2",
-                            "designerId": "56fe0d86-2c00-4d2b-b27c-88b035165ff8"
+                            "designerId": "0f423cad-6f65-434e-b6bf-c79e805bb121"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -576,7 +576,7 @@
                                 "width": 330
                             },
                             "name": "MyTextField5",
-                            "designerId": "38594d73-7f56-4a82-97c7-8c254cba1761"
+                            "designerId": "4f0d0921-026b-465d-9522-e8528cdf2be2"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -600,7 +600,7 @@
                                 "width": 329
                             },
                             "name": "MyTextField10",
-                            "designerId": "60c080bd-08a3-4dc5-ab43-b19d0e1d1498"
+                            "designerId": "08a1e76c-f387-498e-9bb8-f78f87aff008"
                         },
                         {
                             "type": "Ext.form.field.Number",
@@ -624,7 +624,7 @@
                                 "width": 330
                             },
                             "name": "MyNumberField2",
-                            "designerId": "243f77a8-a557-45d2-ab59-aaefbac4a27f"
+                            "designerId": "3d1fba4b-0990-41ca-8b20-d2d7dd015cbf"
                         },
                         {
                             "type": "Ext.form.RadioGroup",
@@ -640,7 +640,7 @@
                                 "width": 330
                             },
                             "name": "MyRadioGroup",
-                            "designerId": "c2aae8d7-c57d-4817-883e-5edb6ff46eed",
+                            "designerId": "11681c5d-8f0e-4c54-ab61-4ade294c99c8",
                             "cn": [
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -656,7 +656,7 @@
                                         "name": "takeBackCertificate"
                                     },
                                     "name": "MyRadio4",
-                                    "designerId": "2dc78314-f13d-4b11-a97e-7ccd924f3d17"
+                                    "designerId": "a7ef7354-8cfc-446a-9042-5915608bbf1e"
                                 },
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -673,7 +673,7 @@
                                         "name": "takeBackCertificate"
                                     },
                                     "name": "MyRadio5",
-                                    "designerId": "b5e08633-e884-40fb-9583-565a62ea42ff"
+                                    "designerId": "d9598b41-eb8f-437d-9446-2672faebb988"
                                 }
                             ]
                         },
@@ -691,7 +691,7 @@
                                 "width": 330
                             },
                             "name": "MyRadioGroup4",
-                            "designerId": "00cf7358-71a7-4fc9-8ceb-88414553691f",
+                            "designerId": "581f346e-15b2-4664-a265-d040c29efe60",
                             "cn": [
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -707,7 +707,7 @@
                                         "name": "selfSign"
                                     },
                                     "name": "MyRadio4",
-                                    "designerId": "5ca55930-fadc-428b-b9d8-619326810cb3"
+                                    "designerId": "0294165e-d9e5-449c-bffb-6f484d730bb1"
                                 },
                                 {
                                     "type": "Ext.form.field.Radio",
@@ -724,7 +724,7 @@
                                         "name": "selfSign"
                                     },
                                     "name": "MyRadio5",
-                                    "designerId": "5b2f5f31-4377-4fb3-b940-9efb82843a5e"
+                                    "designerId": "4d983f53-a536-423e-b033-2d7382a5d1f9"
                                 }
                             ]
                         }
@@ -748,7 +748,7 @@
                         "width": 670
                     },
                     "name": "MyTextArea",
-                    "designerId": "0477f7a9-b58d-4b20-a8c6-4b2297ea81c7"
+                    "designerId": "795a3ba5-3e31-4573-af11-697a333ec0c7"
                 },
                 {
                     "type": "basiceventbinding",
@@ -766,7 +766,7 @@
                         "scope": "me"
                     },
                     "name": "onFormAfterRender",
-                    "designerId": "f8e8803d-5a1b-44f6-9c99-4f1ddd050d6b"
+                    "designerId": "0e02d02d-8589-4db6-bbf4-9e9c3223c32a"
                 }
             ]
         },
@@ -783,77 +783,8 @@
                 "dock": "bottom"
             },
             "name": "MyToolbar",
-            "designerId": "b52ccff0-a26c-4191-9222-f752711b50c3",
+            "designerId": "9290228c-fb87-4034-b99a-14330fbc2a2b",
             "cn": [
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "disabled": null,
-                        "iconCls": "icon-del",
-                        "layout|flex": null,
-                        "text": "出库",
-                        "width": 53
-                    },
-                    "name": "MyButton1",
-                    "designerId": "a2764aa7-307a-49d6-b4ae-373d1c03129e",
-                    "cn": [
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onSaveClick",
-                                "implHandler": [
-                                    "",
-                                    "var me = this;",
-                                    "try{",
-                                    "    Common.formSubmit({",
-                                    "        url : ctxp+'/store/out/save',",
-                                    "        form:me.form,",
-                                    "        callback : function(result)",
-                                    "        {",
-                                    "            Ext.Msg.alert('操作提示', '保存成功！');",
-                                    "            me.close();",
-                                    "        }",
-                                    "    });",
-                                    "}catch(error){",
-                                    "    Common.show({title:'操作提示',html:error.toString()});",
-                                    "}"
-                                ],
-                                "name": "click",
-                                "scope": "me"
-                            },
-                            "name": "onSaveClick",
-                            "designerId": "a20c778b-ed0f-4000-b29f-d8acc5c69100"
-                        },
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onButtonRender",
-                                "implHandler": [
-                                    "this.btnSave = component;"
-                                ],
-                                "name": "render",
-                                "scope": "me"
-                            },
-                            "name": "onButtonRender",
-                            "designerId": "95e85590-a1c6-46b8-bc37-73bb766f69d3"
-                        }
-                    ]
-                },
                 {
                     "type": "Ext.button.Button",
                     "reference": {
@@ -867,7 +798,7 @@
                         "text": "取消"
                     },
                     "name": "MyButton2",
-                    "designerId": "d990e4c4-0430-4ba1-8692-0a35e03cd1ae",
+                    "designerId": "5ef167bb-fbb7-4e03-bf3f-0a7769d7d6e0",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -886,7 +817,7 @@
                                 "scope": "me"
                             },
                             "name": "onCancelClick",
-                            "designerId": "afc78726-39bf-4213-959d-91abc1d0509a"
+                            "designerId": "2b790ea8-c7b7-44e9-ab56-9e2249892670"
                         }
                     ]
                 }
@@ -910,7 +841,7 @@
                     "    Common.ajax({",
                     "        component : me.form,",
                     "        message : '加载信息...',",
-                    "        url : ctxp+'/store/out/load?id='+id,",
+                    "        url : ctxp+'/store/out/vo?id='+id,",
                     "        callback : function(result)",
                     "        {",
                     "            me.form.getForm().reset();",
@@ -925,7 +856,7 @@
                 ]
             },
             "name": "loadForm",
-            "designerId": "bdde2a4e-e346-431e-ae8c-7c8f627acee4"
+            "designerId": "b4f5d54a-2b83-4dba-86f1-e61784fe6cb0"
         }
     ]
 }

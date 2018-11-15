@@ -137,6 +137,18 @@ Ext.define('platform.system.view.StoreOutPanel', {
                 {
                     xtype: 'gridcolumn',
                     width: 150,
+                    dataIndex: 'rfid',
+                    text: '标签号'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
+                    dataIndex: 'sn',
+                    text: '物品编号'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
                     dataIndex: 'storeman',
                     text: '保管员'
                 },
@@ -179,20 +191,36 @@ Ext.define('platform.system.view.StoreOutPanel', {
                 {
                     xtype: 'gridcolumn',
                     width: 150,
+                    dataIndex: 'operator',
+                    text: '操作人'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
+                    dataIndex: 'updateCheckUsername',
+                    text: '审核人'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
                     dataIndex: 'memo',
                     text: '备注'
                 }
             ],
+            viewConfig: {
+                listeners: {
+                    beforeitemdblclick: {
+                        fn: me.onViewBeforeItemDblClick,
+                        scope: me
+                    }
+                }
+            },
             selModel: Ext.create('Ext.selection.CheckboxModel', {
 
             }),
             listeners: {
                 afterrender: {
                     fn: me.onGridpanelAfterRender,
-                    scope: me
-                },
-                selectionchange: {
-                    fn: me.onGridpanelSelectionChange,
                     scope: me
                 }
             }
@@ -214,14 +242,13 @@ Ext.define('platform.system.view.StoreOutPanel', {
         this.loadGrid();
     },
 
+    onViewBeforeItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        this.showForm(record.data.id);
+    },
+
     onGridpanelAfterRender: function(component, eOpts) {
 
         this.loadGrid();
-    },
-
-    onGridpanelSelectionChange: function(model, selected, eOpts) {
-
-        this.btnDel.setDisabled(selected.length === 0);
     },
 
     onPagingtoolbarBeforeRender: function(component, eOpts) {
@@ -237,6 +264,24 @@ Ext.define('platform.system.view.StoreOutPanel', {
         this.loadGrid();
     },
 
+    showForm: function(id) {
+        try
+        {
+            var me = this;
+            var formwin = Ext.create('platform.system.view.StoreOutView');
+            formwin.addListener('close', function(panel,opts)
+                                {
+                                    me.loadGrid();
+                                });
+            formwin.show();
+            formwin.loadForm(id);
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
+    },
+
     loadGrid: function() {
         try{
             var me=this;
@@ -245,8 +290,8 @@ Ext.define('platform.system.view.StoreOutPanel', {
                 component:this,
                 url:ctxp + '/store/out/list',
                 pageSize:this.pageSize.getValue(),
-                fields: ['id', 'status','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
-                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','htId'],
+                fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
+                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
                 params:params
             });
         }catch(ex){}
