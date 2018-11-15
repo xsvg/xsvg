@@ -49,9 +49,23 @@ public class StoreItemController extends AbsController {
 		return new Json<List<StoreArea>>(list);
 	}
 
+	@RequestMapping(value = "/out/vo")
+	public @ResponseBody Json<StoreOutVO> outVoById(String id) {
+		StoreOutVO vo = storeItemService.getOutVoById(id);
+		if (vo == null) {
+			vo = new StoreOutVO();
+		} else {
+			StoreArea p = storeAreaService.getById(vo.getAreaId());
+			if (p != null) {
+				vo.setAreaName(p.getName());
+			}
+		}
+		return new Json<StoreOutVO>(vo);
+	}
+	
 	@RequestMapping(value = "/out/load")
 	public @ResponseBody Json<StoreOutVO> outLoadById(String id) {
-		StoreOutVO vo = storeItemService.getOutById(id);
+		StoreOutVO vo = storeItemService.getOutByItemId(id);
 		if (vo == null) {
 			vo = new StoreOutVO();
 		} else {
@@ -84,7 +98,7 @@ public class StoreItemController extends AbsController {
 	}
 
 	@RequestMapping(value = "/out/list")
-	@RightAnnotation(name = "抵押管理/出库日志", component = "platform.system.view.StoreOutPanel", resource = "/store/item/*", sort = 80100)
+	@RightAnnotation(name = "抵押管理/出库日志", component = "platform.system.view.StoreOutPanel", resource = "/store/out/vo", sort = 80100)
 	public @ResponseBody DataGrid<StoreOutVO> outList(String orgId, String dywOwner, String startDate, String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {

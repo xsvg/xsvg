@@ -27,7 +27,7 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 
 	StoreOutVO out(StoreOutVO form);
 
-	StoreOutVO getOutById(String id);
+	StoreOutVO getOutByItemId(String id);
 
 	StoreItem getInVoByRfid(String rfid);
 

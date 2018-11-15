@@ -208,8 +208,9 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		return null;
 	}
 
+	
 	@Override
-	public StoreOutVO getOutById(String id) {
+	public StoreOutVO getOutByItemId(String id) {
 		StoreItem item = dao().getById(StoreItem.class, id);
 		if (item != null) {
 			StoreOutVO vo = new StoreOutVO();
