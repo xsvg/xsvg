@@ -248,4 +248,21 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		}
 		return form;
 	}
+
+	@Override
+	public List<StoreItem> findByOrgId(String orgId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" FROM store_item ");
+		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
+		sb.append(" WHERE store_item.status = " + StoreItem.STATUS_IN);
+		sb.append(" and store_area.org_id = '" + orgId + "'");
+		StringBuffer sqllist = new StringBuffer();
+		sqllist.append("SELECT");
+		sqllist.append(" store_item.*,");
+		sqllist.append(" store_area.`name` as areaName");
+		sqllist.append(sb.toString());
+		sqllist.append(" ORDER BY  store_item.create_time DESC");
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
+		return list;
+	}
 }
