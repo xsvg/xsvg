@@ -6,27 +6,22 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.googlecode.genericdao.search.Filter;
+import com.googlecode.genericdao.search.Search;
+import com.googlecode.genericdao.search.SearchResult;
 
 import cc.cnplay.core.CnplayRuntimeException;
 import cc.cnplay.core.spring.service.AbsGenericService;
 import cc.cnplay.core.util.DateUtil;
 import cc.cnplay.core.vo.DataGrid;
-import cc.cnplay.platform.cache.OnlineUserCache;
 import cc.cnplay.platform.dao.RoleDao;
-import cc.cnplay.platform.dao.UserDao;
 import cc.cnplay.platform.domain.Organization;
 import cc.cnplay.platform.domain.Status;
 import cc.cnplay.platform.domain.User;
 import cc.cnplay.platform.domain.UserEmpower;
-import cc.cnplay.platform.service.RightService;
-import cc.cnplay.platform.service.SystemConfigService;
 import cc.cnplay.platform.service.UserEmpowerService;
-
-import com.googlecode.genericdao.search.Filter;
-import com.googlecode.genericdao.search.Search;
-import com.googlecode.genericdao.search.SearchResult;
 
 @Service
 public class UserEmpowerServiceImpl extends AbsGenericService<UserEmpower, String> implements UserEmpowerService
@@ -34,18 +29,6 @@ public class UserEmpowerServiceImpl extends AbsGenericService<UserEmpower, Strin
 
 	@Resource
 	private RoleDao roleDao;
-
-	@Autowired
-	private UserDao userDao;
-
-	@Autowired
-	private OnlineUserCache onlineCache;
-
-	@Autowired
-	private SystemConfigService systemConfigService;
-
-	@Autowired
-	private RightService rightService;
 
 	@Override
 	public void cancel(String ids)

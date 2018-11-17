@@ -9,13 +9,14 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.googlecode.genericdao.search.Search;
+import com.googlecode.genericdao.search.SearchResult;
+
 import cc.cnplay.core.spring.service.AbsGenericService;
 import cc.cnplay.core.vo.DataGrid;
 import cc.cnplay.core.vo.TreeCheckedModel;
 import cc.cnplay.platform.annotation.RightType;
-import cc.cnplay.platform.dao.OrganizationDao;
 import cc.cnplay.platform.dao.RoleDao;
-import cc.cnplay.platform.dao.UserDao;
 import cc.cnplay.platform.domain.Organization;
 import cc.cnplay.platform.domain.Right;
 import cc.cnplay.platform.domain.Role;
@@ -25,9 +26,6 @@ import cc.cnplay.platform.service.RightService;
 import cc.cnplay.platform.service.RoleService;
 import cc.cnplay.platform.vo.RightVO;
 
-import com.googlecode.genericdao.search.Search;
-import com.googlecode.genericdao.search.SearchResult;
-
 @Service
 @Transactional
 public class RoleServiceImpl extends AbsGenericService<Role, String> implements RoleService
@@ -36,10 +34,6 @@ public class RoleServiceImpl extends AbsGenericService<Role, String> implements 
 	private RightService rightService;
 	@Autowired
 	private RoleDao roleDao;
-	@Autowired
-	private UserDao userDao;
-	@Autowired
-	private OrganizationDao orgDao;
 
 	@SuppressWarnings("unchecked")
 	@Override

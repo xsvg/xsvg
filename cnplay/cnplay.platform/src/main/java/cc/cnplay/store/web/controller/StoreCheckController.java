@@ -60,7 +60,7 @@ public class StoreCheckController extends AbsController {
 
 	@RequestMapping(value = "/load")
 	public @ResponseBody Json<StoreCheck> load(String id) {
-		StoreCheck vo = storeCheckService.getById(id);
+		StoreCheck vo = storeCheckService.getCheck(id);
 		return new Json<StoreCheck>(vo);
 	}
 
@@ -72,11 +72,18 @@ public class StoreCheckController extends AbsController {
 
 	@RequestMapping(value = "/analyse")
 	public @ResponseBody Json<StoreCheck> analyse(String id) {
-		User user = this.getSessionUser();
-		StoreCheck vo = storeCheckService.check(user.getOrgId(), user.getUsername());
-		Json<StoreCheck> json = new Json<StoreCheck>(vo);
+		Json<StoreCheck> json = new Json<StoreCheck>();
+		StoreCheck vo = null;
+		if (StringUtils.isNotEmpty(id)) {
+			vo = storeCheckService.getCheck(id);
+		} else {
+			User user = this.getSessionUser();
+			vo = storeCheckService.check(user.getOrgId(), user.getUsername());
+		}
 		if (vo == null) {
 			json.NG("请扫描标签并上传！");
+		} else {
+			json.OK(vo, "盘点数据");
 		}
 		return json;
 	}
@@ -86,7 +93,7 @@ public class StoreCheckController extends AbsController {
 	public @ResponseBody Json<StoreCheck> save(StoreCheck form) {
 		User user = this.getSessionUser();
 		StoreCheck vo = storeCheckService.check(user.getOrgId(), user.getUsername());
-		if (vo!= null) {
+		if (vo != null) {
 			vo.setOrgId(user.getOrgId());
 			vo.setOrgName(user.getOrgName());
 			vo.setOperator(user.getUsername());

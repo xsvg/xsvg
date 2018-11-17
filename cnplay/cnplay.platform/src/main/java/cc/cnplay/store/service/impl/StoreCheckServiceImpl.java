@@ -26,7 +26,6 @@ import cc.cnplay.store.vo.TagVo;
 @Service
 public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String> implements StoreCheckService {
 
-
 	private List<StoreItem> findByOrgId(String orgId) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_item ");
@@ -42,7 +41,7 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
 		return list;
 	}
-	
+
 	@Override
 	public StoreCheck check(String orgId, String operator) {
 		StoreCheck check = new StoreCheck();
@@ -88,11 +87,26 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 	}
 
 	@Override
-	public StoreCheck getCheck(String id) {
-		StoreCheck check = this.getById(id);
-		List<StoreCheckItem> itemList = this.findByField(StoreCheckItem.class, "checkId", id);
-		check.setItemList(itemList);
+	public StoreCheck getCheck(String checkId) {
+		StoreCheck check = this.getById(checkId);
+		if (check != null) {
+			List<StoreCheckItem> itemList = this.findCheckItem(checkId);
+			check.setItemList(itemList);
+		}
 		return check;
+	}
+
+	private List<StoreCheckItem> findCheckItem(String checkId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT");
+		sb.append(" t.*,");
+		sb.append(" store_area.`name` as areaName");
+		sb.append(" FROM store_check_item t ");
+		sb.append(" INNER JOIN store_area ON store_area.id = t.area_id ");
+		sb.append(" WHERE t.check_id = '" + checkId + "'");
+		sb.append(" ORDER BY  t.check_flag DESC");
+		List<StoreCheckItem> list = dao().findBySQL(StoreCheckItem.class, sb.toString());
+		return list;
 	}
 
 	@Override

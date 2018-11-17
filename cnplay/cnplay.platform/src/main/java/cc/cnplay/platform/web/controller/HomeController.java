@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cc.cnplay.core.annotation.Ignore;
-import cc.cnplay.core.spring.service.PasswordEncoderService;
 import cc.cnplay.core.vo.Item;
 import cc.cnplay.core.vo.ItemInt;
 import cc.cnplay.core.vo.Json;
@@ -62,9 +61,6 @@ public class HomeController extends AbsController
 
 	@Resource
 	private AreaService areaService;
-
-	@Autowired
-	private PasswordEncoderService passwordEncoder;
 
 	@OperateLog(name = "加载首面信息", value = "加载首面信息", memo = "加载首面信息")
 	@RequestMapping(value = "/info")
