@@ -373,6 +373,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "hidden": true,
                         "iconCls": "icon-save",
                         "layout|flex": null,
                         "text": "保存",
@@ -412,6 +413,25 @@
                             },
                             "name": "onSaveClick",
                             "designerId": "7362a8f8-857a-4472-8435-b1840acec397"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonRender",
+                                "implHandler": [
+                                    "this.btnSave = component;"
+                                ],
+                                "name": "render",
+                                "scope": "me",
+                                "single": true
+                            },
+                            "name": "onButtonRender",
+                            "designerId": "a08058c9-6e6b-4a25-b38a-e5fcde2dae59"
                         }
                     ]
                 },
@@ -474,13 +494,16 @@
                     "        url : ctxp+'/storeCheck/analyse?id='+id,",
                     "        callback : function(result)",
                     "        {",
+                    "            if(id === ''){",
+                    "                me.btnSave.show();",
+                    "            }",
                     "            me.form.getForm().reset();",
                     "            me.form.getForm().setValues(result.rows);",
                     "            me.vo = result.rows;",
                     "            Common.loadLocalStore({",
                     "                component:me.grid,",
                     "                fields: ['id', 'sn','rfid','checkFlag','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
-                    "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],",
+                    "                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],",
                     "                data:result.rows.itemList",
                     "            });",
                     "        }",

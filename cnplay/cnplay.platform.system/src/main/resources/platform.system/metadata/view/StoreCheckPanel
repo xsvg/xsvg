@@ -208,7 +208,7 @@
                         "label": "盘点时间",
                         "margin": 5
                     },
-                    "name": "datetegion2",
+                    "name": "datetegion3",
                     "designerId": "70552bcf-e9b4-4691-8731-38e1ad4cfe79",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
@@ -312,7 +312,27 @@
             },
             "codeClass": null,
             "name": "MyGridView3",
-            "designerId": "80b9a5b1-eb80-414b-b632-36954eb46a23"
+            "designerId": "80b9a5b1-eb80-414b-b632-36954eb46a23",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewBeforeItemDblClick",
+                        "implHandler": [
+                            "this.showForm(record.data.id);"
+                        ],
+                        "name": "beforeitemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onViewBeforeItemDblClick",
+                    "designerId": "f6b1ea2e-015f-43c8-b6ab-e62848d485e0"
+                }
+            ]
         },
         {
             "type": "Ext.selection.CheckboxModel",
@@ -358,6 +378,9 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
                 "fn": "showForm",
                 "implHandler": [
                     "try",
@@ -369,7 +392,7 @@
                     "                            me.loadGrid();",
                     "                        });",
                     "    formwin.show();",
-                    "    formwin.loadForm();",
+                    "    formwin.loadForm(id);",
                     "}",
                     "catch(error)",
                     "{",
@@ -398,25 +421,6 @@
             },
             "name": "onGridpanelAfterRender",
             "designerId": "5d064184-ae97-48e0-9d94-8a6f91daf1f4"
-        },
-        {
-            "type": "basiceventbinding",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onGridpanelSelectionChange",
-                "implHandler": [
-                    "",
-                    "this.btnDel.setDisabled(selected.length === 0);"
-                ],
-                "name": "selectionchange",
-                "scope": "me"
-            },
-            "name": "onGridpanelSelectionChange",
-            "designerId": "7e289e35-ef4f-4db0-b338-5c7e32d77104"
         },
         {
             "type": "Ext.toolbar.Paging",

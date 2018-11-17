@@ -172,16 +172,20 @@ Ext.define('platform.system.view.StoreCheckPanel', {
                     text: '备注'
                 }
             ],
+            viewConfig: {
+                listeners: {
+                    beforeitemdblclick: {
+                        fn: me.onViewBeforeItemDblClick,
+                        scope: me
+                    }
+                }
+            },
             selModel: Ext.create('Ext.selection.CheckboxModel', {
 
             }),
             listeners: {
                 afterrender: {
                     fn: me.onGridpanelAfterRender,
-                    scope: me
-                },
-                selectionchange: {
-                    fn: me.onGridpanelSelectionChange,
                     scope: me
                 }
             }
@@ -229,14 +233,13 @@ Ext.define('platform.system.view.StoreCheckPanel', {
         }
     },
 
+    onViewBeforeItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        this.showForm(record.data.id);
+    },
+
     onGridpanelAfterRender: function(component, eOpts) {
 
         this.loadGrid();
-    },
-
-    onGridpanelSelectionChange: function(model, selected, eOpts) {
-
-        this.btnDel.setDisabled(selected.length === 0);
     },
 
     onPagingtoolbarBeforeRender: function(component, eOpts) {
@@ -266,7 +269,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
         }catch(ex){}
     },
 
-    showForm: function() {
+    showForm: function(id) {
         try
         {
             var me = this;
@@ -276,7 +279,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
                                     me.loadGrid();
                                 });
             formwin.show();
-            formwin.loadForm();
+            formwin.loadForm(id);
         }
         catch(error)
         {

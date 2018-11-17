@@ -180,12 +180,18 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                     items: [
                         {
                             xtype: 'button',
+                            hidden: true,
                             width: 53,
                             iconCls: 'icon-save',
                             text: '保存',
                             listeners: {
                                 click: {
                                     fn: me.onSaveClick,
+                                    scope: me
+                                },
+                                render: {
+                                    fn: me.onButtonRender,
+                                    single: true,
                                     scope: me
                                 }
                             }
@@ -235,6 +241,10 @@ Ext.define('platform.system.view.StoreCheckWindow', {
         }
     },
 
+    onButtonRender: function(component, eOpts) {
+        this.btnSave = component;
+    },
+
     onCancelClick: function(button, e, eOpts) {
         var me = this;
         me.close();
@@ -249,13 +259,16 @@ Ext.define('platform.system.view.StoreCheckWindow', {
                 url : ctxp+'/storeCheck/analyse?id='+id,
                 callback : function(result)
                 {
+                    if(id === ''){
+                        me.btnSave.show();
+                    }
                     me.form.getForm().reset();
                     me.form.getForm().setValues(result.rows);
                     me.vo = result.rows;
                     Common.loadLocalStore({
                         component:me.grid,
                         fields: ['id', 'sn','rfid','checkFlag','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',
-                         'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
+                                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],
                         data:result.rows.itemList
                     });
                 }
