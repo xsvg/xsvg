@@ -26,6 +26,23 @@ import cc.cnplay.store.vo.TagVo;
 @Service
 public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String> implements StoreCheckService {
 
+
+	private List<StoreItem> findByOrgId(String orgId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" FROM store_item ");
+		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
+		sb.append(" WHERE store_item.status = " + StoreItem.STATUS_IN);
+		sb.append(" and store_area.org_id = '" + orgId + "'");
+		StringBuffer sqllist = new StringBuffer();
+		sqllist.append("SELECT");
+		sqllist.append(" store_item.*,");
+		sqllist.append(" store_area.`name` as areaName");
+		sqllist.append(sb.toString());
+		sqllist.append(" ORDER BY  store_item.create_time DESC");
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
+		return list;
+	}
+	
 	@Override
 	public StoreCheck check(String orgId, String operator) {
 		StoreCheck check = new StoreCheck();
@@ -35,7 +52,7 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 		check.setCheckDateStr(DateFormatUtils.format(check.getCheckDate(), "yyyy-MM-dd"));
 		Organization org = this.getByField(Organization.class, "id", orgId);
 		check.setOrgName(org.getName());
-		List<StoreItem> itemList = this.findByField(StoreItem.class, "orgId", orgId);
+		List<StoreItem> itemList = findByOrgId(orgId);
 		check.setItemList(new ArrayList<StoreCheckItem>());
 		int checked = 0;
 		List<TagVo> tagList = this.get(operator);
