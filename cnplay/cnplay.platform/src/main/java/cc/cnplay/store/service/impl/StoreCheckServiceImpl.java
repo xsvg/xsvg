@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import cc.cnplay.core.spring.service.AbsGenericService;
 import cc.cnplay.core.util.BeanUtils;
 import cc.cnplay.core.vo.DataGrid;
+import cc.cnplay.platform.dao.OrganizationDao;
 import cc.cnplay.platform.domain.Organization;
 import cc.cnplay.store.domain.StoreCheck;
 import cc.cnplay.store.domain.StoreCheckItem;
@@ -118,13 +120,24 @@ public class StoreCheckServiceImpl extends AbsGenericService<StoreCheck, String>
 		dao().remove(itemList);
 	}
 
+	@Resource
+	private OrganizationDao orgDao;
+
+	private String lowerOrgIdSql(String orgId) {
+		String lavelCode = orgDao.getLevelCodeById(orgId);
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT org.id FROM p_organization org");
+		sb.append(" where org.level_code LIKE '" + lavelCode + "%'");
+		return sb.toString();
+	}
+
 	@Override
 	public DataGrid<StoreCheck> findPage(Date startDate, Date endDate, String orgId, String operator, int page,
 			int pageSize) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_check t");
 		sb.append(" WHERE 1 = 1");
-		sb.append(" and t.org_id = '" + orgId + "'");
+		sb.append(" and t.org_id in (" + lowerOrgIdSql(orgId) + ")");
 		if (startDate != null) {
 			String date = DateFormatUtils.format(startDate, "yyyy-MM-dd 00:00:00");
 			sb.append(" and t.check_date >= '" + date + "'");

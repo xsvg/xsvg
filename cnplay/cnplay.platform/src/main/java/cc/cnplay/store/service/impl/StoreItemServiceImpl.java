@@ -30,7 +30,7 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 	private String lowerOrgIdSql(String orgId) {
 		String lavelCode = orgDao.getLevelCodeById(orgId);
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT org.* FROM p_organization org");
+		sb.append("SELECT org.id FROM p_organization org");
 		sb.append(" where org.level_code LIKE '" + lavelCode + "%'");
 		return sb.toString();
 	}
