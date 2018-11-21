@@ -107,11 +107,11 @@
 
 .btn_login {
 	margin-top: 150px;
-	margin-left: 345px;
+	margin-left: 320px;
 	position: absolute;
-	width: 60px;
+	width: 79px;
 	height: 28px;
-	background: url('../icons/confirm.png');
+	background: url('../icons/login.gif');
 	cursor: pointer;
 }
 
@@ -119,11 +119,11 @@
 
 .btn_cancel {
 	margin-top: 150px;
-	margin-left: 420px;
+	margin-left: 400px;
 	position: absolute;
-	width: 60px;
+	width: 79px;
 	height: 28px;
-	background: url('../icons/cancel.png');
+	background: url('../icons/cancel.gif');
 	cursor: pointer;
 }
 
