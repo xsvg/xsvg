@@ -3,6 +3,7 @@ package cc.cnplay.store.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import cc.cnplay.core.spring.service.AbsGenericService;
 import cc.cnplay.core.vo.DataGrid;
+import cc.cnplay.platform.dao.OrganizationDao;
 import cc.cnplay.store.domain.StoreIn;
 import cc.cnplay.store.domain.StoreItem;
 import cc.cnplay.store.domain.StoreOut;
@@ -22,6 +24,17 @@ import cc.cnplay.store.vo.StoreOutVO;
 @Service
 public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> implements StoreItemService {
 
+	@Resource
+	private OrganizationDao orgDao;
+
+	private String lowerOrgIdSql(String orgId) {
+		String lavelCode = orgDao.getLevelCodeById(orgId);
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT org.* FROM p_organization org");
+		sb.append(" where org.level_code LIKE '" + lavelCode + "%'");
+		return sb.toString();
+	}
+
 	@Override
 	public DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
 			int pageSize) {
@@ -29,7 +42,7 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		sb.append(" FROM store_item ");
 		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
 		sb.append(" WHERE store_item.status = " + StoreItem.STATUS_IN);
-		sb.append(" and store_area.org_id = '" + orgId + "'");
+		sb.append(" and store_area.org_id in (" + lowerOrgIdSql(orgId) + ")");
 		if (StringUtils.isNoneEmpty(dywOwner)) {
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
@@ -56,34 +69,6 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
 		DataGrid<StoreItem> dg = new DataGrid<StoreItem>((int) total, list, pageSize, page);
 		return dg;
-
-		// Search search = new Search(StoreItem.class);
-		// if (StringUtils.isNotBlank(dywOwner)) {
-		// search.addFilterILike("dywOwner", "%" + dywOwner + "%");
-		// }
-		// if (startDate != null)
-		// search.addFilterGreaterOrEqual("createTime", startDate);
-		// if (endDate != null)
-		// search.addFilterLessOrEqual("createTime", endDate);
-		// if (StringUtils.isNotBlank(orgId)) {
-		// search.addFilterEqual("orgId", orgId);
-		// }
-		// search.addFilterEqual("status", StoreItem.STATUS_IN);
-		//
-		// search.addSortDesc("createTime");
-		// search.setFirstResult(getFirstResult(page, pageSize));
-		// search.setMaxResults((pageSize > 0 ? pageSize : 20));
-		// @SuppressWarnings("unchecked")
-		// SearchResult<StoreItem> result = dao().searchAndCount(search);
-		// List<StoreItem> list = result.getResult();
-		// for (StoreItem item : list) {
-		// StoreArea area = dao().getById(item.getAreaId());
-		// if (area != null)
-		// item.setAreaName(area.getName());
-		// }
-		// DataGrid<StoreItem> dg = new DataGrid<StoreItem>(
-		// (int) result.getTotalCount(), list, pageSize, page);
-		// return dg;
 	}
 
 	@Override
@@ -94,7 +79,7 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		sb.append(" INNER JOIN store_item ON store_item.id = store_in.item_id ");
 		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
 		sb.append(" WHERE 1 = 1");
-		sb.append(" and store_area.org_id = '" + orgId + "'");
+		sb.append(" and store_area.org_id in (" + lowerOrgIdSql(orgId) + ")");
 		if (StringUtils.isNoneEmpty(dywOwner)) {
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
@@ -133,7 +118,7 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		sb.append(" INNER JOIN store_item ON store_item.id = store_out.item_id ");
 		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
 		sb.append(" WHERE 1 = 1");
-		sb.append(" and store_area.org_id = '" + orgId + "'");
+		sb.append(" and store_area.org_id in (" + lowerOrgIdSql(orgId) + ")");
 		if (StringUtils.isNoneEmpty(dywOwner)) {
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
@@ -208,7 +193,6 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		return null;
 	}
 
-	
 	@Override
 	public StoreOutVO getOutByItemId(String id) {
 		StoreItem item = dao().getById(StoreItem.class, id);
