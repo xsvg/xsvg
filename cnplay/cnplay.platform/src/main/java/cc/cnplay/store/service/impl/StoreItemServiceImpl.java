@@ -1,5 +1,6 @@
 package cc.cnplay.store.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -231,6 +232,30 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 			dao().save(item);
 		}
 		return form;
+	}
+
+	@Override
+	public List<StoreItem> findByDywOwner(String orgId, String dywOwner, String dywOwnerId) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT");
+		sb.append(" store_item.*,");
+		sb.append(" store_area.`name` as areaName");
+		sb.append(" FROM store_item ");
+		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
+		sb.append(" WHERE store_item.status = " + StoreItem.STATUS_IN);
+		sb.append(" and store_area.org_id = '" + orgId + "'");
+		if (StringUtils.isEmpty(dywOwner) && StringUtils.isEmpty(dywOwnerId)) {
+			return new ArrayList<StoreItem>();
+		}
+		if (StringUtils.isNoneEmpty(dywOwner)) {
+			sb.append(" and store_item.dyw_owner = '" + dywOwner + "'");
+		}
+		if (StringUtils.isNoneEmpty(dywOwnerId)) {
+			sb.append(" and store_item.dyw_owner_id = '" + dywOwnerId + "'");
+		}
+		sb.append(" ORDER BY  store_item.create_time DESC");
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sb.toString());
+		return list;
 	}
 
 }

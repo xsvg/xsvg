@@ -1,6 +1,7 @@
 package cc.cnplay.store.service;
 
 import java.util.Date;
+import java.util.List;
 
 import cc.cnplay.core.service.GenericService;
 import cc.cnplay.core.vo.DataGrid;
@@ -30,5 +31,7 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 	StoreOutVO getOutByItemId(String id);
 
 	StoreItem getInVoByRfid(String rfid);
+
+	List<StoreItem> findByDywOwner(String orgId, String dywOwner, String dywOwnerId);
 
 }

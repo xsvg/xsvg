@@ -18,6 +18,7 @@ import cc.cnplay.core.vo.Json;
 import cc.cnplay.platform.web.controller.AbsController;
 import cc.cnplay.store.domain.StoreItem;
 import cc.cnplay.store.service.StoreCheckService;
+import cc.cnplay.store.service.StoreItemService;
 import cc.cnplay.store.vo.TagVo;
 
 @Controller
@@ -30,6 +31,17 @@ public class HomeStoreController extends AbsController {
 
 	@Resource
 	private StoreCheckService storeCheckService;
+
+	@Resource
+	private StoreItemService storeItemService;
+
+	@Ignore
+	@RequestMapping(value = "/find", method = RequestMethod.POST)
+	public @ResponseBody Json<List<StoreItem>> find(@RequestBody StoreItem item) {
+		List<StoreItem> itemList = storeItemService.findByDywOwner(this.getSessionUser().getOrgId(),
+				item.getDywOwner(), item.getDywOwnerId());
+		return new Json<List<StoreItem>>(itemList);
+	}
 
 	@Ignore
 	@RequestMapping(value = "/tag", method = RequestMethod.POST)
