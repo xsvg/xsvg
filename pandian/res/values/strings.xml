@@ -955,5 +955,6 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="tagread">读标签号</string>
+    <string name="title_dyw_owner_id">身份证号</string>
 
 </resources>

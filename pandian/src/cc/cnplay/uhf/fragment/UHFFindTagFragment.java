@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.os.Bundle;
@@ -16,18 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import cc.cnplay.uhf.App;
 import cc.cnplay.uhf.HttpUtils;
@@ -40,25 +33,17 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 
 	private boolean loopFlag = false;
 	private int inventoryFlag = 2;
-	private LinearLayout llQValue;
 	Handler handler;
 	private ArrayList<HashMap<String, String>> tagList;
 	SimpleAdapter adapter;
 
 	Button BtClear;
 	TextView tv_count;
-	RadioGroup RgInventory;
-	RadioButton RbInventorySingle;
-	// RadioButton RbInventoryLoop;
-	RadioButton RbInventoryAnti;
-	Spinner SpinnerQ;
 	Button BtInventory;
 	ListView LvTags;
-	Button setFilter;
-	byte initQ;
 	PopupWindow popFilter;
-	private EditText et_between;
-	private LinearLayout llContinuous;
+	private EditText dywOwner;
+	private EditText dywOwnerId;
 
 	private UHFMainActivity mContext;
 
@@ -81,44 +66,25 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		mContext = (UHFMainActivity) getActivity();
 
 		tagList = new ArrayList<HashMap<String, String>>();
-		setFilter = (Button) mContext.findViewById(R.id.btnSetFilter);
 		BtClear = (Button) mContext.findViewById(R.id.BtClear);
 		tv_count = (TextView) mContext.findViewById(R.id.tv_count);
-		RgInventory = (RadioGroup) mContext.findViewById(R.id.RgInventory);
-		RbInventorySingle = (RadioButton) mContext
-				.findViewById(R.id.RbInventorySingle);
-		// RbInventoryLoop = (RadioButton)
-		// mContext.findViewById(R.id.RbInventoryLoop);
-		RbInventoryAnti = (RadioButton) mContext
-				.findViewById(R.id.RbInventoryAnti);
-		SpinnerQ = (Spinner) mContext.findViewById(R.id.SpinnerQ);
+
 		BtInventory = (Button) mContext.findViewById(R.id.BtInventory);
 		LvTags = (ListView) mContext.findViewById(R.id.LvTags);
 
-		et_between = (EditText) mContext.findViewById(R.id.et_between);
-
-		llContinuous = (LinearLayout) mContext.findViewById(R.id.llContinuous);
+		dywOwner = (EditText) mContext.findViewById(R.id.et_dywOwner);
+		dywOwnerId = (EditText) mContext.findViewById(R.id.et_dywOwnerId);
 
 		adapter = new SimpleAdapter(mContext, tagList, R.layout.listtag_items,
 				new String[] { "tagUii", "tagLen", "tagCount", "tagRssi" },
 				new int[] { R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount,
 						R.id.TvTagRssi });
 
-		setFilter.setOnClickListener(new btnfilterClicklistener());
 		BtClear.setOnClickListener(new BtClearClickListener());
-		RgInventory
-				.setOnCheckedChangeListener(new RgInventoryCheckedListener());
 
 		BtInventory.setOnClickListener(new BtInventoryClickListener());
-		SpinnerQ.setEnabled(false);
-		SpinnerQ.setOnItemSelectedListener(new QItemSelectedListener());
-
-		llQValue = (LinearLayout) mContext.findViewById(R.id.llQValue);
 
 		LvTags.setAdapter(adapter);
-		clearData();
-
-		Log.i("MY", "UHFReadTagFragment.EtCountOfTags=" + tv_count.getText());
 
 		handler = new Handler() {
 
@@ -135,12 +101,11 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 			}
 		};
 
-		SpinnerQ.setSelection(3);
+		inventoryFlag = 2;
 	}
 
 	@Override
 	public void onPause() {
-		Log.i("MY", "UHFReadTagFragment.onPause");
 		super.onPause();
 
 		// 停止识别
@@ -178,9 +143,7 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 				tagList.set(index, map);
 
 			}
-
 			adapter.notifyDataSetChanged();
-
 		}
 	}
 
@@ -188,90 +151,29 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 
 		@Override
 		public void onClick(View v) {
-
-			clearData();
-
+			find(dywOwner.getText().toString().trim(), dywOwnerId.getText()
+					.toString().trim());
 		}
 	}
 
-	private void clearData() {
-		tv_count.setText("0");
-
-		tagList.clear();
-
-		Log.i("MY", "tagList.size " + tagList.size());
-
-		adapter.notifyDataSetChanged();
-	}
-
-	public class RgInventoryCheckedListener implements OnCheckedChangeListener {
-
-		@Override
-		public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-			llQValue.setVisibility(View.GONE);
-			llContinuous.setVisibility(View.GONE);
-
-			if (checkedId == RbInventorySingle.getId()) {
-				// 单步识别
-				inventoryFlag = 0;
-				SpinnerQ.setEnabled(false);
-			}
-
-			else {
-				// 防碰撞识别
-				inventoryFlag = 2;
-				SpinnerQ.setEnabled(true);
-				llContinuous.setVisibility(View.VISIBLE);
-				llQValue.setVisibility(View.VISIBLE);
-			}
-		}
-	}
-
-	public class QItemSelectedListener implements OnItemSelectedListener {
-
-		@Override
-		public void onItemSelected(AdapterView<?> parent, View view,
-				int position, long id) {
-
-			initQ = Byte.valueOf((String) SpinnerQ.getSelectedItem(), 10);
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> parent) {
-
-		}
-	}
-
-	public class btnfilterClicklistener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-
-			try {
-				UIHelper.ToastMessage(mContext, "正在上传", 0);
-				final JSONArray json = new JSONArray();
-				JSONObject tmpObj = null;
-				for (HashMap<String, String> map : tagList) {
-					tmpObj = new JSONObject();
-					for (String key : map.keySet()) {
-						tmpObj.put(key, map.get(key));
-					}
-					json.put(tmpObj);
+	private void find(String dywOwner, String dywOwnerId) {
+		try {
+			UIHelper.ToastMessage(mContext, "正在查询", 0);
+			JSONObject json = new JSONObject();
+			json.put("dywOwner", dywOwner);
+			json.put("dywOwnerId", dywOwnerId);
+			Map<String, String> header = new HashMap<String, String>();
+			header.put("token", App.login.getAcctoken());
+			String url = App.url("/home/store/find");
+			Handler handler = new Handler() {
+				public void handleMessage(Message msg) {
+					String message = msg.getData().getString("msg");
+					String data = msg.getData().getString("data");
 				}
-				Map<String, String> header = new HashMap<String, String>();
-				header.put("token", App.login.getAcctoken());
-				String url = App.url("/home/store/tagList");
-				Handler handler = new Handler() {
-					public void handleMessage(Message msg) {
-						String message = msg.getData().getString("msg");
-						String data = msg.getData().getString("data");
-					}
-				};
-				HttpUtils.postJSON(url, json.toString(), header, handler);
-			} catch (Throwable ex) {
-				UIHelper.ToastMessage(mContext, "程序异常：" + ex.toString(), 100000);
-			}
+			};
+			HttpUtils.postJSON(url, json.toString(), header, handler);
+		} catch (Throwable ex) {
+			UIHelper.ToastMessage(mContext, "程序异常：" + ex.toString(), 100000);
 		}
 	}
 
@@ -324,10 +226,8 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 					BtInventory.setText(mContext
 							.getString(R.string.title_stop_Inventory));
 					loopFlag = true;
-					setViewEnabled(false);
 
-					new TagThread(StringUtils.toInt(et_between.getText()
-							.toString().trim(), 0)).start();
+					new TagThread(10).start();
 				} else {
 					mContext.mReader.stopInventory();
 					UIHelper.ToastMessage(mContext,
@@ -342,9 +242,7 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 					BtInventory.setText(mContext
 							.getString(R.string.title_stop_Inventory));
 					loopFlag = true;
-					setViewEnabled(false);
-					new TagThread(StringUtils.toInt(et_between.getText()
-							.toString().trim(), 0)).start();
+					new TagThread(10).start();
 				} else {
 					mContext.mReader.stopInventory();
 					UIHelper.ToastMessage(mContext,
@@ -361,15 +259,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		}
 	}
 
-	private void setViewEnabled(boolean enabled) {
-		RbInventorySingle.setEnabled(enabled);
-
-		RbInventoryAnti.setEnabled(enabled);
-		et_between.setEnabled(enabled);
-		SpinnerQ.setEnabled(enabled);
-
-	}
-
 	/**
 	 * 停止识别
 	 */
@@ -378,8 +267,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		if (loopFlag) {
 
 			loopFlag = false;
-
-			setViewEnabled(true);
 
 			if (mContext.mReader.stopInventory()) {
 				BtInventory.setText(mContext.getString(R.string.btInventory));
