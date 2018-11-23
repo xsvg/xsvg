@@ -7,6 +7,8 @@ public class App {
 	public static int CNTLEN = 4;
 	
 	public static String HOSTNAME = "192.168.0.107:8080";
+	
+	public static int find = 0;
 
 	public static String url(String path) {
 		return "http://" + login.getHostname() + path;

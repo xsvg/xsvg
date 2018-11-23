@@ -245,8 +245,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 				JSONObject json = new JSONObject();
 				json.put("username", App.login.getUsername());
 				json.put("password", App.login.getPassword());
-				String ret = HttpUtils.postJSON(App.url("/loginByApp"), json.toString(),
-						null);
+				String ret = HttpUtils.postJSON(App.url("/loginByApp"),
+						json.toString(), null);
 				if (ret != null) {
 					json = new JSONObject(ret);
 					if (json.getInt("code") == 200) {
@@ -266,8 +266,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 					mPasswordView.requestFocus();
 				}
 			} catch (Throwable ex) {
-				UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
-						60000);
+				mPasswordView.setError(ex.getMessage());
+				mPasswordView.requestFocus();
 			}
 			return false;
 		}
@@ -279,7 +279,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 			if (success) {
 				finish();
 				loginDbHelper.save(App.login);
-				Intent intent = new Intent(MainActivity.this, UHFMainActivity.class);
+				Intent intent = new Intent(MainActivity.this,
+						UHFMainActivity.class);
 				MainActivity.this.startActivity(intent);
 			} else {
 				mPasswordView

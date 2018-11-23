@@ -53,34 +53,6 @@ public class BaseTabFragmentActivity extends FragmentActivity {
     }
 
 
-    protected void initTabs() {
-        for (int i = 0; i < mViewPagerAdapter.getCount(); ++i) {
-            mActionBar.addTab(mActionBar.newTab()
-                    .setText(mViewPagerAdapter.getPageTitle(i))
-                    .setTabListener(mTabListener));
-        }
-    }
-
-
-    protected ActionBar.TabListener mTabListener = new ActionBar.TabListener() {
-
-        @Override
-        public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-            mViewPager.setCurrentItem(tab.getPosition());
-        }
-
-        @Override
-        public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-
-        }
-
-        @Override
-        public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-
-        }
-    };
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 

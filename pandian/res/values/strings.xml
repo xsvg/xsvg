@@ -547,6 +547,8 @@
     <string name="uhf_msg_tab_read">Read</string>
     <string name="uhf_msg_tab_write">Write</string>
     <string name="uhf_msg_tab_set">Config</string>
+    <string name="uhf_msg_tab_find">Find</string>
+    
     <string name="uhf_msg_tab_kill">Kill</string>
     <string name="uhf_msg_tab_lock">Lock</string>
     <string name="rfid_msg_scan_fail">Scan failed</string>

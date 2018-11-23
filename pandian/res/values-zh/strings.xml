@@ -902,4 +902,5 @@
     <string name="desfire_title_app_change_pwd_permission">改变应用密码所需权限</string>
     <string name="desfire_title_app_max_key">最大密钥数</string>
     <string name="desfire_title_card_click_tip">点击进入</string>
+    <string name="uhf_msg_tab_find">查找</string>
 </resources>
