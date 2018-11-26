@@ -37,10 +37,11 @@ public class HomeStoreController extends AbsController {
 
 	@Ignore
 	@RequestMapping(value = "/find", method = RequestMethod.POST)
-	public @ResponseBody Json<List<StoreItem>> find(@RequestBody StoreItem item) {
+	public @ResponseBody List<StoreItem> find(@RequestBody StoreItem item) {
 		List<StoreItem> itemList = storeItemService.findByDywOwner(this.getSessionUser().getOrgId(),
 				item.getDywOwner(), item.getDywOwnerId());
-		return new Json<List<StoreItem>>(itemList);
+		logger.info(item.getDywOwnerId() + "=" + itemList.size());
+		return itemList;
 	}
 
 	@Ignore
