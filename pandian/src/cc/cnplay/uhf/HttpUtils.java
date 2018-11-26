@@ -48,6 +48,7 @@ public class HttpUtils {
 				Bundle data = new Bundle();
 				try {
 					String content = "";
+					data.putString("data", content);
 					content = HttpUtils.postJSON(url, json, header);
 					data.putString("data", content);
 					msg.setData(data);
