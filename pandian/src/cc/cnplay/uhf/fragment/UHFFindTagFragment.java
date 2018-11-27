@@ -150,33 +150,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		}
 	}
 
-	/**
-	 * 判断EPC是否在列表中
-	 * 
-	 * @param strEPC
-	 *            索引
-	 * @return
-	 */
-	public int checkIsExist(String strEPC) {
-		int existFlag = -1;
-		if (StringUtils.isEmpty(strEPC)) {
-			return existFlag;
-		}
-
-		String tempStr = "";
-		for (int i = 0; i < tagList.size(); i++) {
-			HashMap<String, String> temp = new HashMap<String, String>();
-			temp = tagList.get(i);
-			tempStr = temp.get("tagUii");
-			if (strEPC.equals(tempStr)) {
-				existFlag = i;
-				break;
-			}
-		}
-
-		return existFlag;
-	}
-
 	class TagThread extends Thread {
 
 		private int mBetween = 80;
@@ -189,6 +162,7 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		public void run() {
 			Map<String, StoreItem> itemMap = new HashMap<String, StoreItem>();
 			try {
+				tagList.clear();
 				JSONObject json = new JSONObject();
 				json.put("dywOwner", dywOwner.getText().toString());
 				json.put("dywOwnerId", dywOwnerId.getText().toString());
@@ -196,29 +170,26 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 				header.put("token", App.login.getAcctoken());
 				String url = App.url("/home/store/find");
 				String data = HttpUtils.postJSON(url, json.toString(), header);
-				// if (StringUtils.isNotEmpty(data)) {
-				// Gson gson = new Gson();
-				// StoreItem[] items = gson.fromJson(data, StoreItem[].class);
-				// for (int i = 0; i < items.length; i++) {
-				// StoreItem item = items[i];
-				// itemMap.put(item.getRfid(), item);
-				// Message msg = handler.obtainMessage();
-				// msg.obj = item;
-				// handler.sendMessage(msg);
-				// }
-				// }
-				Message msg = handler.obtainMessage();
-				StoreItem item = new StoreItem();
-				item.setRfid("E2000019910202261220CD75");
-				item.setStatus(0);
-				if (itemMap.containsKey(item.getRfid())) {
-					item = itemMap.get(item.getRfid());
-					item.setStatus(1);
-				} else {
-					itemMap.put(item.getRfid(), item);
+				if (StringUtils.isNotEmpty(data)) {
+					Gson gson = new Gson();
+					StoreItem[] items = gson.fromJson(data, StoreItem[].class);
+					for (int i = 0; i < items.length; i++) {
+						StoreItem item = items[i];
+						itemMap.put(item.getRfid(), item);
+						Message msg = handler.obtainMessage();
+						msg.obj = item;
+						handler.sendMessage(msg);
+					}
 				}
-				msg.obj = item;
-				handler.sendMessage(msg);
+				if (itemMap.size() == 0) {
+					Message msg = handler.obtainMessage();
+					StoreItem item = new StoreItem();
+					item.setRfid("找不到抵押物");
+					item.setStatus(0);
+					itemMap.put(item.getRfid(), item);
+					msg.obj = item;
+					handler.sendMessage(msg);
+				}
 			} catch (Throwable ex) {
 				Message msg = handler.obtainMessage();
 				StoreItem item = new StoreItem();
@@ -226,7 +197,7 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 				item.setStatus(0);
 				if (itemMap.containsKey(item.getRfid())) {
 					item = itemMap.get(item.getRfid());
-					item.setStatus(1);
+					item.setStatus(0);
 				} else {
 					itemMap.put(item.getRfid(), item);
 				}
@@ -234,29 +205,20 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 				handler.sendMessage(msg);
 			}
 
-			String strTid;
+			String epc;
 			String[] res = null;
 			while (loopFlag) {
-				// res = mContext.mReader.readTagFromBuffer();//
-				// .readTagFormBuffer();
-				// if (res != null) {
-				// strTid = res[0];
-				// if (itemMap.containsKey(strTid)) {
-				// Message msg = handler.obtainMessage();
-				// StoreItem item = itemMap.get(strTid);
-				// item.setStatus(1);
-				// msg.obj = item;
-				// handler.sendMessage(msg);
-				// } else {
-				// Message msg = handler.obtainMessage();
-				// StoreItem item = new StoreItem();
-				// item.setRfid(strTid);
-				// item.setStatus(0);
-				// itemMap.put(item.getRfid(), item);
-				// msg.obj = item;
-				// handler.sendMessage(msg);
-				// }
-				// }
+				res = mContext.mReader.readTagFromBuffer();
+				if (res != null) {
+					epc = mContext.mReader.convertUiiToEPC(res[1]);
+					if (itemMap.containsKey(epc)) {
+						Message msg = handler.obtainMessage();
+						StoreItem item = itemMap.get(epc);
+						item.setStatus(1);
+						msg.obj = item;
+						handler.sendMessage(msg);
+					}
+				}
 				try {
 					sleep(mBetween);
 				} catch (InterruptedException e) {
@@ -277,20 +239,19 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 			map = new HashMap<String, String>();
 			map.put("tagUii", item.getRfid());
 			map.put("tagStatus", "未找到");
-			if (item.getStatus() == 0) {
-				tagList.add(map);
-				LvTags.setAdapter(adapter);
-				tv_count.setText(tagList.size());
-			} else {
-				for (int i = 0; i < tagList.size(); i++) {
-					map = tagList.get(i);
-					map.put("tagStatus", "已找到");
+			for (int i = 0; i < tagList.size(); i++) {
+				Map<String, String> tmpMap = tagList.get(i);
+				if (tmpMap.get("tagUii").equals(item.getRfid())) {
+					tmpMap.put("tagStatus", "已找到");
+					adapter.notifyDataSetChanged();
+					return;
 				}
 			}
+			tagList.add(map);
+			LvTags.setAdapter(adapter);
+			tv_count.setText(tagList.size());
 			adapter.notifyDataSetChanged();
 		} catch (Throwable e) {
-			mContext.playSound(2);
-			UIHelper.ToastMessage(mContext, "ee=" + e.getMessage());
 		}
 	}
 
