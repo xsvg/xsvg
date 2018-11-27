@@ -1,16 +1,6 @@
 package cc.cnplay.uhf.fragment;
 
-import cc.cnplay.uhf.R;
-import cc.cnplay.uhf.UHFMainActivity;
-import cc.cnplay.uhf.UIHelper;
-
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.rscja.utility.StringUtility;
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import cc.cnplay.uhf.R;
+import cc.cnplay.uhf.UHFMainActivity;
+import cc.cnplay.uhf.UIHelper;
+
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.rscja.utility.StringUtility;
 
 public class UHFSetFragment extends KeyDwonFragment {
 	private UHFMainActivity mContext;
@@ -39,6 +37,8 @@ public class UHFSetFragment extends KeyDwonFragment {
 	private EditText et_waittime;
 	@ViewInject(R.id.btnWorkWait)
 	private Button btnWorkWait;
+	@ViewInject(R.id.btnExit)
+	private Button btnExit;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +64,13 @@ public class UHFSetFragment extends KeyDwonFragment {
 		btnSetFre.setOnClickListener(new SetFreOnclickListener());
 		btnGetFre.setOnClickListener(new GetFreOnclickListener());
 		btnWorkWait.setOnClickListener(new SetPWMOnclickListener());
+		btnExit.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				mContext.finish();
+			}
+		});
 
 	}
 
@@ -123,7 +130,7 @@ public class UHFSetFragment extends KeyDwonFragment {
 	public void getPwm() {
 		int[] pwm = mContext.mReader.getPwm();
 
-		if (pwm == null||pwm.length<2) {
+		if (pwm == null || pwm.length < 2) {
 			UIHelper.ToastMessage(mContext, R.string.uhf_msg_read_pwm_fail);
 			return;
 		}
@@ -137,13 +144,12 @@ public class UHFSetFragment extends KeyDwonFragment {
 
 		@Override
 		public void onClick(View v) {
-			if (mContext.mReader.setPwm(StringUtility.string2Int(et_worktime.getText().toString(),0), 
-					StringUtility.string2Int(et_waittime.getText().toString(),0))) {
-				UIHelper.ToastMessage(mContext,
-						R.string.uhf_msg_set_pwm_succ);
+			if (mContext.mReader.setPwm(StringUtility.string2Int(et_worktime
+					.getText().toString(), 0), StringUtility.string2Int(
+					et_waittime.getText().toString(), 0))) {
+				UIHelper.ToastMessage(mContext, R.string.uhf_msg_set_pwm_succ);
 			} else {
-				UIHelper.ToastMessage(mContext,
-						R.string.uhf_msg_set_pwm_fail);
+				UIHelper.ToastMessage(mContext, R.string.uhf_msg_set_pwm_fail);
 			}
 		}
 	}

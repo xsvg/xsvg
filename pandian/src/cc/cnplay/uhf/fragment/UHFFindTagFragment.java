@@ -188,61 +188,75 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 
 		public void run() {
 			Map<String, StoreItem> itemMap = new HashMap<String, StoreItem>();
-			// try {
-			// // JSONObject json = new JSONObject();
-			// // json.put("dywOwner", dywOwner.getText().toString());
-			// // json.put("dywOwnerId", dywOwnerId.getText().toString());
-			// // Map<String, String> header = new HashMap<String, String>();
-			// // header.put("token", App.login.getAcctoken());
-			// // String url = App.url("/home/store/find");
-			// // String data = HttpUtils.postJSON(url, json.toString(),
-			// // header);
-			// // if (StringUtils.isNotEmpty(data)) {
-			// // Gson gson = new Gson();
-			// // StoreItem[] items = gson.fromJson(data, StoreItem[].class);
-			// // for (int i = 0; i < items.length; i++) {
-			// // StoreItem item = items[i];
-			// // itemMap.put(item.getRfid(), item);
-			// // Message msg = handler.obtainMessage();
-			// // msg.obj = item;
-			// // handler.sendMessage(msg);
-			// // }
-			// // }
-			// Message msg = handler.obtainMessage();
-			// StoreItem item = new StoreItem();
-			// item.setRfid("E2000019910202261220CD75");
-			// msg.obj = item;
-			// handler.sendMessage(msg);
-			// } catch (Throwable ex) {
-			// Message msg = handler.obtainMessage();
-			// StoreItem item = new StoreItem();
-			// item.setRfid(ex.getMessage());
-			// msg.obj = item;
-			// handler.sendMessage(msg);
-			// return;
-			// }
+			try {
+				JSONObject json = new JSONObject();
+				json.put("dywOwner", dywOwner.getText().toString());
+				json.put("dywOwnerId", dywOwnerId.getText().toString());
+				Map<String, String> header = new HashMap<String, String>();
+				header.put("token", App.login.getAcctoken());
+				String url = App.url("/home/store/find");
+				String data = HttpUtils.postJSON(url, json.toString(), header);
+				// if (StringUtils.isNotEmpty(data)) {
+				// Gson gson = new Gson();
+				// StoreItem[] items = gson.fromJson(data, StoreItem[].class);
+				// for (int i = 0; i < items.length; i++) {
+				// StoreItem item = items[i];
+				// itemMap.put(item.getRfid(), item);
+				// Message msg = handler.obtainMessage();
+				// msg.obj = item;
+				// handler.sendMessage(msg);
+				// }
+				// }
+				Message msg = handler.obtainMessage();
+				StoreItem item = new StoreItem();
+				item.setRfid("E2000019910202261220CD75");
+				item.setStatus(0);
+				if (itemMap.containsKey(item.getRfid())) {
+					item = itemMap.get(item.getRfid());
+					item.setStatus(1);
+				} else {
+					itemMap.put(item.getRfid(), item);
+				}
+				msg.obj = item;
+				handler.sendMessage(msg);
+			} catch (Throwable ex) {
+				Message msg = handler.obtainMessage();
+				StoreItem item = new StoreItem();
+				item.setRfid("读取失败");
+				item.setStatus(0);
+				if (itemMap.containsKey(item.getRfid())) {
+					item = itemMap.get(item.getRfid());
+					item.setStatus(1);
+				} else {
+					itemMap.put(item.getRfid(), item);
+				}
+				msg.obj = item;
+				handler.sendMessage(msg);
+			}
+
 			String strTid;
 			String[] res = null;
 			while (loopFlag) {
-				res = mContext.mReader.readTagFromBuffer();// .readTagFormBuffer();
-				if (res != null) {
-					strTid = res[0];
-					if (itemMap.containsKey(strTid)) {
-						Message msg = handler.obtainMessage();
-						StoreItem item = itemMap.get(strTid);
-						item.setStatus(1);
-						msg.obj = item;
-						handler.sendMessage(msg);
-					} else {
-						Message msg = handler.obtainMessage();
-						StoreItem item = new StoreItem();
-						item.setRfid(strTid);
-						item.setStatus(0);
-						itemMap.put(item.getRfid(), item);
-						msg.obj = item;
-						handler.sendMessage(msg);
-					}
-				}
+				// res = mContext.mReader.readTagFromBuffer();//
+				// .readTagFormBuffer();
+				// if (res != null) {
+				// strTid = res[0];
+				// if (itemMap.containsKey(strTid)) {
+				// Message msg = handler.obtainMessage();
+				// StoreItem item = itemMap.get(strTid);
+				// item.setStatus(1);
+				// msg.obj = item;
+				// handler.sendMessage(msg);
+				// } else {
+				// Message msg = handler.obtainMessage();
+				// StoreItem item = new StoreItem();
+				// item.setRfid(strTid);
+				// item.setStatus(0);
+				// itemMap.put(item.getRfid(), item);
+				// msg.obj = item;
+				// handler.sendMessage(msg);
+				// }
+				// }
 				try {
 					sleep(mBetween);
 				} catch (InterruptedException e) {
@@ -276,7 +290,7 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 			adapter.notifyDataSetChanged();
 		} catch (Throwable e) {
 			mContext.playSound(2);
-			UIHelper.ToastMessage(mContext, e.getMessage());
+			UIHelper.ToastMessage(mContext, "ee=" + e.getMessage());
 		}
 	}
 
