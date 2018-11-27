@@ -24,7 +24,8 @@
 	<div class="login_top">
 		<div id='logo' style="float: left; width: 262px; height: 53px; margin-top: 0px; margin-left: 10px;">
 			<div class="version" id="version">
-				<a href="pandian.apk"><label id="versionNO">版本号：V1.0.0</label></a>
+				<label id="versionNO">版本号：V1.0.0</label>
+				<a href="pandian.apk">下载PDA程序</label></a>
 			</div>
 		</div>
 	</div>
