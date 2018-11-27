@@ -270,8 +270,7 @@ public class UHFReadTagFragment extends KeyDwonFragment {
 				String url = App.url("/home/store/tagList");
 				Handler handler = new Handler() {
 					public void handleMessage(Message msg) {
-						String message = msg.getData().getString("msg");
-						String data = msg.getData().getString("data");
+						String data = msg.obj.toString();
 					}
 				};
 				HttpUtils.postJSON(url, json.toString(), header, handler);

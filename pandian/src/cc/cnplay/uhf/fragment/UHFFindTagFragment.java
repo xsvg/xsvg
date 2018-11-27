@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +26,8 @@ import cc.cnplay.uhf.R;
 import cc.cnplay.uhf.StringUtils;
 import cc.cnplay.uhf.UHFMainActivity;
 import cc.cnplay.uhf.UIHelper;
+
+import com.google.gson.Gson;
 
 public class UHFFindTagFragment extends KeyDwonFragment {
 
@@ -74,7 +70,7 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		dywOwner = (EditText) mContext.findViewById(R.id.et_dywOwner);
 		dywOwnerId = (EditText) mContext.findViewById(R.id.et_dywOwnerId);
 		adapter = new SimpleAdapter(mContext, tagList, R.layout.listtag_items,
-				new String[] { "tagUii", "tagLen", "tagCount" }, new int[] {
+				new String[] { "tagUii", "tagLen", "tagStatus" }, new int[] {
 						R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount });
 
 		BtClear.setOnClickListener(new BtClearClickListener());
@@ -84,8 +80,8 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 
 			@Override
 			public void handleMessage(Message msg) {
-				String result = msg.obj + "";
-				addEPCToList(result, "", true);
+				StoreItem item = (StoreItem) msg.obj;
+				addEPCToList(item);
 				mContext.playSound(1);
 			}
 		};
@@ -98,81 +94,11 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 
 	}
 
-	/**
-	 * 添加EPC到列表中
-	 * 
-	 * @param epc
-	 */
-	private void addEPCToList(String epc, String rssi, boolean isFind) {
-		mContext.playSound(1);
-		try {
-			if (!TextUtils.isEmpty(epc)) {
-				int index = checkIsExist(epc);
-				if (isFind && index == -1) {
-					return;
-				}
-				map = new HashMap<String, String>();
-				map.put("tagUii", epc);
-				map.put("tagCount", "未找到");
-				if (!TextUtils.isEmpty(rssi)) {
-					map.put("tagRssi", rssi);
-				}
-				if (index == -1) {
-					tagList.add(map);
-					LvTags.setAdapter(adapter);
-					tv_count.setText("未找到");
-				} else {
-					map.put("tagCount", "已找到");
-					tagList.set(index, map);
-				}
-				adapter.notifyDataSetChanged();
-			}
-		} catch (Throwable e) {
-			mContext.playSound(2);
-		}
-	}
-
 	public class BtClearClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
-			find(dywOwner.getText().toString().trim(), dywOwnerId.getText()
-					.toString().trim());
-		}
-	}
 
-	private void find(String dywOwner, String dywOwnerId) {
-		try {
-			UIHelper.ToastMessage(mContext, "正在查询", 0);
-			JSONObject json = new JSONObject();
-			json.put("dywOwner", dywOwner);
-			json.put("dywOwnerId", dywOwnerId);
-			Map<String, String> header = new HashMap<String, String>();
-			header.put("token", App.login.getAcctoken());
-			String url = App.url("/home/store/find");
-			Handler handler = new Handler() {
-				public void handleMessage(Message msg) {
-					try {
-						String message = msg.getData().getString("msg");
-						String data = msg.getData().getString("data");
-						if (StringUtils.isNotEmpty(data)) {
-							Gson gson = new Gson();
-							StoreItem[] items = gson.fromJson(data,
-									StoreItem[].class);
-							mContext.playSound(1);
-							for (int i = 0; i < items.length; i++) {
-								StoreItem item = items[i];
-								addEPCToList(item.getRfid(),item.getSn()+"/"+item.getAreaName(), false);
-							}
-						}
-					} catch (Throwable e) {
-						mContext.playSound(2);
-					}
-				}
-			};
-			HttpUtils.postJSON(url, json.toString(), header, handler);
-		} catch (Throwable ex) {
-			UIHelper.ToastMessage(mContext, "程序异常：" + ex.toString(), 100000);
 		}
 	}
 
@@ -261,22 +187,61 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		}
 
 		public void run() {
+			Map<String, StoreItem> itemMap = new HashMap<String, StoreItem>();
+			// try {
+			// // JSONObject json = new JSONObject();
+			// // json.put("dywOwner", dywOwner.getText().toString());
+			// // json.put("dywOwnerId", dywOwnerId.getText().toString());
+			// // Map<String, String> header = new HashMap<String, String>();
+			// // header.put("token", App.login.getAcctoken());
+			// // String url = App.url("/home/store/find");
+			// // String data = HttpUtils.postJSON(url, json.toString(),
+			// // header);
+			// // if (StringUtils.isNotEmpty(data)) {
+			// // Gson gson = new Gson();
+			// // StoreItem[] items = gson.fromJson(data, StoreItem[].class);
+			// // for (int i = 0; i < items.length; i++) {
+			// // StoreItem item = items[i];
+			// // itemMap.put(item.getRfid(), item);
+			// // Message msg = handler.obtainMessage();
+			// // msg.obj = item;
+			// // handler.sendMessage(msg);
+			// // }
+			// // }
+			// Message msg = handler.obtainMessage();
+			// StoreItem item = new StoreItem();
+			// item.setRfid("E2000019910202261220CD75");
+			// msg.obj = item;
+			// handler.sendMessage(msg);
+			// } catch (Throwable ex) {
+			// Message msg = handler.obtainMessage();
+			// StoreItem item = new StoreItem();
+			// item.setRfid(ex.getMessage());
+			// msg.obj = item;
+			// handler.sendMessage(msg);
+			// return;
+			// }
 			String strTid;
-			String strResult;
 			String[] res = null;
 			while (loopFlag) {
 				res = mContext.mReader.readTagFromBuffer();// .readTagFormBuffer();
 				if (res != null) {
 					strTid = res[0];
-					if (!strTid.equals("0000000000000000")
-							&& !strTid.equals("000000000000000000000000")) {
-						strResult = "TID:" + strTid + "\n";
+					if (itemMap.containsKey(strTid)) {
+						Message msg = handler.obtainMessage();
+						StoreItem item = itemMap.get(strTid);
+						item.setStatus(1);
+						msg.obj = item;
+						handler.sendMessage(msg);
 					} else {
-						strResult = "";
+						Message msg = handler.obtainMessage();
+						StoreItem item = new StoreItem();
+						item.setRfid(strTid);
+						item.setStatus(0);
+						itemMap.put(item.getRfid(), item);
+						msg.obj = item;
+						handler.sendMessage(msg);
 					}
-					Message msg = handler.obtainMessage();
-					msg.obj = strTid;
-					handler.sendMessage(msg);
 				}
 				try {
 					sleep(mBetween);
@@ -285,6 +250,33 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 				}
 
 			}
+		}
+	}
+
+	/**
+	 * 添加EPC到列表中
+	 * 
+	 * @param epc
+	 */
+	private void addEPCToList(StoreItem item) {
+		try {
+			map = new HashMap<String, String>();
+			map.put("tagUii", item.getRfid());
+			map.put("tagStatus", "未找到");
+			if (item.getStatus() == 0) {
+				tagList.add(map);
+				LvTags.setAdapter(adapter);
+				tv_count.setText(tagList.size());
+			} else {
+				for (int i = 0; i < tagList.size(); i++) {
+					map = tagList.get(i);
+					map.put("tagStatus", "已找到");
+				}
+			}
+			adapter.notifyDataSetChanged();
+		} catch (Throwable e) {
+			mContext.playSound(2);
+			UIHelper.ToastMessage(mContext, e.getMessage());
 		}
 	}
 

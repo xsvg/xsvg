@@ -48,7 +48,7 @@ public class StoreItem {
 
 	private BigDecimal pgje = BigDecimal.ZERO;
 
-	private Integer status = 0;
+	private int status = 0;
 
 	public String getId() {
 		return id;
@@ -170,11 +170,11 @@ public class StoreItem {
 		this.pgje = pgje;
 	}
 
-	public Integer getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

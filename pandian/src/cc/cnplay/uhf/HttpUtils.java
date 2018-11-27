@@ -10,7 +10,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
@@ -44,17 +43,11 @@ public class HttpUtils {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				Message msg = new Message();
-				Bundle data = new Bundle();
+				Message msg = handler.obtainMessage();
 				try {
-					String content = "";
-					data.putString("data", content);
-					content = HttpUtils.postJSON(url, json, header);
-					data.putString("data", content);
-					msg.setData(data);
-					data.putString("msg", "success");
+					msg.obj = HttpUtils.postJSON(url, json, header);
 				} catch (Exception e) {
-					data.putString("msg", "ERROR: " + e.getMessage());
+					msg.obj = null;
 				}
 				handler.handleMessage(msg);
 			}

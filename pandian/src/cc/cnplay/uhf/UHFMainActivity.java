@@ -8,6 +8,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 import cc.cnplay.uhf.fragment.UHFFindTagFragment;
@@ -48,6 +49,8 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 
 		try {
 			mReader = RFIDWithUHF.getInstance();
+			StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.setThreadPolicy(policy);
 		} catch (Exception ex) {
 
 			Toast.makeText(UHFMainActivity.this, ex.getMessage(),
