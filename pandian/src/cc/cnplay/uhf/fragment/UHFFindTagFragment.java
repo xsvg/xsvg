@@ -36,7 +36,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 	private ArrayList<HashMap<String, String>> tagList;
 	SimpleAdapter adapter;
 
-	Button BtClear;
 	TextView tv_count;
 	Button BtInventory;
 	ListView LvTags;
@@ -63,7 +62,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		super.onActivityCreated(savedInstanceState);
 		mContext = (UHFMainActivity) getActivity();
 		tagList = new ArrayList<HashMap<String, String>>();
-		BtClear = (Button) mContext.findViewById(R.id.BtClear);
 		tv_count = (TextView) mContext.findViewById(R.id.tv_count);
 		BtInventory = (Button) mContext.findViewById(R.id.BtInventory);
 		LvTags = (ListView) mContext.findViewById(R.id.LvTags);
@@ -73,7 +71,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 				new String[] { "tagUii", "tagLen", "tagStatus" }, new int[] {
 						R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount });
 
-		BtClear.setOnClickListener(new BtClearClickListener());
 		BtInventory.setOnClickListener(new BtInventoryClickListener());
 		LvTags.setAdapter(adapter);
 		handler = new Handler() {
@@ -82,7 +79,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 			public void handleMessage(Message msg) {
 				StoreItem item = (StoreItem) msg.obj;
 				addEPCToList(item);
-				mContext.playSound(1);
 			}
 		};
 	}
@@ -92,14 +88,6 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 		super.onPause();
 		stopInventory();
 
-	}
-
-	public class BtClearClickListener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-
-		}
 	}
 
 	public class BtInventoryClickListener implements OnClickListener {
@@ -237,13 +225,22 @@ public class UHFFindTagFragment extends KeyDwonFragment {
 	private void addEPCToList(StoreItem item) {
 		try {
 			map = new HashMap<String, String>();
-			map.put("tagUii", item.getRfid());
+			StringBuilder sb = new StringBuilder();
+			sb.append("标签号：" + item.getRfid());
+			if (item.getSn() != null) {
+				sb.append("\n物品编号：" + item.getSn());
+			}
+			if (item.getAreaName() != null) {
+				sb.append("\n存放区域：" + item.getAreaName());
+			}
+			map.put("tagUii", sb.toString());
 			map.put("tagStatus", "未找到");
 			for (int i = 0; i < tagList.size(); i++) {
 				Map<String, String> tmpMap = tagList.get(i);
-				if (tmpMap.get("tagUii").equals(item.getRfid())) {
+				if (tmpMap.get("tagUii").contains(item.getRfid())) {
 					tmpMap.put("tagStatus", "已找到");
 					adapter.notifyDataSetChanged();
+					mContext.playSound(1);
 					return;
 				}
 			}
