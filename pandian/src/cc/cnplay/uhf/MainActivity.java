@@ -91,11 +91,12 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor> {
 				App.login = new Login();
 				App.login.setHostname(App.HOSTNAME);
 				App.login.setUsername("admin");
-				App.login.setPassword("ad111111");
+				App.login.setPassword("");
 			}
 			mUsernameView.setText(App.login.getUsername());
 			mHostnameView.setText(App.login.getHostname());
-			mPasswordView.setText(App.login.getPassword());
+			//mPasswordView.setText(App.login.getPassword());
+			App.login.setPassword("");
 		} catch (Throwable ex) {
 			UIHelper.ToastMessage(getApplicationContext(), ex.getMessage(),
 					60000);
