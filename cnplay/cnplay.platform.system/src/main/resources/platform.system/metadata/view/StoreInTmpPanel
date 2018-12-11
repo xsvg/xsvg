@@ -6,14 +6,14 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "StoreInPanel",
+        "designer|userClassName": "StoreInTmpPanel",
         "forceFit": true,
         "height": null,
         "title": "入库管理",
         "width": null
     },
-    "name": "StoreItem1",
-    "designerId": "a2ef8a5c-35b7-4b64-877a-aa7fdf89668a",
+    "name": "StoreInPanel1",
+    "designerId": "48cc9f6b-59c5-4894-8e07-b5ac33b4a927",
     "cn": [
         {
             "type": "Ext.form.Panel",
@@ -34,26 +34,8 @@
                 "width": null
             },
             "name": "MyForm",
-            "designerId": "26fe856b-f3c7-4c94-bce6-9655dcfca58f",
+            "designerId": "6cbc3681-baa3-467b-882b-2d9d112edf0c",
             "cn": [
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "所有人",
-                        "labelAlign": "right",
-                        "labelWidth": 60,
-                        "margin": 5,
-                        "name": "dywOwner",
-                        "width": 270
-                    },
-                    "name": "MyTextField9",
-                    "designerId": "8d53e465-2a33-4f95-ae58-07ab93c05f2d"
-                },
                 {
                     "type": "basiceventbinding",
                     "reference": {
@@ -70,7 +52,7 @@
                         "scope": "me"
                     },
                     "name": "onFormAfterRender",
-                    "designerId": "45b9b99f-b411-4d37-8ddf-a110307f3a37"
+                    "designerId": "9d20f1f2-6cbf-4bd7-ab88-97ae707deaeb"
                 },
                 {
                     "type": "Ext.toolbar.Toolbar",
@@ -85,7 +67,7 @@
                         "height": ""
                     },
                     "name": "MyToolbar2",
-                    "designerId": "caaeb3bf-113b-4d61-a39e-b35e39250eb7",
+                    "designerId": "4c6e8efd-b61a-4643-a693-d49dcffc523b",
                     "cn": [
                         {
                             "type": "Ext.button.Button",
@@ -100,7 +82,7 @@
                                 "text": "查询"
                             },
                             "name": "MyButton5",
-                            "designerId": "27b4925c-591c-46db-855a-d37ddc94860e",
+                            "designerId": "03c73b62-6a07-40fa-ba3b-b7e9b7e30d49",
                             "cn": [
                                 {
                                     "type": "basiceventbinding",
@@ -118,7 +100,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnSearchAfterRender",
-                                    "designerId": "3264fdd9-685c-41d4-ad39-ab21b5bec538"
+                                    "designerId": "7052930f-febf-4aa0-9abb-225dc032609d"
                                 },
                                 {
                                     "type": "basiceventbinding",
@@ -137,7 +119,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnSearchClick",
-                                    "designerId": "bbee9865-bfdd-4e61-9954-8aa5cbd7c852"
+                                    "designerId": "83602248-daca-4321-8fdf-8f85775b4111"
                                 }
                             ]
                         },
@@ -151,10 +133,10 @@
                             "userConfig": {
                                 "iconCls": "icon-add",
                                 "layout|flex": null,
-                                "text": "入库"
+                                "text": "导入"
                             },
                             "name": "MyButton8",
-                            "designerId": "7b996d08-3dc5-493d-a019-e70964d77da7",
+                            "designerId": "e8b28a41-dbe6-4ea5-939c-9c5d057d5482",
                             "cn": [
                                 {
                                     "type": "basiceventbinding",
@@ -172,7 +154,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnInAfterRender",
-                                    "designerId": "7c1262b0-2e5e-4e1b-a2ca-47dbcbeab850"
+                                    "designerId": "7be48f75-e721-4079-8907-a9d61f930cab"
                                 },
                                 {
                                     "type": "basiceventbinding",
@@ -184,33 +166,32 @@
                                     "userConfig": {
                                         "fn": "onBtnInClick",
                                         "implHandler": [
+                                            "try{",
                                             "",
-                                            "this.showForm('');"
+                                            "    var me = this;",
+                                            "    Common.upload({",
+                                            "        suffix:'xls,xlsx',",
+                                            "        callback : function(result)",
+                                            "        {",
+                                            "            me.intmp(result.rows.id);",
+                                            "        }",
+                                            "    });",
+                                            "}",
+                                            "catch (error)",
+                                            "{",
+                                            "    Common.show({title:'操作提示',html:error.toString()});",
+                                            "}",
+                                            ""
                                         ],
                                         "name": "click",
                                         "scope": "me"
                                     },
                                     "name": "onBtnInClick",
-                                    "designerId": "2b2ebd43-9812-45c8-9d7e-d66eb83d912f"
+                                    "designerId": "a5b2cf90-24af-4c3a-995d-c03bba88152f"
                                 }
                             ]
                         }
                     ]
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "dock": null,
-                        "margin": 5
-                    },
-                    "name": "datetegion2",
-                    "designerId": "de44e026-2226-45df-b938-4271fa22bb49",
-                    "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
             ]
         },
@@ -227,7 +208,7 @@
                 "width": 150
             },
             "name": "MyColumn7",
-            "designerId": "fa45cc0e-ea4a-4488-a789-ced4af87129e"
+            "designerId": "849bdb2b-1dd3-4b1b-a036-8cec9d7f74db"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -242,7 +223,7 @@
                 "width": 150
             },
             "name": "MyColumn8",
-            "designerId": "b509cbe8-f66b-43bc-99a4-5206e91a5d2e"
+            "designerId": "380034ae-ea02-44c0-ae8f-241f8834081a"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -257,7 +238,7 @@
                 "width": 150
             },
             "name": "MyColumn2",
-            "designerId": "747e2092-4cd5-4069-b3f1-78b5405c0ee6"
+            "designerId": "de0e4e1a-1431-435c-819e-e7384b5f5713"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -272,7 +253,7 @@
                 "width": 150
             },
             "name": "MyColumn3",
-            "designerId": "4c8253b4-8b7e-4622-a7b0-d8e8e61d0aa1"
+            "designerId": "4420dbdc-3d57-4c8a-b644-991d74756932"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -287,7 +268,7 @@
                 "width": 150
             },
             "name": "MyColumn20",
-            "designerId": "140c85d7-e0c1-41d7-8ab4-b55766b23064"
+            "designerId": "7a23ab26-7997-4115-b98e-381c64cab4f3"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -302,7 +283,7 @@
                 "width": 150
             },
             "name": "MyColumn13",
-            "designerId": "2fdf8fa5-6d2b-46a6-9ebe-978a7b63a414"
+            "designerId": "5ad7afc3-78cd-4408-b296-c75882ed479f"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -317,7 +298,7 @@
                 "width": 150
             },
             "name": "MyColumn18",
-            "designerId": "9363e797-9b0d-49b7-a0e7-ff086b675bd9"
+            "designerId": "5b99d853-292b-4726-8506-52dba00114a1"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -332,7 +313,7 @@
                 "width": 150
             },
             "name": "MyColumn9",
-            "designerId": "5da6e622-7e08-4718-85c4-485b482d308d"
+            "designerId": "bbc61068-b106-42af-bc16-f2b973aa1b91"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -347,7 +328,7 @@
                 "width": 150
             },
             "name": "MyColumn17",
-            "designerId": "c5f1a1ff-2ed9-43d6-a9e9-34aa9d0b8762"
+            "designerId": "40a40dc4-0d56-465a-8c48-b5a1c332d6a7"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -362,7 +343,7 @@
                 "width": 300
             },
             "name": "MyColumn11",
-            "designerId": "c4d154fa-c153-40ff-94e8-f8299910ff67"
+            "designerId": "63ae4d95-32c4-40ef-8840-9bf23522aadc"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -377,7 +358,7 @@
                 "width": 150
             },
             "name": "MyColumn12",
-            "designerId": "92f7caca-d672-4eca-ba4e-ef9ed937ec12"
+            "designerId": "d7d803c3-297a-4f60-9fb7-d883794f4752"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -392,7 +373,7 @@
                 "width": 150
             },
             "name": "MyColumn21",
-            "designerId": "c62b7740-2016-409d-948c-83f72d3f122a"
+            "designerId": "36596eca-ec60-45fa-aadf-6615c5fd112b"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -407,7 +388,7 @@
                 "width": 150
             },
             "name": "MyColumn23",
-            "designerId": "0fbf9b2f-3570-4816-bf85-98a61cdbc864"
+            "designerId": "235b5380-11c9-4ae8-b621-9aec8fe6b4c0"
         },
         {
             "type": "Ext.grid.View",
@@ -417,7 +398,7 @@
             },
             "codeClass": null,
             "name": "MyGridView3",
-            "designerId": "140cb53c-e5e6-48fa-bf03-e6d4b56fd457",
+            "designerId": "0554189b-2283-483c-9c64-07871c8d02bc",
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -435,7 +416,7 @@
                         "scope": "me"
                     },
                     "name": "onViewBeforeItemDblClick",
-                    "designerId": "125975d2-9d73-48f1-aa39-60e5c4ab5c3a"
+                    "designerId": "d53e6e0d-a375-49a3-a699-a81dabeb15c9"
                 }
             ]
         },
@@ -447,7 +428,7 @@
             },
             "codeClass": "Ext.selection.CheckboxModel",
             "name": "MyCheckboxSelectionModel2",
-            "designerId": "b5e3ca41-c8ae-4dae-b8ba-f47c7541141e"
+            "designerId": "d2fcb72b-a67f-4d7d-80bc-638d2e24357b"
         },
         {
             "type": "basicfunction",
@@ -465,7 +446,7 @@
                     "try",
                     "{",
                     "    var me = this;",
-                    "    var formwin = Ext.create('platform.system.view.StoreInWindow');",
+                    "    var formwin = Ext.create('platform.system.view.StoreInTmpWindow');",
                     "    formwin.addListener('close', function(panel,opts)",
                     "                        {",
                     "                            me.loadGrid();",
@@ -480,7 +461,38 @@
                 ]
             },
             "name": "showForm",
-            "designerId": "a5deadde-3316-4832-a1eb-cc43c23e80cb"
+            "designerId": "884b2840-ed01-4915-9065-1acce74c77b6"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "intmp",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    Common.ajax({",
+                    "        url:ctxp+'/store/in/tmp?id='+id,",
+                    "        callback:function(result){",
+                    "            me.loadGrid();",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "intmp",
+            "designerId": "498fb102-df88-4da7-bf7a-adae202ee641"
         },
         {
             "type": "basicfunction",
@@ -497,7 +509,7 @@
                     "    var params = me.form.getForm().getValues();",
                     "    Common.loadStore({",
                     "        component:this,",
-                    "        url:ctxp + '/store/in/list',",
+                    "        url:ctxp + '/store/in/tmplist',",
                     "        pageSize:this.pageSize.getValue(),",
                     "        fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
                     "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],",
@@ -507,7 +519,7 @@
                 ]
             },
             "name": "loadGrid",
-            "designerId": "6196404b-e81e-484f-84c6-6504fb718197"
+            "designerId": "1bbb252a-0492-4675-9182-e2944f7c7678"
         },
         {
             "type": "basiceventbinding",
@@ -526,7 +538,7 @@
                 "scope": "me"
             },
             "name": "onGridpanelAfterRender",
-            "designerId": "0dfdf3b7-4ac8-4c6e-acf6-4c7481c6078e"
+            "designerId": "a1aee4a6-d4b0-4bc6-8dfb-f0e969cc795c"
         },
         {
             "type": "basiceventbinding",
@@ -545,7 +557,7 @@
                 "scope": "me"
             },
             "name": "onGridpanelSelectionChange",
-            "designerId": "a24602f0-808c-4983-8a84-d9c7e43683d3"
+            "designerId": "d51a5a44-4fd3-426a-b9e4-638fc024ff6f"
         },
         {
             "type": "Ext.toolbar.Paging",
@@ -563,7 +575,7 @@
                 "width": 360
             },
             "name": "MyPagingToolbar2",
-            "designerId": "9c2d6301-dd51-4854-9647-dfdbae5df07c",
+            "designerId": "4e790237-ecdd-4de6-815c-f3102c8b2218",
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -582,7 +594,7 @@
                         "single": true
                     },
                     "name": "onPagingtoolbarBeforeRender",
-                    "designerId": "94cf822e-7b65-4e1a-bac4-02c3908f80b2"
+                    "designerId": "f9fa1ffa-8925-4e82-8681-dd89912829f6"
                 },
                 {
                     "type": "Ext.form.field.ComboBox",
@@ -600,7 +612,7 @@
                         "width": 120
                     },
                     "name": "MyComboBox3",
-                    "designerId": "b9ad9227-b2c1-4e1e-b520-c4fb6b145b04",
+                    "designerId": "5977a12a-96db-42e7-895d-872ed5fa82f8",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -620,7 +632,7 @@
                                 "single": true
                             },
                             "name": "onpageSizeAfterRender",
-                            "designerId": "e1f473d2-da79-45cb-827c-b4b1500f2de9"
+                            "designerId": "5dde969e-dfcb-453d-8bf7-e5a8bb8b7afd"
                         },
                         {
                             "type": "basiceventbinding",
@@ -638,7 +650,7 @@
                                 "scope": "me"
                             },
                             "name": "onComboboxChange",
-                            "designerId": "be2543b2-81eb-47a3-808f-ba0bc5b0ed12"
+                            "designerId": "81df9b6e-46d3-48ee-b8ff-cd434401c359"
                         }
                     ]
                 }

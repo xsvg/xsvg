@@ -6,18 +6,18 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "StoreOutWindow",
-        "height": 459,
+        "designer|userClassName": "StoreInTmpWindow",
+        "height": 390,
         "layout": "border",
         "modal": true,
         "resizable": [
             "false"
         ],
-        "title": "抵押物明细",
+        "title": "入库",
         "width": 768
     },
     "name": "StoreInWindow1",
-    "designerId": "ea440c5e-ea58-47d5-9151-91d29bc4549b",
+    "designerId": "500f5b35-89dd-41d2-aaae-ba8cac8c90ca",
     "cn": [
         {
             "type": "Ext.form.Panel",
@@ -35,7 +35,7 @@
                 "title": "编辑机构表单"
             },
             "name": "MyForm1",
-            "designerId": "1fdd1bbb-78e8-4637-be7d-ff6fd956150b",
+            "designerId": "af8ce6f1-ff78-4d2c-ab80-271e0dabba29",
             "cn": [
                 {
                     "type": "Ext.form.field.Hidden",
@@ -49,21 +49,7 @@
                         "name": "id"
                     },
                     "name": "MyHiddenField1",
-                    "designerId": "caadfbb7-ece6-48ad-bccd-81d032ca06be"
-                },
-                {
-                    "type": "Ext.form.field.Hidden",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "Label",
-                        "name": "itemId"
-                    },
-                    "name": "MyHiddenField",
-                    "designerId": "65da70c7-615f-4962-b037-c9ab95e75652"
+                    "designerId": "c6270b1e-d697-47e5-a17a-55081328378c"
                 },
                 {
                     "type": "Ext.panel.Panel",
@@ -83,7 +69,7 @@
                         "width": 677
                     },
                     "name": "MyPanel",
-                    "designerId": "064d4744-711a-4ab6-a28e-0570f516fbff",
+                    "designerId": "ea19f7b7-af09-46b6-8d92-fac48d150816",
                     "cn": [
                         {
                             "type": "Ext.form.field.Text",
@@ -102,10 +88,93 @@
                                 "name": "rfid",
                                 "padding": 5,
                                 "readOnly": true,
-                                "width": 670
+                                "width": 610
                             },
                             "name": "MyTextField1",
-                            "designerId": "dc963588-a7db-4fde-bd71-15047e1f7d29"
+                            "designerId": "c8e3591f-c58c-46f4-88bc-b8c82d2c9a9f",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onTextfieldAfterRender",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "me.rfidComp = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me",
+                                        "single": true
+                                    },
+                                    "name": "onTextfieldAfterRender",
+                                    "designerId": "18506e76-6ced-48fc-9974-d256489d0c06"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|x": 615,
+                                "layout|y": 5,
+                                "text": "读标签号",
+                                "width": 60
+                            },
+                            "name": "MyButton3",
+                            "designerId": "444af090-b1f5-4c1c-86bb-5264f98eaaa2",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonAfterRender",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "me.rfidBtn = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonAfterRender",
+                                    "designerId": "1a2dab07-7051-454b-9a07-14b165ced029"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonClick",
+                                        "implHandler": [
+                                            "var me = this;",
+                                            "me.rfidBtn = button;",
+                                            "me.rfidBtn.setDisabled(false);",
+                                            "window.rfidRead = function(){",
+                                            "    me.rfidRead();",
+                                            "};",
+                                            "setTimeout(window.rfidRead,1000);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonClick",
+                                    "designerId": "7e2436e1-0308-455f-b1ca-9e67e91d80c1"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -118,12 +187,12 @@
                     "codeClass": null,
                     "userConfig": {
                         "border": false,
-                        "height": 260,
+                        "height": 196,
                         "title": null,
                         "width": 340
                     },
                     "name": "MyPanel1",
-                    "designerId": "bbd5c861-ac51-4c27-b86f-811e395c9e98",
+                    "designerId": "9015063f-c0df-406e-9227-2538593ee7eb",
                     "cn": [
                         {
                             "type": "Ext.form.field.Text",
@@ -141,11 +210,10 @@
                                 "maxLength": 20,
                                 "name": "sn",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField3",
-                            "designerId": "04c97bef-f2b1-4d6e-b40a-1c1aec50e006"
+                            "designerId": "ac8ec428-ebfb-44ea-92a2-208f71202211"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -165,11 +233,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "name",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField2",
-                            "designerId": "4055533c-e689-471f-94bf-9576f9107d8e"
+                            "designerId": "82c1dd00-794f-4804-9aed-cae058ca60d9"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -189,11 +256,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "dywId",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField",
-                            "designerId": "5361ca47-40cc-456d-9baf-a47ce1ca5d8c"
+                            "designerId": "7e75a637-6c35-4593-95f0-8cee85662a00"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -213,11 +279,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "dywOwner",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField12",
-                            "designerId": "c60f2615-385f-4c7a-8276-38d52e74b091"
+                            "designerId": "097c8fc7-1d94-4fb3-aa4b-ec76828ccb60"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -237,11 +302,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "dywOwnerId",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField11",
-                            "designerId": "85a82f95-3e18-475f-8bf8-73c66d2ecc6e"
+                            "designerId": "cb786687-e283-40eb-a3ee-504817cb2d00"
                         },
                         {
                             "type": "Ext.form.field.Number",
@@ -261,113 +325,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "pgje",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyNumberField1",
-                            "designerId": "42bcf5df-1795-4b6e-bd4a-ccde80995a25"
-                        },
-                        {
-                            "type": "Ext.form.RadioGroup",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fieldLabel": "身份证原件确认",
-                                "labelAlign": "right",
-                                "padding": 5,
-                                "width": 330
-                            },
-                            "name": "MyRadioGroup3",
-                            "designerId": "c54fe202-8d55-406d-ae95-b3b83f877cd2",
-                            "cn": [
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "已确认",
-                                        "fieldLabel": null,
-                                        "inputValue": "true",
-                                        "name": "confirmId"
-                                    },
-                                    "name": "MyRadio4",
-                                    "designerId": "62017713-6ec6-4c1c-89c2-5d56b7514041"
-                                },
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "未确认",
-                                        "checked": true,
-                                        "fieldLabel": null,
-                                        "inputValue": "false",
-                                        "name": "confirmId"
-                                    },
-                                    "name": "MyRadio5",
-                                    "designerId": "393fcfae-4556-483a-abd6-aea7ce69d847"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.form.RadioGroup",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fieldLabel": "贷款是否还清",
-                                "labelAlign": "right",
-                                "padding": 5,
-                                "width": 330
-                            },
-                            "name": "MyRadioGroup1",
-                            "designerId": "22086b6a-41c4-4e28-b104-888cd46644e5",
-                            "cn": [
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "已还清",
-                                        "fieldLabel": null,
-                                        "inputValue": "true",
-                                        "name": "paidOff"
-                                    },
-                                    "name": "MyRadio4",
-                                    "designerId": "a34ca2b1-bee6-4e50-ada2-c9a539b47bd5"
-                                },
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "未还清",
-                                        "checked": true,
-                                        "fieldLabel": null,
-                                        "inputValue": "false",
-                                        "name": "paidOff"
-                                    },
-                                    "name": "MyRadio5",
-                                    "designerId": "69743585-1eda-4cf4-926e-e5759c6781ca"
-                                }
-                            ]
+                            "designerId": "1358814f-08a9-4647-90ce-f229e0502441"
                         }
                     ]
                 },
@@ -380,12 +341,12 @@
                     "codeClass": null,
                     "userConfig": {
                         "border": false,
-                        "height": 260,
+                        "height": 196,
                         "title": null,
                         "width": 340
                     },
                     "name": "MyPanel2",
-                    "designerId": "d012a21b-9dac-4f5b-9657-71f1fd080464",
+                    "designerId": "abf4f473-acd2-4701-957e-2c880ab33c1a",
                     "cn": [
                         {
                             "type": "Ext.form.field.Hidden",
@@ -402,7 +363,7 @@
                                 "width": 330
                             },
                             "name": "MyHiddenField2",
-                            "designerId": "a2082872-a284-4b42-9559-fafc3b7a4778"
+                            "designerId": "cc587196-4a4e-4079-bb3b-b24262905db5"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -422,11 +383,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "htId",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField4",
-                            "designerId": "5e3e4db3-c8e4-4da3-91a6-e78fe7bfad40"
+                            "designerId": "4b627127-7c2d-4b7f-a354-6a01fe3a04b1"
                         },
                         {
                             "type": "Ext.panel.Panel",
@@ -448,7 +408,7 @@
                                 "width": 399
                             },
                             "name": "MyPanel",
-                            "designerId": "d56d114d-a6e3-4781-b872-194b3fb6f24c",
+                            "designerId": "ca8edfff-26e8-426d-939d-104d3c728c3a",
                             "customConfigs": [
                                 {
                                     "group": "(Custom Properties)",
@@ -479,7 +439,7 @@
                                         "text": "合同起止日期:"
                                     },
                                     "name": "MyLabel1",
-                                    "designerId": "589e4594-d50d-40a6-8374-c7e0eb59bea4"
+                                    "designerId": "3f114b91-3790-462d-aada-da52122d9063"
                                 },
                                 {
                                     "type": "Ext.form.field.Date",
@@ -496,12 +456,11 @@
                                         "labelWidth": null,
                                         "name": "htStartDate",
                                         "padding": null,
-                                        "readOnly": true,
                                         "vtype": "startDate",
                                         "width": 105
                                     },
                                     "name": "MyDateField",
-                                    "designerId": "f661e7b2-cb4d-4de9-95e5-970775afa452"
+                                    "designerId": "a01288e6-b4ee-4a47-a474-ae6ce473a000"
                                 },
                                 {
                                     "type": "Ext.form.field.Date",
@@ -519,12 +478,11 @@
                                         "labelWidth": 10,
                                         "name": "htEndDate",
                                         "padding": null,
-                                        "readOnly": true,
                                         "vtype": "endDate",
                                         "width": 120
                                     },
                                     "name": "MyDateField1",
-                                    "designerId": "69085035-4cfb-48fd-8b1c-1d20c1aac5e3"
+                                    "designerId": "6002f917-4219-4028-9e5a-2d07859ff39b"
                                 }
                             ]
                         },
@@ -548,11 +506,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "registerDate",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyDateField2",
-                            "designerId": "56fe0d86-2c00-4d2b-b27c-88b035165ff8"
+                            "designerId": "d40f0949-e2ef-45bb-b954-172aa3474a57"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -572,11 +529,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "storeman",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField5",
-                            "designerId": "38594d73-7f56-4a82-97c7-8c254cba1761"
+                            "designerId": "85f91f67-eae3-40ca-9ea8-f2dbfa2b7eb4"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -600,7 +556,40 @@
                                 "width": 329
                             },
                             "name": "MyTextField10",
-                            "designerId": "60c080bd-08a3-4dc5-ab43-b19d0e1d1498"
+                            "designerId": "e8742910-ad2a-4722-97e3-64084bcb6fe6",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onParentNameTextfieldFocus",
+                                        "implHandler": [
+                                            "try{",
+                                            "    var me = this;",
+                                            "    var areaId = me.form.getForm().findField('areaId');",
+                                            "    Common.showTreeSelect({",
+                                            "        multiple:false,",
+                                            "        url:ctxp + '/store/area/tree',",
+                                            "        params:{myId:areaId},",
+                                            "        callback:function(item)",
+                                            "        {",
+                                            "            areaId.setValue(item.id);",
+                                            "            component.setValue(item.text);",
+                                            "        }",
+                                            "    });",
+                                            "}catch(ex){}"
+                                        ],
+                                        "name": "focus",
+                                        "scope": "me"
+                                    },
+                                    "name": "onParentNameTextfieldFocus",
+                                    "designerId": "1445ed66-3c39-4985-bf8f-b87751583ccd"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.form.field.Number",
@@ -620,113 +609,10 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "jkje",
                                 "padding": 5,
-                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyNumberField2",
-                            "designerId": "243f77a8-a557-45d2-ab59-aaefbac4a27f"
-                        },
-                        {
-                            "type": "Ext.form.RadioGroup",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fieldLabel": "抵押凭证客户联",
-                                "labelAlign": "right",
-                                "padding": 5,
-                                "width": 330
-                            },
-                            "name": "MyRadioGroup",
-                            "designerId": "c2aae8d7-c57d-4817-883e-5edb6ff46eed",
-                            "cn": [
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "已回收",
-                                        "fieldLabel": null,
-                                        "inputValue": "true",
-                                        "name": "takeBackCertificate"
-                                    },
-                                    "name": "MyRadio4",
-                                    "designerId": "2dc78314-f13d-4b11-a97e-7ccd924f3d17"
-                                },
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "未回收",
-                                        "checked": true,
-                                        "fieldLabel": null,
-                                        "inputValue": "false",
-                                        "name": "takeBackCertificate"
-                                    },
-                                    "name": "MyRadio5",
-                                    "designerId": "b5e08633-e884-40fb-9583-565a62ea42ff"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.form.RadioGroup",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fieldLabel": "是否本人签名",
-                                "labelAlign": "right",
-                                "padding": 5,
-                                "width": 330
-                            },
-                            "name": "MyRadioGroup4",
-                            "designerId": "00cf7358-71a7-4fc9-8ceb-88414553691f",
-                            "cn": [
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "已签名",
-                                        "fieldLabel": null,
-                                        "inputValue": "true",
-                                        "name": "selfSign"
-                                    },
-                                    "name": "MyRadio4",
-                                    "designerId": "5ca55930-fadc-428b-b9d8-619326810cb3"
-                                },
-                                {
-                                    "type": "Ext.form.field.Radio",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "boxLabel": "未签名",
-                                        "checked": true,
-                                        "fieldLabel": null,
-                                        "inputValue": "false",
-                                        "name": "selfSign"
-                                    },
-                                    "name": "MyRadio5",
-                                    "designerId": "5b2f5f31-4377-4fb3-b940-9efb82843a5e"
-                                }
-                            ]
+                            "designerId": "5048963e-8598-4d92-beb3-2293fbe27812"
                         }
                     ]
                 },
@@ -748,7 +634,7 @@
                         "width": 670
                     },
                     "name": "MyTextArea",
-                    "designerId": "0477f7a9-b58d-4b20-a8c6-4b2297ea81c7"
+                    "designerId": "cde05b05-16a9-45f3-8b5c-f231dd0c3000"
                 },
                 {
                     "type": "basiceventbinding",
@@ -766,7 +652,7 @@
                         "scope": "me"
                     },
                     "name": "onFormAfterRender",
-                    "designerId": "f8e8803d-5a1b-44f6-9c99-4f1ddd050d6b"
+                    "designerId": "bfbc7641-3fe1-4225-950c-998801d7d58d"
                 }
             ]
         },
@@ -783,7 +669,7 @@
                 "dock": "bottom"
             },
             "name": "MyToolbar",
-            "designerId": "b52ccff0-a26c-4191-9222-f752711b50c3",
+            "designerId": "7986ff69-75a3-4fbc-b06f-26ab2e22d1f7",
             "cn": [
                 {
                     "type": "Ext.button.Button",
@@ -793,14 +679,13 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "disabled": null,
-                        "iconCls": "icon-del",
+                        "iconCls": "icon-save",
                         "layout|flex": null,
-                        "text": "出库",
+                        "text": "保存",
                         "width": 53
                     },
                     "name": "MyButton1",
-                    "designerId": "a2764aa7-307a-49d6-b4ae-373d1c03129e",
+                    "designerId": "cec371b7-32d6-4412-92e4-ca90cde5adee",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -816,7 +701,7 @@
                                     "var me = this;",
                                     "try{",
                                     "    Common.formSubmit({",
-                                    "        url : ctxp+'/store/out/save',",
+                                    "        url : ctxp+'/store/in/save',",
                                     "        form:me.form,",
                                     "        callback : function(result)",
                                     "        {",
@@ -832,7 +717,7 @@
                                 "scope": "me"
                             },
                             "name": "onSaveClick",
-                            "designerId": "a20c778b-ed0f-4000-b29f-d8acc5c69100"
+                            "designerId": "b6d0d06a-9e52-40f1-b37f-28b076a3944e"
                         },
                         {
                             "type": "basiceventbinding",
@@ -850,7 +735,7 @@
                                 "scope": "me"
                             },
                             "name": "onButtonRender",
-                            "designerId": "95e85590-a1c6-46b8-bc37-73bb766f69d3"
+                            "designerId": "c4d59767-5d9d-4419-a6ff-7cf3041c7b6b"
                         }
                     ]
                 },
@@ -867,7 +752,7 @@
                         "text": "取消"
                     },
                     "name": "MyButton2",
-                    "designerId": "d990e4c4-0430-4ba1-8692-0a35e03cd1ae",
+                    "designerId": "17ecb60f-57c9-4e42-9ef7-76b2987b071f",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -886,7 +771,7 @@
                                 "scope": "me"
                             },
                             "name": "onCancelClick",
-                            "designerId": "afc78726-39bf-4213-959d-91abc1d0509a"
+                            "designerId": "e5fafdf3-71a0-46c7-85d5-b5e8977d1211"
                         }
                     ]
                 }
@@ -907,10 +792,13 @@
                 "implHandler": [
                     "var me = this;",
                     "try{",
+                    "    if(id === ''){",
+                    "        me.btnShow();",
+                    "    }",
                     "    Common.ajax({",
                     "        component : me.form,",
                     "        message : '加载信息...',",
-                    "        url : ctxp+'/store/out/load?id='+id,",
+                    "        url : ctxp+'/store/in/tmp/load?id='+id,",
                     "        callback : function(result)",
                     "        {",
                     "            me.form.getForm().reset();",
@@ -925,7 +813,89 @@
                 ]
             },
             "name": "loadForm",
-            "designerId": "bdde2a4e-e346-431e-ae8c-7c8f627acee4"
+            "designerId": "4bdb638c-8dcc-4ffa-9580-88832926c909"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "rfidRead",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "    Common.ajax({",
+                    "        component : me.form,",
+                    "        lock:false,",
+                    "        url : ctxp+'/home/store/getTag',",
+                    "        callback : function(result)",
+                    "        {",
+                    "            me.rfidBtn.setDisabled(true);",
+                    "            if(result.rows === ''){",
+                    "                setTimeout(window.rfidRead,2000);",
+                    "            }else{",
+                    "                me.rfidComp.setValue(result.rows);",
+                    "                me.rfidBtn.setDisabled(false);",
+                    "            }",
+                    "        }",
+                    "    });",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "    Common.show({title:'操作提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "rfidRead",
+            "designerId": "ffe09bfd-7fbb-4ce6-8a3d-749dacd30b0a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "btnShow",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    me.btnSave.show();",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'操作提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "btnShow",
+            "designerId": "73f9c681-4845-41c1-99fd-5d6210580f93"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowDestroy",
+                "implHandler": [
+                    "setTimeout(window.rfidRead,1000);",
+                    "window.rfidRead = null;"
+                ],
+                "name": "destroy",
+                "scope": "me"
+            },
+            "name": "onWindowDestroy",
+            "designerId": "77a67310-f6c8-4fbc-8b51-31797094cdea"
         }
     ]
 }

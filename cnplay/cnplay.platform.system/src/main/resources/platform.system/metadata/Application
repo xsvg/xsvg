@@ -35,7 +35,9 @@
             "StoreItemPanel",
             "StoreOutWindow",
             "StoreOutPanel",
-            "StoreOutView"
+            "StoreOutView",
+            "StoreInTmpPanel",
+            "StoreInTmpWindow"
         ]
     },
     "name": "Application",

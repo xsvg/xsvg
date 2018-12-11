@@ -208,7 +208,7 @@
                                 "fieldLabel": "物品编号",
                                 "invalidText": "机构编码不能为空！",
                                 "labelAlign": "right",
-                                "maxLength": 10,
+                                "maxLength": 20,
                                 "name": "sn",
                                 "padding": 5,
                                 "width": 330
