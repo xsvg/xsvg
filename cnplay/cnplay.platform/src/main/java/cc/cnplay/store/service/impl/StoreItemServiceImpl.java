@@ -73,6 +73,29 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 	}
 
 	@Override
+	public DataGrid<StoreItem> findInTmpPage(String orgId, int page, int pageSize) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" FROM store_item t");
+		sb.append(" WHERE 1 = 1");
+		sb.append(" and t.status = " + StoreItem.STATUS_WIN + "");
+		sb.append(" and t.org_id = '" + orgId + "'");
+		StringBuffer sqllist = new StringBuffer();
+		sqllist.append("SELECT");
+		sqllist.append(" t.* ");
+		sqllist.append(sb.toString());
+
+		sb.insert(0, "SELECT count(t.id) total");
+		int total = dao().countBySql(sb.toString());
+		int firstResult = getFirstResult(page, pageSize);
+		int end = firstResult + pageSize;
+		sqllist.append(" ORDER BY  t.create_time DESC");
+		sqllist.append(" LIMIT " + firstResult + "," + end);
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
+		DataGrid<StoreItem> dg = new DataGrid<StoreItem>((int) total, list, pageSize, page);
+		return dg;
+	}
+
+	@Override
 	public DataGrid<StoreInVO> findInPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
 			int pageSize) {
 		StringBuffer sb = new StringBuffer();

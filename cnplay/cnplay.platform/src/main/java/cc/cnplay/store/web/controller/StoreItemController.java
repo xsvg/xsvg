@@ -1,5 +1,7 @@
 package cc.cnplay.store.web.controller;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,12 @@ import cc.cnplay.core.util.DateUtil;
 import cc.cnplay.core.vo.DataGrid;
 import cc.cnplay.core.vo.Json;
 import cc.cnplay.platform.annotation.RightAnnotation;
+import cc.cnplay.platform.domain.Attachment;
 import cc.cnplay.platform.domain.User;
+import cc.cnplay.platform.service.AttachmentService;
+import cc.cnplay.platform.util.ExcelImportHelp;
 import cc.cnplay.platform.web.controller.AbsController;
+import cc.cnplay.platform.web.controller.AttachmentController;
 import cc.cnplay.store.domain.StoreArea;
 import cc.cnplay.store.domain.StoreItem;
 import cc.cnplay.store.service.StoreAreaService;
@@ -37,6 +44,9 @@ public class StoreItemController extends AbsController {
 
 	@Resource
 	private StoreAreaService storeAreaService;
+
+	@Resource
+	private AttachmentService attachmentService;
 
 	@Ignore
 	@RequestMapping(value = "/area/tree")
@@ -62,7 +72,7 @@ public class StoreItemController extends AbsController {
 		}
 		return new Json<StoreOutVO>(vo);
 	}
-	
+
 	@RequestMapping(value = "/out/load")
 	public @ResponseBody Json<StoreOutVO> outLoadById(String id) {
 		StoreOutVO vo = storeItemService.getOutByItemId(id);
@@ -99,7 +109,7 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/out/list")
 	@RightAnnotation(name = "抵押管理/出库日志", component = "platform.system.view.StoreOutPanel", resource = "/store/out/vo", sort = 80100)
-	public @ResponseBody DataGrid<StoreOutVO> outList(String orgId, String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreOutVO> outList(String dywOwner, String startDate, String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -163,6 +173,52 @@ public class StoreItemController extends AbsController {
 			rst.NG("保存失败，请输入正确的信息");
 		}
 		return rst;
+	}
+
+	@RequestMapping(value = "/in/tmplist")
+	@RightAnnotation(name = "抵押管理/待入库管理", component = "platform.system.view.StoreInTmpPanel", resource = "/store/item/*", sort = 80100)
+	public @ResponseBody DataGrid<StoreItem> tmplist() {
+		User user = this.getSessionUser();
+		DataGrid<StoreItem> dg = storeItemService.findInTmpPage(user.getOrgId(), this.getPage(), this.getPageSize());
+		return dg;
+	}
+
+	@RequestMapping(value = "/in/tmp")
+	public @ResponseBody DataGrid<StoreItem> inTmp(String id) {
+		User user = this.getSessionUser();
+		Attachment att = attachmentService.getAttachment(id);
+		String filename = AttachmentController.path + "/" + id + "." + att.getSuffix();
+		try {
+			List<String[]> itemList = ExcelImportHelp.readExcel(filename);
+			for (int i = 1; i < itemList.size(); i++) {
+				String[] strs = itemList.get(i);
+				StoreItem item = new StoreItem();
+				item.setSn(strs[0]);
+				item.setName(strs[1]);
+				item.setDywOwner(strs[2]);
+				item.setPgje(new BigDecimal(strs[3]));
+				item.setJkje(new BigDecimal(strs[4]));
+				item.setRegisterDate(strs[5]);
+				item.setStoreman(strs[6]);
+				item.setStatus(StoreItem.STATUS_WIN);
+				item.setOrgId(user.getOrgId());
+				storeItemService.save(item);
+			}
+		} catch (IOException e) {
+			logger.error(e.getMessage(), e);
+		}
+		DataGrid<StoreItem> dg = storeItemService.findInTmpPage(user.getOrgId(), this.getPage(), this.getPageSize());
+		return dg;
+	}
+
+	@RequestMapping(value = "/in/tmp/load")
+	public @ResponseBody Json<StoreInVO> inTmpLoad(String id) {
+		StoreItem item = storeItemService.getById(id);
+		StoreInVO vo = new StoreInVO();
+		BeanUtils.copyProperties(item, vo);
+		vo.setItemId(id);
+		vo.setId(StoreItem.randomID());
+		return new Json<StoreInVO>(vo);
 	}
 
 	@RequestMapping(value = "/in/list")

@@ -11,15 +11,17 @@ import cc.cnplay.store.vo.StoreOutVO;
 
 public interface StoreItemService extends GenericService<StoreItem, String> {
 
-	DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate,
-			String orgId, String dywOwner, int page, int pageSize);
+	DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
+			int pageSize);
 
-	DataGrid<StoreInVO> findInPageLikeName(Date startDate, Date endDate,
-			String orgId, String dywOwner, int page, int pageSize);
+	DataGrid<StoreInVO> findInPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
+			int pageSize);
 
-	DataGrid<StoreOutVO> findOutPageLikeName(Date startDate, Date endDate,
-			String orgId, String dywOwner, int page, int pageSize);
-	
+	DataGrid<StoreItem> findInTmpPage(String orgId, int page, int pageSize);
+
+	DataGrid<StoreOutVO> findOutPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
+			int pageSize);
+
 	StoreInVO in(StoreInVO form);
 
 	StoreInVO getInVoById(String id);
