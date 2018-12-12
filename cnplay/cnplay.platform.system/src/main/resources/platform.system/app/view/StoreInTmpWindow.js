@@ -54,6 +54,11 @@ Ext.define('platform.system.view.StoreInTmpWindow', {
                             name: 'id'
                         },
                         {
+                            xtype: 'hiddenfield',
+                            fieldLabel: 'Label',
+                            name: 'itemId'
+                        },
+                        {
                             xtype: 'panel',
                             border: false,
                             height: 32,

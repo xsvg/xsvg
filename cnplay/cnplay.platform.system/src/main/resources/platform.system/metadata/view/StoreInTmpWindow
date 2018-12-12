@@ -52,6 +52,20 @@
                     "designerId": "c6270b1e-d697-47e5-a17a-55081328378c"
                 },
                 {
+                    "type": "Ext.form.field.Hidden",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Label",
+                        "name": "itemId"
+                    },
+                    "name": "MyHiddenField4",
+                    "designerId": "51b36290-b7dd-45e5-8892-077be5c8741a"
+                },
+                {
                     "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
