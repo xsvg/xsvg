@@ -154,7 +154,7 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion1",
+                    "name": "datetegion2",
                     "designerId": "4e10e3d4-3818-440f-8141-75dfd0c90f84",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
@@ -204,6 +204,21 @@
             },
             "name": "MyColumn2",
             "designerId": "f6a2b7c2-f75a-41a9-ab41-3e28149dc2e9"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "text": "物品名称",
+                "width": 150
+            },
+            "name": "MyColumn22",
+            "designerId": "d7575947-d5df-4fd5-a2de-a4eb43f7e850"
         },
         {
             "type": "Ext.grid.column.Column",

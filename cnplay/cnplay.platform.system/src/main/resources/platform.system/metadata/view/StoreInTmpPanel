@@ -248,12 +248,27 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "storeman",
-                "text": "保管员",
+                "dataIndex": "name",
+                "text": "物品名称",
                 "width": 150
             },
             "name": "MyColumn3",
             "designerId": "4420dbdc-3d57-4c8a-b644-991d74756932"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "storeman",
+                "text": "保管员",
+                "width": 150
+            },
+            "name": "MyColumn15",
+            "designerId": "1d4858e3-361c-4541-871f-f2772c4620a3"
         },
         {
             "type": "Ext.grid.column.Column",

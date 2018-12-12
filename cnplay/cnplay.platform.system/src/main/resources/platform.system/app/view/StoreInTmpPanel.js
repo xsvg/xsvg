@@ -148,6 +148,12 @@ Ext.define('platform.system.view.StoreInTmpPanel', {
                 {
                     xtype: 'gridcolumn',
                     width: 150,
+                    dataIndex: 'name',
+                    text: '物品名称'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 150,
                     dataIndex: 'storeman',
                     text: '保管员'
                 },
