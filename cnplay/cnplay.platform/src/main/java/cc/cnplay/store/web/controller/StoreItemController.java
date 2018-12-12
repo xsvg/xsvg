@@ -10,6 +10,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Controller;
@@ -198,7 +200,11 @@ public class StoreItemController extends AbsController {
 				item.setDywOwner(strs[2]);
 				item.setPgje(new BigDecimal(strs[3]));
 				item.setJkje(new BigDecimal(strs[4]));
-				item.setRegisterDate(strs[5]);
+				try {
+					String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
+					item.setRegisterDate(date);
+				} catch (Exception e) {
+				}
 				item.setStoreman(strs[6]);
 				item.setStatus(StoreItem.STATUS_WIN);
 				item.setOrgId(user.getOrgId());
@@ -216,6 +222,11 @@ public class StoreItemController extends AbsController {
 		StoreItem item = storeItemService.getById(id);
 		StoreInVO vo = new StoreInVO();
 		BeanUtils.copyProperties(item, vo);
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyyMMdd"), "yyyy年MM月dd日");
+			vo.setRegisterDate(date);
+		} catch (Exception e) {
+		}
 		vo.setItemId(id);
 		vo.setId(StoreItem.randomID());
 		return new Json<StoreInVO>(vo);
