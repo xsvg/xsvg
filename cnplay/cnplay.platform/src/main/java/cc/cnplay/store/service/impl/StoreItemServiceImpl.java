@@ -182,7 +182,11 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		StoreItem item = new StoreItem();
 		BeanUtils.copyProperties(form, in);
 		BeanUtils.copyProperties(form, item);
-		item.setId(StoreItem.randomID());
+		if (!StringUtils.isEmpty(form.getItemId())) {
+			item.setId(form.getItemId());
+		} else {
+			item.setId(StoreItem.randomID());
+		}
 		in.setItemId(item.getId());
 		item.setStatus(StoreItem.STATUS_IN);
 		dao().save(in);
