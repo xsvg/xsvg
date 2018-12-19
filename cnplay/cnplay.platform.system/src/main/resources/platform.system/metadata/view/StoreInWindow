@@ -66,7 +66,7 @@
                         "height": 32,
                         "layout": "absolute",
                         "title": "rfid",
-                        "width": 677
+                        "width": 710
                     },
                     "name": "MyPanel",
                     "designerId": "4425d760-00c1-48cd-ba01-18e056f1d6b8",
@@ -84,11 +84,12 @@
                                 "fieldLabel": "标签号",
                                 "invalidText": "机构编码不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": null,
                                 "name": "rfid",
                                 "padding": 5,
                                 "readOnly": true,
-                                "width": 610
+                                "width": 630
                             },
                             "name": "MyTextField1",
                             "designerId": "a255a2c8-fd1a-49e1-ab1f-56f3f7f626c2",
@@ -124,7 +125,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "disabled": true,
-                                "layout|x": 615,
+                                "layout|x": 635,
                                 "layout|y": 5,
                                 "text": "读标签号",
                                 "width": 60
@@ -190,7 +191,7 @@
                         "border": false,
                         "height": 196,
                         "title": null,
-                        "width": 340
+                        "width": 360
                     },
                     "name": "MyPanel1",
                     "designerId": "43c7f37b-d52c-4350-9457-e501b6c787c0",
@@ -203,11 +204,11 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "fieldLabel": "物品编号",
                                 "invalidText": "机构编码不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": 20,
                                 "name": "sn",
                                 "padding": 5,
@@ -224,12 +225,12 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "物品名称",
                                 "invalidText": "机构名称不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": 50,
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "name",
@@ -247,12 +248,12 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "抵质押物证号码",
                                 "invalidText": "机构名称不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": 50,
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "dywId",
@@ -270,12 +271,12 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "抵质押物所有人",
                                 "invalidText": "机构名称不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": 50,
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "dywOwner",
@@ -293,12 +294,12 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "所有人证件号码",
                                 "invalidText": "机构名称不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": 50,
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "dywOwnerId",
@@ -316,12 +317,12 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
-                                "fieldLabel": "抵质押物评估价值",
+                                "fieldLabel": "抵质押物评估金额",
                                 "invalidText": "机构名称不能为空！",
                                 "labelAlign": "right",
+                                "labelWidth": 120,
                                 "maxLength": 50,
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "pgje",
@@ -344,7 +345,7 @@
                         "border": false,
                         "height": 196,
                         "title": null,
-                        "width": 340
+                        "width": 360
                     },
                     "name": "MyPanel2",
                     "designerId": "ef7d4f4b-0de2-4401-87ce-e824cbdacbf4",
@@ -374,7 +375,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "贷款合同号",
@@ -495,7 +495,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "editable": false,
                                 "enforceMaxLength": true,
@@ -530,6 +529,7 @@
                                 "maxLengthText": "机构名称最大长度不超过50个字符！",
                                 "name": "storeman",
                                 "padding": 5,
+                                "readOnly": true,
                                 "width": 330
                             },
                             "name": "MyTextField5",
@@ -600,10 +600,9 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
-                                "fieldLabel": "实际借款金额",
+                                "fieldLabel": "抵质押金额",
                                 "invalidText": "机构名称不能为空！",
                                 "labelAlign": "right",
                                 "maxLength": 50,
@@ -628,11 +627,12 @@
                         "enforceMaxLength": true,
                         "fieldLabel": "备注",
                         "labelAlign": "right",
+                        "labelWidth": 120,
                         "maxLength": 100,
                         "maxLengthText": "备注内容最大长度不超过100个字符！",
                         "name": "memo",
                         "padding": 5,
-                        "width": 670
+                        "width": 692
                     },
                     "name": "MyTextArea",
                     "designerId": "983c0817-9e00-402e-af36-f91bff355817"

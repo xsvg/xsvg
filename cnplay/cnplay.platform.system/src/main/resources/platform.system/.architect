@@ -3831,24 +3831,18 @@
     },
     "tabState": {
         "openTabs": [
-            "c419bc8d-4bec-49d4-a641-71f3456f5848",
-            "48cc9f6b-59c5-4894-8e07-b5ac33b4a927",
             "500f5b35-89dd-41d2-aaae-ba8cac8c90ca",
             "6da7154a-f4a5-4856-a3e3-34cb30c45a11",
-            "ea440c5e-ea58-47d5-9151-91d29bc4549b",
             "50059f78-a27c-43e3-aac6-953dd0db00c8",
-            "da3ab11e-9278-4f96-84ba-06a5e820d973",
-            "a2ef8a5c-35b7-4b64-877a-aa7fdf89668a",
-            "5dbef3d5-3592-481d-a8b2-90d93790d5a1",
-            "39856aca-b4d3-4ad1-a027-80318c5151bb"
+            "ea440c5e-ea58-47d5-9151-91d29bc4549b"
         ]
     },
     "canvasState": {
-        "topInstance": "39856aca-b4d3-4ad1-a027-80318c5151bb"
+        "topInstance": "ea440c5e-ea58-47d5-9151-91d29bc4549b"
     },
     "inspectorState": {
-        "topInstance": "39856aca-b4d3-4ad1-a027-80318c5151bb",
-        "selectedInstance": "d7575947-d5df-4fd5-a2de-a4eb43f7e850"
+        "topInstance": "ea440c5e-ea58-47d5-9151-91d29bc4549b",
+        "selectedInstance": "38594d73-7f56-4a82-97c7-8c254cba1761"
     },
     "editMode": "design",
     "userSettings": {

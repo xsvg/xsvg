@@ -72,9 +72,10 @@ Ext.define('platform.system.view.StoreOutView', {
                                 {
                                     xtype: 'textfield',
                                     padding: 5,
-                                    width: 670,
+                                    width: 690,
                                     fieldLabel: '标签号',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'rfid',
                                     invalidText: '机构编码不能为空！',
                                     readOnly: true,
@@ -86,7 +87,7 @@ Ext.define('platform.system.view.StoreOutView', {
                             xtype: 'panel',
                             border: false,
                             height: 260,
-                            width: 340,
+                            width: 360,
                             items: [
                                 {
                                     xtype: 'textfield',
@@ -94,6 +95,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '物品编号',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'sn',
                                     invalidText: '机构编码不能为空！',
                                     readOnly: true,
@@ -106,6 +108,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '物品名称',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'name',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
@@ -120,6 +123,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '抵质押物证号码',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'dywId',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
@@ -134,6 +138,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '抵质押物所有人',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'dywOwner',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
@@ -148,6 +153,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '所有人证件号码',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'dywOwnerId',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
@@ -160,8 +166,9 @@ Ext.define('platform.system.view.StoreOutView', {
                                     xtype: 'numberfield',
                                     padding: 5,
                                     width: 330,
-                                    fieldLabel: '抵质押物评估价值',
+                                    fieldLabel: '抵质押物评估金额',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     name: 'pgje',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
@@ -176,6 +183,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '身份证原件确认',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     items: [
                                         {
                                             xtype: 'radiofield',
@@ -198,6 +206,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     width: 330,
                                     fieldLabel: '贷款是否还清',
                                     labelAlign: 'right',
+                                    labelWidth: 120,
                                     items: [
                                         {
                                             xtype: 'radiofield',
@@ -220,7 +229,7 @@ Ext.define('platform.system.view.StoreOutView', {
                             xtype: 'panel',
                             border: false,
                             height: 260,
-                            width: 340,
+                            width: 360,
                             items: [
                                 {
                                     xtype: 'hiddenfield',
@@ -333,7 +342,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     xtype: 'numberfield',
                                     padding: 5,
                                     width: 330,
-                                    fieldLabel: '实际借款金额',
+                                    fieldLabel: '抵质押金额',
                                     labelAlign: 'right',
                                     name: 'jkje',
                                     invalidText: '机构名称不能为空！',
@@ -392,9 +401,10 @@ Ext.define('platform.system.view.StoreOutView', {
                         {
                             xtype: 'textareafield',
                             padding: 5,
-                            width: 670,
+                            width: 690,
                             fieldLabel: '备注',
                             labelAlign: 'right',
+                            labelWidth: 120,
                             name: 'memo',
                             enforceMaxLength: true,
                             maxLength: 100,
