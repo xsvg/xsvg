@@ -144,6 +144,7 @@ public class StoreItemController extends AbsController {
 		StoreInVO vo = storeItemService.getInVoById(id);
 		if (vo == null) {
 			vo = new StoreInVO();
+			vo.setStoreman(this.getSessionUsername());
 		} else {
 			StoreArea p = storeAreaService.getById(vo.getAreaId());
 			if (p != null) {
@@ -229,6 +230,7 @@ public class StoreItemController extends AbsController {
 		}
 		vo.setItemId(id);
 		vo.setId(StoreItem.randomID());
+		vo.setStoreman(getSessionUsername());
 		return new Json<StoreInVO>(vo);
 	}
 
