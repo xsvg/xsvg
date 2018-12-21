@@ -6,14 +6,14 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "StoreItemPanel",
+        "designer|userClassName": "StoreMyItemPanel",
         "forceFit": true,
         "height": null,
         "title": "入库管理",
         "width": null
     },
-    "name": "StoreInPanel1",
-    "designerId": "5dbef3d5-3592-481d-a8b2-90d93790d5a1",
+    "name": "StoreItemPanel1",
+    "designerId": "5247ca99-5b96-4f45-b144-633f02bbf328",
     "cn": [
         {
             "type": "Ext.form.Panel",
@@ -34,7 +34,7 @@
                 "width": null
             },
             "name": "MyForm",
-            "designerId": "9ea4c450-2d82-45cc-98ce-aaf4a27be0f1",
+            "designerId": "2e6520ea-5a8f-4e92-b330-5ea530991647",
             "cn": [
                 {
                     "type": "Ext.form.field.Text",
@@ -52,7 +52,7 @@
                         "width": null
                     },
                     "name": "MyTextField6",
-                    "designerId": "efe60116-6a50-4b70-b456-c6aeb08bf511"
+                    "designerId": "17482445-8a34-4231-ae25-789a248c3414"
                 },
                 {
                     "type": "Ext.form.field.Text",
@@ -70,7 +70,7 @@
                         "width": ""
                     },
                     "name": "MyTextField9",
-                    "designerId": "2ed9d95a-1625-4b2f-9f7e-a68d117d64df"
+                    "designerId": "c0e7b549-e1c0-4f92-b23b-7fd1c2eb120e"
                 },
                 {
                     "type": "basiceventbinding",
@@ -88,7 +88,7 @@
                         "scope": "me"
                     },
                     "name": "onFormAfterRender",
-                    "designerId": "633cf6ac-f7f2-4628-9a5e-e337e67e1889"
+                    "designerId": "446a14df-d53b-49d8-be2a-54c63e0d1609"
                 },
                 {
                     "type": "Ext.toolbar.Toolbar",
@@ -103,7 +103,7 @@
                         "height": ""
                     },
                     "name": "MyToolbar2",
-                    "designerId": "d173901e-701c-4dde-925c-fb2ce8fca88a",
+                    "designerId": "5a497778-7205-4e2d-9d2f-7f0adf840da0",
                     "cn": [
                         {
                             "type": "Ext.button.Button",
@@ -118,7 +118,7 @@
                                 "text": "查询"
                             },
                             "name": "MyButton5",
-                            "designerId": "a49688bf-7d88-4520-bc87-6fce0445e17c",
+                            "designerId": "e84d77fd-d096-485f-bb58-fba37ccb957c",
                             "cn": [
                                 {
                                     "type": "basiceventbinding",
@@ -136,7 +136,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnSearchAfterRender",
-                                    "designerId": "a3184e0c-223f-4ccf-908b-06ed5c0a6359"
+                                    "designerId": "0e08a69e-ea3b-44b2-9e77-61f2431ad4a5"
                                 },
                                 {
                                     "type": "basiceventbinding",
@@ -155,7 +155,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnSearchClick",
-                                    "designerId": "3611ce55-0e24-4723-860d-dab40d127bf8"
+                                    "designerId": "e32047ae-3be8-4b81-b1d5-73223c79dd9b"
                                 }
                             ]
                         },
@@ -173,7 +173,7 @@
                                 "text": "出库"
                             },
                             "name": "MyButton8",
-                            "designerId": "53db1246-5640-4813-99e8-03fbd12584b3",
+                            "designerId": "e0f288b5-9bbb-4df8-8c2a-cc90ac6c9b14",
                             "cn": [
                                 {
                                     "type": "basiceventbinding",
@@ -192,7 +192,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnInAfterRender",
-                                    "designerId": "626d1fbe-bfd4-4e38-bfac-de04d43617c8"
+                                    "designerId": "d103d889-52be-464d-beb5-5207893d45c7"
                                 },
                                 {
                                     "type": "basiceventbinding",
@@ -224,7 +224,7 @@
                                         "scope": "me"
                                     },
                                     "name": "onBtnInClick",
-                                    "designerId": "c97b920a-6934-4bc3-a0d5-d585857e8fe9"
+                                    "designerId": "f7bbb57d-3371-439a-b2c6-3902a0883503"
                                 }
                             ]
                         }
@@ -241,8 +241,8 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion",
-                    "designerId": "74ebcd83-1619-4c64-99e1-ee11237cbbb5",
+                    "name": "datetegion1",
+                    "designerId": "9901283f-b7d6-4fa9-80a0-4f5ab28e7698",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
             ]
@@ -260,7 +260,7 @@
                 "width": 150
             },
             "name": "MyColumn7",
-            "designerId": "c54311f7-6e18-49a1-becb-3b641b4f4876"
+            "designerId": "bcf1059c-43bc-42f0-a827-5610444f9a53"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -275,7 +275,7 @@
                 "width": 150
             },
             "name": "MyColumn8",
-            "designerId": "24e480a2-7f79-46a7-8507-2fbb239fd35a"
+            "designerId": "58d0b373-5836-411d-9ec8-93212f0c4479"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -290,7 +290,7 @@
                 "width": 150
             },
             "name": "MyColumn2",
-            "designerId": "aabea308-ee1b-4154-b7b1-cd1cac96d43d"
+            "designerId": "2030686b-8787-49aa-8e89-247ef2ed7e23"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -305,7 +305,7 @@
                 "width": 150
             },
             "name": "MyColumn3",
-            "designerId": "8ae7edae-cc88-4660-87e8-2bc070c498c9"
+            "designerId": "c4d3a660-ead7-430b-98c4-234ec3468ea9"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -320,7 +320,7 @@
                 "width": 150
             },
             "name": "MyColumn16",
-            "designerId": "1d64a778-f823-4b33-a00e-ccc90b940498"
+            "designerId": "6ae99d7a-8eb5-4581-804f-7bc773299ed6"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -335,7 +335,7 @@
                 "width": 150
             },
             "name": "MyColumn20",
-            "designerId": "31c6f0ee-2918-43dd-af86-8cd8a6d54781"
+            "designerId": "6d16126e-4a8a-43e0-b1a6-eba7183c4b3b"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -350,7 +350,7 @@
                 "width": 150
             },
             "name": "MyColumn13",
-            "designerId": "9871d4e8-53a4-4a0e-8416-28229fd1c359"
+            "designerId": "c33ad4e8-ffd4-45b6-b2a9-94ebcf81e731"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -365,7 +365,7 @@
                 "width": 150
             },
             "name": "MyColumn18",
-            "designerId": "efa7cf5e-3d50-44aa-a715-4949c98b142d"
+            "designerId": "98dc3641-f97a-46ef-ac32-ebf72bf60561"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -380,7 +380,7 @@
                 "width": 150
             },
             "name": "MyColumn9",
-            "designerId": "64e0d8e8-0022-4055-9d8d-921fa329ce07"
+            "designerId": "27069c4c-86ae-4398-80f0-5ffdf64b9580"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -395,7 +395,7 @@
                 "width": 150
             },
             "name": "MyColumn17",
-            "designerId": "8a2f08d1-169a-4eb6-8158-9f671e54e71e"
+            "designerId": "ef4c97cf-bcc8-4eb1-9ad7-47f276b49379"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -410,7 +410,7 @@
                 "width": 300
             },
             "name": "MyColumn11",
-            "designerId": "6b828f1c-196a-4274-8e7e-eb6ad71b5d6a"
+            "designerId": "b0d6086e-33b3-451b-b151-733af93c3bd6"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -425,7 +425,7 @@
                 "width": 150
             },
             "name": "MyColumn23",
-            "designerId": "e10fdcb0-defc-425e-8980-8f5f8ff52546"
+            "designerId": "5be18b95-894c-466c-9c06-3d4fde684d90"
         },
         {
             "type": "Ext.grid.View",
@@ -435,7 +435,7 @@
             },
             "codeClass": null,
             "name": "MyGridView3",
-            "designerId": "2119d6da-4f95-4c11-a874-dfbdf9b08b29",
+            "designerId": "a2107247-a8d8-4920-8306-4c114750758e",
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -453,7 +453,7 @@
                         "scope": "me"
                     },
                     "name": "onViewBeforeItemDblClick",
-                    "designerId": "42b2c0c4-f9e2-4933-bc5f-ad00323bce56"
+                    "designerId": "90a10cf3-89c0-4b22-95ef-8ffb41aab620"
                 }
             ]
         },
@@ -465,7 +465,7 @@
             },
             "codeClass": "Ext.selection.CheckboxModel",
             "name": "MyCheckboxSelectionModel2",
-            "designerId": "a5dc9291-a5df-4742-a433-14aa7cfd49c1"
+            "designerId": "8ee39d43-55c9-4b67-9412-066a54e1ec8b"
         },
         {
             "type": "basicfunction",
@@ -498,7 +498,7 @@
                 ]
             },
             "name": "showForm",
-            "designerId": "7af9cff5-00bf-4d9f-8812-5b5bb8996dea"
+            "designerId": "8b5b955f-27e4-4fcb-b8a7-b3e5dc224fd8"
         },
         {
             "type": "basicfunction",
@@ -515,7 +515,7 @@
                     "    var params = me.form.getForm().getValues();",
                     "    Common.loadStore({",
                     "        component:this,",
-                    "        url:ctxp + '/store/item/list',",
+                    "        url:ctxp + '/store/item/mylist',",
                     "        pageSize:this.pageSize.getValue(),",
                     "        fields: ['id', 'sn','rfid','status','name','areaId','areaName','memo', 'orgId', 'storeman','dywOwner','dywOwnerId','dywId','registerDate',",
                     "                 'jkrsfz','jkrxm','jkje','pgje','htEndDate','htStartDate','operator','updateCheckUsername','htId'],",
@@ -525,7 +525,7 @@
                 ]
             },
             "name": "loadGrid",
-            "designerId": "72cba6d9-f37d-4320-8f7f-47cf1d1f9e6b"
+            "designerId": "00e79bcd-136a-47fe-9cf9-2e7ab7e0d199"
         },
         {
             "type": "basiceventbinding",
@@ -544,7 +544,7 @@
                 "scope": "me"
             },
             "name": "onGridpanelAfterRender",
-            "designerId": "b01de583-5713-4434-8690-eaac81c0d7ea"
+            "designerId": "4d9b0025-8494-43e5-99b4-d410819d0397"
         },
         {
             "type": "basiceventbinding",
@@ -566,7 +566,7 @@
                 "scope": "me"
             },
             "name": "onGridpanelSelectionChange",
-            "designerId": "1c25dbd2-0b55-4c21-93fc-ad12ecc2c222"
+            "designerId": "47c2488b-3ab2-4918-858f-b5129ecf5e5c"
         },
         {
             "type": "Ext.toolbar.Paging",
@@ -584,7 +584,7 @@
                 "width": 360
             },
             "name": "MyPagingToolbar2",
-            "designerId": "0abae01f-29f4-4de7-b06f-213dc193b80f",
+            "designerId": "c74e14be-44e9-49d8-8126-bec2871b1c69",
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -603,7 +603,7 @@
                         "single": true
                     },
                     "name": "onPagingtoolbarBeforeRender",
-                    "designerId": "90a1f656-e7c9-4f83-bab5-da66a5024a27"
+                    "designerId": "3f482dc0-044c-4f5d-9594-819fbf8d0e35"
                 },
                 {
                     "type": "Ext.form.field.ComboBox",
@@ -621,7 +621,7 @@
                         "width": 120
                     },
                     "name": "MyComboBox3",
-                    "designerId": "04569ae2-6924-46ee-81d2-72ee774094ea",
+                    "designerId": "27c55473-fdb5-4b50-8235-968dffdc3ef8",
                     "cn": [
                         {
                             "type": "basiceventbinding",
@@ -641,7 +641,7 @@
                                 "single": true
                             },
                             "name": "onpageSizeAfterRender",
-                            "designerId": "6333d137-bea7-42a0-8542-fda72b4396a3"
+                            "designerId": "7cb6591e-852c-4404-8151-7e34ca51d25e"
                         },
                         {
                             "type": "basiceventbinding",
@@ -659,7 +659,7 @@
                                 "scope": "me"
                             },
                             "name": "onComboboxChange",
-                            "designerId": "1f215cf3-6a4f-42c8-8805-202cd6d0a59f"
+                            "designerId": "9d23da0e-d3a5-4a88-b114-3ba13de54f77"
                         }
                     ]
                 }

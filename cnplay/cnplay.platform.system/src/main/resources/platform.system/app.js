@@ -50,7 +50,8 @@ Ext.application({
         'StoreOutPanel',
         'StoreOutView',
         'StoreInTmpPanel',
-        'StoreInTmpWindow'
+        'StoreInTmpWindow',
+        'StoreMyItemPanel'
     ],
     name: 'platform.system',
 
