@@ -11,8 +11,8 @@ import cc.cnplay.store.vo.StoreOutVO;
 
 public interface StoreItemService extends GenericService<StoreItem, String> {
 
-	DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
-			int pageSize);
+	DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, String storeman,
+			int page, int pageSize);
 
 	DataGrid<StoreInVO> findInPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
 			int pageSize);
@@ -35,5 +35,7 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 	StoreItem getInVoByRfid(String rfid);
 
 	List<StoreItem> findByDywOwner(String orgId, String dywOwner, String dywOwnerId);
+
+	DataGrid<StoreItem> findPageByStoreman(String storeman, int page, int pageSize);
 
 }

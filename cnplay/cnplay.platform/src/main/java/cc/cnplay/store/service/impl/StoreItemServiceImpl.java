@@ -37,7 +37,8 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 	}
 
 	@Override
-	public DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner, int page,
+	public DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner,
+			String storeman, int page,
 			int pageSize) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_item ");
@@ -47,6 +48,9 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		if (StringUtils.isNoneEmpty(dywOwner)) {
 			sb.append(" and store_item.dyw_owner LIKE '%" + dywOwner + "%'");
 		}
+		if (StringUtils.isNoneEmpty(storeman)) {
+			sb.append(" and store_item.storeman = '" + storeman + "'");
+		}
 		if (startDate != null) {
 			String date = DateFormatUtils.format(startDate, "yyyy-MM-dd 00:00:00");
 			sb.append(" and store_item.create_time >= '" + date + "'");
@@ -55,6 +59,30 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 			String date = DateFormatUtils.format(endDate, "yyyy-MM-dd 23:59:59");
 			sb.append(" and store_item.create_time <= '" + date + "'");
 		}
+		StringBuffer sqllist = new StringBuffer();
+		sqllist.append("SELECT");
+		sqllist.append(" store_item.*,");
+		sqllist.append(" store_area.`name` as areaName");
+		sqllist.append(sb.toString());
+
+		sb.insert(0, "SELECT count(store_item.id) total");
+		int total = dao().countBySql(sb.toString());
+		int firstResult = getFirstResult(page, pageSize);
+		int end = firstResult + pageSize;
+		sqllist.append(" ORDER BY  store_item.create_time DESC");
+		sqllist.append(" LIMIT " + firstResult + "," + end);
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sqllist.toString());
+		DataGrid<StoreItem> dg = new DataGrid<StoreItem>((int) total, list, pageSize, page);
+		return dg;
+	}
+
+	@Override
+	public DataGrid<StoreItem> findPageByStoreman(String storeman, int page, int pageSize) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" FROM store_item ");
+		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
+		sb.append(" WHERE store_item.status = " + StoreItem.STATUS_IN);
+		sb.append(" and store_item.storeman = '" + storeman + "'");
 		StringBuffer sqllist = new StringBuffer();
 		sqllist.append("SELECT");
 		sqllist.append(" store_item.*,");

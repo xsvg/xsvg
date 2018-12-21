@@ -266,7 +266,8 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/item/list")
 	@RightAnnotation(name = "抵押管理/抵押物查询", component = "platform.system.view.StoreItemPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreItem> itemList(String orgId, String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreItem> itemList(String storeman, String dywOwner, String startDate,
+			String endDate) {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -290,7 +291,37 @@ public class StoreItemController extends AbsController {
 			endDateTime = DateUtil.dateLess(endDate);
 		}
 		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
-				dywOwner, this.getPage(), this.getPageSize());
+				dywOwner, storeman, this.getPage(), this.getPageSize());
+		return dg;
+	}
+
+	@RequestMapping(value = "/item/mylist")
+	@RightAnnotation(name = "抵押管理/我的抵押物", component = "platform.system.view.StoreMyItemPanel", resource = "/store/item/*", sort = 80100)
+	public @ResponseBody DataGrid<StoreItem> itemMyList(String dywOwner, String startDate, String endDate) {
+		User user = this.getSessionUser();
+		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+			// 如果时间参数为空时，默认查询当前一个月数据
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c = Calendar.getInstance();
+			// 开始时间
+			c.setTime(new Date());
+			c.add(Calendar.MONTH, -1);
+			Date m = c.getTime();
+			startDate = format.format(m);
+			// 结束时间
+			Date d = new Date();
+			endDate = format.format(d);
+		}
+		Date startDateTime = null;
+		Date endDateTime = null;
+		if (StringUtils.isNotEmpty(startDate)) {
+			startDateTime = DateUtil.dateGreater(startDate);
+		}
+		if (StringUtils.isNotEmpty(endDate)) {
+			endDateTime = DateUtil.dateLess(endDate);
+		}
+		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
+				dywOwner, user.getUsername(), this.getPage(), this.getPageSize());
 		return dg;
 	}
 }
