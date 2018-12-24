@@ -17,6 +17,7 @@ import cc.cnplay.core.vo.DataGrid;
 import cc.cnplay.platform.dao.OrganizationDao;
 import cc.cnplay.store.domain.StoreIn;
 import cc.cnplay.store.domain.StoreItem;
+import cc.cnplay.store.domain.StoreMove;
 import cc.cnplay.store.domain.StoreOut;
 import cc.cnplay.store.service.StoreItemService;
 import cc.cnplay.store.vo.StoreInVO;
@@ -38,8 +39,7 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 
 	@Override
 	public DataGrid<StoreItem> findPageLikeName(Date startDate, Date endDate, String orgId, String dywOwner,
-			String storeman, int page,
-			int pageSize) {
+			String storeman, int page, int pageSize) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" FROM store_item ");
 		sb.append(" INNER JOIN store_area ON store_area.id = store_item.area_id ");
@@ -311,6 +311,25 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		sb.append(" ORDER BY  store_item.create_time DESC");
 		List<StoreItem> list = dao().findBySQL(StoreItem.class, sb.toString());
 		return list;
+	}
+
+	@Transactional
+	@Override
+	public boolean moveto(StoreMove form) {
+		List<StoreItem> itemList = this.dao().findByIds(StoreItem.class, form.getItemIds());
+		for (StoreItem item : itemList) {
+			if (!item.getStoreman().equals(form.getOperator())) {
+				throw new RuntimeException("请不要转交他人保管的物品");
+			}
+			StoreMove move = new StoreMove();
+			BeanUtils.copyProperties(form, move);
+			move.setId(StoreMove.randomID());
+			move.setItemId(item.getId());
+			item.setStoreman(form.getMoveto());
+			dao().save(move);
+			dao().save(item);
+		}
+		return true;
 	}
 
 }

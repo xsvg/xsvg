@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import cc.cnplay.core.annotation.Memo;
 import cc.cnplay.core.domain.SuperCheckEntity;
@@ -33,6 +34,9 @@ public class StoreMove extends SuperCheckEntity {
 	@Memo("转移时间")
 	@Column(name = "move_date")
 	private Date moveDate = new Date();
+	
+	@Transient
+	private transient String[] itemIds;
 
 	public String getItemId() {
 		return itemId;
@@ -64,6 +68,14 @@ public class StoreMove extends SuperCheckEntity {
 
 	public void setMoveDate(Date moveDate) {
 		this.moveDate = moveDate;
+	}
+
+	public String[] getItemIds() {
+		return itemIds;
+	}
+
+	public void setItemIds(String[] itemIds) {
+		this.itemIds = itemIds;
 	}
 
 }

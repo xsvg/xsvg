@@ -6,6 +6,7 @@ import java.util.List;
 import cc.cnplay.core.service.GenericService;
 import cc.cnplay.core.vo.DataGrid;
 import cc.cnplay.store.domain.StoreItem;
+import cc.cnplay.store.domain.StoreMove;
 import cc.cnplay.store.vo.StoreInVO;
 import cc.cnplay.store.vo.StoreOutVO;
 
@@ -37,5 +38,7 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 	List<StoreItem> findByDywOwner(String orgId, String dywOwner, String dywOwnerId);
 
 	DataGrid<StoreItem> findPageByStoreman(String storeman, int page, int pageSize);
+
+	boolean moveto(StoreMove form);
 
 }

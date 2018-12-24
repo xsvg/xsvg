@@ -32,6 +32,7 @@ import cc.cnplay.platform.web.controller.AbsController;
 import cc.cnplay.platform.web.controller.AttachmentController;
 import cc.cnplay.store.domain.StoreArea;
 import cc.cnplay.store.domain.StoreItem;
+import cc.cnplay.store.domain.StoreMove;
 import cc.cnplay.store.service.StoreAreaService;
 import cc.cnplay.store.service.StoreItemService;
 import cc.cnplay.store.vo.StoreInVO;
@@ -323,5 +324,33 @@ public class StoreItemController extends AbsController {
 		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
 				dywOwner, user.getUsername(), this.getPage(), this.getPageSize());
 		return dg;
+	}
+
+	@RequestMapping(value = "/item/movoto")
+	@RightAnnotation(name = "抵押管理/我的抵押物/交接", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
+	@Description("保存机构")
+	public @ResponseBody Json<StoreMove> movoto(StoreMove form) {
+		Json<StoreMove> rst = new Json<StoreMove>();
+		User user = this.getSessionUser();
+		try {
+			form.setOperator(user.getUsername());
+			form.setMoveDate(new Date());
+			if (form.getItemIds() != null && form.getItemIds().length > 0) {
+				if (storeItemService.moveto(form)) {
+					rst.OK(form, "交接成功");
+				} else {
+					rst.NG("交接失败");
+				}
+			} else {
+				rst.NG("交接失败，请选择交接内容");
+			}
+		} catch (CnplayRuntimeException e) {
+			logger.error(e);
+			rst.NG(e.getMessage());
+		} catch (Throwable e) {
+			logger.error(e);
+			rst.NG("交接失败，请输入正确的信息");
+		}
+		return rst;
 	}
 }
