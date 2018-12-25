@@ -47,14 +47,6 @@ Ext.define('platform.system.view.StoreMyItemPanel', {
                         {
                             xtype: 'textfield',
                             margin: 5,
-                            fieldLabel: '保管员',
-                            labelAlign: 'right',
-                            labelWidth: 60,
-                            name: 'storeman'
-                        },
-                        {
-                            xtype: 'textfield',
-                            margin: 5,
                             width: '',
                             fieldLabel: '所有人',
                             labelAlign: 'right',
@@ -100,11 +92,26 @@ Ext.define('platform.system.view.StoreMyItemPanel', {
                                     text: '出库',
                                     listeners: {
                                         afterrender: {
-                                            fn: me.onBtnInAfterRender,
+                                            fn: me.onBtnOutAfterRender,
                                             scope: me
                                         },
                                         click: {
-                                            fn: me.onBtnInClick,
+                                            fn: me.onBtnOutClick,
+                                            scope: me
+                                        }
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    iconCls: 'icon-refresh',
+                                    text: '交接',
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onBtnMoveAfterRender,
+                                            scope: me
+                                        },
+                                        click: {
+                                            fn: me.onBtnMoveClick,
                                             scope: me
                                         }
                                     }
@@ -264,12 +271,12 @@ Ext.define('platform.system.view.StoreMyItemPanel', {
         this.loadGrid();
     },
 
-    onBtnInAfterRender: function(component, eOpts) {
+    onBtnOutAfterRender: function(component, eOpts) {
         Common.hidden({params : {url:'/store/out/save'},component:component});
         this.btnDel = component;
     },
 
-    onBtnInClick: function(button, e, eOpts) {
+    onBtnOutClick: function(button, e, eOpts) {
 
         try
         {
@@ -280,6 +287,41 @@ Ext.define('platform.system.view.StoreMyItemPanel', {
             }
             var me = this;
             me.showForm(selected[0].data.id);
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
+    },
+
+    onBtnMoveAfterRender: function(component, eOpts) {
+        //Common.hidden({params : {url:'/store/item/movoto'},component:component});
+        this.btnMove = component;
+    },
+
+    onBtnMoveClick: function(button, e, eOpts) {
+
+        try
+        {
+            var me = this;
+            var selecteditems  = this.getSelectionModel().selected.items;
+            if(selecteditems.length<1){
+                Ext.Msg.alert('提示','请选择要交接数据!');
+                return;
+            }
+            var ids = [];
+            Ext.each(selecteditems, function()
+                     {
+                         var nd = this;
+                         ids.push(nd.data.id);
+                     });
+            var formwin = Ext.create('platform.system.view.StoreMoveWindow');
+            formwin.addListener('close', function(panel,opts)
+                                {
+                                    me.loadGrid();
+                                });
+            formwin.show();
+            formwin.loadForm(ids);
         }
         catch(error)
         {

@@ -44,24 +44,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fieldLabel": "保管员",
-                        "labelAlign": "right",
-                        "labelWidth": 60,
-                        "margin": 5,
-                        "name": "storeman",
-                        "width": null
-                    },
-                    "name": "MyTextField6",
-                    "designerId": "17482445-8a34-4231-ae25-789a248c3414"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
                         "fieldLabel": "所有人",
                         "labelAlign": "right",
                         "labelWidth": 60,
@@ -183,7 +165,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fn": "onBtnInAfterRender",
+                                        "fn": "onBtnOutAfterRender",
                                         "implHandler": [
                                             "Common.hidden({params : {url:'/store/out/save'},component:component});",
                                             "this.btnDel = component;"
@@ -191,7 +173,7 @@
                                         "name": "afterrender",
                                         "scope": "me"
                                     },
-                                    "name": "onBtnInAfterRender",
+                                    "name": "onBtnOutAfterRender",
                                     "designerId": "d103d889-52be-464d-beb5-5207893d45c7"
                                 },
                                 {
@@ -202,7 +184,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fn": "onBtnInClick",
+                                        "fn": "onBtnOutClick",
                                         "implHandler": [
                                             "",
                                             "try",
@@ -223,8 +205,88 @@
                                         "name": "click",
                                         "scope": "me"
                                     },
-                                    "name": "onBtnInClick",
+                                    "name": "onBtnOutClick",
                                     "designerId": "f7bbb57d-3371-439a-b2c6-3902a0883503"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "icon-refresh",
+                                "layout|flex": null,
+                                "text": "交接"
+                            },
+                            "name": "MyButton",
+                            "designerId": "90e41f1e-af5f-424a-9d43-d9a2c4d1e133",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnMoveAfterRender",
+                                        "implHandler": [
+                                            "//Common.hidden({params : {url:'/store/item/movoto'},component:component});",
+                                            "this.btnMove = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnMoveAfterRender",
+                                    "designerId": "f8b676cc-8e12-49a0-8759-51e946101d10"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnMoveClick",
+                                        "implHandler": [
+                                            "",
+                                            "try",
+                                            "{",
+                                            "    var me = this;",
+                                            "    var selecteditems  = this.getSelectionModel().selected.items;",
+                                            "    if(selecteditems.length<1){",
+                                            "        Ext.Msg.alert('提示','请选择要交接数据!');",
+                                            "        return;",
+                                            "    }",
+                                            "    var ids = [];",
+                                            "    Ext.each(selecteditems, function()",
+                                            "             {",
+                                            "                 var nd = this;",
+                                            "                 ids.push(nd.data.id);",
+                                            "             });",
+                                            "    var formwin = Ext.create('platform.system.view.StoreMoveWindow');",
+                                            "    formwin.addListener('close', function(panel,opts)",
+                                            "                        {",
+                                            "                            me.loadGrid();",
+                                            "                        });",
+                                            "    formwin.show();",
+                                            "    formwin.loadForm(ids);",
+                                            "}",
+                                            "catch(error)",
+                                            "{",
+                                            "    Common.show({title:'信息提示',html:error.toString()});",
+                                            "}"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnMoveClick",
+                                    "designerId": "79b1c8bf-01fb-4e57-b2b2-3e3a89b5140f"
                                 }
                             ]
                         }
@@ -241,7 +303,7 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion1",
+                    "name": "datetegion2",
                     "designerId": "9901283f-b7d6-4fa9-80a0-4f5ab28e7698",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
