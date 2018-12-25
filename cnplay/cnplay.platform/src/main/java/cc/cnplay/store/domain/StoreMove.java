@@ -34,7 +34,10 @@ public class StoreMove extends SuperCheckEntity {
 	@Memo("转移时间")
 	@Column(name = "move_date")
 	private Date moveDate = new Date();
-	
+
+	@Transient
+	private transient String moveDates;
+
 	@Transient
 	private transient String[] itemIds;
 
@@ -76,6 +79,14 @@ public class StoreMove extends SuperCheckEntity {
 
 	public void setItemIds(String[] itemIds) {
 		this.itemIds = itemIds;
+	}
+
+	public String getMoveDates() {
+		return moveDates;
+	}
+
+	public void setMoveDates(String moveDates) {
+		this.moveDates = moveDates;
 	}
 
 }

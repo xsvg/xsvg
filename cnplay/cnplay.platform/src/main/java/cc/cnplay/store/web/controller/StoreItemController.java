@@ -27,6 +27,7 @@ import cc.cnplay.platform.annotation.RightAnnotation;
 import cc.cnplay.platform.domain.Attachment;
 import cc.cnplay.platform.domain.User;
 import cc.cnplay.platform.service.AttachmentService;
+import cc.cnplay.platform.service.UserService;
 import cc.cnplay.platform.util.ExcelImportHelp;
 import cc.cnplay.platform.web.controller.AbsController;
 import cc.cnplay.platform.web.controller.AttachmentController;
@@ -50,6 +51,9 @@ public class StoreItemController extends AbsController {
 
 	@Resource
 	private AttachmentService attachmentService;
+
+	@Resource
+	private UserService userService;
 
 	@Ignore
 	@RequestMapping(value = "/area/tree")
@@ -333,16 +337,23 @@ public class StoreItemController extends AbsController {
 		Json<StoreMove> rst = new Json<StoreMove>();
 		User user = this.getSessionUser();
 		try {
-			form.setOperator(user.getUsername());
-			form.setMoveDate(new Date());
-			if (form.getItemIds() != null && form.getItemIds().length > 0) {
-				if (storeItemService.moveto(form)) {
-					rst.OK(form, "交接成功");
+			User moveto = userService.getByUsername(form.getMoveto());
+			if (moveto != null) {
+				form.setOperator(user.getUsername());
+				form.setMoveDate(new Date());
+				Date date = DateUtils.parseDate(form.getMoveDates(), "yyyy年MM月dd日");
+				form.setMoveDate(date);
+				if (form.getItemIds() != null && form.getItemIds().length > 0) {
+					if (storeItemService.moveto(form)) {
+						rst.OK(form, "交接成功");
+					} else {
+						rst.NG("交接失败");
+					}
 				} else {
-					rst.NG("交接失败");
+					rst.NG("交接失败，请选择交接内容");
 				}
 			} else {
-				rst.NG("交接失败，请选择交接内容");
+				rst.NG("交接失败，接收人不存在！");
 			}
 		} catch (CnplayRuntimeException e) {
 			logger.error(e);

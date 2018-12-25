@@ -205,6 +205,9 @@ public class StoreInVO extends StoreIn {
 
 	public void setJkje(BigDecimal jkje) {
 		this.jkje = jkje;
+		if (this.jkje != null) {
+			this.jkje.setScale(2);
+		}
 	}
 
 	public BigDecimal getPgje() {
@@ -213,6 +216,9 @@ public class StoreInVO extends StoreIn {
 
 	public void setPgje(BigDecimal pgje) {
 		this.pgje = pgje;
+		if (this.pgje != null) {
+			this.pgje.setScale(2);
+		}
 	}
 
 	public Integer getStatus() {

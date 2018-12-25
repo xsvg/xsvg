@@ -43,7 +43,7 @@ public class StoreItem extends SuperEntity {
 	@Memo("抵押物编号")
 	@Column(name = "sn")
 	private String sn;
-	
+
 	@Memo("抵押物名称")
 	@Column(name = "name")
 	private String name;
