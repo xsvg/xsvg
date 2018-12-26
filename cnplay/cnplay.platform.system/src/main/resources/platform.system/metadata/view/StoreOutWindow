@@ -250,7 +250,7 @@
                             "designerId": "85a82f95-3e18-475f-8bf8-73c66d2ecc6e"
                         },
                         {
-                            "type": "Ext.form.field.Number",
+                            "type": "Ext.form.field.Text",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
@@ -271,7 +271,7 @@
                                 "readOnly": true,
                                 "width": 330
                             },
-                            "name": "MyNumberField1",
+                            "name": "MyTextField17",
                             "designerId": "42bcf5df-1795-4b6e-bd4a-ccde80995a25"
                         },
                         {
@@ -612,7 +612,7 @@
                             "designerId": "60c080bd-08a3-4dc5-ab43-b19d0e1d1498"
                         },
                         {
-                            "type": "Ext.form.field.Number",
+                            "type": "Ext.form.field.Text",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
@@ -632,7 +632,7 @@
                                 "readOnly": true,
                                 "width": 330
                             },
-                            "name": "MyNumberField2",
+                            "name": "MyTextField16",
                             "designerId": "243f77a8-a557-45d2-ab59-aaefbac4a27f"
                         },
                         {

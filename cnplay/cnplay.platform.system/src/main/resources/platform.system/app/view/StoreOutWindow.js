@@ -19,7 +19,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
     requires: [
         'Ext.form.Panel',
         'Ext.form.field.Hidden',
-        'Ext.form.field.Number',
         'Ext.form.RadioGroup',
         'Ext.form.field.Radio',
         'Ext.form.Label',
@@ -163,7 +162,7 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
                                 },
                                 {
-                                    xtype: 'numberfield',
+                                    xtype: 'textfield',
                                     padding: 5,
                                     width: 330,
                                     fieldLabel: '抵质押物评估金额',
@@ -339,7 +338,7 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     maxLength: 50
                                 },
                                 {
-                                    xtype: 'numberfield',
+                                    xtype: 'textfield',
                                     padding: 5,
                                     width: 330,
                                     fieldLabel: '抵质押金额',
