@@ -18,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import cc.cnplay.core.CnplayRuntimeException;
 import cc.cnplay.core.annotation.Ignore;
 import cc.cnplay.core.util.DateUtil;
@@ -272,7 +274,7 @@ public class StoreItemController extends AbsController {
 	@RequestMapping(value = "/item/list")
 	@RightAnnotation(name = "抵押管理/抵押物查询", component = "platform.system.view.StoreItemPanel", resource = "/store/item/*", sort = 80100)
 	public @ResponseBody DataGrid<StoreItem> itemList(String storeman, String dywOwner, String startDate,
-			String endDate) {
+			String endDate) throws Exception {
 		User user = this.getSessionUser();
 		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
 			// 如果时间参数为空时，默认查询当前一个月数据
@@ -297,6 +299,8 @@ public class StoreItemController extends AbsController {
 		}
 		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
 				dywOwner, storeman, this.getPage(), this.getPageSize());
+		ObjectMapper objectMapper = new ObjectMapper();
+		logger.info(objectMapper.writeValueAsString(dg));
 		return dg;
 	}
 
