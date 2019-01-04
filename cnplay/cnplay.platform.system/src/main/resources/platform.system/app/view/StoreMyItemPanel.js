@@ -103,6 +103,21 @@ Ext.define('platform.system.view.StoreMyItemPanel', {
                                 },
                                 {
                                     xtype: 'button',
+                                    iconCls: 'icon-file',
+                                    text: '导出',
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onBtnExpAfterRender,
+                                            scope: me
+                                        },
+                                        click: {
+                                            fn: me.onBtnExpClick,
+                                            scope: me
+                                        }
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
                                     iconCls: 'icon-refresh',
                                     text: '交接',
                                     listeners: {
@@ -287,6 +302,25 @@ Ext.define('platform.system.view.StoreMyItemPanel', {
             }
             var me = this;
             me.showForm(selected[0].data.id);
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
+    },
+
+    onBtnExpAfterRender: function(component, eOpts) {
+        //Common.hidden({params : {url:'/store/item/myexport'},component:component});
+        this.btnExp = component;
+    },
+
+    onBtnExpClick: function(button, e, eOpts) {
+
+        try
+        {
+            var me = this;
+            var strParam=Common.paramStr(me.form.getForm().getValues());
+            window.open(ctxp+'/store/item/myexport?pageSize=60000&'+encodeURI(strParam));
         }
         catch(error)
         {

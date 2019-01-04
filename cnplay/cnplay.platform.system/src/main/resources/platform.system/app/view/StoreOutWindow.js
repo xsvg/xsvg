@@ -98,7 +98,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'sn',
                                     invalidText: '机构编码不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     maxLength: 20
                                 },
                                 {
@@ -111,7 +110,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'name',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
@@ -126,7 +124,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'dywId',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
@@ -141,7 +138,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'dywOwner',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
@@ -156,7 +152,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'dywOwnerId',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
@@ -171,7 +166,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'pgje',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
@@ -247,7 +241,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'htId',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'
@@ -303,7 +296,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     labelAlign: 'right',
                                     name: 'registerDate',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！',
@@ -346,7 +338,6 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'jkje',
                                     invalidText: '机构名称不能为空！',
                                     readOnly: true,
-                                    allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！'

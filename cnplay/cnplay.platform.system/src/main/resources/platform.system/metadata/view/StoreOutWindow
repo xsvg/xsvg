@@ -134,7 +134,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "fieldLabel": "物品编号",
                                 "invalidText": "机构编码不能为空！",
@@ -157,7 +156,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "物品名称",
@@ -182,7 +180,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "抵质押物证号码",
@@ -207,7 +204,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "抵质押物所有人",
@@ -232,7 +228,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "所有人证件号码",
@@ -257,7 +252,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "抵质押物评估金额",
@@ -421,7 +415,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "贷款合同号",
@@ -545,7 +538,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "editable": false,
                                 "enforceMaxLength": true,
@@ -619,7 +611,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
                                 "blankText": null,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "抵质押金额",
