@@ -9,6 +9,11 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -332,4 +337,74 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		return true;
 	}
 
+	@Override
+	public HSSFWorkbook export(List<StoreItem> list) throws Exception {
+		String[] excelHeader = { "物品编号", "物品名称", "担保物品所有人", "评估价值", "抵质押金额", "表外登记日期", "保管人" };
+		HSSFWorkbook wb = new HSSFWorkbook();
+		HSSFSheet sheet = wb.createSheet("抵押物交接导出");
+		sheet.setColumnWidth(0, 9000);
+		sheet.setColumnWidth(1, 4000);
+		sheet.setColumnWidth(2, 4000);
+		sheet.setColumnWidth(3, 4000);
+		sheet.setColumnWidth(4, 4000);
+		sheet.setColumnWidth(5, 4000);
+		sheet.setColumnWidth(6, 4000);
+
+		HSSFCellStyle style = wb.createCellStyle();
+		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);// 垂直
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 水平
+		style.setWrapText(true);
+
+		HSSFRow row = sheet.createRow((int) 0);
+		for (int i = 0; i < excelHeader.length; i++) {
+			HSSFCell cell = row.createCell(i);
+			cell.setCellValue(excelHeader[i]);
+			cell.setCellStyle(style);
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow(i + 1);
+			StoreItem item = list.get(i);
+
+			HSSFCell cell = null;
+			cell = row.createCell(0);
+			cell.setCellValue(item.getSn());
+			cell.setCellStyle(style);
+
+			cell = row.createCell(1);
+			cell.setCellValue(item.getName());
+			cell.setCellStyle(style);
+
+			cell = row.createCell(2);
+			cell.setCellValue(item.getDywOwner());
+			cell.setCellStyle(style);
+
+			cell = row.createCell(3);
+			if (item.getPgje() == null) {
+				cell.setCellValue("");
+			} else {
+				cell.setCellValue(item.getPgje() + "");
+			}
+			cell.setCellStyle(style);
+
+			cell = row.createCell(4);
+			if (item.getJkje() == null) {
+				cell.setCellValue("");
+			} else {
+				cell.setCellValue(item.getJkje() + "");
+			}
+			cell.setCellStyle(style);
+
+			cell = row.createCell(5);
+			cell.setCellValue(item.getRegisterDate());
+			cell.setCellStyle(style);
+
+			cell = row.createCell(6);
+			cell.setCellValue(item.getStoreman());
+			cell.setCellStyle(style);
+
+		}
+		return wb;
+
+	}
 }

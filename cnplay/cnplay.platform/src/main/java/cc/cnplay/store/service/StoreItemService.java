@@ -3,6 +3,8 @@ package cc.cnplay.store.service;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import cc.cnplay.core.service.GenericService;
 import cc.cnplay.core.vo.DataGrid;
 import cc.cnplay.store.domain.StoreItem;
@@ -40,5 +42,7 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 	DataGrid<StoreItem> findPageByStoreman(String storeman, int page, int pageSize);
 
 	boolean moveto(StoreMove form);
+
+	HSSFWorkbook export(List<StoreItem> storeman) throws Exception;
 
 }

@@ -1,6 +1,7 @@
 package cc.cnplay.store.web.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Controller;
@@ -367,5 +369,42 @@ public class StoreItemController extends AbsController {
 			rst.NG("交接失败，请输入正确的信息");
 		}
 		return rst;
+	}
+
+	@RequestMapping(value = "/item/myexport")
+	@RightAnnotation(name = "抵押管理/我的抵押物/导出", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
+	public void export(String dywOwner, String startDate, String endDate) {
+		try {
+			if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+				// 如果时间参数为空时，默认查询当前一个月数据
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				Calendar c = Calendar.getInstance();
+				// 开始时间
+				c.setTime(new Date());
+				c.add(Calendar.MONTH, -1);
+				Date m = c.getTime();
+				startDate = format.format(m);
+				// 结束时间
+				Date d = new Date();
+				endDate = format.format(d);
+			}
+			Date startDateTime = null;
+			Date endDateTime = null;
+			if (StringUtils.isNotEmpty(startDate)) {
+				startDateTime = DateUtil.dateGreater(startDate);
+			}
+			if (StringUtils.isNotEmpty(endDate)) {
+				endDateTime = DateUtil.dateLess(endDate);
+			}
+			DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, this.getSessionUser().getOrgId(),
+					dywOwner, getSessionUsername(), this.getPage(), this.getPageSize());
+			HSSFWorkbook wb = storeItemService.export(dg.getRows());
+			this.getResponse().setContentType("application/vnd.ms-excel");
+			this.getResponse().setHeader("Content-disposition", "attachment;filename=ITEM.xls");
+			wb.write(this.getResponse().getOutputStream());
+			this.getResponse().getOutputStream().flush();
+		} catch (Exception e) {
+			logger.error(e);
+		}
 	}
 }
