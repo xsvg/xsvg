@@ -491,16 +491,14 @@
                                     "designerId": "563ff84b-733d-4a1a-b7ba-4d38d3fb42d3"
                                 },
                                 {
-                                    "type": "Ext.form.field.Date",
+                                    "type": "Ext.form.field.Text",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "editable": false,
                                         "fieldLabel": "",
-                                        "format": "Y年m月d日",
                                         "labelAlign": "right",
                                         "labelWidth": null,
                                         "name": "htStartDate",
@@ -509,20 +507,18 @@
                                         "vtype": "startDate",
                                         "width": 105
                                     },
-                                    "name": "MyDateField",
+                                    "name": "MyTextField14",
                                     "designerId": "1faad8e5-222c-4a10-9006-624cdcb316d9"
                                 },
                                 {
-                                    "type": "Ext.form.field.Date",
+                                    "type": "Ext.form.field.Text",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "editable": false,
                                         "fieldLabel": "-",
-                                        "format": "Y年m月d日",
                                         "labelAlign": "right",
                                         "labelSeparator": " ",
                                         "labelWidth": 10,
@@ -532,13 +528,13 @@
                                         "vtype": "endDate",
                                         "width": 120
                                     },
-                                    "name": "MyDateField1",
+                                    "name": "MyTextField18",
                                     "designerId": "57febb9d-8cd3-42a0-b32b-001042098837"
                                 }
                             ]
                         },
                         {
-                            "type": "Ext.form.field.Date",
+                            "type": "Ext.form.field.Text",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
@@ -547,10 +543,8 @@
                             "userConfig": {
                                 "allowBlank": false,
                                 "blankText": null,
-                                "editable": false,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "表外登记日期",
-                                "format": "Y年m月d日",
                                 "invalidText": null,
                                 "labelAlign": "right",
                                 "maxLength": 50,
@@ -560,7 +554,7 @@
                                 "readOnly": true,
                                 "width": 330
                             },
-                            "name": "MyDateField2",
+                            "name": "MyTextField13",
                             "designerId": "0f423cad-6f65-434e-b6bf-c79e805bb121"
                         },
                         {

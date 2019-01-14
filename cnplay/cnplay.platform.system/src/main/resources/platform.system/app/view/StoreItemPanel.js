@@ -108,6 +108,22 @@ Ext.define('platform.system.view.StoreItemPanel', {
                                             scope: me
                                         }
                                     }
+                                },
+                                {
+                                    xtype: 'button',
+                                    disabled: true,
+                                    iconCls: 'icon-edit',
+                                    text: '修改',
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onBtnEditAfterRender,
+                                            scope: me
+                                        },
+                                        click: {
+                                            fn: me.onBtnEditClick,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -287,6 +303,29 @@ Ext.define('platform.system.view.StoreItemPanel', {
         }
     },
 
+    onBtnEditAfterRender: function(component, eOpts) {
+        Common.hidden({params : {url:'/store/in/modify'},component:component});
+        this.btnEdit = component;
+    },
+
+    onBtnEditClick: function(button, e, eOpts) {
+
+        try
+        {
+            var selected  = this.getSelectionModel().selected.items;
+            if(selected.length!=1){
+                Ext.Msg.alert('提示','请选择一行!');
+                return;
+            }
+            var me = this;
+            me.showModify(selected[0].data.id);
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
+    },
+
     onViewBeforeItemDblClick: function(dataview, record, item, index, e, eOpts) {
         this.showForm(record.data.id);
     },
@@ -299,8 +338,10 @@ Ext.define('platform.system.view.StoreItemPanel', {
     onGridpanelSelectionChange: function(model, selected, eOpts) {
         if(selected.length === 1){
             this.btnDel.setDisabled(false);
+            this.btnEdit.setDisabled(false);
         }else{
             this.btnDel.setDisabled(true);
+            this.btnEdit.setDisabled(true);
         }
     },
 
@@ -322,6 +363,24 @@ Ext.define('platform.system.view.StoreItemPanel', {
         {
             var me = this;
             var formwin = Ext.create('platform.system.view.StoreOutWindow');
+            formwin.addListener('close', function(panel,opts)
+                                {
+                                    me.loadGrid();
+                                });
+            formwin.show();
+            formwin.loadForm(id);
+        }
+        catch(error)
+        {
+            Common.show({title:'信息提示',html:error.toString()});
+        }
+    },
+
+    showModify: function(id) {
+        try
+        {
+            var me = this;
+            var formwin = Ext.create('platform.system.view.StoreModityWindow');
             formwin.addListener('close', function(panel,opts)
                                 {
                                     me.loadGrid();

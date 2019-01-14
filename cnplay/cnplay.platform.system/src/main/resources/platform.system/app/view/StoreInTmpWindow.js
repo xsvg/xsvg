@@ -238,8 +238,7 @@ Ext.define('platform.system.view.StoreInTmpWindow', {
                                             labelAlign: 'right',
                                             name: 'htStartDate',
                                             vtype: 'startDate',
-                                            editable: false,
-                                            format: 'Y年m月d日'
+                                            format: 'Ymd'
                                         },
                                         {
                                             xtype: 'datefield',
@@ -250,8 +249,7 @@ Ext.define('platform.system.view.StoreInTmpWindow', {
                                             labelWidth: 10,
                                             name: 'htEndDate',
                                             vtype: 'endDate',
-                                            editable: false,
-                                            format: 'Y年m月d日'
+                                            format: 'Ymd'
                                         }
                                     ]
                                 },
@@ -265,8 +263,7 @@ Ext.define('platform.system.view.StoreInTmpWindow', {
                                     enforceMaxLength: true,
                                     maxLength: 50,
                                     maxLengthText: '机构名称最大长度不超过50个字符！',
-                                    editable: false,
-                                    format: 'Y年m月d日'
+                                    format: 'Ymd'
                                 },
                                 {
                                     xtype: 'textfield',

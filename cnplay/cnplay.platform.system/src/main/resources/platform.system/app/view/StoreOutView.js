@@ -23,7 +23,6 @@ Ext.define('platform.system.view.StoreOutView', {
         'Ext.form.RadioGroup',
         'Ext.form.field.Radio',
         'Ext.form.Label',
-        'Ext.form.field.Date',
         'Ext.form.field.TextArea',
         'Ext.toolbar.Toolbar',
         'Ext.button.Button'
@@ -271,18 +270,16 @@ Ext.define('platform.system.view.StoreOutView', {
                                             text: '合同起止日期:'
                                         },
                                         {
-                                            xtype: 'datefield',
+                                            xtype: 'textfield',
                                             width: 105,
                                             fieldLabel: '',
                                             labelAlign: 'right',
                                             name: 'htStartDate',
                                             readOnly: true,
-                                            vtype: 'startDate',
-                                            editable: false,
-                                            format: 'Y年m月d日'
+                                            vtype: 'startDate'
                                         },
                                         {
-                                            xtype: 'datefield',
+                                            xtype: 'textfield',
                                             width: 120,
                                             fieldLabel: '-',
                                             labelAlign: 'right',
@@ -290,14 +287,12 @@ Ext.define('platform.system.view.StoreOutView', {
                                             labelWidth: 10,
                                             name: 'htEndDate',
                                             readOnly: true,
-                                            vtype: 'endDate',
-                                            editable: false,
-                                            format: 'Y年m月d日'
+                                            vtype: 'endDate'
                                         }
                                     ]
                                 },
                                 {
-                                    xtype: 'datefield',
+                                    xtype: 'textfield',
                                     padding: 5,
                                     width: 330,
                                     fieldLabel: '表外登记日期',
@@ -307,9 +302,7 @@ Ext.define('platform.system.view.StoreOutView', {
                                     allowBlank: false,
                                     enforceMaxLength: true,
                                     maxLength: 50,
-                                    maxLengthText: '机构名称最大长度不超过50个字符！',
-                                    editable: false,
-                                    format: 'Y年m月d日'
+                                    maxLengthText: '机构名称最大长度不超过50个字符！'
                                 },
                                 {
                                     xtype: 'textfield',

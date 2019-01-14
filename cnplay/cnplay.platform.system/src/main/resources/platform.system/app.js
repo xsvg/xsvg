@@ -52,7 +52,8 @@ Ext.application({
         'StoreInTmpPanel',
         'StoreInTmpWindow',
         'StoreMyItemPanel',
-        'StoreMoveWindow'
+        'StoreMoveWindow',
+        'StoreModityWindow'
     ],
     name: 'platform.system',
 

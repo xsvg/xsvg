@@ -39,7 +39,8 @@
             "StoreInTmpPanel",
             "StoreInTmpWindow",
             "StoreMyItemPanel",
-            "StoreMoveWindow"
+            "StoreMoveWindow",
+            "StoreModityWindow"
         ]
     },
     "name": "Application",

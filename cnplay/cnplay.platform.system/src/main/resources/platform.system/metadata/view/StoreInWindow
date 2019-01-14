@@ -450,9 +450,8 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "editable": false,
                                         "fieldLabel": "",
-                                        "format": "Y年m月d日",
+                                        "format": "Ymd",
                                         "labelAlign": "right",
                                         "labelWidth": null,
                                         "name": "htStartDate",
@@ -471,9 +470,8 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "editable": false,
                                         "fieldLabel": "-",
-                                        "format": "Y年m月d日",
+                                        "format": "Ymd",
                                         "labelAlign": "right",
                                         "labelSeparator": " ",
                                         "labelWidth": 10,
@@ -496,10 +494,9 @@
                             "codeClass": null,
                             "userConfig": {
                                 "blankText": null,
-                                "editable": false,
                                 "enforceMaxLength": true,
                                 "fieldLabel": "表外登记日期",
-                                "format": "Y年m月d日",
+                                "format": "Ymd",
                                 "invalidText": null,
                                 "labelAlign": "right",
                                 "maxLength": 50,
