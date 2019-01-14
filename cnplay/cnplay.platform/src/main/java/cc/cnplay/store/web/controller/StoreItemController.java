@@ -1,7 +1,6 @@
 package cc.cnplay.store.web.controller;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -81,6 +80,21 @@ public class StoreItemController extends AbsController {
 				vo.setAreaName(p.getName());
 			}
 		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setRegisterDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtStartDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtEndDate(date);
+		} catch (Exception e) {
+		}
 		return new Json<StoreOutVO>(vo);
 	}
 
@@ -94,6 +108,21 @@ public class StoreItemController extends AbsController {
 			if (p != null) {
 				vo.setAreaName(p.getName());
 			}
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setRegisterDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtStartDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtEndDate(date);
+		} catch (Exception e) {
 		}
 		return new Json<StoreOutVO>(vo);
 	}
@@ -160,12 +189,49 @@ public class StoreItemController extends AbsController {
 				vo.setAreaName(p.getName());
 			}
 		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setRegisterDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtStartDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtEndDate(date);
+		} catch (Exception e) {
+		}
 		return new Json<StoreInVO>(vo);
+	}
+
+	@RequestMapping(value = "/in/modify")
+	@RightAnnotation(name = "抵押管理/入库管理/修改", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
+	public @ResponseBody Json<StoreInVO> inModify(StoreInVO form) {
+		Json<StoreInVO> rst = new Json<StoreInVO>();
+		try {
+			if (storeItemService.getInVoByRfid(form.getRfid()) == null) {
+				form.setOrgId(this.getSessionUser().getOrgId());
+				form.setOperator(this.getSessionUser().getUsername());
+				form = storeItemService.in(form);
+				rst.OK(form, "");
+			} else {
+				rst.NG("标签号已入库，请使用其它标签号");
+			}
+		} catch (CnplayRuntimeException e) {
+			logger.error(e);
+			rst.NG(e.getMessage());
+		} catch (Throwable e) {
+			logger.error(e);
+			rst.NG("保存失败，请输入正确的信息");
+		}
+		return rst;
 	}
 
 	@RequestMapping(value = "/in/save")
 	@RightAnnotation(name = "抵押管理/入库管理/入库", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
-	@Description("保存机构")
 	public @ResponseBody Json<StoreInVO> inSave(StoreInVO form) {
 		Json<StoreInVO> rst = new Json<StoreInVO>();
 		try {
@@ -210,11 +276,12 @@ public class StoreItemController extends AbsController {
 				item.setDywOwner(strs[2]);
 				item.setPgje(new BigDecimal(strs[3]));
 				item.setJkje(new BigDecimal(strs[4]));
-				try {
-					String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
-					item.setRegisterDate(date);
-				} catch (Exception e) {
-				}
+				item.setRegisterDate(strs[5]);
+//				try {
+//					String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
+//					item.setRegisterDate(date);
+//				} catch (Exception e) {
+//				}
 				item.setStoreman(strs[6]);
 				item.setStatus(StoreItem.STATUS_WIN);
 				item.setOrgId(user.getOrgId());
@@ -233,8 +300,18 @@ public class StoreItemController extends AbsController {
 		StoreInVO vo = new StoreInVO();
 		BeanUtils.copyProperties(item, vo);
 		try {
-			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyyMMdd"), "yyyy年MM月dd日");
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setRegisterDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtStartDate(date);
+		} catch (Exception e) {
+		}
+		try {
+			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
+			vo.setHtEndDate(date);
 		} catch (Exception e) {
 		}
 		vo.setItemId(id);
@@ -396,8 +473,9 @@ public class StoreItemController extends AbsController {
 			if (StringUtils.isNotEmpty(endDate)) {
 				endDateTime = DateUtil.dateLess(endDate);
 			}
-			DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, this.getSessionUser().getOrgId(),
-					dywOwner, getSessionUsername(), this.getPage(), this.getPageSize());
+			DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime,
+					this.getSessionUser().getOrgId(), dywOwner, getSessionUsername(), this.getPage(),
+					this.getPageSize());
 			HSSFWorkbook wb = storeItemService.export(dg.getRows());
 			this.getResponse().setContentType("application/vnd.ms-excel");
 			this.getResponse().setHeader("Content-disposition", "attachment;filename=ITEM.xls");

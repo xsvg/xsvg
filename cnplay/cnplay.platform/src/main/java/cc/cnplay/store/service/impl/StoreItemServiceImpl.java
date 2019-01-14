@@ -227,6 +227,21 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		return form;
 	}
 
+	@Transactional
+	@Override
+	public StoreInVO inModify(StoreInVO form) {
+		if (!StringUtils.isEmpty(form.getItemId())) {
+			StoreItem item = dao().getById(StoreItem.class, form.getItemId());
+			if (item != null) {
+				BeanUtils.copyProperties(form, item);
+				item.setId(form.getItemId());
+				item.setStatus(StoreItem.STATUS_IN);
+				dao().save(item);
+			}
+		}
+		return form;
+	}
+
 	@Override
 	public StoreInVO getInVoById(String id) {
 		StoreIn in = dao().getById(StoreIn.class, id);

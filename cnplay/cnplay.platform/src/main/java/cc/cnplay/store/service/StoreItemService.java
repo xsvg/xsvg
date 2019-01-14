@@ -26,6 +26,8 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 			int pageSize);
 
 	StoreInVO in(StoreInVO form);
+	
+	StoreInVO inModify(StoreInVO form);
 
 	StoreInVO getInVoById(String id);
 
