@@ -212,7 +212,8 @@ public class StoreItemController extends AbsController {
 	public @ResponseBody Json<StoreInVO> inModify(StoreInVO form) {
 		Json<StoreInVO> rst = new Json<StoreInVO>();
 		try {
-			if (storeItemService.getInVoByRfid(form.getRfid()) == null) {
+			StoreItem item = storeItemService.getInVoByRfid(form.getRfid());
+			if (item!= null && item.getId().equals(form.getItemId())) {
 				form.setOrgId(this.getSessionUser().getOrgId());
 				form.setOperator(this.getSessionUser().getUsername());
 				form = storeItemService.in(form);
