@@ -218,6 +218,75 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "disabled": true,
+                                "iconCls": "icon-edit",
+                                "layout|flex": null,
+                                "text": "修改"
+                            },
+                            "name": "MyButton3",
+                            "designerId": "c29d6e47-aaf4-4cbb-b9e6-cb25c30c71ca",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnEditAfterRender",
+                                        "implHandler": [
+                                            "Common.hidden({params : {url:'/store/in/modify'},component:component});",
+                                            "this.btnEdit = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnEditAfterRender",
+                                    "designerId": "8928b00b-a7d1-4953-bd35-f2cea33ca820"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnEditClick",
+                                        "implHandler": [
+                                            "",
+                                            "try",
+                                            "{",
+                                            "    var selected  = this.getSelectionModel().selected.items;",
+                                            "    if(selected.length!=1){",
+                                            "        Ext.Msg.alert('提示','请选择一行!');",
+                                            "        return;",
+                                            "    }",
+                                            "    var me = this;",
+                                            "    me.showModify(selected[0].data.id);",
+                                            "}",
+                                            "catch(error)",
+                                            "{",
+                                            "    Common.show({title:'信息提示',html:error.toString()});",
+                                            "}"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnEditClick",
+                                    "designerId": "f83d37e9-8874-4d73-af8d-ce757bb194ec"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
                                 "iconCls": "icon-file",
                                 "layout|flex": null,
                                 "text": "导出"
@@ -367,7 +436,7 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion",
+                    "name": "datetegion3",
                     "designerId": "9901283f-b7d6-4fa9-80a0-4f5ab28e7698",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
@@ -634,6 +703,39 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "showModify",
+                "implHandler": [
+                    "try",
+                    "{",
+                    "    var me = this;",
+                    "    var formwin = Ext.create('platform.system.view.StoreModityWindow');",
+                    "    formwin.addListener('close', function(panel,opts)",
+                    "                        {",
+                    "                            me.loadGrid();",
+                    "                        });",
+                    "    formwin.show();",
+                    "    formwin.loadForm(id);",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    Common.show({title:'信息提示',html:error.toString()});",
+                    "}"
+                ]
+            },
+            "name": "showModify",
+            "designerId": "26a54842-8012-4e48-92f7-d34dc798781d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "fn": "loadGrid",
                 "implHandler": [
                     "try{",
@@ -684,8 +786,10 @@
                 "implHandler": [
                     "if(selected.length === 1){",
                     "    this.btnDel.setDisabled(false);",
+                    "    this.btnEdit.setDisabled(false);",
                     "}else{",
                     "    this.btnDel.setDisabled(true);",
+                    "    this.btnEdit.setDisabled(true);",
                     "}"
                 ],
                 "name": "selectionchange",

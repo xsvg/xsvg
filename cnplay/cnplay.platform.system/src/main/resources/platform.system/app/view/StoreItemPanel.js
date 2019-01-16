@@ -112,6 +112,7 @@ Ext.define('platform.system.view.StoreItemPanel', {
                                 {
                                     xtype: 'button',
                                     disabled: true,
+                                    hidden: true,
                                     iconCls: 'icon-edit',
                                     text: '修改',
                                     listeners: {
