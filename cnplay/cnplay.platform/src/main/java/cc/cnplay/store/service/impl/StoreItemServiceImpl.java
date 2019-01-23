@@ -321,12 +321,9 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		sb.append(" and store_area.org_id = '" + orgId + "'");
 		if (StringUtils.isEmpty(dywOwner) && StringUtils.isEmpty(dywOwnerId)) {
 			return new ArrayList<StoreItem>();
-		}
-		if (StringUtils.isNoneEmpty(dywOwner)) {
-			sb.append(" and store_item.dyw_owner = '" + dywOwner + "'");
-		}
-		if (StringUtils.isNoneEmpty(dywOwnerId)) {
-			sb.append(" and store_item.dyw_owner_id = '" + dywOwnerId + "'");
+		} else {
+			sb.append(" and (store_item.dyw_owner = '" + dywOwner + "'");
+			sb.append(" or store_item.dyw_owner_id = '" + dywOwnerId + "')");
 		}
 		sb.append(" ORDER BY  store_item.create_time DESC");
 		List<StoreItem> list = dao().findBySQL(StoreItem.class, sb.toString());

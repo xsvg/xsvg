@@ -114,6 +114,23 @@ public class AuthenticationController extends AbsController {
 
 	@Ignore
 	@OperateLog(name = "用户登录", memo = "支持用户名，密码，指纹")
+	@RequestMapping(value = "/loginSubmit", method = RequestMethod.GET)
+	public @ResponseBody Json<LoginUser> login(String username, String password) {
+		LoginUser login = new LoginUser();
+		login.setUsername(username);
+		login.setPassword(password);
+		logout();
+		login.setDisplayName("用户登录");
+		Json<LoginUser> json = userService.login(login);
+		if (json.getSuccess()) {
+			userEmpowerService.cancelByUser(login.getId());
+			setUserSession(json.getRows());
+		}
+		return json;
+	}
+	
+	@Ignore
+	@OperateLog(name = "用户登录", memo = "支持用户名，密码，指纹")
 	@RequestMapping(value = "/loginSubmit", method = RequestMethod.POST)
 	public @ResponseBody Json<LoginUser> login(LoginUser login) {
 		logout();
