@@ -398,6 +398,7 @@ Ext.define('platform.system.view.StoreInWindow', {
         window.rfidRead = function(){
             me.rfidRead();
         };
+        me.rfidUHFReadStart();
         setTimeout(window.rfidRead,1000);
     },
 
@@ -450,6 +451,7 @@ Ext.define('platform.system.view.StoreInWindow', {
     },
 
     onWindowDestroy: function(component, eOpts) {
+        this.rfidUHFReadStop();
         setTimeout(window.rfidRead,1000);
         window.rfidRead = null;
     },
@@ -481,6 +483,9 @@ Ext.define('platform.system.view.StoreInWindow', {
         var me = this;
         try{
             me.rfidBtn.setDisabled(false);
+            if(me.rfidUHFRead()){
+                return;
+            }
             Common.ajax({
                 component : me.form,
                 lock:false,
@@ -501,6 +506,53 @@ Ext.define('platform.system.view.StoreInWindow', {
         {
             me.rfidBtn.setDisabled(false);
             Common.show({title:'操作提示',html:error.toString()});
+        }
+    },
+
+    rfidUHFRead: function() {
+        var me = this;
+        try{
+            var rfid = UHFActiveX.GetRFID();
+            me.rfidBtn.setDisabled(true);
+            if(rfid !== ''){
+                me.rfidComp.setValue(rfid);
+                me.rfidBtn.setDisabled(false);
+                me.rfidUHFReadStop();
+                return true;
+            }
+        }
+        catch(error)
+        {
+
+        }
+        return false;
+    },
+
+    rfidUHFReadStart: function() {
+        var me = this;
+        try{
+            me.rfidBtn.setDisabled(false);
+            var open = UHFActiveX.StartRead();
+            if(open !== '0'){
+                Common.show({title:'操作提示',html:'读标签器连接失败!'});
+            }
+        }
+        catch(error)
+        {
+            me.rfidUHFReadStop();
+            me.rfidBtn.setDisabled(false);
+            Common.show({title:'操作提示',html:error.toString()});
+        }
+    },
+
+    rfidUHFReadStop: function() {
+        var me = this;
+        try{
+            UHFActiveX.StopRead();
+        }
+        catch(error)
+        {
+
         }
     },
 
