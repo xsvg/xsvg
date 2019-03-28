@@ -1,0 +1,12 @@
+c:\users\apollo\documents\visual studio 2010\Projects\CSharpActiveX\CSharpActiveX\bin\Debug\CSharpActiveX.dll
+c:\users\apollo\documents\visual studio 2010\Projects\CSharpActiveX\CSharpActiveX\bin\Debug\CSharpActiveX.pdb
+c:\users\apollo\documents\visual studio 2010\Projects\CSharpActiveX\CSharpActiveX\obj\Debug\ResolveAssemblyReference.cache
+c:\users\apollo\documents\visual studio 2010\Projects\CSharpActiveX\CSharpActiveX\obj\Debug\CSharpActiveX.dll
+c:\users\apollo\documents\visual studio 2010\Projects\CSharpActiveX\CSharpActiveX\obj\Debug\CSharpActiveX.pdb
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\bin\Debug\Basic.dll
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\bin\Debug\CSharpActiveX.dll
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\bin\Debug\CSharpActiveX.pdb
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\bin\Debug\UHFReader09CSharp.dll
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\obj\Debug\ResolveAssemblyReference.cache
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\obj\Debug\CSharpActiveX.dll
+E:\git\xsvg\cnplay\cnplay.platform.webapp\target\platform.webapp\cab\src\CSharpActiveX\obj\Debug\CSharpActiveX.pdb
