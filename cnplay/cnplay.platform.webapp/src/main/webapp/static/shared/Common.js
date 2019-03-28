@@ -1,7 +1,7 @@
 /**
  * Extjs 与后台交互统一类
  * 
- * @author peishaoguo@sgsg.cc
+ * @author peixere@qq.com
  * @version 2015-06-17
  */
 var Common = {
