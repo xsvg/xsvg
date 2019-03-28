@@ -75,12 +75,38 @@
 </script>
 </head>
 <body>
-
+	<object id="UHFActiveX"
+		classid="clsid:1B5537B1-C9BF-48A3-82AD-A8425F298888"
+		style="display: none;" width="0" height="0"></object>
 	<script type="text/javascript" src="static/shared/ocxComm.js"></script>
 <!-- 	
 	<script type="text/javascript" src="static/shared/fingersg.js"></script>
 	<script type="text/javascript" src="static/shared/CreateControl.js"></script>
 -->
 	<img alt="加载中..." id="loadimageid" style="position: absolute; top: 50%; left: 50%; margin-left: -53px; margin-top: -49px; border: 0px;" src="static/icons/load.gif" />
+<script type="text/javascript" language="javascript">
+	var UHFActiveX = document.getElementById("UHFActiveX");
+	function UHFActiveX() {
+		var activeX = document.getElementById("UHFActiveX");
+		return activeX;
+	}
+	
+	function GetMacAddress() {
+		alert(UHFActiveX.GetMacAddress());
+	}
+	function StartRead() {
+		alert(UHFActiveX.StartRead());
+	}
+	function GetRFID() {
+		alert(UHFActiveX.GetRFID());
+	}
+	function StopRead() {
+		UHFActiveX.StopRead();
+	}
+	function OnRecvMsg(rfid) {
+		alert("OnRecvMsg:"+rfid);
+		StopRead();
+	}	
+</script>
 </body>
 </html>
