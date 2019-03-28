@@ -116,7 +116,7 @@ namespace UHFActiveX
 
             return sb.ToString();
         }
-
+        int openresult = -1;
         public string StartRead()
         {
             try
@@ -124,7 +124,7 @@ namespace UHFActiveX
                 RFID = "";
                 byte fBaud = 5;
                 StopRead();
-                int openresult = ReaderB.StaticClassReaderB.AutoOpenComPort(ref port, ref fComAdr, fBaud, ref frmcomportindex);
+                openresult = ReaderB.StaticClassReaderB.AutoOpenComPort(ref port, ref fComAdr, fBaud, ref frmcomportindex);
                 timer.Enabled = true;
                 timer.Start();
                 return "" + openresult;
@@ -142,7 +142,11 @@ namespace UHFActiveX
             {
                 timer.Enabled = false;
                 timer.Stop();
-                int fCmdRet = ReaderB.StaticClassReaderB.CloseSpecComPort(port);
+                int fCmdRet = 0;
+                if (openresult == 0)
+                {
+                    fCmdRet = ReaderB.StaticClassReaderB.CloseSpecComPort(port);
+                }
                 return "" + fCmdRet;
             }
             catch(Exception ex)

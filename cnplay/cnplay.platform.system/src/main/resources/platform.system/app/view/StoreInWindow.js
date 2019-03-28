@@ -534,14 +534,14 @@ Ext.define('platform.system.view.StoreInWindow', {
             me.rfidBtn.setDisabled(false);
             var open = UHFActiveX.StartRead();
             if(open !== '0'){
-                Common.show({title:'操作提示',html:'读标签器连接失败!'});
+                Ext.Msg.alert('操作提示', '读卡器连接失败，请检查读卡器是否安装！');
             }
         }
         catch(error)
         {
-            me.rfidUHFReadStop();
             me.rfidBtn.setDisabled(false);
-            Common.show({title:'操作提示',html:error.toString()});
+            Ext.Msg.alert('操作提示', '请正确安装读卡器控件');
+            me.rfidUHFReadStop();
         }
     },
 
