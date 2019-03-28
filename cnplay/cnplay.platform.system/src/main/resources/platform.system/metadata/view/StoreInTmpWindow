@@ -181,6 +181,7 @@
                                             "window.rfidRead = function(){",
                                             "    me.rfidRead();",
                                             "};",
+                                            "me.rfidUHFReadStart();",
                                             "setTimeout(window.rfidRead,1000);"
                                         ],
                                         "name": "click",
@@ -839,6 +840,9 @@
                     "var me = this;",
                     "try{",
                     "    me.rfidBtn.setDisabled(false);",
+                    "    if(me.rfidUHFRead()){",
+                    "        return;",
+                    "    }",
                     "    Common.ajax({",
                     "        component : me.form,",
                     "        lock:false,",
@@ -864,6 +868,89 @@
             },
             "name": "rfidRead",
             "designerId": "ffe09bfd-7fbb-4ce6-8a3d-749dacd30b0a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "rfidUHFRead",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    var rfid = UHFActiveX.GetRFID();",
+                    "    me.rfidBtn.setDisabled(true);",
+                    "    if(rfid !== ''){",
+                    "        me.rfidComp.setValue(rfid);",
+                    "        me.rfidBtn.setDisabled(false);",
+                    "        me.rfidUHFReadStop();",
+                    "        return true;",
+                    "    }",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "",
+                    "}",
+                    "return false;"
+                ]
+            },
+            "name": "rfidUHFRead",
+            "designerId": "78c5197b-be37-4b73-89df-d2774cf8702e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "rfidUHFReadStart",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "    var open = UHFActiveX.StartRead();",
+                    "    if(open !== '0'){",
+                    "        Ext.Msg.alert('操作提示', '读卡器连接失败，请检查读卡器是否安装！');",
+                    "    }",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "    me.rfidBtn.setDisabled(false);",
+                    "    Ext.Msg.alert('操作提示', '请正确安装读卡器控件');",
+                    "    me.rfidUHFReadStop();",
+                    "}"
+                ]
+            },
+            "name": "rfidUHFReadStart",
+            "designerId": "d7e0fff4-7edd-4c7d-b26e-2eaf20a2f741"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "rfidUHFReadStop",
+                "implHandler": [
+                    "var me = this;",
+                    "try{",
+                    "    UHFActiveX.StopRead();",
+                    "}",
+                    "catch(error)",
+                    "{",
+                    "",
+                    "}"
+                ]
+            },
+            "name": "rfidUHFReadStop",
+            "designerId": "991bbe10-9b2e-4d77-9f52-d11bd935331b"
         },
         {
             "type": "basicfunction",
@@ -899,6 +986,7 @@
             "userConfig": {
                 "fn": "onWindowDestroy",
                 "implHandler": [
+                    "this.rfidUHFReadStop();",
                     "setTimeout(window.rfidRead,1000);",
                     "window.rfidRead = null;"
                 ],
