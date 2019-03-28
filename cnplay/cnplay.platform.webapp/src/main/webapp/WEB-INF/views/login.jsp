@@ -25,7 +25,8 @@
 		<div id='logo' style="float: left; width: 262px; height: 53px; margin-top: 0px; margin-left: 10px;">
 			<div class="version" id="version">
 				<label id="versionNO">版本号：V1.0.0</label>
-				<a href="pandian.apk">下载PDA程序</label></a>
+				<a href="pandian.apk">下载PDA程序</a>
+				<a href="static/UHFActiveX.exe">下载控件</a>
 			</div>
 		</div>
 	</div>
