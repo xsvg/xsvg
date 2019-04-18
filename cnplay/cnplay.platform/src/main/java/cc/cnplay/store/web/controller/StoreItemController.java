@@ -3,6 +3,7 @@ package cc.cnplay.store.web.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -213,7 +214,7 @@ public class StoreItemController extends AbsController {
 		Json<StoreInVO> rst = new Json<StoreInVO>();
 		try {
 			StoreItem item = storeItemService.getInVoByRfid(form.getRfid());
-			if (item!= null && item.getId().equals(form.getItemId())) {
+			if (item != null && item.getId().equals(form.getItemId())) {
 				form.setOrgId(this.getSessionUser().getOrgId());
 				form.setOperator(this.getSessionUser().getUsername());
 				form = storeItemService.in(form);
@@ -264,35 +265,52 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/in/tmp")
 	public @ResponseBody DataGrid<StoreItem> inTmp(String id) {
+		DataGrid<StoreItem> dg = new DataGrid<StoreItem>();
 		User user = this.getSessionUser();
 		Attachment att = attachmentService.getAttachment(id);
 		String filename = AttachmentController.path + "/" + id + "." + att.getSuffix();
 		try {
 			List<String[]> itemList = ExcelImportHelp.readExcel(filename);
+			List<StoreItem> items = new ArrayList<StoreItem>();
 			for (int i = 1; i < itemList.size(); i++) {
 				String[] strs = itemList.get(i);
-				StoreItem item = new StoreItem();
-				item.setSn(strs[0]);
-				item.setName(strs[1]);
-				item.setDywOwner(strs[2]);
-				item.setPgje(new BigDecimal(strs[3]));
-				item.setJkje(new BigDecimal(strs[4]));
-				item.setRegisterDate(strs[5]);
+				if (StringUtils.isNotEmpty(strs[0]) && StringUtils.isNotEmpty(strs[1])) {
+					StoreItem item = toItem(i, user, strs);
+					items.add(item);
+				}
+			}
+			storeItemService.saveAll(items);
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+			dg.setSuccess(false);
+			dg.setMsg(e.getMessage());
+			return dg;
+		}
+		dg = storeItemService.findInTmpPage(user.getOrgId(), this.getPage(), this.getPageSize());
+		return dg;
+	}
+
+	private StoreItem toItem(int rows, User user, String[] strs) {
+		try {
+			StoreItem item = new StoreItem();
+			item.setSn(strs[0]);
+			item.setName(strs[1]);
+			item.setDywOwner(strs[2]);
+			item.setPgje(new BigDecimal(strs[3]));
+			item.setJkje(new BigDecimal(strs[4]));
+			item.setRegisterDate(strs[5]);
 //				try {
 //					String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
 //					item.setRegisterDate(date);
 //				} catch (Exception e) {
 //				}
-				item.setStoreman(strs[6]);
-				item.setStatus(StoreItem.STATUS_WIN);
-				item.setOrgId(user.getOrgId());
-				storeItemService.save(item);
-			}
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
+			item.setStoreman(strs[6]);
+			item.setStatus(StoreItem.STATUS_WIN);
+			item.setOrgId(user.getOrgId());
+			return item;
+		} catch (Throwable ex) {
+			throw new RuntimeException("第" + (rows + 1) + "行数据出现异常，检查数据格式是否正确", ex);
 		}
-		DataGrid<StoreItem> dg = storeItemService.findInTmpPage(user.getOrgId(), this.getPage(), this.getPageSize());
-		return dg;
 	}
 
 	@RequestMapping(value = "/in/tmp/load")

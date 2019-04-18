@@ -136,7 +136,7 @@ public class ExcelImportHelp {
 	private final static String xls = "xls";
 	private final static String xlsx = "xlsx";
 
-	public static List<String[]> readExcel(String filename) throws IOException {
+	public static List<String[]> readExcel(String filename) throws Exception {
 		Workbook workbook = null;
 		FileInputStream fis = new FileInputStream(filename);
 		if (filename.endsWith(xls)) {
@@ -159,7 +159,7 @@ public class ExcelImportHelp {
 				// 获得当前sheet的结束行
 				int lastRowNum = sheet.getLastRowNum();
 				// 循环除了第一行的所有行
-				for (int rowNum = firstRowNum + 1; rowNum <= lastRowNum; rowNum++) {
+				for (int rowNum = firstRowNum; rowNum <= lastRowNum; rowNum++) {
 					// 获得当前行
 					Row row = sheet.getRow(rowNum);
 					if (row == null) {
@@ -194,6 +194,7 @@ public class ExcelImportHelp {
 		// 判断数据的类型
 		switch (cell.getCellType()) {
 		case Cell.CELL_TYPE_NUMERIC: // 数字
+			cell.getCellStyle().getDataFormat();
 			cellValue = String.valueOf(cell.getNumericCellValue());
 			break;
 		case Cell.CELL_TYPE_STRING: // 字符串
