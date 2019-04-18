@@ -7,7 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "StoreOutPanel",
-        "forceFit": true,
+        "forceFit": false,
         "height": null,
         "title": "出库记录",
         "width": null

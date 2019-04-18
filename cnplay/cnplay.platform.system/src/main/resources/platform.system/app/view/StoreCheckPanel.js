@@ -28,7 +28,7 @@ Ext.define('platform.system.view.StoreCheckPanel', {
     ],
 
     title: '盘点记录',
-    forceFit: true,
+    forceFit: false,
 
     initComponent: function() {
         var me = this;

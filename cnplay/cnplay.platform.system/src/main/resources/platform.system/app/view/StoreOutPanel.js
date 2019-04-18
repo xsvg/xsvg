@@ -28,7 +28,7 @@ Ext.define('platform.system.view.StoreOutPanel', {
     ],
 
     title: '出库记录',
-    forceFit: true,
+    forceFit: false,
 
     initComponent: function() {
         var me = this;

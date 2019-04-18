@@ -28,7 +28,7 @@ Ext.define('platform.system.view.StoreItemPanel', {
     ],
 
     title: '入库管理',
-    forceFit: true,
+    forceFit: false,
 
     initComponent: function() {
         var me = this;

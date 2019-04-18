@@ -7,7 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "StoreItemPanel",
-        "forceFit": true,
+        "forceFit": false,
         "height": null,
         "title": "入库管理",
         "width": null
@@ -311,7 +311,7 @@
                         "dock": null,
                         "margin": 5
                     },
-                    "name": "datetegion1",
+                    "name": "datetegion",
                     "designerId": "74ebcd83-1619-4c64-99e1-ee11237cbbb5",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
