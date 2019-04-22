@@ -1,6 +1,5 @@
 package cc.cnplay.store.web.controller;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -296,8 +295,18 @@ public class StoreItemController extends AbsController {
 			item.setSn(strs[0]);
 			item.setName(strs[1]);
 			item.setDywOwner(strs[2]);
-			item.setPgje(new BigDecimal(strs[3]));
-			item.setJkje(new BigDecimal(strs[4]));
+			String pgje = strs[3];
+			if (pgje == null) {
+				pgje = "0";
+			}
+			String jkje = strs[4];
+			if (jkje == null) {
+				jkje = "0";
+			}
+			pgje = pgje.replaceAll(" ", "");
+			jkje = jkje.replaceAll(" ", "");
+			item.setPgje(new BigDecimal(pgje));
+			item.setJkje(new BigDecimal(jkje));
 			item.setRegisterDate(strs[5]);
 //				try {
 //					String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
