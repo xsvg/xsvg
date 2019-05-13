@@ -190,6 +190,113 @@
                                     "designerId": "a5b2cf90-24af-4c3a-995d-c03bba88152f"
                                 }
                             ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "disabled": true,
+                                "iconCls": "icon-del",
+                                "layout|flex": null,
+                                "text": "删除"
+                            },
+                            "name": "MyButton",
+                            "designerId": "71d9d6da-a058-4354-b33a-dd402c6f32bb",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnDelAfterRender",
+                                        "implHandler": [
+                                            "//Common.hidden({params : {url:'/store/in/list'},component:component});",
+                                            "this.btnDel = component;"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnDelAfterRender",
+                                    "designerId": "eb658dda-ba77-4a5c-acb1-04c32742a25f"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnDelClick",
+                                        "implHandler": [
+                                            "",
+                                            "try{",
+                                            "    var me = this;",
+                                            "    var selected = me.getSelectionModel().selected;",
+                                            "    var selecteditems = selected.items;",
+                                            "    if (selecteditems.length === 0)",
+                                            "    {",
+                                            "        Ext.Msg.show(",
+                                            "            {",
+                                            "                title : \"操作提示\",",
+                                            "                msg : \"请选择要删除的数据!\",",
+                                            "                buttons : Ext.Msg.OK,",
+                                            "                icon : Ext.Msg.WARNING",
+                                            "            });",
+                                            "        return;",
+                                            "    }",
+                                            "    var ids = [];",
+                                            "    Ext.each(selecteditems, function()",
+                                            "             {",
+                                            "                 var nd = this;",
+                                            "                 ids.push(nd.data.id);",
+                                            "             });",
+                                            "    Ext.Msg.confirm(\"确认提示\", \"确定要删除选中的数据吗？\", function(button)",
+                                            "                    {",
+                                            "                        if (button == \"yes\")",
+                                            "                        {",
+                                            "                            try",
+                                            "                            {",
+                                            "                                Common.ajax({",
+                                            "                                    component : me,",
+                                            "                                    params : {",
+                                            "                                        'ids' : ids.join(\",\")",
+                                            "                                    },",
+                                            "                                    message : '正在删除选中的...',",
+                                            "                                    url : ctxp+'/store/remove',",
+                                            "                                    callback : function(result)",
+                                            "                                    {",
+                                            "                                        Common.setLoading({comp:me,msg:'删除成功！'});",
+                                            "                                        me.loadGrid();",
+                                            "                                    }",
+                                            "                                });",
+                                            "                            }",
+                                            "                            catch (error)",
+                                            "                            {",
+                                            "                                Common.show({title:'操作提示',html:error.toString()});",
+                                            "                            }",
+                                            "                        }",
+                                            "                    });",
+                                            "}",
+                                            "catch (error)",
+                                            "{",
+                                            "    Common.show({title:'操作提示',html:error.toString()});",
+                                            "}"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnDelClick",
+                                    "designerId": "fdf831a1-e626-43ff-9ed0-40e372759ff1"
+                                }
+                            ]
                         }
                     ]
                 }

@@ -83,6 +83,22 @@ Ext.define('platform.system.view.StoreInTmpPanel', {
                                             scope: me
                                         }
                                     }
+                                },
+                                {
+                                    xtype: 'button',
+                                    disabled: true,
+                                    iconCls: 'icon-del',
+                                    text: '删除',
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onBtnDelAfterRender,
+                                            scope: me
+                                        },
+                                        click: {
+                                            fn: me.onBtnDelClick,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -272,6 +288,67 @@ Ext.define('platform.system.view.StoreInTmpPanel', {
             Common.show({title:'操作提示',html:error.toString()});
         }
 
+    },
+
+    onBtnDelAfterRender: function(component, eOpts) {
+        //Common.hidden({params : {url:'/store/in/list'},component:component});
+        this.btnDel = component;
+    },
+
+    onBtnDelClick: function(button, e, eOpts) {
+
+        try{
+            var me = this;
+            var selected = me.getSelectionModel().selected;
+            var selecteditems = selected.items;
+            if (selecteditems.length === 0)
+            {
+                Ext.Msg.show(
+                    {
+                        title : "操作提示",
+                        msg : "请选择要删除的数据!",
+                        buttons : Ext.Msg.OK,
+                        icon : Ext.Msg.WARNING
+                    });
+                return;
+            }
+            var ids = [];
+            Ext.each(selecteditems, function()
+                     {
+                         var nd = this;
+                         ids.push(nd.data.id);
+                     });
+            Ext.Msg.confirm("确认提示", "确定要删除选中的数据吗？", function(button)
+                            {
+                                if (button == "yes")
+                                {
+                                    try
+                                    {
+                                        Common.ajax({
+                                            component : me,
+                                            params : {
+                                                'ids' : ids.join(",")
+                                            },
+                                            message : '正在删除选中的...',
+                                            url : ctxp+'/store/remove',
+                                            callback : function(result)
+                                            {
+                                                Common.setLoading({comp:me,msg:'删除成功！'});
+                                                me.loadGrid();
+                                            }
+                                        });
+                                    }
+                                    catch (error)
+                                    {
+                                        Common.show({title:'操作提示',html:error.toString()});
+                                    }
+                                }
+                            });
+        }
+        catch (error)
+        {
+            Common.show({title:'操作提示',html:error.toString()});
+        }
     },
 
     onViewBeforeItemDblClick: function(dataview, record, item, index, e, eOpts) {

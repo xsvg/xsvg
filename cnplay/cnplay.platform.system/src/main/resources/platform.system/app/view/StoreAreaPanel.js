@@ -184,58 +184,58 @@ Ext.define('platform.system.view.StoreAreaPanel', {
         //Common.deleteSelectionIds(this.treeGrid,ctxp+'/system/organization/remove');
 
         try{
-                var me = this;
-                var selected = me.treeGrid.getSelectionModel().selected;
-                var selecteditems = selected.items;
-                if (selecteditems.length === 0)
-                {
-                    Ext.Msg.show(
+            var me = this;
+            var selected = me.treeGrid.getSelectionModel().selected;
+            var selecteditems = selected.items;
+            if (selecteditems.length === 0)
+            {
+                Ext.Msg.show(
                     {
                         title : "操作提示",
                         msg : "请选择要删除的区域!",
                         buttons : Ext.Msg.OK,
                         icon : Ext.Msg.WARNING
                     });
-                    return;
-                }
-                var ids = [];
-                Ext.each(selecteditems, function()
-                {
-                    var nd = this;
-                    ids.push(nd.data.id);
-                });
-                Ext.Msg.confirm("确认提示", "确定要删除选中的区域吗？", function(button)
-                {
-                    if (button == "yes")
-        				{
-        					try
-        					{
-        						Common.ajax({
-        							component : me.treeGrid,
-        							params : {
-        								'id' : ids.join(",")
-        							},
-        							message : '正在删除选中的区域...',
-        							url : ctxp+'/store/area/remove',
-        							callback : function(result)
-        							{
-                                        me.loadTreeGrid();
-                                        //me.expandSelected();
-                                        Common.setLoading({comp:me,msg:'区域删除成功！'});
-        							}
-        						});
-        					}
-        					catch (error)
-        					{
-        						Common.show({title:'操作提示',html:error.toString()});
-        					}
-        				}
-        		});
-                 }
-        		catch (error)
-        		{
-        			Common.show({title:'操作提示',html:error.toString()});
-        		}
+                return;
+            }
+            var ids = [];
+            Ext.each(selecteditems, function()
+                     {
+                         var nd = this;
+                         ids.push(nd.data.id);
+                     });
+            Ext.Msg.confirm("确认提示", "确定要删除选中的区域吗？", function(button)
+                            {
+                                if (button == "yes")
+                                {
+                                    try
+                                    {
+                                        Common.ajax({
+                                            component : me.treeGrid,
+                                            params : {
+                                                'id' : ids.join(",")
+                                            },
+                                            message : '正在删除选中的区域...',
+                                            url : ctxp+'/store/area/remove',
+                                            callback : function(result)
+                                            {
+                                                me.loadTreeGrid();
+                                                //me.expandSelected();
+                                                Common.setLoading({comp:me,msg:'区域删除成功！'});
+                                            }
+                                        });
+                                    }
+                                    catch (error)
+                                    {
+                                        Common.show({title:'操作提示',html:error.toString()});
+                                    }
+                                }
+                            });
+        }
+        catch (error)
+        {
+            Common.show({title:'操作提示',html:error.toString()});
+        }
 
     },
 

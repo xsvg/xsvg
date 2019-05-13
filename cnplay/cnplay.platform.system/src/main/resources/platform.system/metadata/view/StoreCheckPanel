@@ -208,7 +208,7 @@
                         "label": "盘点时间",
                         "margin": 5
                     },
-                    "name": "datetegion4",
+                    "name": "datetegion6",
                     "designerId": "70552bcf-e9b4-4691-8731-38e1ad4cfe79",
                     "masterInstanceId": "ef359e79-d4df-45df-ac6c-27317bc4b2b1"
                 }
