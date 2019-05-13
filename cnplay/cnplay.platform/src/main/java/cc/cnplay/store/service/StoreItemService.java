@@ -47,4 +47,6 @@ public interface StoreItemService extends GenericService<StoreItem, String> {
 
 	HSSFWorkbook export(List<StoreItem> storeman) throws Exception;
 
+	boolean existSn(String sn);
+
 }

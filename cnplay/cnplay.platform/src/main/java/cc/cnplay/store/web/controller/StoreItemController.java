@@ -44,7 +44,8 @@ import cc.cnplay.store.vo.StoreOutVO;
 
 @Controller
 @RequestMapping(value = "/store")
-public class StoreItemController extends AbsController {
+public class StoreItemController extends AbsController
+{
 
 	@Resource
 	private StoreItemService storeItemService;
@@ -61,7 +62,8 @@ public class StoreItemController extends AbsController {
 	@Ignore
 	@RequestMapping(value = "/area/tree")
 	@ResponseBody
-	public Json<List<StoreArea>> areaLoadTree(String id, String[] areaId) {
+	public Json<List<StoreArea>> areaLoadTree(String id, String[] areaId)
+	{
 		String orgId = this.getSessionUser().getOrgId();
 		storeAreaService.getRoot(orgId);
 		List<StoreArea> list = storeAreaService.findByParentId(orgId, id);
@@ -70,59 +72,87 @@ public class StoreItemController extends AbsController {
 	}
 
 	@RequestMapping(value = "/out/vo")
-	public @ResponseBody Json<StoreOutVO> outVoById(String id) {
+	public @ResponseBody Json<StoreOutVO> outVoById(String id)
+	{
 		StoreOutVO vo = storeItemService.getOutVoById(id);
-		if (vo == null) {
+		if (vo == null)
+		{
 			vo = new StoreOutVO();
-		} else {
+		}
+		else
+		{
 			StoreArea p = storeAreaService.getById(vo.getAreaId());
-			if (p != null) {
+			if (p != null)
+			{
 				vo.setAreaName(p.getName());
 			}
 		}
-		try {
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setRegisterDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtStartDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtEndDate(date);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 		}
 		return new Json<StoreOutVO>(vo);
 	}
 
 	@RequestMapping(value = "/out/load")
-	public @ResponseBody Json<StoreOutVO> outLoadById(String id) {
+	public @ResponseBody Json<StoreOutVO> outLoadById(String id)
+	{
 		StoreOutVO vo = storeItemService.getOutByItemId(id);
-		if (vo == null) {
+		if (vo == null)
+		{
 			vo = new StoreOutVO();
-		} else {
+		}
+		else
+		{
 			StoreArea p = storeAreaService.getById(vo.getAreaId());
-			if (p != null) {
+			if (p != null)
+			{
 				vo.setAreaName(p.getName());
 			}
 		}
-		try {
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setRegisterDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtStartDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtEndDate(date);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 		}
 		return new Json<StoreOutVO>(vo);
 	}
@@ -130,17 +160,23 @@ public class StoreItemController extends AbsController {
 	@RequestMapping(value = "/out/save")
 	@RightAnnotation(name = "抵押管理/抵押物查询/出库", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree,/store/out/load")
 	@Description("保存机构")
-	public @ResponseBody Json<StoreOutVO> outSave(StoreOutVO form) {
+	public @ResponseBody Json<StoreOutVO> outSave(StoreOutVO form)
+	{
 		Json<StoreOutVO> rst = new Json<StoreOutVO>();
-		try {
+		try
+		{
 			form.setOrgId(this.getSessionUser().getOrgId());
 			form.setOperator(this.getSessionUser().getUsername());
 			form = storeItemService.out(form);
 			rst.OK(form, "");
-		} catch (CnplayRuntimeException e) {
+		}
+		catch (CnplayRuntimeException e)
+		{
 			logger.error(e);
 			rst.NG(e.getMessage());
-		} catch (Throwable e) {
+		}
+		catch (Throwable e)
+		{
 			logger.error(e);
 			rst.NG("保存失败，请输入正确的信息");
 		}
@@ -149,9 +185,11 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/out/list")
 	@RightAnnotation(name = "抵押管理/出库日志", component = "platform.system.view.StoreOutPanel", resource = "/store/out/vo", sort = 80100)
-	public @ResponseBody DataGrid<StoreOutVO> outList(String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreOutVO> outList(String dywOwner, String startDate, String endDate)
+	{
 		User user = this.getSessionUser();
-		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate))
+		{
 			// 如果时间参数为空时，默认查询当前一个月数据
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
@@ -166,65 +204,89 @@ public class StoreItemController extends AbsController {
 		}
 		Date startDateTime = null;
 		Date endDateTime = null;
-		if (StringUtils.isNotEmpty(startDate)) {
+		if (StringUtils.isNotEmpty(startDate))
+		{
 			startDateTime = DateUtil.dateGreater(startDate);
 		}
-		if (StringUtils.isNotEmpty(endDate)) {
+		if (StringUtils.isNotEmpty(endDate))
+		{
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreOutVO> dg = storeItemService.findOutPageLikeName(startDateTime, endDateTime, user.getOrgId(),
-				dywOwner, this.getPage(), this.getPageSize());
+		DataGrid<StoreOutVO> dg = storeItemService.findOutPageLikeName(startDateTime, endDateTime, user.getOrgId(), dywOwner, this.getPage(), this.getPageSize());
 		return dg;
 	}
 
 	@RequestMapping(value = "/in/load")
-	public @ResponseBody Json<StoreInVO> inLoadById(String id) {
+	public @ResponseBody Json<StoreInVO> inLoadById(String id)
+	{
 		StoreInVO vo = storeItemService.getInVoById(id);
-		if (vo == null) {
+		if (vo == null)
+		{
 			vo = new StoreInVO();
 			vo.setStoreman(this.getSessionUsername());
-		} else {
+		}
+		else
+		{
 			StoreArea p = storeAreaService.getById(vo.getAreaId());
-			if (p != null) {
+			if (p != null)
+			{
 				vo.setAreaName(p.getName());
 			}
 		}
-		try {
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setRegisterDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtStartDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtEndDate(date);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 		}
 		return new Json<StoreInVO>(vo);
 	}
 
 	@RequestMapping(value = "/in/modify")
 	@RightAnnotation(name = "抵押管理/入库管理/修改", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
-	public @ResponseBody Json<StoreInVO> inModify(StoreInVO form) {
+	public @ResponseBody Json<StoreInVO> inModify(StoreInVO form)
+	{
 		Json<StoreInVO> rst = new Json<StoreInVO>();
-		try {
+		try
+		{
 			StoreItem item = storeItemService.getInVoByRfid(form.getRfid());
-			if (item != null && item.getId().equals(form.getItemId())) {
+			if (item != null && item.getId().equals(form.getItemId()))
+			{
 				form.setOrgId(this.getSessionUser().getOrgId());
 				form.setOperator(this.getSessionUser().getUsername());
 				form = storeItemService.in(form);
 				rst.OK(form, "");
-			} else {
+			}
+			else
+			{
 				rst.NG("标签号已入库，请使用其它标签号");
 			}
-		} catch (CnplayRuntimeException e) {
+		}
+		catch (CnplayRuntimeException e)
+		{
 			logger.error(e);
 			rst.NG(e.getMessage());
-		} catch (Throwable e) {
+		}
+		catch (Throwable e)
+		{
 			logger.error(e);
 			rst.NG("保存失败，请输入正确的信息");
 		}
@@ -233,21 +295,30 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/in/save")
 	@RightAnnotation(name = "抵押管理/入库管理/入库", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
-	public @ResponseBody Json<StoreInVO> inSave(StoreInVO form) {
+	public @ResponseBody Json<StoreInVO> inSave(StoreInVO form)
+	{
 		Json<StoreInVO> rst = new Json<StoreInVO>();
-		try {
-			if (storeItemService.getInVoByRfid(form.getRfid()) == null) {
+		try
+		{
+			if (storeItemService.getInVoByRfid(form.getRfid()) == null)
+			{
 				form.setOrgId(this.getSessionUser().getOrgId());
 				form.setOperator(this.getSessionUser().getUsername());
 				form = storeItemService.in(form);
 				rst.OK(form, "");
-			} else {
+			}
+			else
+			{
 				rst.NG("标签号已入库，请使用其它标签号");
 			}
-		} catch (CnplayRuntimeException e) {
+		}
+		catch (CnplayRuntimeException e)
+		{
 			logger.error(e);
 			rst.NG(e.getMessage());
-		} catch (Throwable e) {
+		}
+		catch (Throwable e)
+		{
 			logger.error(e);
 			rst.NG("保存失败，请输入正确的信息");
 		}
@@ -256,30 +327,49 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/in/tmplist")
 	@RightAnnotation(name = "抵押管理/待入库管理", component = "platform.system.view.StoreInTmpPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreItem> tmplist() {
+	public @ResponseBody DataGrid<StoreItem> tmplist()
+	{
 		User user = this.getSessionUser();
 		DataGrid<StoreItem> dg = storeItemService.findInTmpPage(user.getOrgId(), this.getPage(), this.getPageSize());
 		return dg;
 	}
 
+	@RequestMapping(value = "/remove")
+	public @ResponseBody Json<Boolean> remove(String[] ids)
+	{
+		Json<Boolean> dg = new Json<Boolean>();
+		storeItemService.removeByIds(ids);
+		dg.OK(true, "删除");
+		return dg;
+	}
+
 	@RequestMapping(value = "/in/tmp")
-	public @ResponseBody DataGrid<StoreItem> inTmp(String id) {
+	public @ResponseBody DataGrid<StoreItem> inTmp(String id)
+	{
 		DataGrid<StoreItem> dg = new DataGrid<StoreItem>();
 		User user = this.getSessionUser();
 		Attachment att = attachmentService.getAttachment(id);
 		String filename = AttachmentController.path + "/" + id + "." + att.getSuffix();
-		try {
+		try
+		{
 			List<String[]> itemList = ExcelImportHelp.readExcel(filename);
 			List<StoreItem> items = new ArrayList<StoreItem>();
-			for (int i = 1; i < itemList.size(); i++) {
+			for (int i = 1; i < itemList.size(); i++)
+			{
 				String[] strs = itemList.get(i);
-				if (StringUtils.isNotEmpty(strs[0]) && StringUtils.isNotEmpty(strs[1])) {
+				if (StringUtils.isNotEmpty(strs[0]) && StringUtils.isNotEmpty(strs[1]))
+				{
 					StoreItem item = toItem(i, user, strs);
-					items.add(item);
+					if (storeItemService.existSn(item.getSn()))
+					{
+						items.add(item);
+					}
 				}
 			}
 			storeItemService.saveAll(items);
-		} catch (Throwable e) {
+		}
+		catch (Throwable e)
+		{
 			logger.error(e.getMessage(), e);
 			dg.setSuccess(false);
 			dg.setMsg(e.getMessage());
@@ -289,58 +379,82 @@ public class StoreItemController extends AbsController {
 		return dg;
 	}
 
-	private StoreItem toItem(int rows, User user, String[] strs) {
-		try {
+	private StoreItem toItem(int rows, User user, String[] strs)
+	{
+		try
+		{
 			StoreItem item = new StoreItem();
 			item.setSn(strs[0]);
 			item.setName(strs[1]);
 			item.setDywOwner(strs[2]);
 			String pgje = strs[3];
-			if (pgje == null) {
+			String jkje = strs[4];
+			if (pgje == null)
+			{
 				pgje = "0";
 			}
-			String jkje = strs[4];
-			if (jkje == null) {
+			if (jkje == null)
+			{
 				jkje = "0";
 			}
 			pgje = pgje.replaceAll(" ", "");
 			jkje = jkje.replaceAll(" ", "");
+			if (StringUtils.isEmpty(pgje))
+			{
+				pgje = "0";
+			}
+			if (StringUtils.isEmpty(jkje))
+			{
+				jkje = "0";
+			}
 			item.setPgje(new BigDecimal(pgje));
 			item.setJkje(new BigDecimal(jkje));
 			item.setRegisterDate(strs[5]);
-//				try {
-//					String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
-//					item.setRegisterDate(date);
-//				} catch (Exception e) {
-//				}
+			// try {
+			// String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
+			// item.setRegisterDate(date);
+			// } catch (Exception e) {
+			// }
 			item.setStoreman(strs[6]);
 			item.setStatus(StoreItem.STATUS_WIN);
 			item.setOrgId(user.getOrgId());
 			return item;
-		} catch (Throwable ex) {
+		}
+		catch (Throwable ex)
+		{
 			throw new RuntimeException("第" + (rows + 1) + "行数据出现异常，检查数据格式是否正确", ex);
 		}
 	}
 
 	@RequestMapping(value = "/in/tmp/load")
-	public @ResponseBody Json<StoreInVO> inTmpLoad(String id) {
+	public @ResponseBody Json<StoreInVO> inTmpLoad(String id)
+	{
 		StoreItem item = storeItemService.getById(id);
 		StoreInVO vo = new StoreInVO();
 		BeanUtils.copyProperties(item, vo);
-		try {
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getRegisterDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setRegisterDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtStartDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtStartDate(date);
-		} catch (Exception e) {
 		}
-		try {
+		catch (Exception e)
+		{
+		}
+		try
+		{
 			String date = DateFormatUtils.format(DateUtils.parseDate(vo.getHtEndDate(), "yyyy年MM月dd日"), "yyyyMMdd");
 			vo.setHtEndDate(date);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 		}
 		vo.setItemId(id);
 		vo.setId(StoreItem.randomID());
@@ -350,9 +464,11 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/in/list")
 	@RightAnnotation(name = "抵押管理/入库管理", component = "platform.system.view.StoreInPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreInVO> inLst(String orgId, String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreInVO> inLst(String orgId, String dywOwner, String startDate, String endDate)
+	{
 		User user = this.getSessionUser();
-		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate))
+		{
 			// 如果时间参数为空时，默认查询当前一个月数据
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
@@ -367,23 +483,25 @@ public class StoreItemController extends AbsController {
 		}
 		Date startDateTime = null;
 		Date endDateTime = null;
-		if (StringUtils.isNotEmpty(startDate)) {
+		if (StringUtils.isNotEmpty(startDate))
+		{
 			startDateTime = DateUtil.dateGreater(startDate);
 		}
-		if (StringUtils.isNotEmpty(endDate)) {
+		if (StringUtils.isNotEmpty(endDate))
+		{
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreInVO> dg = storeItemService.findInPageLikeName(startDateTime, endDateTime, user.getOrgId(),
-				dywOwner, this.getPage(), this.getPageSize());
+		DataGrid<StoreInVO> dg = storeItemService.findInPageLikeName(startDateTime, endDateTime, user.getOrgId(), dywOwner, this.getPage(), this.getPageSize());
 		return dg;
 	}
 
 	@RequestMapping(value = "/item/list")
 	@RightAnnotation(name = "抵押管理/抵押物查询", component = "platform.system.view.StoreItemPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreItem> itemList(String storeman, String dywOwner, String startDate,
-			String endDate) throws Exception {
+	public @ResponseBody DataGrid<StoreItem> itemList(String storeman, String dywOwner, String startDate, String endDate) throws Exception
+	{
 		User user = this.getSessionUser();
-		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate))
+		{
 			// 如果时间参数为空时，默认查询当前一个月数据
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
@@ -398,14 +516,15 @@ public class StoreItemController extends AbsController {
 		}
 		Date startDateTime = null;
 		Date endDateTime = null;
-		if (StringUtils.isNotEmpty(startDate)) {
+		if (StringUtils.isNotEmpty(startDate))
+		{
 			startDateTime = DateUtil.dateGreater(startDate);
 		}
-		if (StringUtils.isNotEmpty(endDate)) {
+		if (StringUtils.isNotEmpty(endDate))
+		{
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
-				dywOwner, storeman, this.getPage(), this.getPageSize());
+		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(), dywOwner, storeman, this.getPage(), this.getPageSize());
 		ObjectMapper objectMapper = new ObjectMapper();
 		logger.info(objectMapper.writeValueAsString(dg));
 		return dg;
@@ -413,9 +532,11 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/item/mylist")
 	@RightAnnotation(name = "抵押管理/我的抵押物", component = "platform.system.view.StoreMyItemPanel", resource = "/store/item/*", sort = 80100)
-	public @ResponseBody DataGrid<StoreItem> itemMyList(String dywOwner, String startDate, String endDate) {
+	public @ResponseBody DataGrid<StoreItem> itemMyList(String dywOwner, String startDate, String endDate)
+	{
 		User user = this.getSessionUser();
-		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+		if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate))
+		{
 			// 如果时间参数为空时，默认查询当前一个月数据
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
@@ -430,46 +551,62 @@ public class StoreItemController extends AbsController {
 		}
 		Date startDateTime = null;
 		Date endDateTime = null;
-		if (StringUtils.isNotEmpty(startDate)) {
+		if (StringUtils.isNotEmpty(startDate))
+		{
 			startDateTime = DateUtil.dateGreater(startDate);
 		}
-		if (StringUtils.isNotEmpty(endDate)) {
+		if (StringUtils.isNotEmpty(endDate))
+		{
 			endDateTime = DateUtil.dateLess(endDate);
 		}
-		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(),
-				dywOwner, user.getUsername(), this.getPage(), this.getPageSize());
+		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(), dywOwner, user.getUsername(), this.getPage(), this.getPageSize());
 		return dg;
 	}
 
 	@RequestMapping(value = "/item/movoto")
 	@RightAnnotation(name = "抵押管理/我的抵押物/交接", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
 	@Description("保存机构")
-	public @ResponseBody Json<StoreMove> movoto(StoreMove form) {
+	public @ResponseBody Json<StoreMove> movoto(StoreMove form)
+	{
 		Json<StoreMove> rst = new Json<StoreMove>();
 		User user = this.getSessionUser();
-		try {
+		try
+		{
 			User moveto = userService.getByUsername(form.getMoveto());
-			if (moveto != null) {
+			if (moveto != null)
+			{
 				form.setOperator(user.getUsername());
 				form.setMoveDate(new Date());
 				Date date = DateUtils.parseDate(form.getMoveDates(), "yyyy年MM月dd日");
 				form.setMoveDate(date);
-				if (form.getItemIds() != null && form.getItemIds().length > 0) {
-					if (storeItemService.moveto(form)) {
+				if (form.getItemIds() != null && form.getItemIds().length > 0)
+				{
+					if (storeItemService.moveto(form))
+					{
 						rst.OK(form, "交接成功");
-					} else {
+					}
+					else
+					{
 						rst.NG("交接失败");
 					}
-				} else {
+				}
+				else
+				{
 					rst.NG("交接失败，请选择交接内容");
 				}
-			} else {
+			}
+			else
+			{
 				rst.NG("交接失败，接收人不存在！");
 			}
-		} catch (CnplayRuntimeException e) {
+		}
+		catch (CnplayRuntimeException e)
+		{
 			logger.error(e);
 			rst.NG(e.getMessage());
-		} catch (Throwable e) {
+		}
+		catch (Throwable e)
+		{
 			logger.error(e);
 			rst.NG("交接失败，请输入正确的信息");
 		}
@@ -478,9 +615,12 @@ public class StoreItemController extends AbsController {
 
 	@RequestMapping(value = "/item/myexport")
 	@RightAnnotation(name = "抵押管理/我的抵押物/导出", button = true, sort = 80101, needCheck = true, resource = "/store/area/tree")
-	public void export(String dywOwner, String startDate, String endDate) {
-		try {
-			if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+	public void export(String dywOwner, String startDate, String endDate)
+	{
+		try
+		{
+			if (StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate))
+			{
 				// 如果时间参数为空时，默认查询当前一个月数据
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				Calendar c = Calendar.getInstance();
@@ -495,21 +635,23 @@ public class StoreItemController extends AbsController {
 			}
 			Date startDateTime = null;
 			Date endDateTime = null;
-			if (StringUtils.isNotEmpty(startDate)) {
+			if (StringUtils.isNotEmpty(startDate))
+			{
 				startDateTime = DateUtil.dateGreater(startDate);
 			}
-			if (StringUtils.isNotEmpty(endDate)) {
+			if (StringUtils.isNotEmpty(endDate))
+			{
 				endDateTime = DateUtil.dateLess(endDate);
 			}
-			DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime,
-					this.getSessionUser().getOrgId(), dywOwner, getSessionUsername(), this.getPage(),
-					this.getPageSize());
+			DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, this.getSessionUser().getOrgId(), dywOwner, getSessionUsername(), this.getPage(), this.getPageSize());
 			HSSFWorkbook wb = storeItemService.export(dg.getRows());
 			this.getResponse().setContentType("application/vnd.ms-excel");
 			this.getResponse().setHeader("Content-disposition", "attachment;filename=ITEM.xls");
 			wb.write(this.getResponse().getOutputStream());
 			this.getResponse().getOutputStream().flush();
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			logger.error(e);
 		}
 	}

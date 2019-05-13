@@ -419,4 +419,17 @@ public class StoreItemServiceImpl extends AbsGenericService<StoreItem, String> i
 		return wb;
 
 	}
+
+	@Override
+	public boolean existSn(String sn)
+	{
+		StringBuffer sb = new StringBuffer();
+		sb.append(" SELECT * FROM store_item t");
+		sb.append(" WHERE 1 = 1");
+		sb.append(" and t.sn = '" + sn + "'");
+		sb.append(" and t.status > 2 LIMIT 1");
+		List<StoreItem> list = dao().findBySQL(StoreItem.class, sb.toString());
+		return list.size() > 0;
+	}
+	
 }
