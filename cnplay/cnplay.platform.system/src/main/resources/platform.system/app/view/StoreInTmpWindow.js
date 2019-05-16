@@ -119,7 +119,7 @@ Ext.define('platform.system.view.StoreInTmpWindow', {
                                     labelWidth: 120,
                                     name: 'sn',
                                     invalidText: '机构编码不能为空！',
-                                    maxLength: 20
+                                    maxLength: 50
                                 },
                                 {
                                     xtype: 'textfield',

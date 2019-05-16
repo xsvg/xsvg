@@ -97,7 +97,7 @@ Ext.define('platform.system.view.StoreOutWindow', {
                                     name: 'sn',
                                     invalidText: '机构编码不能为空！',
                                     readOnly: true,
-                                    maxLength: 20
+                                    maxLength: 50
                                 },
                                 {
                                     xtype: 'textfield',

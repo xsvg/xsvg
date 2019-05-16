@@ -223,7 +223,7 @@
                                 "invalidText": "机构编码不能为空！",
                                 "labelAlign": "right",
                                 "labelWidth": 120,
-                                "maxLength": 20,
+                                "maxLength": 50,
                                 "name": "sn",
                                 "padding": 5,
                                 "width": 330
