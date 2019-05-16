@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -350,6 +351,7 @@ public class StoreItemController extends AbsController
 		User user = this.getSessionUser();
 		Attachment att = attachmentService.getAttachment(id);
 		String filename = AttachmentController.path + "/" + id + "." + att.getSuffix();
+		StringBuilder sb = new StringBuilder();
 		try
 		{
 			List<String[]> itemList = ExcelImportHelp.readExcel(filename);
@@ -359,10 +361,22 @@ public class StoreItemController extends AbsController
 				String[] strs = itemList.get(i);
 				if (StringUtils.isNotEmpty(strs[0]) && StringUtils.isNotEmpty(strs[1]))
 				{
-					StoreItem item = toItem(i, user, strs);
-					if (storeItemService.existSn(item.getSn()))
+					try
 					{
-						items.add(item);
+						StoreItem item = toItem(i, user, strs);
+						if (!storeItemService.existSn(item.getSn()))
+						{
+							items.add(item);
+							sb.append(strs[0] + " 导入成功<br/>");
+						}
+						else
+						{
+							sb.append(strs[0] + " 已经存在<br/>");
+						}
+					}
+					catch (Throwable e)
+					{
+						sb.append(e.getMessage() + " " + strs[0] + " <br/>");
 					}
 				}
 			}
@@ -376,54 +390,62 @@ public class StoreItemController extends AbsController
 			return dg;
 		}
 		dg = storeItemService.findInTmpPage(user.getOrgId(), this.getPage(), this.getPageSize());
+		dg.setMsg(sb.toString());
 		return dg;
 	}
 
 	private StoreItem toItem(int rows, User user, String[] strs)
 	{
+		StoreItem item = new StoreItem();
+		item.setSn(strs[0]);
+		item.setName(strs[1]);
+		item.setDywOwner(strs[2]);
+		String pgje = strs[3];
+		String jkje = strs[4];
+		if (pgje == null)
+		{
+			pgje = "0";
+		}
+		if (jkje == null)
+		{
+			jkje = "0";
+		}
+		pgje = pgje.replaceAll(" ", "");
+		jkje = jkje.replaceAll(" ", "");
+		if (StringUtils.isEmpty(pgje))
+		{
+			pgje = "0";
+		}
+		if (StringUtils.isEmpty(jkje))
+		{
+			jkje = "0";
+		}
 		try
 		{
-			StoreItem item = new StoreItem();
-			item.setSn(strs[0]);
-			item.setName(strs[1]);
-			item.setDywOwner(strs[2]);
-			String pgje = strs[3];
-			String jkje = strs[4];
-			if (pgje == null)
-			{
-				pgje = "0";
-			}
-			if (jkje == null)
-			{
-				jkje = "0";
-			}
-			pgje = pgje.replaceAll(" ", "");
-			jkje = jkje.replaceAll(" ", "");
-			if (StringUtils.isEmpty(pgje))
-			{
-				pgje = "0";
-			}
-			if (StringUtils.isEmpty(jkje))
-			{
-				jkje = "0";
-			}
 			item.setPgje(new BigDecimal(pgje));
-			item.setJkje(new BigDecimal(jkje));
-			item.setRegisterDate(strs[5]);
-			// try {
-			// String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
-			// item.setRegisterDate(date);
-			// } catch (Exception e) {
-			// }
-			item.setStoreman(strs[6]);
-			item.setStatus(StoreItem.STATUS_WIN);
-			item.setOrgId(user.getOrgId());
-			return item;
 		}
 		catch (Throwable ex)
 		{
-			throw new RuntimeException("第" + (rows + 1) + "行数据出现异常，检查数据格式是否正确", ex);
+			throw new RuntimeException("第" + (rows + 1) + "行数据评估金额[" + pgje + "]不正确", ex);
 		}
+		try
+		{
+			item.setJkje(new BigDecimal(jkje));
+		}
+		catch (Throwable ex)
+		{
+			throw new RuntimeException("第" + (rows + 1) + "行数据借款金额[" + jkje + "]不正确", ex);
+		}
+		item.setRegisterDate(strs[5]);
+		// try {
+		// String date = DateFormatUtils.format(DateUtils.parseDate(strs[5], "yyyyMMdd"), "yyyy年MM月dd日");
+		// item.setRegisterDate(date);
+		// } catch (Exception e) {
+		// }
+		item.setStoreman(strs[6]);
+		item.setStatus(StoreItem.STATUS_WIN);
+		item.setOrgId(user.getOrgId());
+		return item;
 	}
 
 	@RequestMapping(value = "/in/tmp/load")
@@ -525,8 +547,6 @@ public class StoreItemController extends AbsController
 			endDateTime = DateUtil.dateLess(endDate);
 		}
 		DataGrid<StoreItem> dg = storeItemService.findPageLikeName(startDateTime, endDateTime, user.getOrgId(), dywOwner, storeman, this.getPage(), this.getPageSize());
-		ObjectMapper objectMapper = new ObjectMapper();
-		logger.info(objectMapper.writeValueAsString(dg));
 		return dg;
 	}
 
