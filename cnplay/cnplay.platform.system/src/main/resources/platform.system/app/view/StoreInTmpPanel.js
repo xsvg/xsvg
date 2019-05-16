@@ -400,8 +400,11 @@ Ext.define('platform.system.view.StoreInTmpPanel', {
         var me = this;
         try{
             Common.ajax({
+                component : me,
+                message : '正在导入数据...',
                 url:ctxp+'/store/in/tmp?id='+id,
                 callback:function(result){
+                    Common.setLoading({comp:me,msg:result.msg});
                     me.loadGrid();
                 }
             });
